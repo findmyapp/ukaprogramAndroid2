@@ -1,8 +1,9 @@
-package no.accenture.activities;
+package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.List;
 
-import no.accenture.model.Event;
+import no.accenture.activities.R;
+import no.uka.findmyapp.ukaprogram.models.Event;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

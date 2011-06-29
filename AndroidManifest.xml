@@ -21,7 +21,7 @@
 		<activity android:name=".EventListActivity"></activity>
 		<activity android:name=".FavoritesListActivity"></activity>
 		<activity android:name=".EditContactActivity"></activity>
-		<activity android:name=".EventListAdapter"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListAdapter"></activity>
 
 
 

@@ -1,7 +1,8 @@
-package no.accenture.activities;
+package no.uka.findmyapp.ukaprogram.activities;
 
 
-import no.accenture.model.Event;
+import no.accenture.activities.R;
+import no.uka.findmyapp.ukaprogram.models.Event;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
