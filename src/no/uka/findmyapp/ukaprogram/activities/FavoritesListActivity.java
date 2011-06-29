@@ -1,6 +1,6 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import no.accenture.activities.R;
+import no.uka.findmyapp.ukaprogram.R;
 import android.app.Activity;
 import android.os.Bundle;
 

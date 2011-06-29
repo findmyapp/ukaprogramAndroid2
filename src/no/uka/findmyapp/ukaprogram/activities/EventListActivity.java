@@ -2,7 +2,7 @@ package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
 
-import no.accenture.activities.R;
+import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.models.Event;
 import android.app.Activity;
 import android.content.Intent;
