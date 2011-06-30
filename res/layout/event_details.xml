@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-    <TextView android:text="Turbonegro" android:id="@+id/band" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-    
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="#800517">
+
+	<TextView android:id="@+id/title" android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_height="wrap_content" android:text="Turbonegro"
+		android:layout_width="wrap_content"></TextView>
+
+	<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+		android:id="@+id/time_and_place" android:layout_height="wrap_content"
+		android:text="Man. 10. okt. 20.00, Dødens dal" android:layout_width="wrap_content"></TextView>
+
+	<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+		android:id="@+id/ageLimit" android:layout_height="wrap_content"
+		android:text="test" android:layout_width="wrap_content"></TextView>
+		
+	<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+		android:id="@+id/price" android:layout_height="wrap_content"
+		android:text="test" android:layout_width="wrap_content"></TextView>
+		
+	<ScrollView android:id="@+id/scrollView1"
+		android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_marginTop="10dp">
+		<LinearLayout android:id="@+id/linearLayout1"
+			android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+
+
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				android:id="@+id/description" android:layout_width="wrap_content"
+				android:text="test" android:layout_height="wrap_content"></TextView>
+		</LinearLayout>
+	</ScrollView>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="#800517">
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:background="#800517">
+
+		</LinearLayout>
+	</LinearLayout>
 </LinearLayout>

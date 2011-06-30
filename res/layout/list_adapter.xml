@@ -2,32 +2,43 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:orientation="horizontal">
-	
+	android:orientation="horizontal" android:background="#800517">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:orientation="vertical" android:layout_weight="1">
-		
-		<TextView android:id="@+id/title" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textSize="16dp"
-			android:textStyle="bold" android:textColor="#FFFFFF"
-			android:layout_weight="5">
+		android:orientation="vertical">
+		<TextView android:id="@+id/weekday" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="12dp"
+			android:textStyle="bold" android:text="man" android:layout_marginTop="5dp"></TextView>
+		<TextView android:id="@+id/dayNumber" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:textSize="22dp"
+			android:textStyle="bold" android:textColor="#FFFFFF" android:text="29" android:layout_marginTop="0dp">
 		</TextView>
-		
+		<TextView android:id="@+id/time" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="12dp"
+			android:textStyle="bold" android:text="20.00" android:layout_marginBottom="5dp">
+		</TextView>
 	</LinearLayout>
 
+
+	<TextView android:id="@+id/title" android:layout_width="wrap_content"
+		android:layout_height="fill_parent" android:textSize="20dp"
+		android:textStyle="bold" android:textColor="#FFFFFF" android:gravity="center"
+		android:layout_marginLeft="20dp">
+	</TextView>
+
+
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:orientation="vertical" android:layout_weight="1">
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="horizontal" android:gravity="right">
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:orientation="vertical" android:gravity="center_vertical"   android:layout_gravity="center">
 
-		<TextView android:id="@+id/place" android:textSize="12dp"
-			android:layout_width="wrap_content" android:layout_height="wrap_content">
-		</TextView>
+			<TextView android:id="@+id/place" android:textSize="12dp"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+			</TextView>
 
-		<TextView android:id="@+id/eventType" android:textSize="12dp"
-			android:layout_width="fill_parent" android:layout_height="wrap_content">
-		</TextView>
-		
+		</LinearLayout>
 	</LinearLayout>
 
 </LinearLayout>

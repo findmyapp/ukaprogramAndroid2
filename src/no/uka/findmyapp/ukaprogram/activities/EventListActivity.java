@@ -39,17 +39,37 @@ public class EventListActivity extends Activity {
 	private void populateListView() {
 		eventsArrayList.clear();
 
-		Event kaizers = new Event();
-		kaizers.setTitle("Kaizers Orchestra");
-		kaizers.setPlace("Dødens dal");	
-		kaizers.setEventType("Konsert");
-		eventsArrayList.add(kaizers);
-
 		Event oktoberfest = new Event();
 		oktoberfest.setTitle("Oktoberfest");
 		oktoberfest.setPlace("Dødens dal");
 		oktoberfest.setEventType("Fest");
+		oktoberfest.setAgeLimit(18);
+		oktoberfest.setStartTime("20.00");
+		oktoberfest.setFree(false);
+		oktoberfest.setWeekday("fre");
+		oktoberfest.setDayNumber("29");
+		oktoberfest.setPrice(300);
+		oktoberfest.setDescription("Den 10. oktober 2011 kl. 13.00 braker det løs i Dødens Dal, når feststemte mennesker iført lederhosen samles rundt langbordene for et ølgilde man ellers må helt til Tyskland for å få oppleve. Ølglass på høykant, allsang, dans og generelt god stemning står på programmet for årets Oktoberfest. Det blir også livemusikk av både DJs og band i teltet. Det er ikke tilfeldig at dette er eventen som i følge historiebøkene blir raskest utsolgt. Tradisjonen kommer opprinnelig fra delstaten Bayern i Tyskland, men har med årene også blitt populær i lille Norge. Har man ikke muligheten til å dra sørover for å oppleve det på ekte tysk vis, kan man like så godt dra på seg lederhosen og slenge ølmagen på bardisken her i Trondheim. UKA har arrangert Oktoberfester siden 2001, og festen har med årene blitt en UKEtradisjon. Trondheims befolkning både forbinder og forventer denne festen av oss, og i år tar vi den til helt nye høyder. Finn frem kostymet og forbered deg til årets fest. Billettene kommer med ”god stemnings”-garanti. Dette vil du ikke gå glipp av!");
 		eventsArrayList.add(oktoberfest);
+
+		Event kaizers = new Event();
+		kaizers.setTitle("Kaizers Orchestra");
+		kaizers.setPlace("Storsalen");	
+		kaizers.setEventType("Konsert");
+		kaizers.setAgeLimit(18);
+		kaizers.setStartTime("20.00");
+		kaizers.setWeekday("lør");
+		kaizers.setDayNumber("30");
+		kaizers.setPrice(350);
+		kaizers.setDescription("Den 20. oktober 2011 kl. 13.00 braker det løs i Dødens Dal, når feststemte mennesker iført lederhosen samles rundt langbordene for et ølgilde man ellers må helt til Tyskland for å få oppleve. Ølglass på høykant, allsang, dans og generelt god stemning står på programmet for årets Oktoberfest. Det blir også livemusikk av både DJs og band i teltet. Det er ikke tilfeldig at dette er eventen som i følge historiebøkene blir raskest utsolgt. Tradisjonen kommer opprinnelig fra delstaten Bayern i Tyskland, men har med årene også blitt populær i lille Norge. Har man ikke muligheten til å dra sørover for å oppleve det på ekte tysk vis, kan man like så godt dra på seg lederhosen og slenge ølmagen på bardisken her i Trondheim. UKA har arrangert Oktoberfester siden 2001, og festen har med årene blitt en UKEtradisjon. Trondheims befolkning både forbinder og forventer denne festen av oss, og i år tar vi den til helt nye høyder. Finn frem kostymet og forbered deg til årets fest. Billettene kommer med ”god stemnings”-garanti. Dette vil du ikke gå glipp av!");
+
+		kaizers.setFree(false);
+
+		eventsArrayList.add(kaizers);
+
+
+		eventsArrayList.add(oktoberfest);
+		eventsArrayList.add(kaizers);
 
 		eventListView.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id){

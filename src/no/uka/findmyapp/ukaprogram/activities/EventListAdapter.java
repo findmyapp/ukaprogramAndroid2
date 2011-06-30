@@ -37,13 +37,20 @@ public class EventListAdapter extends ArrayAdapter<Event> {
 		}
 
 		TextView title = (TextView) eventView.findViewById(R.id.title);
-		TextView body = (TextView) eventView.findViewById(R.id.place);
-		TextView eventType = (TextView) eventView.findViewById(R.id.eventType);
-
+		TextView startTime = (TextView) eventView.findViewById(R.id.time);
+		TextView weekday = (TextView) eventView.findViewById(R.id.weekday);
+		TextView dayNumber = (TextView) eventView.findViewById(R.id.dayNumber);
+		TextView place = (TextView) eventView.findViewById(R.id.place);
+		
+		
+		
 		title.setText(event.getTitle());
-		body.setText(event.getPlace());
-		eventType.setText(event.getEventType());
-
+		place.setText(event.getPlace());
+		startTime.setText(event.getStartTime());
+		weekday.setText(event.getWeekday());
+		dayNumber.setText(event.getDayNumber());
+		
+	
 		return eventView;
 	}
 }

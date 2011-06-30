@@ -26,6 +26,54 @@ public class Event implements Serializable{
 	private int ageLimit;
 	private int detailPhotoId;
 	
+	private String weekday;
+	private String startTime;
+	private String dayNumber;
+	private int price;
+	private String description;
+	
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getWeekday() {
+		return weekday;
+	}
+
+	public void setWeekday(String weekday) {
+		this.weekday = weekday;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getDayNumber() {
+		return dayNumber;
+	}
+
+	public void setDayNumber(String dayNumber) {
+		this.dayNumber = dayNumber;
+	}
+
 	public String toString(){
 		return title + "  " + place;
 	}
