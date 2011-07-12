@@ -2,6 +2,9 @@
 <resources>
     <string name="hello">Hello World, Contacts!</string>
     <string name="app_name">UKA11 Program</string>
+    <string name="fiveNext">5 Neste</string>
+    <string name="calendar">Calendar</string>
+    <string name="fullList">Alle arr.</string>
     <string-array name="countries_array">
     	<item>Norway</item>
     	<item>Sweden</item>

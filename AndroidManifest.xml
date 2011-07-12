@@ -27,6 +27,7 @@
 		<activity android:name=".adapters.DayListAdapter"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FiveNextActivity"></activity>
 		<activity android:name=".activities.Tosk"></activity>
 
 	</application>
