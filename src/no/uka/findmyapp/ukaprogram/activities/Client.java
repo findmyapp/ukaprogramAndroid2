@@ -24,8 +24,12 @@ public class Client extends TabActivity{
 		intent = new Intent().setClass(this, FavoritesListActivity.class);
 		spec = tabHost.newTabSpec("favs").setIndicator("Favorites").setContent(intent);
 		tabHost.addTab(spec);
-
-		tabHost.setCurrentTab(0);
+		
+		intent = new Intent().setClass(this, CalendarActivity.class);
+		spec = tabHost.newTabSpec("cal").setIndicator("Calendar").setContent(intent);
+		tabHost.addTab(spec);
+		
+		tabHost.setCurrentTab(2);
 				
 	} // end onCreate()
 

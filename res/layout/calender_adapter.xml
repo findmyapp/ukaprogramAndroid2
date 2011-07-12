@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	android:id="@+id/cal_item"
+	android:gravity="center_horizontal"
+	>
+	<TextView  
+		android:id="@+id/calendar_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="my taxt" 
+		android:textSize="45px"
+		android:textStyle="bold"
+		android:textColor="#FFFFFF"
+		android:gravity="center_horizontal"
+		/>
+</LinearLayout>

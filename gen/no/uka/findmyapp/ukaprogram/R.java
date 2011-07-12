@@ -17,24 +17,46 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int ageLimit=0x7f060002;
-        public static final int dayNumber=0x7f060009;
-        public static final int description=0x7f060006;
-        public static final int eventListView=0x7f060007;
-        public static final int linearLayout1=0x7f060005;
-        public static final int place=0x7f06000b;
-        public static final int price=0x7f060003;
-        public static final int scrollView1=0x7f060004;
-        public static final int time=0x7f06000a;
-        public static final int time_and_place=0x7f060001;
-        public static final int title=0x7f060000;
-        public static final int weekday=0x7f060008;
+        public static final int MyGrid=0x7f060007;
+        public static final int ageLimit=0x7f060011;
+        public static final int cal_item=0x7f060008;
+        public static final int calendar_text=0x7f060009;
+        public static final int date_list_date=0x7f06000a;
+        public static final int date_list_event_type=0x7f06000d;
+        public static final int date_list_place=0x7f06000e;
+        public static final int date_list_time=0x7f06000b;
+        public static final int date_list_title=0x7f06000c;
+        public static final int dayNumber=0x7f06001a;
+        public static final int description=0x7f060015;
+        public static final int eventListView=0x7f060016;
+        public static final int event_list_for_day_day=0x7f060017;
+        public static final int event_list_for_day_eventListView=0x7f060018;
+        public static final int linearLayout1=0x7f060014;
+        public static final int place=0x7f06001c;
+        public static final int price=0x7f060012;
+        public static final int scrollView1=0x7f060013;
+        public static final int textViev5=0x7f060004;
+        public static final int textView1=0x7f060000;
+        public static final int textView2=0x7f060001;
+        public static final int textView3=0x7f060002;
+        public static final int textView4=0x7f060003;
+        public static final int textView6=0x7f060005;
+        public static final int textView7=0x7f060006;
+        public static final int time=0x7f06001b;
+        public static final int time_and_place=0x7f060010;
+        public static final int title=0x7f06000f;
+        public static final int weekday=0x7f060019;
     }
     public static final class layout {
-        public static final int event_details=0x7f030000;
-        public static final int event_list=0x7f030001;
-        public static final int list_adapter=0x7f030002;
-        public static final int main=0x7f030003;
+        public static final int calendar=0x7f030000;
+        public static final int calender_adapter=0x7f030001;
+        public static final int date_list=0x7f030002;
+        public static final int date_list_adapter=0x7f030003;
+        public static final int event_details=0x7f030004;
+        public static final int event_list=0x7f030005;
+        public static final int event_list_for_day=0x7f030006;
+        public static final int list_adapter=0x7f030007;
+        public static final int main=0x7f030008;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

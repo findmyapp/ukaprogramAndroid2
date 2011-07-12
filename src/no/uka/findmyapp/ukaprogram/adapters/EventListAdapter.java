@@ -1,4 +1,4 @@
-package no.uka.findmyapp.ukaprogram.activities;
+package no.uka.findmyapp.ukaprogram.adapters;
 
 import java.util.List;
 
@@ -42,15 +42,12 @@ public class EventListAdapter extends ArrayAdapter<Event> {
 		TextView dayNumber = (TextView) eventView.findViewById(R.id.dayNumber);
 		TextView place = (TextView) eventView.findViewById(R.id.place);
 		
-		
-		
 		title.setText(event.getTitle());
 		place.setText(event.getPlace());
 		startTime.setText(event.getStartTime());
 		weekday.setText(event.getWeekday());
 		dayNumber.setText(event.getDayNumber());
 		
-	
 		return eventView;
 	}
 }

@@ -3,41 +3,46 @@ package no.uka.findmyapp.ukaprogram.activities;
 import java.util.ArrayList;
 
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.adapters.EventListAdapter;
+import no.uka.findmyapp.ukaprogram.adapters.DayListAdapter;
 import no.uka.findmyapp.ukaprogram.models.Event;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
+public class DateActivity extends Activity {
 
-//private ContactListAdapter contactAdapter;
-//private List<Contact> contactsArraylist;
-
-public class EventListActivity extends Activity {
-	EventListAdapter eventAdapter;
+	DayListAdapter dayAdapter;
 	ArrayList<Event> eventsArrayList;
 	ListView eventListView;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.event_list);
+		Log.i("h","YOU ARE IN THE DATE ACTIVITY!");
+		setContentView(R.layout.event_list_for_day);
+		//TextView tv = (TextView) findViewById(R.id.date_list_date);
+		Bundle extras = getIntent().getExtras();
+		int selectedDay = extras.getInt("SelectedDate");
+		//get the selected date
+		//tv.setText((extras.getInt("SelectedDate"))+ "");
 
 		eventsArrayList = new ArrayList<Event>();
-		eventListView = (ListView) findViewById(R.id.eventListView);
-		eventAdapter = new EventListAdapter(this, R.layout.list_adapter, eventsArrayList);
-		eventListView.setAdapter(eventAdapter);
-		////////
-		populateListView();
-	} // end onCreate()
+		eventListView = (ListView) findViewById(R.id.event_list_for_day_eventListView);
+		dayAdapter = new DayListAdapter(this, R.layout.date_list_adapter, eventsArrayList);
+		TextView header= (TextView) findViewById(R.id.event_list_for_day_day);
 
-	public void onResume() {
-		super.onResume();
-	}	
-	private void populateListView() {
+
+
+
+		eventListView.setAdapter(dayAdapter);
+
+
 		eventsArrayList.clear();
 
 		Event oktoberfest = new Event();
@@ -72,6 +77,10 @@ public class EventListActivity extends Activity {
 		eventsArrayList.add(oktoberfest);
 		eventsArrayList.add(kaizers);
 
+		
+		header.setText(eventsArrayList.get(0).getWeekday() +". " + selectedDay + ". Okt");
+		
+
 		eventListView.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 				//viewContact.setClass(getApplicationContext(), ContactDetailsActivity.class);
@@ -88,7 +97,6 @@ public class EventListActivity extends Activity {
 			}
 		});
 
-	} 
+	}
 
 }
-

@@ -8,22 +8,26 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.camera" />
 
-	<application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+	<application android:icon="@drawable/icon" android:label="@string/app_name"
+		android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
 
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.Client"
-			android:label="@string/app_name" >
+			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity"></activity>
+		<activity
+			android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FavoritesListActivity"></activity>
+		<activity
+			android:name="no.uka.findmyapp.ukaprogram.activities.FavoritesListActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EditContactActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListAdapter"></activity>
-
-
+		<activity android:name=".adapters.DayListAdapter"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity"></activity>
+		<activity android:name=".activities.Tosk"></activity>
 
 	</application>
 
