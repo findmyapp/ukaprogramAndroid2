@@ -2,10 +2,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="#800517">
+	android:layout_height="fill_parent" android:background="#8F0000">
 
 	<ListView android:id="@+id/eventListView" 
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent" 
-		android:background="#800517"/>
+		android:background="#8F0000"/>
 </LinearLayout>
