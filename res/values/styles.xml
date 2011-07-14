@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="custom_theme_color">#000000</color>
+	<color name="uka_red">#8F0000</color>
+	<color name="uka_purple">#4019FF</color>
+	<color name="uka_greygreen">#73FF8C</color>
+	<color name="uka_yellow">#FFD919</color>
+	<color name="uka_green">#BFFF19</color>
+	<color name="uka_blue">#4DFFD9</color>
+	<color name="uka_pink">#E04DFF</color>
+	<color name="uka_orange">#FF5919</color>
+	
+	<style name="BigFont" parent="@android:style/TextAppearance.Large">
+		<item name="android:textColor">#FFFFFF</item>
+	</style>
+	<style name="MediumFont" parent="@android:style/TextAppearance.Medium">
+		<item name="android:textColor">#FFFFFF</item>
+	</style>
+	<style name="SmallFont" parent="@android:style/TextAppearance.Small">
+		 
+		<item name="android:textColor">@color/uka_red</item>
+	</style>
+
+	<style name="BigDayNumber" parent="@android:style/TextAppearance.Large">
+		<item name="android:textColor">#FFFFFF</item>
+		<item name="android:textSize">22dp</item>
+	</style>
+
+
+
+	<style name="CustomTheme" parent="android:Theme.Light">
+		<item name="android:windowBackground">@color/custom_theme_color</item>
+		<item name="android:colorBackground">@color/custom_theme_color</item>
+	</style>
+</resources>
