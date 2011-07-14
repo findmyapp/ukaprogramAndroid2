@@ -36,7 +36,7 @@ public class Client extends TabActivity{
 		spec = tabHost.newTabSpec("5next").setIndicator("De 5 neste").setContent(intent);
 		tabHost.addTab(spec);
 
-		tabHost.setCurrentTab(2);
+		tabHost.setCurrentTab(0);
 
 
 

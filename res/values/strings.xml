@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Contacts!</string>
-    <string name="app_name">UKA11 Program</string>
-    <string name="fiveNext">5 Neste</string>
-    <string name="calendar">Calendar</string>
-    <string name="fullList">Alle arr.</string>
-    <string-array name="countries_array">
-    	<item>Norway</item>
-    	<item>Sweden</item>
-    	<item>UK</item>
-    	<item>USA</item>
-    </string-array>
+	<string name="hello">Hello World, Contacts!</string>
+	<string name="app_name">UKA11 Program</string>
+	<string name="fiveNext">5 Neste</string>
+	<string name="calendar">Calendar</string>
+	<string name="fullList">Alle arr.</string>
+	<string name="select_category">Velg eventkategori</string>
+	<string-array name="category_array">
+		<item>Konserter</item>
+		<item>Revy \u0026 Teater</item>
+		<item>Kurs \u0026 Events</item>
+		<item>Fest  \u0026  Moro</item>
+	</string-array>
+	<string-array name="countries_array">
+		<item>Norway</item>
+		<item>Sweden</item>
+		<item>UK</item>
+		<item>USA</item>
+	</string-array>
 </resources>

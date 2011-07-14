@@ -4,14 +4,12 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@android:id/tabhost"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:background="#8F0000">
+	android:layout_height="fill_parent">
 	<LinearLayout
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:padding="5dp"
-		android:background="#8F0000">
+		android:padding="5dp">
 		
 
 		<TabWidget
@@ -23,8 +21,7 @@
 			android:id="@android:id/tabcontent"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
-			android:padding="5dp"
-			android:background="#8F0000" />
+			android:padding="5dp" />
 	</LinearLayout>
 	
 </TabHost>

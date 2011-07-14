@@ -8,13 +8,13 @@
 	android:gravity="center_horizontal"
 	>
 	<TextView  
+		style="@style/BigDayNumber"
 		android:id="@+id/calendar_text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="my taxt" 
-		android:textSize="45px"
 		android:textStyle="bold"
-		android:textColor="#FFFFFF"
 		android:gravity="center_horizontal"
+		android:textSize="30dp"
 		/>
 </LinearLayout>

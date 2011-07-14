@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="#8F0000">
+	android:layout_height="fill_parent">
 
-	<TextView android:id="@+id/title" android:textAppearance="?android:attr/textAppearanceLarge"
+	<TextView android:id="@+id/title" style="@style/BigFont"
 		android:layout_height="wrap_content" android:text="Turbonegro"
 		android:layout_width="wrap_content"></TextView>
 
-	<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+	<TextView style="@style/SmallFont"
 		android:id="@+id/time_and_place" android:layout_height="wrap_content"
 		android:text="Man. 10. okt. 20.00, Dødens dal" android:layout_width="wrap_content"></TextView>
 
-	<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+	<TextView style="@style/SmallFont"
 		android:id="@+id/ageLimit" android:layout_height="wrap_content"
 		android:text="test" android:layout_width="wrap_content"></TextView>
 		
-	<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+	<TextView style="@style/SmallFont"
 		android:id="@+id/price" android:layout_height="wrap_content"
 		android:text="test" android:layout_width="wrap_content"></TextView>
 		
@@ -26,7 +26,7 @@
 
 
 
-			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			<TextView style="@style/MediumFont"
 				android:id="@+id/description" android:layout_width="wrap_content"
 				android:text="test" android:layout_height="wrap_content"></TextView>
 		</LinearLayout>

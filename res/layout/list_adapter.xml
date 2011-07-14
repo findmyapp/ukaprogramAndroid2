@@ -2,28 +2,29 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:orientation="horizontal" android:background="#8F0000">
+	android:orientation="horizontal">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:orientation="vertical">
 		<TextView android:id="@+id/weekday" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textSize="12dp"
+			android:layout_height="wrap_content" style="@style/SmallFont"
 			android:textStyle="bold" android:text="man" android:layout_marginTop="5dp"></TextView>
-		<TextView android:id="@+id/dayNumber" android:layout_width="wrap_content"
-			android:layout_height="fill_parent" android:textSize="22dp"
-			android:textStyle="bold" android:textColor="#FFFFFF" android:text="29" android:layout_marginTop="0dp">
+		<TextView android:id="@+id/dayNumber" style="@style/BigDayNumber"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:textSize="22dp" android:textStyle="bold"
+			android:text="29" android:layout_marginTop="0dp">
 		</TextView>
-		<TextView android:id="@+id/time" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textSize="12dp"
-			android:textStyle="bold" android:text="20.00" android:layout_marginBottom="5dp">
+		<TextView android:id="@+id/time" style="@style/SmallFont"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textStyle="bold" android:text="20.00"
+			android:layout_marginBottom="5dp">
 		</TextView>
 	</LinearLayout>
 
 
-	<TextView android:id="@+id/title" android:layout_width="wrap_content"
-		android:layout_height="fill_parent" android:textSize="20dp"
-		android:textStyle="bold" android:textColor="#FFFFFF" android:gravity="center"
-		android:layout_marginLeft="20dp">
+	<TextView android:id="@+id/title" style="@style/BigFont" android:layout_width="wrap_content"
+		android:layout_height="fill_parent" android:textStyle="bold" android:textSize="18dp"
+		android:gravity="center" android:layout_marginLeft="20dp">
 	</TextView>
 
 
@@ -32,10 +33,12 @@
 		android:orientation="horizontal" android:gravity="right">
 		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			android:layout_width="wrap_content" android:layout_height="fill_parent"
-			android:orientation="vertical" android:gravity="center_vertical"   android:layout_gravity="center">
+			android:orientation="vertical" android:gravity="center_vertical"
+			android:layout_gravity="center">
 
-			<TextView android:id="@+id/place" android:textSize="12dp"
-				android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<TextView android:id="@+id/place" style="@style/SmallFont"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:textStyle="bold">
 			</TextView>
 
 		</LinearLayout>
