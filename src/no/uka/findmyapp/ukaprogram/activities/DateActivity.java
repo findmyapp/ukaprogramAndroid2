@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.adapters.DayListAdapter;
 import no.uka.findmyapp.ukaprogram.models.Event;
+import no.uka.findmyapp.ukaprogram.models.WeekDay;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,7 +39,13 @@ public class DateActivity extends Activity {
 		dayAdapter = new DayListAdapter(this, R.layout.date_list_adapter, eventsArrayList);
 		TextView header= (TextView) findViewById(R.id.event_list_for_day_day);
 
-
+		//finds the weekday and sets the header
+		
+		Time time = new Time();
+		time.set(0,0,12,selectedDay, 9, 2011);
+		time.normalize(true);
+		Log.i("DATE ACTIVIT", selectedDay + " IS THE SEL DAY");
+		header.setText( new WeekDay().getShortWeekDayName(time.weekDay) +". " + selectedDay + ". Okt");
 
 
 		eventListView.setAdapter(dayAdapter);
@@ -77,10 +85,8 @@ public class DateActivity extends Activity {
 		eventsArrayList.add(oktoberfest);
 		eventsArrayList.add(kaizers);
 
-		
-		header.setText(eventsArrayList.get(0).getWeekday() +". " + selectedDay + ". Okt");
-		
 
+		
 		eventListView.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 				//viewContact.setClass(getApplicationContext(), ContactDetailsActivity.class);

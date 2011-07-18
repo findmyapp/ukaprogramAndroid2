@@ -16,6 +16,7 @@ public final class R {
     }
     public static final class color {
         public static final int custom_theme_color=0x7f060000;
+        public static final int grey=0x7f06000a;
         public static final int uka_blue=0x7f060006;
         public static final int uka_green=0x7f060005;
         public static final int uka_greygreen=0x7f060003;
@@ -24,10 +25,12 @@ public final class R {
         public static final int uka_purple=0x7f060002;
         public static final int uka_red=0x7f060001;
         public static final int uka_yellow=0x7f060004;
+        public static final int white=0x7f060009;
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
         public static final int uka_logo=0x7f020001;
+        public static final int uka_logo_black=0x7f020002;
     }
     public static final class id {
         public static final int MyGrid=0x7f090008;

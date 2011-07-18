@@ -9,6 +9,8 @@
 	<color name="uka_blue">#4DFFD9</color>
 	<color name="uka_pink">#E04DFF</color>
 	<color name="uka_orange">#FF5919</color>
+	<color name="white">#FFFFFF</color>
+	<color name="grey">#F7F9F6</color>
 	
 	<style name="BigFont" parent="@android:style/TextAppearance.Large">
 		<item name="android:textColor">#FFFFFF</item>
@@ -18,7 +20,7 @@
 	</style>
 	<style name="SmallFont" parent="@android:style/TextAppearance.Small">
 		 
-		<item name="android:textColor">@color/uka_red</item>
+		<item name="android:textColor">@color/grey</item>
 	</style>
 
 	<style name="BigDayNumber" parent="@android:style/TextAppearance.Large">
@@ -29,7 +31,7 @@
 
 
 	<style name="CustomTheme" parent="android:Theme.Light">
-		<item name="android:windowBackground">@color/custom_theme_color</item>
-		<item name="android:colorBackground">@color/custom_theme_color</item>
+		<item name="android:windowBackground">@color/uka_red</item>
+		<item name="android:colorBackground">@color/uka_red</item>
 	</style>
 </resources>
