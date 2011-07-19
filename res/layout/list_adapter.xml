@@ -9,7 +9,7 @@
 		<TextView android:id="@+id/weekday" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" style="@style/SmallFont"
 			android:textStyle="bold" android:text="man" android:layout_marginTop="5dp"></TextView>
-		<TextView android:id="@+id/dayNumber" style="@style/BigDayNumber"
+		<TextView android:id="@+id/dayNumber2" style="@style/BigDayNumber"
 			android:layout_width="wrap_content" android:layout_height="fill_parent"
 			android:textSize="22dp" android:textStyle="bold"
 			android:text="29" android:layout_marginTop="0dp">

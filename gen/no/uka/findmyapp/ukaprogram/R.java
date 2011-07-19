@@ -43,7 +43,7 @@ public final class R {
         public static final int date_list_place=0x7f09000e;
         public static final int date_list_time=0x7f09000b;
         public static final int date_list_title=0x7f09000c;
-        public static final int dayNumber=0x7f09001b;
+        public static final int dayNumber2=0x7f09001b;
         public static final int description=0x7f090015;
         public static final int eventListView=0x7f090016;
         public static final int event_list_for_day_day=0x7f090017;

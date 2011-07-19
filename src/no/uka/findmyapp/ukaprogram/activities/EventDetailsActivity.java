@@ -1,15 +1,17 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
 
+import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.models.Event;
+import no.uka.findmyapp.ukaprogram.models.WeekDay;
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.widget.TextView;
 
 public class EventDetailsActivity extends Activity {
 
-	private Event selectedEvent;
+	private UkaEvent selectedEvent;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -17,11 +19,11 @@ public class EventDetailsActivity extends Activity {
 		setContentView(R.layout.event_details);
 
 		Bundle extras = getIntent().getExtras();
-		selectedEvent = new Event();
+		selectedEvent = new UkaEvent();
 		
 		
 		if (extras != null) {
-			selectedEvent = (Event) extras.getSerializable("SelectedEvent");
+			selectedEvent = (UkaEvent) extras.getSerializable("SelectedEvent");
 
 			TextView ageLimit = (TextView) findViewById(R.id.ageLimit);
 			TextView price = (TextView) findViewById(R.id.price);
@@ -29,9 +31,13 @@ public class EventDetailsActivity extends Activity {
 			TextView time_and_place= (TextView) findViewById(R.id.time_and_place);
 			TextView description = (TextView) findViewById(R.id.description);
 			
-			time_and_place.setText(selectedEvent.getWeekday() + " " + selectedEvent.getDayNumber()+" okt. " + selectedEvent.getStartTime() + ", " + selectedEvent.getPlace());
+			Time time = new Time();
+			time.set(selectedEvent.getShowingTime());
+			time.normalize(true);
+			
+			time_and_place.setText(new WeekDay().getShortWeekDayName(time.weekDay) + " " + selectedEvent.getDayNumber()+" okt. " + selectedEvent.getStartTime() + ", " + selectedEvent.getPlace());
 			title.setText(selectedEvent.getTitle());
-			description.setText(selectedEvent.getDescription());
+			description.setText(selectedEvent.getText());
 			ageLimit.setText("Aldersgrense: " + selectedEvent.getAgeLimit() + " år");
 			if(selectedEvent.isFree()){
 				price.setText("Gratis");

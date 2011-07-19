@@ -30,6 +30,16 @@
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FiveNextActivity"></activity>
 		<activity android:name=".activities.Tosk"></activity>
 
+		<provider android:name="no.uka.findmyapp.android.rest.providers.EventProvider" 
+			android:authorities="no.uka.findmyapp.android.rest.providers" 
+			android:exported="false"
+			android:enabled="true">
+			
+			<grant-uri-permission android:pathPattern=".*" />
+		</provider> 
+
+		<service android:name="no.uka.findmyapp.android.rest.client.RestIntentService" />
+
 	</application>
 
 </manifest>
