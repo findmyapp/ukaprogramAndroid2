@@ -1,21 +1,21 @@
 package no.uka.findmyapp.ukaprogram.wrapper;
 
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
-import no.uka.findmyapp.ukaprogram.Strftime;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
+
 public class EventDatabase {
 
 	private static EventDatabase INSTANCE; 	
+	
 	private EventDatabase() {}	
 
 	public static EventDatabase getInstance() {
@@ -28,7 +28,6 @@ public class EventDatabase {
 
 	public ArrayList<UkaEvent> getAllEvents(ContentResolver contentResolver){
 		Log.v("EventDatabase", "Inside getAllEvents");
-		ContentValues contentValues = new ContentValues();
 		UkaEvent ukaEvent;
 		ArrayList<UkaEvent> eventList = new ArrayList<UkaEvent>();
 		Cursor cursor = contentResolver.query(UkaEventContract.EVENT_CONTENT_URI, null, 		
@@ -110,17 +109,19 @@ public class EventDatabase {
 
 		return eventList;
 	}
-	private UkaEvent getEventFromCursor(Cursor cursor) {
+	
+	public UkaEvent getEventFromCursor(Cursor cursor) {
 		Log.v("EventDatabase", "Inside getEventFromCursor");
 		UkaEvent ukaEvent = new UkaEvent();
 		ukaEvent.setAgeLimit(cursor.getInt(cursor.getColumnIndex(UkaEventContract.AGE_LIMIT)));			
-		//ukaEvent.setCanceled(cursor.getInt(cursor.getColumnIndex(UkaEventContract.CANCELED)));
+//		ukaEvent.setCanceled((boolean) cursor.getInt(cursor.getColumnIndex(UkaEventContract.CANCELED)));
 		ukaEvent.setEventType(cursor.getString(cursor.getColumnIndex(UkaEventContract.EVENT_TYPE)));
 		ukaEvent.setId(cursor.getInt(cursor.getColumnIndex(UkaEventContract.ID)));
 		ukaEvent.setText(cursor.getString(cursor.getColumnIndex(UkaEventContract.TEXT)));
 		ukaEvent.setShowingTime((cursor.getLong(cursor.getColumnIndex(UkaEventContract.SHOWING_TIME))));
 		ukaEvent.setPlace(cursor.getString(cursor.getColumnIndex(UkaEventContract.PLACE)));
 		ukaEvent.setTitle(cursor.getString(cursor.getColumnIndex(UkaEventContract.TITLE)));
+		
 		return ukaEvent;
 	}
 

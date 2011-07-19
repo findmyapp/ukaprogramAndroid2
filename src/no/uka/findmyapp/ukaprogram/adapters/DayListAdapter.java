@@ -4,6 +4,7 @@ import java.util.List;
 
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,12 +44,8 @@ public class DayListAdapter extends ArrayAdapter<UkaEvent> {
 		
 		title.setText(event.getTitle());
 		place.setText(event.getPlace());
-		startTime.setText(event.getStartTime());
+		startTime.setText(new DateUtils().getTimeFromTimestamp(event.getShowingTime()));
 		category.setText(event.getEventType());
-		
-		
-		
-		
 		
 		return eventView;
 	}

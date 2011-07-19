@@ -40,28 +40,8 @@ public class Client extends TabActivity{
 
 	} // end onCreate()
 	private void initTabHost(){
-		TabHost tabHost = getTabHost();
-		TabHost.TabSpec spec;
-		Intent intent;
-		
-	
-		intent = new Intent().setClass(this, EventListActivity.class);
-		spec = tabHost.newTabSpec("eventList").setIndicator("Events").setContent(intent);
-		tabHost.addTab(spec);
-
-		intent = new Intent().setClass(this, FavoritesListActivity.class);
-		spec = tabHost.newTabSpec("favs").setIndicator("Favorites").setContent(intent);
-		tabHost.addTab(spec);
-
-		intent = new Intent().setClass(this, CalendarActivity.class);
-		spec = tabHost.newTabSpec("cal").setIndicator("Calendar").setContent(intent);
-		tabHost.addTab(spec);
-
-		intent = new Intent().setClass(this, FiveNextActivity.class);
-		spec = tabHost.newTabSpec("5next").setIndicator("De 5 neste").setContent(intent);
-		tabHost.addTab(spec);
-
-		tabHost.setCurrentTab(0);
+		Intent i = new Intent(this, EventListActivity.class); 
+		startActivity(i);
 	}
 	public void updateEvents(){
 
@@ -117,7 +97,7 @@ public class Client extends TabActivity{
 		inflater.inflate(R.menu.main_menu, menu);   
 		return true;
 	}
-
+/*
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {  
 		// Handle item selection  
@@ -155,4 +135,5 @@ public class Client extends TabActivity{
 		intent = new Intent().setClass(this, EventListActivity.class);
 		startActivity(intent);
 	}
+	*/
 }

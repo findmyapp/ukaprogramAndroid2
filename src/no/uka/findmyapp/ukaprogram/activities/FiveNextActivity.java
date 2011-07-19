@@ -1,23 +1,7 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import java.util.ArrayList;
 
-import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
-import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.adapters.EventListAdapter;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
-
-
+/*
 
 public class FiveNextActivity extends Activity {
 	EventListAdapter eventAdapter;
@@ -138,7 +122,7 @@ public class FiveNextActivity extends Activity {
 					databaseHandler.removePerson(contactArrayList.get(position).getId());
 					databaseHandler.close();
 					populateList();
-				 */
+				 
 				Intent viewEvent = new Intent();
 				viewEvent.setClass(getApplicationContext(), EventDetailsActivity.class);
 				viewEvent.putExtra("SelectedEvent", eventsArrayList.get(position));///////
@@ -150,3 +134,4 @@ public class FiveNextActivity extends Activity {
 
 }
 
+*/
