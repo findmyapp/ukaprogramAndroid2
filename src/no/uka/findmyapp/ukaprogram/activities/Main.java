@@ -68,9 +68,7 @@ public class Main extends Activity implements OnClickListener{
 		case (R.id.steder):{
 			break;
 		}
-		case (R.id.favoritter):{
-			break;
-		}
+
 		default:
 			break;
 		}
