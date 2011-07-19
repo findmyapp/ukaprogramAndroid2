@@ -7,7 +7,6 @@ import java.util.Date;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
-import no.uka.findmyapp.ukaprogram.Strftime;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
