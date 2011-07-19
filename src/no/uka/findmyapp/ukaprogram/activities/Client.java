@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 
 public class Client extends TabActivity{
+	private static final String debug = "Client";
 	private static final String STARTUP_REQUEST_TOKEN = "startup";
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
 	
@@ -83,8 +84,7 @@ public class Client extends TabActivity{
 					UkaEventContract.EVENT_CONTENT_URI, 
 					STARTUP_REQUEST_TOKEN,
 					null);
-			
-			Log.v("DEBUG", "HERE1");
+			Log.v(debug, "intentReceiver released");
 			
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
