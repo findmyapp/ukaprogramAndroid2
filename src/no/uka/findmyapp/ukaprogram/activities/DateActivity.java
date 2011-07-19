@@ -1,5 +1,6 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
@@ -54,7 +55,9 @@ public class DateActivity extends Activity {
 
 
 		eventsArrayList.clear();
-		eventsArrayList.addAll(eventDatabase.getEventsInPeriod(getContentResolver(), selectedDay));
+		Timestamp fromTime = new Timestamp(111, 9, selectedDay, 00,00,00,00);
+		Timestamp toTime = new Timestamp(111, 9, selectedDay, 23,59,59,00);
+		eventsArrayList.addAll(eventDatabase.getEventsInPeriod(getContentResolver(), fromTime, toTime));
 		dayAdapter.notifyDataSetChanged();
 		
 
