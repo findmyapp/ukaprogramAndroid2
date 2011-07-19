@@ -13,7 +13,7 @@ import no.uka.findmyapp.android.rest.datamodels.enums.HttpType;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
-import android.app.TabActivity;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,28 +21,73 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.TabHost;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
+<<<<<<< HEAD
+public class Main extends Activity implements OnClickListener{
+=======
 public class Client extends TabActivity{
 	private static final String debug = "Client";
+>>>>>>> 3cc891bb560066a3426d0a86ed930b50fe07a8d5
 	private static final String STARTUP_REQUEST_TOKEN = "startup";
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.main_menu);
 		
+<<<<<<< HEAD
 		updateEvents();
 
 	} // end onCreate()
 	private void initTabHost(){
 		Intent i = new Intent(this, EventListActivity.class); 
 		startActivity(i);
+=======
+		
+		Button favorites = (Button) findViewById(R.id.favoritter);
+		Button program = (Button) findViewById(R.id.program);
+		Button artists = (Button) findViewById(R.id.artister);
+		Button places = (Button) findViewById(R.id.steder);
+		Button update = (Button) findViewById(R.id.update);
+		
+		favorites.setOnClickListener(this);
+		program.setOnClickListener(this);
+		artists.setOnClickListener(this);
+		places.setOnClickListener(this);
+		update.setOnClickListener(this);
+		
+		
 	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent;
+		switch (v.getId()) {
+		case (R.id.program):
+			intent = new Intent().setClass(this, EventListActivity.class);
+			startActivity(intent);
+			break;
+		case (R.id.update):{
+			updateEvents();
+			break;
+		}
+		case (R.id.artister):{
+			break;
+		}
+		case (R.id.steder):{
+			break;
+		}
+
+		default:
+			break;
+		}
+>>>>>>> dac1291bd67dcb18755d749ad320b239a8fe3bc8
+	}
+	
 	public void updateEvents(){
 
 		try {
@@ -77,16 +122,14 @@ public class Client extends TabActivity{
 			e.printStackTrace();
 		}
 	}
+	
+	 public class ReciveIntent extends BroadcastReceiver {
 
-    public class ReciveIntent extends BroadcastReceiver {
+			@Override
+			public void onReceive(Context context, Intent intent) {
 
-		@Override
-		public void onReceive(Context context, Intent intent) {
-
-			Log.w("BroadcastIntentDebug", "---------");
-
-			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
 				Log.w("BroadcastIntentDebug", "---------");
+<<<<<<< HEAD
 				initTabHost(); 
 			}
 		}
@@ -137,3 +180,12 @@ public class Client extends TabActivity{
 	}
 	*/
 }
+=======
+
+				if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
+					Log.w("BroadcastIntentDebug", "---------"); 
+				}
+			}
+		}
+}
+>>>>>>> dac1291bd67dcb18755d749ad320b239a8fe3bc8
