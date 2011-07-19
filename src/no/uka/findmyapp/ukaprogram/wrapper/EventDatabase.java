@@ -1,11 +1,13 @@
 package no.uka.findmyapp.ukaprogram.wrapper;
 
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
+import no.uka.findmyapp.ukaprogram.Strftime;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -43,21 +45,26 @@ public class EventDatabase {
 		Log.v("EventDatabase", "Done inserting: " + eventList.toString());
 		return eventList;
 	}
-	
-	public ArrayList<UkaEvent> getEventsInPeriod(ContentResolver contentResolver, int dayNumber){
+
+	public ArrayList<UkaEvent> getEventsInPeriod(ContentResolver contentResolver, Timestamp fromTime, Timestamp toTime){
 		ContentValues contentValues = new ContentValues();
 		UkaEvent ukaEvent;
 		ArrayList<UkaEvent> eventList = new ArrayList<UkaEvent>();
+		Log.v("EventDatabase", "Timestamp = " + fromTime + " to " + toTime);
 		Cursor cursor = contentResolver.query(UkaEventContract.EVENT_CONTENT_URI, 
 				null, 		
-				"strftime('%d', " + UkaEventContract.SHOWING_TIME + ") =" + String.valueOf(dayNumber), 			
+				null, 			
 				null, 
-				UkaEventContract.SHOWING_TIME);		
-		cursor.moveToFirst();
-		while (cursor.moveToNext()) {	
-			ukaEvent = getEventFromCursor(cursor);
-			eventList.add(ukaEvent);
-			cursor.moveToNext();	
+				UkaEventContract.SHOWING_TIME);
+		if(cursor != null){
+			Log.v("EventDatabase", "Cursor = " + cursor);
+			cursor.moveToFirst();
+			while (cursor.moveToNext()) {	
+				ukaEvent = getEventFromCursor(cursor);
+				eventList.add(ukaEvent);
+				cursor.moveToNext();	
+				Log.v("EventDatabase", "Printing from While: " + ukaEvent.toString());
+			}
 		}
 		return eventList;
 	}
@@ -116,7 +123,7 @@ public class EventDatabase {
 		ukaEvent.setTitle(cursor.getString(cursor.getColumnIndex(UkaEventContract.TITLE)));
 		return ukaEvent;
 	}
-	
+
 	public void clearEventTable(ContentResolver cr){
 		cr.delete(UkaEventContract.EVENT_CONTENT_URI, null, null);
 	}
