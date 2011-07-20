@@ -8,12 +8,14 @@ import android.database.Cursor;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EventListCursorAdapter extends CursorAdapter {
+public class EventListCursorAdapter extends CursorAdapter implements OnClickListener {
 		private static final String debug = "EventListCursorAdapter";
 
 	private Cursor cursor;
@@ -50,6 +52,9 @@ public class EventListCursorAdapter extends CursorAdapter {
 			
 			t = (TextView) eventView.findViewById(R.id.listItemPlace);
 			t.setText(getStringFromTableColumn(UkaEventContract.PLACE));
+			
+			CheckBox cb = (CheckBox) eventView.findViewById(R.id.listItemAttending);
+			cb.setOnClickListener(this);
 		}
 		catch(Exception e) {
 			Log.v(debug, "Exception: " + e.getMessage());
@@ -70,5 +75,11 @@ public class EventListCursorAdapter extends CursorAdapter {
 	
 	private long getLongFromTableColumn(String tableColumnName) {
 		return this.cursor.getLong(this.cursor.getColumnIndex(tableColumnName));
+	}
+
+	@Override
+	public void onClick(View v) {
+		Toast t = Toast.makeText(this.context, v.toString(), Toast.LENGTH_LONG);
+		t.show(); 
 	}
 }
