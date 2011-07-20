@@ -5,6 +5,7 @@ import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -20,6 +21,8 @@ public class StartupLoader extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.splash);
+		
+		Log.v(debug, "Loading UkaProgram");
 		
 		EventsUpdater eu = new EventsUpdater(getApplicationContext());
 		eu.initUpdate(); 

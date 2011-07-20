@@ -9,11 +9,13 @@ import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.os.Debug;
 import android.util.Log;
 
 
 public class EventDatabase {
-
+	private static final String debug = "EventDatabase";
+	
 	private static EventDatabase INSTANCE; 	
 	
 	private EventDatabase() {}	
@@ -27,21 +29,21 @@ public class EventDatabase {
 	}
 
 	public ArrayList<UkaEvent> getAllEvents(ContentResolver contentResolver){
-		Log.v("EventDatabase", "Inside getAllEvents");
+		Log.v(debug, "Inside getAllEvents");
 		UkaEvent ukaEvent;
 		ArrayList<UkaEvent> eventList = new ArrayList<UkaEvent>();
 		Cursor cursor = contentResolver.query(UkaEventContract.EVENT_CONTENT_URI, null, 		
 				null, 			
 				null, UkaEventContract.SHOWING_TIME);	
-		Log.v("CURSOR" , cursor.toString());
+		Log.v(debug , "getAllEvents cursor toString " + cursor.toString());
 		cursor.moveToFirst();
 		while (cursor.moveToNext()) {	
 			ukaEvent = getEventFromCursor(cursor);
 			eventList.add(ukaEvent);
 			cursor.moveToNext();	
-			Log.v("EventDatabase", "Printing from While: " + ukaEvent.toString());
+			Log.v(debug, "Printing from While: " + ukaEvent.toString());
 		}
-		Log.v("EventDatabase", "Done inserting: " + eventList.toString());
+		Log.v(debug, "Done inserting: " + eventList.toString());
 		return eventList;
 	}
 
@@ -49,14 +51,14 @@ public class EventDatabase {
 		ContentValues contentValues = new ContentValues();
 		UkaEvent ukaEvent;
 		ArrayList<UkaEvent> eventList = new ArrayList<UkaEvent>();
-		Log.v("EventDatabase", "Timestamp = " + fromTime + " to " + toTime);
+		Log.v(debug, "Timestamp = " + fromTime + " to " + toTime);
 		Cursor cursor = contentResolver.query(UkaEventContract.EVENT_CONTENT_URI, 
 				null, 		
 				null, 			
 				null, 
 				UkaEventContract.SHOWING_TIME);
 		if(cursor != null){
-			Log.v("EventDatabase", "Cursor = " + cursor);
+			Log.v(debug, "Cursor = " + cursor);
 			cursor.moveToFirst();
 			while (cursor.moveToNext()) {	
 				ukaEvent = getEventFromCursor(cursor);
@@ -69,7 +71,7 @@ public class EventDatabase {
 	}
 
 	public ArrayList<UkaEvent> getNextEventsFromCategory(ContentResolver contentResolver, int numberOfEvents, String eventType){
-		Log.v("EventDatabase", "Inside getNextEventsFromCategory");
+		Log.v(debug, "Inside getNextEventsFromCategory");
 		ContentValues contentValues = new ContentValues();
 		UkaEvent ukaEvent;
 		Date now = new Date();
@@ -82,7 +84,7 @@ public class EventDatabase {
 		cursor.moveToFirst();
 		while (cursor != null) {	
 			ukaEvent = getEventFromCursor(cursor);
-			Log.v("EventDatabase", cursor.toString());
+			Log.v(debug, cursor.toString());
 			eventList.add(ukaEvent);
 			cursor.moveToNext();	
 		}
@@ -111,7 +113,7 @@ public class EventDatabase {
 	}
 	
 	public UkaEvent getEventFromCursor(Cursor cursor) {
-		Log.v("EventDatabase", "Inside getEventFromCursor");
+		Log.v(debug, "Inside getEventFromCursor");
 		UkaEvent ukaEvent = new UkaEvent();
 		ukaEvent.setAgeLimit(cursor.getInt(cursor.getColumnIndex(UkaEventContract.AGE_LIMIT)));			
 //		ukaEvent.setCanceled((boolean) cursor.getInt(cursor.getColumnIndex(UkaEventContract.CANCELED)));
@@ -126,6 +128,7 @@ public class EventDatabase {
 	}
 
 	public void clearEventTable(ContentResolver cr){
+		Log.v(debug, "clearEventTable " + cr.toString());
 		cr.delete(UkaEventContract.EVENT_CONTENT_URI, null, null);
 	}
 }
