@@ -29,11 +29,9 @@ import android.widget.Button;
 
 
 
-public class Main extends Activity implements OnClickListener{
-
+public class Main extends Activity implements OnClickListener {
 	private static final String debug = "Main";
 
-	private static final String STARTUP_REQUEST_TOKEN = "startup";
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
 
 	@Override
@@ -46,8 +44,6 @@ public class Main extends Activity implements OnClickListener{
 		setContentView(R.layout.splash);
 
 		updateEvents();
-		
-
 	}
 
 	private void initMenu() {
@@ -108,7 +104,7 @@ public class Main extends Activity implements OnClickListener{
 					UkaEvent.class, 
 					null, 
 					UkaEventContract.EVENT_CONTENT_URI, 
-					STARTUP_REQUEST_TOKEN,
+					IntentMessages.BROADCAST_INTENT_TOKEN,
 					null);
 			
 		} catch (URISyntaxException e) {
@@ -126,11 +122,7 @@ public class Main extends Activity implements OnClickListener{
 	public class ReciveIntent extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-
-			Log.w("BroadcastIntentDebug", "---------");
-
 			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
-				Log.w("BroadcastIntentDebug", "---------"); 
 				initMenu();
 			}
 		}
