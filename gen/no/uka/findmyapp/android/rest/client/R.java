@@ -29,13 +29,15 @@ public final class R {
         public static final int white=0x7f06000a;
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
-        public static final int splash=0x7f020001;
-        public static final int testbutton=0x7f020002;
-        public static final int testbutton2=0x7f020003;
-        public static final int uka_logo=0x7f020004;
-        public static final int uka_logo_black=0x7f020005;
-        public static final int ukeheader=0x7f020006;
+        public static final int event_list_calendar_button=0x7f020000;
+        public static final int event_list_event_type_button=0x7f020001;
+        public static final int icon=0x7f020002;
+        public static final int splash=0x7f020003;
+        public static final int testbutton=0x7f020004;
+        public static final int uka_logo=0x7f020005;
+        public static final int uka_logo_black=0x7f020006;
+        public static final int uka_logo_header=0x7f020007;
+        public static final int ukeheader=0x7f020008;
     }
     public static final class id {
         public static final int MyGrid=0x7f090008;
@@ -58,6 +60,8 @@ public final class R {
         public static final int detailedEventTimeAndPlace=0x7f090011;
         public static final int detailedEventTitle=0x7f09000f;
         public static final int eventListView=0x7f09001e;
+        public static final int event_list_calendar_button=0x7f09001a;
+        public static final int event_list_event_type_button=0x7f090019;
         public static final int event_list_for_day_day=0x7f09001b;
         public static final int event_list_for_day_eventListView=0x7f09001c;
         public static final int favoritter=0x7f090026;
@@ -66,8 +70,6 @@ public final class R {
         public static final int fullList=0x7f09002c;
         public static final int header=0x7f090000;
         public static final int imageView1=0x7f090017;
-        public static final int imageView2=0x7f090019;
-        public static final int imageView3=0x7f09001a;
         public static final int place=0x7f090024;
         public static final int program=0x7f090025;
         public static final int relativeLayout1=0x7f090018;
@@ -114,7 +116,9 @@ public final class R {
         public static final int BigDayNumber=0x7f070003;
         public static final int BigFont=0x7f070000;
         public static final int Button=0x7f070005;
+        public static final int CalendarButton=0x7f070006;
         public static final int CustomTheme=0x7f070004;
+        public static final int EventCategoryButton=0x7f070007;
         public static final int MediumFont=0x7f070001;
         public static final int SmallFont=0x7f070002;
     }
