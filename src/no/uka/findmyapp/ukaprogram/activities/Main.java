@@ -3,6 +3,7 @@ package no.uka.findmyapp.ukaprogram.activities;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import no.uka.findmyapp.android.library.R.color;
 import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.client.UkappsServices;
@@ -12,15 +13,16 @@ import no.uka.findmyapp.android.rest.datamodels.core.ServiceModel;
 import no.uka.findmyapp.android.rest.datamodels.enums.HttpType;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.utils.ColorUtils;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -60,6 +62,9 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 		artists.setOnClickListener(this);
 		places.setOnClickListener(this);
 		update.setOnClickListener(this);
+		
+		program.setBackgroundResource(R.drawable.uka_logo);
+		//program.setBackgroundColor(R.color.uka_blue);
 	}
 
 	@Override

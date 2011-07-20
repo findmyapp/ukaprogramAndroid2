@@ -1,74 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout 
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:orientation="horizontal">
+	android:orientation="horizontal"
+	android:paddingLeft="5dp"
+	android:paddingRight="5dp">
 	<LinearLayout 
-		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/listItemDateTimeContainer"
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 		<TextView 
-			android:id="@+id/weekday" 
+			android:id="@+id/listItemWeekday" 
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
 			style="@style/SmallFont"
-			android:textStyle="bold" 
-			android:text="man" 
 			android:layout_marginTop="5dp"
 			/>
 		<TextView 
-			android:id="@+id/dayNumber2" 
+			android:id="@+id/listItemDayNumber" 
 			style="@style/BigDayNumber"
 			android:layout_width="wrap_content" 
 			android:layout_height="fill_parent"
-			android:textSize="22dp" 
-			android:textStyle="bold"
-			android:text="29" 
-			android:layout_marginTop="0dp"
+			android:layout_gravity="center_vertical"
 			/>
 		<TextView 
-			android:id="@+id/time" 
+			android:id="@+id/listItemEventTime" 
 			style="@style/SmallFont"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
-			android:textStyle="bold" 
-			android:text="20.00"
 			android:layout_marginBottom="5dp"
 			/>
 	</LinearLayout>
+
+	<CheckBox
+		android:id="@+id/listItemAttending" 
+		android:layout_width="wrap_content" 
+		android:layout_height="fill_parent"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+	/>
+
 	<TextView 
-		android:id="@+id/title" 
+		android:id="@+id/listItemTitle" 
 		style="@style/BigFont" 
 		android:layout_width="wrap_content"
-		android:layout_height="fill_parent" 
-		android:textStyle="bold" 
-		android:textSize="18dp"
-		android:gravity="center" 
-		android:layout_marginLeft="20dp"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/listItemDateTimeContainer"
+		android:layout_toLeftOf="@id/listItemAttending"
+		android:layout_margin="5dp"
 	/>
-	<LinearLayout 	
-		xmlns:android="http://schemas.android.com/apk/res/android"
+	<TextView 
+		android:id="@+id/listItemPlace" 
+		style="@style/SmallFont"
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent"
-		android:orientation="horizontal" 
-		android:gravity="right">
-		<LinearLayout 
-			xmlns:android="http://schemas.android.com/apk/res/android"
-			android:layout_width="wrap_content" 
-			android:layout_height="fill_parent"
-			android:orientation="vertical" 
-			android:gravity="center_vertical"
-			android:layout_gravity="center">
-			<TextView 
-				android:id="@+id/place" 
-				style="@style/SmallFont"
-				android:layout_width="fill_parent" 
-				android:layout_height="wrap_content"
-				android:textStyle="bold">
-			</TextView>
-		</LinearLayout>
-	</LinearLayout>
-</LinearLayout>
+		android:gravity="center_horizontal"
+		android:layout_below="@id/listItemTitle"
+		android:layout_toRightOf="@id/listItemDateTimeContainer"
+		android:layout_toLeftOf="@id/listItemAttending"
+	/>
+</RelativeLayout>

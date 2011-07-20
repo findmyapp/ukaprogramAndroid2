@@ -1,57 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" 
-	android:gravity="center"
-	android:layout_gravity="center">
-	
+>
+	<ImageView 
+		android:layout_height="wrap_content" 
+		android:id="@+id/main_menu_header"
+		android:src="@drawable/maintopleft" 
+		android:layout_width="wrap_content" 
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true">
+	</ImageView>
+	<LinearLayout 
+	android:layout_height="wrap_content"
+	android:layout_width="wrap_content"
+	android:layout_centerInParent="true"
+	android:orientation="vertical"
+	>
 	<ImageView 
 		android:layout_height="wrap_content" 
 		android:id="@+id/imageView1"
 		android:src="@drawable/uka_logo" 
 		android:layout_width="wrap_content" 
-		android:layout_gravity="center">
+		android:layout_gravity="center"
+		android:layout_marginBottom="10dp">
 	</ImageView>
 
 	<LinearLayout 
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical" 
-		android:layout_width="180dp"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:layout_gravity="center"
 		android:gravity="center">
 		<Button 
+			style="@style/EventCategoryButton"
 			android:text="Program" 
 			android:id="@+id/program"
-			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content">
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="3dp">
 		</Button>
 		<Button 
+			style="@style/EventCategoryButton"
 			android:text="Favoritter" 
 			android:id="@+id/favoritter"
 			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="3dp">
 		</Button>
 		<Button 
+			style="@style/EventCategoryButton"
 			android:text="Artister" 
 			android:id="@+id/artister"
 			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="3dp">
 			</Button>
 		<Button 
+			style="@style/EventCategoryButton"
 			android:text="Steder" 
 			android:id="@+id/steder"
 			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="3dp">
 			</Button>
 		<Button 
+			style="@style/EventCategoryButton"
 			android:text="Oppdater" 
 			android:id="@+id/update"
 			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content">
-		</Button>
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="3dp">
+			</Button>
+		</LinearLayout>
 	</LinearLayout>
+	<ImageView 
+		android:layout_height="wrap_content" 
+		android:id="@+id/main_menu_footer"
+		android:src="@drawable/mainbottomright" 
+		android:layout_width="wrap_content" 
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true">
+	</ImageView>
 
-</LinearLayout>
+</RelativeLayout>

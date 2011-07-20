@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
+
 	<ImageView android:layout_height="wrap_content"
 		android:paddingTop="10dp" android:paddingBottom="10dp" android:id="@+id/imageView1"
 		android:src="@drawable/uka_logo_header" android:layout_width="wrap_content"
@@ -10,18 +11,20 @@
 	<RelativeLayout android:layout_height="wrap_content"
 		android:id="@+id/relativeLayout1" android:layout_width="fill_parent">
 		<Button style="@style/EventCategoryButton"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:id="@+id/event_list_event_type_button" 
-			android:layout_alignParentLeft="true"/>
-		<Button style="@style/CalendarButton" 
-			android:id="@+id/event_list_calendar_button"
-			android:layout_alignParentRight="true"  
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"/>
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/event_list_event_type_button"
+			android:layout_alignParentLeft="true" android:tint="@color/uka_orange" />
+		<Button style="@style/CalendarButton" android:id="@+id/event_list_calendar_button"
+			android:layout_alignParentRight="true" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
 	</RelativeLayout>
 
 	<ListView android:id="@android:id/list" android:layout_height="wrap_content"
-		android:layout_width="fill_parent" />
+		android:layout_width="fill_parent" android:footerDividersEnabled="true"/> 
+	
 </LinearLayout>
+
+
+
+
 

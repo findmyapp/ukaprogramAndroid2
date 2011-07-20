@@ -32,23 +32,23 @@ public class EventListCursorAdapter extends CursorAdapter {
 		DateUtils du = new DateUtils(); 
 		
 		try {
-			TextView t = (TextView) eventView.findViewById(R.id.title);
+			TextView t = (TextView) eventView.findViewById(R.id.listItemTitle);
 			t.setText(getStringFromTableColumn(UkaEventContract.TITLE));
 			
-			t = (TextView) eventView.findViewById(R.id.time);
+			t = (TextView) eventView.findViewById(R.id.listItemEventTime);
 			t.setText(du.getTimeFromTimestamp(
 					getLongFromTableColumn(UkaEventContract.SHOWING_TIME)));
 			
-			t = (TextView) eventView.findViewById(R.id.weekday); 
+			t = (TextView) eventView.findViewById(R.id.listItemWeekday); 
 			String showingEvent = du.getWeekdayNameFromTimestamp(
 					getLongFromTableColumn(UkaEventContract.SHOWING_TIME));
 			t.setText(showingEvent);
 			
-			t = (TextView) eventView.findViewById(R.id.dayNumber2);
-			t.setText(du.getDateStringFromTimestamp(
+			t = (TextView) eventView.findViewById(R.id.listItemDayNumber);
+			t.setText(du.getCustomDateFormatFromTimestamp("dd",
 					getLongFromTableColumn(UkaEventContract.SHOWING_TIME)));
 			
-			t = (TextView) eventView.findViewById(R.id.place);
+			t = (TextView) eventView.findViewById(R.id.listItemPlace);
 			t.setText(getStringFromTableColumn(UkaEventContract.PLACE));
 		}
 		catch(Exception e) {
