@@ -3,9 +3,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<ImageView android:layout_height="wrap_content" android:paddingTop="10dp" android:paddingBottom="10dp"  android:id="@+id/imageView1"
+	<ImageView android:layout_height="wrap_content"
+		android:paddingTop="10dp" android:paddingBottom="10dp" android:id="@+id/imageView1"
 		android:src="@drawable/uka_logo" android:layout_width="wrap_content"
 		android:layout_gravity="center_horizontal"></ImageView>
+	<RelativeLayout android:layout_height="wrap_content"
+		android:id="@+id/relativeLayout1" android:layout_width="fill_parent">
+		<ImageView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:src="@drawable/testbutton"
+			android:id="@+id/imageView2" android:layout_alignParentLeft="true"></ImageView>
+		<ImageView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:src="@drawable/testbutton2" 
+			android:id="@+id/imageView3" android:layout_alignParentRight="true"></ImageView>
+	</RelativeLayout>
 
 	<ListView android:id="@+id/eventListView"
 		android:layout_height="wrap_content" android:layout_width="fill_parent" />

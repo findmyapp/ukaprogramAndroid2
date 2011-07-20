@@ -25,12 +25,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-<<<<<<< HEAD
+
 public class Main extends Activity implements OnClickListener{
-=======
-public class Client extends TabActivity{
-	private static final String debug = "Client";
->>>>>>> 3cc891bb560066a3426d0a86ed930b50fe07a8d5
+
 	private static final String STARTUP_REQUEST_TOKEN = "startup";
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
 
@@ -100,7 +97,6 @@ public class Client extends TabActivity{
 					UkaEventContract.EVENT_CONTENT_URI, 
 					STARTUP_REQUEST_TOKEN,
 					null);
-			Log.v(debug, "intentReceiver released");
 			
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
