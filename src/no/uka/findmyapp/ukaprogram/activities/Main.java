@@ -23,30 +23,31 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
-<<<<<<< HEAD
 public class Main extends Activity implements OnClickListener{
-=======
-public class Client extends TabActivity{
-	private static final String debug = "Client";
->>>>>>> 3cc891bb560066a3426d0a86ed930b50fe07a8d5
+	private static final String debug = "Main";
 	private static final String STARTUP_REQUEST_TOKEN = "startup";
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_menu);
 		
-<<<<<<< HEAD
-		updateEvents();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.splash);
 
-	} // end onCreate()
-	private void initTabHost(){
-		Intent i = new Intent(this, EventListActivity.class); 
-		startActivity(i);
-=======
+		updateEvents();
+		
+
+	}
+
+	private void initMenu() {
+		setContentView(R.layout.main_menu);
 		
 		Button favorites = (Button) findViewById(R.id.favoritter);
 		Button program = (Button) findViewById(R.id.program);
@@ -59,8 +60,6 @@ public class Client extends TabActivity{
 		artists.setOnClickListener(this);
 		places.setOnClickListener(this);
 		update.setOnClickListener(this);
-		
-		
 	}
 
 	@Override
@@ -85,11 +84,9 @@ public class Client extends TabActivity{
 		default:
 			break;
 		}
->>>>>>> dac1291bd67dcb18755d749ad320b239a8fe3bc8
 	}
-	
-	public void updateEvents(){
 
+	public void updateEvents(){
 		try {
 			EventDatabase.getInstance().clearEventTable(getContentResolver());
 			
@@ -123,69 +120,17 @@ public class Client extends TabActivity{
 		}
 	}
 	
-	 public class ReciveIntent extends BroadcastReceiver {
+	public class ReciveIntent extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
 
-			@Override
-			public void onReceive(Context context, Intent intent) {
+			Log.w("BroadcastIntentDebug", "---------");
 
-				Log.w("BroadcastIntentDebug", "---------");
-<<<<<<< HEAD
-				initTabHost(); 
+			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
+				Log.w("BroadcastIntentDebug", "---------"); 
+				initMenu();
 			}
 		}
 	}
-    
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();   
-		inflater.inflate(R.menu.main_menu, menu);   
-		return true;
-	}
-/*
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {  
-		// Handle item selection  
-		switch (item.getItemId()) {   
-		case R.id.calendar:  
-			openCalendar();   
-			return true;
-		case R.id.fiveNext:  
-			openFiveNext(); 
-			return true;
-		case R.id.fullList:  
-			openFullList(); 
-			return true;
-		default:  
-			return super.onOptionsItemSelected(item); 
-		}
-	}
-
-	public void openCalendar(){
-		Intent intent;
-
-		intent = new Intent().setClass(this, CalendarActivity.class);
-		startActivity(intent);
-
-	}
-	public void openFiveNext(){
-		Intent intent;
-
-		intent = new Intent().setClass(this, FiveNextActivity.class);
-		startActivity(intent);
-	}
-	public void openFullList(){
-		Intent intent;
-
-		intent = new Intent().setClass(this, EventListActivity.class);
-		startActivity(intent);
-	}
-	*/
 }
-=======
 
-				if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
-					Log.w("BroadcastIntentDebug", "---------"); 
-				}
-			}
-		}
-}
->>>>>>> dac1291bd67dcb18755d749ad320b239a8fe3bc8
