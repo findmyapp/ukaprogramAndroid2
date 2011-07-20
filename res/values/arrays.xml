@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setting_alternatives">
+        <item>Bare meg</item>
+        <item>Venner</item>
+        <item>Alle</item>
+    </string-array>
+</resources>
