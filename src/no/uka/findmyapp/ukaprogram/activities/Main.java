@@ -23,10 +23,15 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 
+
 public class Main extends Activity implements OnClickListener{
+
+	private static final String debug = "Main";
 
 	private static final String STARTUP_REQUEST_TOKEN = "startup";
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
@@ -34,8 +39,19 @@ public class Main extends Activity implements OnClickListener{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_menu);
 		
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.splash);
+
+		updateEvents();
+		
+
+	}
+
+	private void initMenu() {
+		setContentView(R.layout.main_menu);
 		
 		Button favorites = (Button) findViewById(R.id.favoritter);
 		Button program = (Button) findViewById(R.id.program);
@@ -48,8 +64,6 @@ public class Main extends Activity implements OnClickListener{
 		artists.setOnClickListener(this);
 		places.setOnClickListener(this);
 		update.setOnClickListener(this);
-		
-		
 	}
 
 	@Override
@@ -75,9 +89,8 @@ public class Main extends Activity implements OnClickListener{
 			break;
 		}
 	}
-	
-	public void updateEvents(){
 
+	public void updateEvents(){
 		try {
 			EventDatabase.getInstance().clearEventTable(getContentResolver());
 			
@@ -110,16 +123,17 @@ public class Main extends Activity implements OnClickListener{
 		}
 	}
 	
-	 public class ReciveIntent extends BroadcastReceiver {
+	public class ReciveIntent extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
 
-			@Override
-			public void onReceive(Context context, Intent intent) {
+			Log.w("BroadcastIntentDebug", "---------");
 
-				Log.w("BroadcastIntentDebug", "---------");
-
-				if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
-					Log.w("BroadcastIntentDebug", "---------"); 
-				}
+			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
+				Log.w("BroadcastIntentDebug", "---------"); 
+				initMenu();
 			}
 		}
+	}
 }
+

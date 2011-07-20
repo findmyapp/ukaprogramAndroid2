@@ -1,76 +1,42 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import java.util.ArrayList;
-
+import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
-import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.adapters.EventListAdapter;
+import no.uka.findmyapp.ukaprogram.adapters.EventListCursorAdapter;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-
-//private ContactListAdapter contactAdapter;
-//private List<Contact> contactsArraylist;
-
-public class EventListActivity extends Activity {
-	EventListAdapter eventAdapter;
-	ArrayList<UkaEvent> eventsArrayList;
-	ListView eventListView;
-
+public class EventListActivity extends ListActivity {	
+	private final static String debug = "EventListActivity";
+	
+	private final static String ORDER_BY = UkaEventContract.SHOWING_TIME + " asc";
+	public final static String ITEM_CLICKED = "clicked";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.event_list);
+		Cursor eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, ORDER_BY);
+		this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
 
-		eventsArrayList = new ArrayList<UkaEvent>();
-
-		eventListView = (ListView) findViewById(R.id.eventListView);
-		eventAdapter = new EventListAdapter(this, R.layout.list_adapter, eventsArrayList);
-		eventListView.setAdapter(eventAdapter);
-		////////
-		populateListView();
-		Log.v("EventListActivity", "Size of list: " + eventsArrayList.size() + "  " + eventsArrayList.toString());
-		eventAdapter.notifyDataSetChanged();
-	} // end onCreate()
-
-	public void onResume() {
-		super.onResume();
-	}	
-	private void populateListView() {
-//		eventsArrayList.clear();
-		EventDatabase eb = EventDatabase.getInstance();
-		eventsArrayList.addAll(eb.getAllEvents(getContentResolver()));
-
+		Cursor c = (Cursor) l.getItemAtPosition(position);
 		
-			
-		//eventsArrayList = eb.getAllEvents(getContentResolver());
-		Log.v("EventListActivity", "Events inserted in list");
+		UkaEvent event = EventDatabase.getInstance().getEventFromCursor(c);
+		Log.v(debug, event.toString());
 
-
-		eventListView.setOnItemClickListener(new OnItemClickListener(){
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-				//viewContact.setClass(getApplicationContext(), ContactDetailsActivity.class);
-				/**
-					databaseHandler.open();
-					databaseHandler.removePerson(contactArrayList.get(position).getId());
-					databaseHandler.close();
-					populateList();
-				 */
-				Intent viewEvent = new Intent();
-				viewEvent.setClass(getApplicationContext(), EventDetailsActivity.class);
-				viewEvent.putExtra("SelectedEvent", eventsArrayList.get(position));///////
-				startActivity(viewEvent); 
-			}
-		});
-
-	} 
-
+		Intent intent = new Intent(this, EventDetailsActivity.class); 
+		intent.putExtra(ITEM_CLICKED, event);
+		
+		startActivity(intent);
+	}
 }
-

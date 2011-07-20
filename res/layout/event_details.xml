@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
+	<LinearLayout 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<TextView 
+			android:id="@+id/detailedEventTitle" 
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content"
+			style="@style/BigFont"
+			android:paddingRight="25dp"
+		/>
+		<Button 
+			android:id="@+id/detailedEventFriendsOnEventButton"
+			android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	style="@style/Button"
+	    	android:text="@string/detailedEventFriendsbutton"
+	    />
+	</LinearLayout>
+	<TextView 
+		android:id="@+id/detailedEventTimeAndPlace" 
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		style="@style/SmallFont"
+	/>
+	<TextView 
+		android:id="@+id/detailedEventAgeLimit" 
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		style="@style/SmallFont"
+	/>
+	<TextView 
+		android:id="@+id/detailedEventPrice" 
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		style="@style/SmallFont"
+	/>
+	<ScrollView 
+		android:id="@+id/detailedEventScrollView1"
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_marginTop="10dp">
+		<LinearLayout 
+			android:id="@+id/detailedEventLinearLayout1"
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent">
 
-	<TextView android:id="@+id/title" style="@style/BigFont"
-		android:layout_height="wrap_content" android:text="Turbonegro"
-		android:layout_width="wrap_content"></TextView>
-
-	<TextView style="@style/SmallFont"
-		android:id="@+id/time_and_place" android:layout_height="wrap_content"
-		android:text="Man. 10. okt. 20.00, Dødens dal" android:layout_width="wrap_content"></TextView>
-
-	<TextView style="@style/SmallFont"
-		android:id="@+id/ageLimit" android:layout_height="wrap_content"
-		android:text="test" android:layout_width="wrap_content"></TextView>
-		
-	<TextView style="@style/SmallFont"
-		android:id="@+id/price" android:layout_height="wrap_content"
-		android:text="test" android:layout_width="wrap_content"></TextView>
-		
-	<ScrollView android:id="@+id/scrollView1"
-		android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_marginTop="10dp">
-		<LinearLayout android:id="@+id/linearLayout1"
-			android:layout_width="fill_parent" android:layout_height="fill_parent">
-
-
-
-			<TextView style="@style/MediumFont"
-				android:id="@+id/description" android:layout_width="wrap_content"
-				android:text="test" android:layout_height="wrap_content"></TextView>
+			<TextView 
+				style="@style/MediumFont"
+				android:id="@+id/detailedEventDescription" 
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+			/>
 		</LinearLayout>
 	</ScrollView>
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="vertical" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" >
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" >
-
-		</LinearLayout>
-	</LinearLayout>
 </LinearLayout>

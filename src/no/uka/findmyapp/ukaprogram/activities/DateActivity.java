@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.adapters.DayListAdapter;
-import no.uka.findmyapp.ukaprogram.models.WeekDay;
+import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-
+/*
 public class DateActivity extends Activity {
 
 	DayListAdapter dayAdapter;
@@ -48,7 +48,12 @@ public class DateActivity extends Activity {
 		time.set(0,0,12,selectedDay, 9, 2011);
 		time.normalize(true);
 		Log.i("DATE ACTIVIT", selectedDay + " IS THE SEL DAY");
-		header.setText( new WeekDay().getShortWeekDayName(time.weekDay) +". " + selectedDay + ". Okt");
+		try {
+			header.setText(new DateUtils().getShortWeekDayName(time.weekDay) +". " + selectedDay + ". Okt");
+		} catch (DateUtilsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 
 		eventListView.setAdapter(dayAdapter);
@@ -70,7 +75,7 @@ public class DateActivity extends Activity {
 					databaseHandler.removePerson(contactArrayList.get(position).getId());
 					databaseHandler.close();
 					populateList();
-				 */
+				 
 				Intent viewEvent = new Intent();
 				viewEvent.setClass(getApplicationContext(), EventDetailsActivity.class);
 				viewEvent.putExtra("SelectedEvent", eventsArrayList.get(position));///////
@@ -81,3 +86,4 @@ public class DateActivity extends Activity {
 	}
 
 }
+*/
