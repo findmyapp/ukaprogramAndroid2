@@ -43,7 +43,7 @@ public final class R {
         public static final int cal_item=0x7f090009;
         public static final int calendar=0x7f09002b;
         public static final int calendar_text=0x7f09000a;
-        public static final int category_spinner=0x7f09001e;
+        public static final int category_spinner=0x7f09001d;
         public static final int date_list_event_type=0x7f09000d;
         public static final int date_list_place=0x7f09000e;
         public static final int date_list_time=0x7f09000b;
@@ -57,9 +57,9 @@ public final class R {
         public static final int detailedEventScrollView1=0x7f090014;
         public static final int detailedEventTimeAndPlace=0x7f090011;
         public static final int detailedEventTitle=0x7f09000f;
-        public static final int eventListView=0x7f09001b;
-        public static final int event_list_for_day_day=0x7f09001c;
-        public static final int event_list_for_day_eventListView=0x7f09001d;
+        public static final int eventListView=0x7f09001e;
+        public static final int event_list_for_day_day=0x7f09001b;
+        public static final int event_list_for_day_eventListView=0x7f09001c;
         public static final int favoritter=0x7f090026;
         public static final int fiveNext=0x7f09002a;
         public static final int friendsListText=0x7f09001f;

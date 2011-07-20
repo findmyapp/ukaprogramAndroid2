@@ -2,6 +2,7 @@ package no.uka.findmyapp.ukaprogram.activities;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
+import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.adapters.EventListCursorAdapter;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
 import android.app.ListActivity;
@@ -21,6 +22,7 @@ public class EventListActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.event_list);
 		Cursor eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, ORDER_BY);
 		this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
 	}
