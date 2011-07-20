@@ -14,6 +14,7 @@ import no.uka.findmyapp.android.rest.datamodels.enums.HttpType;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.ColorUtils;
+import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -39,16 +40,7 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.splash);
-
-		updateEvents();
-	}
-
-	private void initMenu() {
 		setContentView(R.layout.main_menu);
 		
 		Button favorites = (Button) findViewById(R.id.favoritter);
@@ -79,7 +71,8 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case (R.id.update):{
-			updateEvents();
+			EventsUpdater eu = new EventsUpdater(getApplicationContext()); 
+			eu.updateEvents();
 			break;
 		}
 		case (R.id.artister):{
@@ -88,51 +81,8 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 		case (R.id.steder):{
 			break;
 		}
-
 		default:
 			break;
-		}
-	}
-
-	public void updateEvents(){
-		try {
-			EventDatabase.getInstance().clearEventTable(getContentResolver());
-			
-	        ReciveIntent intentReceiver = new ReciveIntent();
-			IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
-
-			registerReceiver(intentReceiver, intentFilter); 
-			Handler handler = new Handler();
-			
-			serviceHelper.callStartService(this, UkappsServices.UKAEVENTS); 
-			ServiceModel sm = new ServiceModel(
-					new URI("http://findmyapp.net/findmyapp/program/uka11/events"),
-					HttpType.GET, 
-					ServiceDataFormat.JSON, 
-					UkaEvent.class, 
-					null, 
-					UkaEventContract.EVENT_CONTENT_URI, 
-					IntentMessages.BROADCAST_INTENT_TOKEN,
-					null);
-			
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public class ReciveIntent extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
-				initMenu();
-			}
 		}
 	}
 }

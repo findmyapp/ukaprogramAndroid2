@@ -20,7 +20,8 @@ public abstract class PopupMenuActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent intent = new Intent(this, SettingsActivity.class); 
-		startActivityForResult(intent, 0);
+		intent.putExtra("previous_context", this.getClass());
+		startActivity(intent);
 		return true;
 	}
 }

@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EventListCursorAdapter extends CursorAdapter implements OnClickListener {
+public class EventListCursorAdapter extends CursorAdapter implements OnClickListener{
 		private static final String debug = "EventListCursorAdapter";
 
 	private Cursor cursor;
@@ -54,12 +56,16 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 			t.setText(getStringFromTableColumn(UkaEventContract.PLACE));
 			
 			CheckBox cb = (CheckBox) eventView.findViewById(R.id.listItemAttending);
-			cb.setOnClickListener(this);
+			
+			cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					Log.v("onclick", "buttozRPhun, " + getStringFromTableColumn(UkaEventContract.TITLE));
+				}
+			});
 		}
 		catch(Exception e) {
 			Log.v(debug, "Exception: " + e.getMessage());
-			Toast t = Toast.makeText(this.context, e.getMessage(), Toast.LENGTH_LONG);
-			t.show(); 
 		}
 	}
 	
@@ -79,7 +85,7 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 
 	@Override
 	public void onClick(View v) {
-		Toast t = Toast.makeText(this.context, v.toString(), Toast.LENGTH_LONG);
-		t.show(); 
+		// TODO Auto-generated method stub
+		
 	}
 }

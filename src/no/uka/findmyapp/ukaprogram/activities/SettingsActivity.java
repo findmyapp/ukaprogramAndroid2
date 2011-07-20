@@ -1,5 +1,6 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
+import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,18 +9,23 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 public class SettingsActivity extends Activity implements OnClickListener {
 	
 	private static final String debug = "SettingsActivity";
+	private Class previous_class = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings);
 		Log.v(debug, "getIntent.getClass " + getIntent().getClass().getCanonicalName());
+		
+		Button submitButton = (Button) findViewById(R.id.submitSettingsButton);
+		submitButton.setOnClickListener(this);
 		
 		TextView positionText = (TextView) findViewById(R.id.positionSettingText);
 		TextView eventText = (TextView) findViewById(R.id.eventSettingText);
@@ -45,12 +51,19 @@ public class SettingsActivity extends Activity implements OnClickListener {
 	    eventSpinner.setAdapter(adapter);
 	    moneySpinner.setAdapter(adapter);
 	    mediaSpinner.setAdapter(adapter);
+	    
+	    Bundle bundle = getIntent().getExtras();
+	    
+	    if(bundle != null) {
+	    	previous_class = (Class) bundle.getSerializable("previous_context");
+	    }
 	}
 
 	@Override
 	public void onClick(View v) {
+		Log.v(debug, "Submit button clicked..");
 		// Save settings
-		Intent i = new Intent(this, getCallingActivity().getClass());	
+		Intent i = new Intent(this, previous_class);	
 		startActivity(i);
 	}
 
