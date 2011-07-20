@@ -42,14 +42,17 @@ public final class R {
         public static final int event_list_event_type_button=0x7f020001;
         public static final int icon=0x7f020002;
         public static final int mainbottomright=0x7f020003;
-        public static final int maintopleft=0x7f020004;
-        public static final int menu_button=0x7f020005;
-        public static final int splash=0x7f020006;
-        public static final int testbutton=0x7f020007;
-        public static final int uka_logo=0x7f020008;
-        public static final int uka_logo_black=0x7f020009;
-        public static final int uka_logo_header=0x7f02000a;
-        public static final int ukeheader=0x7f02000b;
+        public static final int mainbottomrightpurple=0x7f020004;
+        public static final int maintopleft=0x7f020005;
+        public static final int maintopleftpurple=0x7f020006;
+        public static final int menu_button=0x7f020007;
+        public static final int menu_button2=0x7f020008;
+        public static final int splash=0x7f020009;
+        public static final int testbutton=0x7f02000a;
+        public static final int uka_logo=0x7f02000b;
+        public static final int uka_logo_black=0x7f02000c;
+        public static final int uka_logo_header=0x7f02000d;
+        public static final int ukeheader=0x7f02000e;
     }
     public static final class id {
         public static final int MyGrid=0x7f090008;

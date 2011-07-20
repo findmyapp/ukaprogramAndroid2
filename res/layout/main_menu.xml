@@ -47,7 +47,7 @@
 			style="@style/EventCategoryButton"
 			android:text="Favoritter" 
 			android:id="@+id/favoritter"
-			android:layout_width="fill_parent" 
+			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="3dp">
 		</Button>
@@ -55,7 +55,7 @@
 			style="@style/EventCategoryButton"
 			android:text="Artister" 
 			android:id="@+id/artister"
-			android:layout_width="fill_parent" 
+			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="3dp">
 			</Button>
@@ -63,7 +63,7 @@
 			style="@style/EventCategoryButton"
 			android:text="Steder" 
 			android:id="@+id/steder"
-			android:layout_width="fill_parent" 
+			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="3dp">
 			</Button>
@@ -71,7 +71,7 @@
 			style="@style/EventCategoryButton"
 			android:text="Oppdater" 
 			android:id="@+id/update"
-			android:layout_width="fill_parent" 
+			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="3dp">
 			</Button>
