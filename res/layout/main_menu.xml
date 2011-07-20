@@ -36,7 +36,7 @@
 		android:layout_gravity="center"
 		android:gravity="center">
 		<Button 
-			style="@style/EventCategoryButton"
+			style="@style/MainMenuButton"
 			android:text="Program" 
 			android:id="@+id/program"
 			android:layout_width="wrap_content" 
@@ -44,7 +44,7 @@
 			android:layout_marginBottom="3dp">
 		</Button>
 		<Button 
-			style="@style/EventCategoryButton"
+			style="@style/MainMenuButton"
 			android:text="Favoritter" 
 			android:id="@+id/favoritter"
 			android:layout_width="wrap_content" 
@@ -52,15 +52,15 @@
 			android:layout_marginBottom="3dp">
 		</Button>
 		<Button 
-			style="@style/EventCategoryButton"
-			android:text="Artister" 
+			style="@style/MainMenuButton"
+			android:text="Konserter" 
 			android:id="@+id/artister"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="3dp">
 			</Button>
 		<Button 
-			style="@style/EventCategoryButton"
+			style="@style/MainMenuButton"
 			android:text="Steder" 
 			android:id="@+id/steder"
 			android:layout_width="wrap_content" 
@@ -68,7 +68,7 @@
 			android:layout_marginBottom="3dp">
 			</Button>
 		<Button 
-			style="@style/EventCategoryButton"
+			style="@style/MainMenuButton"
 			android:text="Oppdater" 
 			android:id="@+id/update"
 			android:layout_width="wrap_content" 
