@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
 	<!-- General color settings -->
 	<color name="custom_theme_color">#000000</color>
 	<color name="black">#000000</color>
@@ -15,6 +14,12 @@
 	<color name="white">#FFFFFF</color>
 	<color name="grey">#F7F9F6</color>
 	
+	<!-- Menu spesific colors -->
+	<color name="firstMenuItem">#03BED7</color>
+	<color name="secondMenuItem">#72c6a5</color>
+	<color name="thirdMenuItem">#cadc44</color>
+	<color name="fourthMenuItem">#ffd530</color>
+
 	<!-- General themesettings -->
 	<style name="CustomTheme" parent="android:Theme.Light">
 		<item name="android:windowBackground">@color/white</item>
@@ -47,4 +52,28 @@
 		<item name="android:textSize">16dp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
+	
+	 <style name="CalendarButton" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:shadowColor">#FF000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">0.2</item>
+        <item name="android:background">@drawable/event_list_calendar_button</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">true</item>
+    </style>
+    
+   	<style name="EventCategoryButton" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:shadowColor">#FF000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">0.2</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/BigFont</item>
+        <item name="android:background">@drawable/event_list_event_type_button</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">true</item>
+    </style>
 </resources>
