@@ -8,7 +8,6 @@ import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,7 +35,6 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 	private String whereStatement;
 	private Cursor eventCursor;
 
-
 	private final static String ORDER_BY = UkaEventContract.SHOWING_TIME + " asc";
 	public final static String ITEM_CLICKED = "clicked";
 
@@ -51,15 +49,10 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		LinearLayout line = (LinearLayout) findViewById(R.id.event_list_line);
 		categoryButton.setOnClickListener(this);
 		calendarButton.setOnClickListener(this);
-	
-
 
 		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, ORDER_BY);
 
-
 		this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
-
-
 	}
 
 	@Override
