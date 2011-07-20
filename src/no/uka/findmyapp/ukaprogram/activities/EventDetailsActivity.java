@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -19,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EventDetailsActivity extends Activity implements OnClickListener {
+public class EventDetailsActivity extends PopupMenuActivity implements OnClickListener {
 	private static final String debug = "EventsDetailsActivity";
 	
 	private UkaEvent selectedEvent; 
@@ -43,6 +44,8 @@ public class EventDetailsActivity extends Activity implements OnClickListener {
 
 			Button friendsButton = (Button) findViewById(R.id.detailedEventFriendsOnEventButton);
 			friendsButton.setOnClickListener(this); 
+			
+			friendList = new ArrayList<String>();
 
 			selectedEvent = (UkaEvent) bundle.getSerializable(EventListActivity.ITEM_CLICKED);
 			Log.v(debug, "selectedEvent " + selectedEvent.toString());

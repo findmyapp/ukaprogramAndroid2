@@ -9,8 +9,9 @@ package no.uka.findmyapp.android.library;
 
 public final class R {
     public static final class array {
-        public static final int category_array=0x7f050000;
-        public static final int countries_array=0x7f050001;
+        public static final int category_array=0x7f050001;
+        public static final int countries_array=0x7f050002;
+        public static final int setting_alternatives=0x7f050000;
     }
     public static final class attr {
     }
@@ -43,7 +44,7 @@ public final class R {
         public static final int MyGrid=0x7f090008;
         public static final int artister=0x7f090027;
         public static final int cal_item=0x7f090009;
-        public static final int calendar=0x7f09002b;
+        public static final int calendar=0x7f090034;
         public static final int calendar_text=0x7f09000a;
         public static final int category_spinner=0x7f09001d;
         public static final int date_list_event_type=0x7f09000d;
@@ -60,20 +61,29 @@ public final class R {
         public static final int detailedEventTimeAndPlace=0x7f090011;
         public static final int detailedEventTitle=0x7f09000f;
         public static final int eventListView=0x7f09001e;
+        public static final int eventSettingSpinner=0x7f09002d;
+        public static final int eventSettingText=0x7f09002c;
         public static final int event_list_calendar_button=0x7f09001a;
         public static final int event_list_event_type_button=0x7f090019;
         public static final int event_list_for_day_day=0x7f09001b;
         public static final int event_list_for_day_eventListView=0x7f09001c;
         public static final int favoritter=0x7f090026;
-        public static final int fiveNext=0x7f09002a;
+        public static final int fiveNext=0x7f090033;
         public static final int friendsListText=0x7f09001f;
-        public static final int fullList=0x7f09002c;
+        public static final int fullList=0x7f090035;
         public static final int header=0x7f090000;
         public static final int imageView1=0x7f090017;
+        public static final int mediaSettingSpinner=0x7f090031;
+        public static final int mediaSettingText=0x7f090030;
+        public static final int moneySettingSpinner=0x7f09002f;
+        public static final int moneySettingText=0x7f09002e;
         public static final int place=0x7f090024;
+        public static final int positionSettingSpinner=0x7f09002b;
+        public static final int positionSettingText=0x7f09002a;
         public static final int program=0x7f090025;
         public static final int relativeLayout1=0x7f090018;
         public static final int steder=0x7f090028;
+        public static final int submitSettingsButton=0x7f090032;
         public static final int textViev5=0x7f090005;
         public static final int textView1=0x7f090001;
         public static final int textView2=0x7f090002;
@@ -98,7 +108,8 @@ public final class R {
         public static final int list_item=0x7f030008;
         public static final int main=0x7f030009;
         public static final int main_menu=0x7f03000a;
-        public static final int splash=0x7f03000b;
+        public static final int settings=0x7f03000b;
+        public static final int splash=0x7f03000c;
     }
     public static final class menu {
         public static final int main_menu=0x7f080000;
@@ -111,6 +122,9 @@ public final class R {
         public static final int fullList=0x7f040004;
         public static final int hello=0x7f040000;
         public static final int select_category=0x7f040005;
+        public static final int setting_menu_item=0x7f040009;
+        public static final int setting_prompt=0x7f040008;
+        public static final int submitSettingsbutton=0x7f040007;
     }
     public static final class style {
         public static final int BigDayNumber=0x7f070003;

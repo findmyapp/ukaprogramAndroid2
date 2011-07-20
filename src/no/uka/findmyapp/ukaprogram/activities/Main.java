@@ -29,7 +29,7 @@ import android.widget.Button;
 
 
 
-public class Main extends Activity implements OnClickListener {
+public class Main extends PopupMenuActivity implements OnClickListener {
 	private static final String debug = "Main";
 
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 

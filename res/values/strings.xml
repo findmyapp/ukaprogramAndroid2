@@ -7,6 +7,9 @@
 	<string name="fullList">Alle arr.</string>
 	<string name="select_category">Velg eventkategori</string>
 	<string name="detailedEventFriendsbutton">Deltagende venner</string>
+	<string name="submitSettingsbutton">Lagre</string>
+	<string name="setting_prompt">Velg restriksjon</string>
+	<string name="setting_menu_item">Innstillinger</string>
 	<string-array name="category_array">
 		<item>Konserter</item>
 		<item>Revy \u0026 Teater</item>

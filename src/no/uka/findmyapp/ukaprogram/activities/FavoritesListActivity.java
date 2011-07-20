@@ -4,7 +4,7 @@ import no.uka.findmyapp.ukaprogram.R;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class FavoritesListActivity extends Activity{
+public class FavoritesListActivity extends PopupMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
