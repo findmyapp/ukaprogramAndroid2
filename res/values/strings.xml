@@ -10,11 +10,19 @@
 	<string name="submitSettingsbutton">Lagre</string>
 	<string name="setting_prompt">Velg restriksjon</string>
 	<string name="setting_menu_item">Innstillinger</string>
+
+	<string name="alle">Alle</string>
+	<string name="konsert">Konsert</string>
+	<string name="revy">Revy \u0026 Teater</string>
+	<string name="kurs">Kurs \u0026 Events</string>
+	<string name="fest">Fest \u0026 Moro</string>
+
 	<string-array name="category_array">
-		<item>Konserter</item>
+		<item>Alle</item>
+		<item>Konsert</item>
 		<item>Revy \u0026 Teater</item>
 		<item>Kurs \u0026 Events</item>
-		<item>Fest  \u0026  Moro</item>
+		<item>Fest \u0026 Moro</item>
 	</string-array>
 	<string-array name="countries_array">
 		<item>Norway</item>

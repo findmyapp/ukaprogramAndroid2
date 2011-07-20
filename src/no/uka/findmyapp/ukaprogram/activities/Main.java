@@ -63,8 +63,11 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 		places.setOnClickListener(this);
 		update.setOnClickListener(this);
 		
-		program.setBackgroundResource(R.drawable.uka_logo);
-		//program.setBackgroundColor(R.color.uka_blue);
+		program.setBackgroundResource(R.drawable.mainbuttonprogram);
+		favorites.setBackgroundResource(R.drawable.mainbuttonfav);
+		artists.setBackgroundResource(R.drawable.mainbuttonartister);
+		places.setBackgroundResource(R.drawable.mainbuttonsteder);
+		places.setHighlightColor(R.color.uka_pink);
 	}
 
 	@Override

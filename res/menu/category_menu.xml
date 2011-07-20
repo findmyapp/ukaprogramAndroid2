@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/category_menu_alle" android:title="@string/alle" />
+	<item android:id="@+id/category_menu_konsert" android:title="@string/konsert" />
+	<item android:id="@+id/category_menu_revy" android:title="@string/revy" />
+	<item android:id="@+id/category_menu_kurs" android:title="@string/kurs" />
+	<item android:id="@+id/category_menu_fest" android:title="@string/fest" />
+</menu>
+
