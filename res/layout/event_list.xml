@@ -3,28 +3,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-
-	<ImageView android:layout_height="wrap_content"
-		android:layout_marginTop="4dp" android:layout_marginBottom="4dp" 
-		android:id="@+id/event_list_header"
-		android:src="@drawable/uka_logo_header" android:layout_width="wrap_content"
-		android:layout_gravity="center_horizontal"></ImageView>
-	<RelativeLayout android:layout_height="wrap_content"
-		android:id="@+id/relativeLayout1" android:layout_width="fill_parent">
+	<RelativeLayout 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent">
+		<ImageView android:layout_height="wrap_content"
+			android:layout_marginTop="4dp" 
+			android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true"
+			android:id="@+id/event_list_header" android:src="@drawable/uka_logo_header"
+			android:layout_width="wrap_content" android:layout_gravity="center_horizontal"
+			>
+			</ImageView>
+			
 		<Button style="@style/EventCategoryButton"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
 			android:id="@+id/event_list_category_button"
-			android:layout_alignParentLeft="true" android:tint="@color/uka_orange" 
-			android:background="@drawable/katbuttonfest"/>
-		<Button style="@style/CalendarButton" android:id="@+id/event_list_calendar_button"
-			android:layout_alignParentRight="true" android:layout_width="wrap_content"
+			android:layout_alignParentLeft="true" 
+			android:layout_alignBottom="@id/event_list_calendar_button"
+			android:background="@drawable/katbuttonfest" 
+			android:text="Fest of Moro" />
+
+		<Button style="@style/CalendarButton" 
+		android:id="@+id/event_list_calendar_button"
+			android:layout_alignParentRight="true" 
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" />
 	</RelativeLayout>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical" 
+		android:layout_width="fill_parent"
+		android:layout_height="3px" 
+		android:id="@+id/event_list_line"
+		android:background="@color/fest" />
 
-"
-	<ListView android:id="@android:id/list" android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:footerDividersEnabled="true"/> 
-	
+	"
+	<ListView android:id="@android:id/list" 
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent" 
+		android:footerDividersEnabled="true" />
+
 </LinearLayout>
 
 
