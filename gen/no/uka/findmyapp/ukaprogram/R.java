@@ -17,7 +17,11 @@ public final class R {
     public static final class color {
         public static final int black=0x7f060001;
         public static final int custom_theme_color=0x7f060000;
+        public static final int firstMenuItem=0x7f06000c;
+        public static final int fourthMenuItem=0x7f06000f;
         public static final int grey=0x7f06000b;
+        public static final int secondMenuItem=0x7f06000d;
+        public static final int thirdMenuItem=0x7f06000e;
         public static final int uka_blue=0x7f060007;
         public static final int uka_green=0x7f060006;
         public static final int uka_greygreen=0x7f060004;
@@ -32,18 +36,21 @@ public final class R {
         public static final int event_list_calendar_button=0x7f020000;
         public static final int event_list_event_type_button=0x7f020001;
         public static final int icon=0x7f020002;
-        public static final int splash=0x7f020003;
-        public static final int testbutton=0x7f020004;
-        public static final int uka_logo=0x7f020005;
-        public static final int uka_logo_black=0x7f020006;
-        public static final int uka_logo_header=0x7f020007;
-        public static final int ukeheader=0x7f020008;
+        public static final int mainbottomright=0x7f020003;
+        public static final int maintopleft=0x7f020004;
+        public static final int menu_button=0x7f020005;
+        public static final int splash=0x7f020006;
+        public static final int testbutton=0x7f020007;
+        public static final int uka_logo=0x7f020008;
+        public static final int uka_logo_black=0x7f020009;
+        public static final int uka_logo_header=0x7f02000a;
+        public static final int ukeheader=0x7f02000b;
     }
     public static final class id {
         public static final int MyGrid=0x7f090008;
-        public static final int artister=0x7f090027;
+        public static final int artister=0x7f090028;
         public static final int cal_item=0x7f090009;
-        public static final int calendar=0x7f09002b;
+        public static final int calendar=0x7f09002d;
         public static final int calendar_text=0x7f09000a;
         public static final int category_spinner=0x7f09001d;
         public static final int date_list_event_type=0x7f09000d;
@@ -64,16 +71,18 @@ public final class R {
         public static final int event_list_event_type_button=0x7f090019;
         public static final int event_list_for_day_day=0x7f09001b;
         public static final int event_list_for_day_eventListView=0x7f09001c;
-        public static final int favoritter=0x7f090026;
-        public static final int fiveNext=0x7f09002a;
+        public static final int favoritter=0x7f090027;
+        public static final int fiveNext=0x7f09002c;
         public static final int friendsListText=0x7f09001f;
-        public static final int fullList=0x7f09002c;
+        public static final int fullList=0x7f09002e;
         public static final int header=0x7f090000;
         public static final int imageView1=0x7f090017;
+        public static final int main_menu_footer=0x7f09002b;
+        public static final int main_menu_header=0x7f090025;
         public static final int place=0x7f090024;
-        public static final int program=0x7f090025;
+        public static final int program=0x7f090026;
         public static final int relativeLayout1=0x7f090018;
-        public static final int steder=0x7f090028;
+        public static final int steder=0x7f090029;
         public static final int textViev5=0x7f090005;
         public static final int textView1=0x7f090001;
         public static final int textView2=0x7f090002;
@@ -83,7 +92,7 @@ public final class R {
         public static final int textView7=0x7f090007;
         public static final int time=0x7f090022;
         public static final int title=0x7f090023;
-        public static final int update=0x7f090029;
+        public static final int update=0x7f09002a;
         public static final int weekday=0x7f090020;
     }
     public static final class layout {
