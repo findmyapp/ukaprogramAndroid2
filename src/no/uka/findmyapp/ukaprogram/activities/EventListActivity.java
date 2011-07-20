@@ -25,10 +25,10 @@ import android.widget.ListView;
 
 public class EventListActivity extends ListActivity implements OnClickListener{	
 	private final static String debug = "EventListActivity";
-	private final static String KONSERT = "Konsert";
-	private final static String REVY = "Revy og Teater";
-	private final static String KURS = "Kurs & Events";
-	private final static String FEST = "Fest & Moro";
+	private final static String KONSERT = "'Konsert'";
+	private final static String REVY = "'Revy og Teater'";
+	private final static String KURS = "'Kurs & Events'";
+	private final static String FEST = "'Fest & Moro'";
 	private Drawable drawable;
 	private int color;
 	private int name;
@@ -47,27 +47,15 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		setContentView(R.layout.event_list);
 		Bundle bundle = getIntent().getExtras();
 		Button categoryButton = (Button) findViewById(R.id.event_list_category_button);
+		Button calendarButton = (Button) findViewById(R.id.event_list_calendar_button);
 		LinearLayout line = (LinearLayout) findViewById(R.id.event_list_line);
 		categoryButton.setOnClickListener(this);
+		calendarButton.setOnClickListener(this);
+	
 
 
-/*
-		if (bundle != null){
-			drawable = getResources().getDrawable((int)bundle.getInt("drawable"));
-			whereStatement = bundle.getString("whereStatement");
-			color = bundle.getInt("color");
-			categoryName = bundle.getInt("name");
+		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, ORDER_BY);
 
-			line.setBackgroundColor(getResources().getColor(color));
-			categoryButton.setBackgroundDrawable(drawable);
-			categoryButton.setText(categoryName);
-			//if(bundle.getString("whereStatement").length() != 0 ){
-				eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, ORDER_BY);
-			//}
-		}
-		**/
-			eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, ORDER_BY);
-		
 
 		this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
 
@@ -91,9 +79,21 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		registerForContextMenu(v);
-		v.setLongClickable(false);
-		openContextMenu(v);
+		switch (v.getId()) {
+		case R.id.event_list_category_button:
+			registerForContextMenu(v);
+			v.setLongClickable(false);
+			openContextMenu(v);
+			break;
+		
+		case R.id.event_list_calendar_button:
+			Intent intent = new Intent().setClass(this, CalendarActivity.class);
+			startActivity(intent);
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			return true;
 
 		case R.id.category_menu_revy:
-			whereStatement =  UkaEventContract.EVENT_TYPE  + " = " + "'" + REVY  + "'";
+			whereStatement =  UkaEventContract.EVENT_TYPE  + " = " + REVY ;
 			drawable = getResources().getDrawable(R.drawable.katbuttonrevy);
 			color = R.color.revy;
 			categoryName = getResources().getString(R.string.revy);
@@ -152,7 +152,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			return super.onContextItemSelected(item);
 		}
 	}
-	
+
 	private void refresh(){
 		Log.v(debug, "Refreshing page");
 		Button categoryButton = (Button) findViewById(R.id.event_list_category_button);
@@ -160,8 +160,8 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		line.setBackgroundColor(getResources().getColor(color));
 		categoryButton.setBackgroundDrawable(drawable);
 		categoryButton.setText(categoryName);
-		whereStatement = UkaEventContract.TITLE + " = 'Oktoberfest'";
 		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, whereStatement, null, ORDER_BY);
+		this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
 	}
 
 }
