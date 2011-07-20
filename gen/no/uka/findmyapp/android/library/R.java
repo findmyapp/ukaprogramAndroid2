@@ -16,6 +16,8 @@ public final class R {
     }
     public static final class color {
         public static final int black=0x7f060001;
+        /**  General color settings 
+         */
         public static final int custom_theme_color=0x7f060000;
         public static final int grey=0x7f06000b;
         public static final int uka_blue=0x7f060007;
@@ -39,16 +41,15 @@ public final class R {
     }
     public static final class id {
         public static final int MyGrid=0x7f090008;
-        public static final int artister=0x7f090027;
+        public static final int artister=0x7f090029;
         public static final int cal_item=0x7f090009;
-        public static final int calendar=0x7f09002b;
+        public static final int calendar=0x7f09002d;
         public static final int calendar_text=0x7f09000a;
         public static final int category_spinner=0x7f09001d;
         public static final int date_list_event_type=0x7f09000d;
         public static final int date_list_place=0x7f09000e;
         public static final int date_list_time=0x7f09000b;
         public static final int date_list_title=0x7f09000c;
-        public static final int dayNumber2=0x7f090021;
         public static final int detailedEventAgeLimit=0x7f090012;
         public static final int detailedEventDescription=0x7f090016;
         public static final int detailedEventFriendsOnEventButton=0x7f090010;
@@ -60,18 +61,24 @@ public final class R {
         public static final int eventListView=0x7f09001e;
         public static final int event_list_for_day_day=0x7f09001b;
         public static final int event_list_for_day_eventListView=0x7f09001c;
-        public static final int favoritter=0x7f090026;
-        public static final int fiveNext=0x7f09002a;
+        public static final int favoritter=0x7f090028;
+        public static final int fiveNext=0x7f09002c;
         public static final int friendsListText=0x7f09001f;
-        public static final int fullList=0x7f09002c;
+        public static final int fullList=0x7f09002e;
         public static final int header=0x7f090000;
         public static final int imageView1=0x7f090017;
         public static final int imageView2=0x7f090019;
         public static final int imageView3=0x7f09001a;
-        public static final int place=0x7f090024;
-        public static final int program=0x7f090025;
+        public static final int listItemAttending=0x7f090024;
+        public static final int listItemDateTimeContainer=0x7f090020;
+        public static final int listItemDayNumber=0x7f090022;
+        public static final int listItemEventTime=0x7f090023;
+        public static final int listItemPlace=0x7f090026;
+        public static final int listItemTitle=0x7f090025;
+        public static final int listItemWeekday=0x7f090021;
+        public static final int program=0x7f090027;
         public static final int relativeLayout1=0x7f090018;
-        public static final int steder=0x7f090028;
+        public static final int steder=0x7f09002a;
         public static final int textViev5=0x7f090005;
         public static final int textView1=0x7f090001;
         public static final int textView2=0x7f090002;
@@ -79,10 +86,7 @@ public final class R {
         public static final int textView4=0x7f090004;
         public static final int textView6=0x7f090006;
         public static final int textView7=0x7f090007;
-        public static final int time=0x7f090022;
-        public static final int title=0x7f090023;
-        public static final int update=0x7f090029;
-        public static final int weekday=0x7f090020;
+        public static final int update=0x7f09002b;
     }
     public static final class layout {
         public static final int calendar=0x7f030000;
@@ -111,11 +115,15 @@ public final class R {
         public static final int select_category=0x7f040005;
     }
     public static final class style {
-        public static final int BigDayNumber=0x7f070003;
-        public static final int BigFont=0x7f070000;
-        public static final int Button=0x7f070005;
-        public static final int CustomTheme=0x7f070004;
-        public static final int MediumFont=0x7f070001;
-        public static final int SmallFont=0x7f070002;
+        public static final int BigDayNumber=0x7f070005;
+        /**  General fontsizing 
+         */
+        public static final int BigFont=0x7f070002;
+        public static final int Button=0x7f070001;
+        /**  General themesettings 
+         */
+        public static final int CustomTheme=0x7f070000;
+        public static final int MediumFont=0x7f070003;
+        public static final int SmallFont=0x7f070004;
     }
 }
