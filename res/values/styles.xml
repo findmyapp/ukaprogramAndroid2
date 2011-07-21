@@ -78,7 +78,7 @@
 		<item name="android:shadowDy">-1</item>
 		<item name="android:shadowRadius">0.2</item>
 		<item name="android:textColor">@color/white</item>
-		<item name="android:textAppearance">@style/MediumFont</item>
+		<item name="android:textAppearance">@style/BigFont</item>
 		<item name="android:background">@drawable/event_list_event_type_button</item>
 		<item name="android:focusable">false</item>
 		<item name="android:clickable">true</item>

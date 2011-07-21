@@ -60,7 +60,7 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 			cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					Log.v("onclick", "buttozRPhun, " + getStringFromTableColumn(UkaEventContract.TITLE));
+
 				}
 			});
 		}

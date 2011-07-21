@@ -37,10 +37,24 @@
 				android:layout_width="fill_parent"
 				android:layout_height="2px">
 			</LinearLayout>
+		</LinearLayout>
+		<ScrollView 
+			android:id="@+id/detailedEventScrollView1"
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="10dp">
+			<LinearLayout 
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="vertical" 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginRight="20dp"
+				>
 			<RelativeLayout 
 			android:layout_width="fill_parent"
-			android:layout_marginLeft="10dp"
-			android:layout_marginRight="10dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
 			android:layout_marginTop="10dp"
 			android:layout_height="wrap_content"
 			android:background="@drawable/round_border">
@@ -49,59 +63,55 @@
 					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
 					style="@style/SmallFont"
+					android:textColor="@color/white"
 				/>
 			</RelativeLayout>
+	
+	
+
+				<ImageView 
+					android:layout_height="wrap_content"
+					android:paddingTop="10dp" 
+					android:id="@+id/event_details_picture"
+					android:src="@drawable/melissahorn" 
+					android:layout_width="fill_parent"
+					android:layout_gravity="center_horizontal">
+				</ImageView>
+				<TextView 
+					android:id="@+id/detailedEventTitle" 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content"
+					style="@style/BigFont"
+			
+					/>
+					<Button 
+						android:id="@+id/detailedEventFriendsOnEventButton"
+						android:layout_width="wrap_content"
+						android:layout_marginTop="10dp"
+				    	android:layout_height="wrap_content"
+				    	style="@style/Button"
+				    	android:text="@string/detailedEventFriendsbutton"
+						    />
+						    
+						<TextView 
+							android:id="@+id/detailedEventAgeLimit" 
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							style="@style/SmallFont"
+						/>
+						<TextView 
+							android:id="@+id/detailedEventPrice" 
+							android:layout_height="wrap_content"
+							android:text="pris"
+							android:layout_width="wrap_content"
+							style="@style/SmallFont"
+						/>
+						<TextView 
+							style="@style/MediumFont"
+							android:id="@+id/detailedEventDescription" 
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							/>
+			</LinearLayout>
+		</ScrollView>
 	</LinearLayout>
-	<LinearLayout 
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="horizontal" 
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-		<TextView 
-			android:id="@+id/detailedEventTitle" 
-			android:layout_height="wrap_content" 
-			android:layout_width="wrap_content"
-			style="@style/BigFont"
-			android:paddingRight="25dp"
-
-		/>
-		<Button 
-			android:id="@+id/detailedEventFriendsOnEventButton"
-			android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	style="@style/Button"
-	    	android:text="@string/detailedEventFriendsbutton"
-	    />
-	</LinearLayout>
-
-	<TextView 
-		android:id="@+id/detailedEventAgeLimit" 
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		style="@style/SmallFont"
-	/>
-	<TextView 
-		android:id="@+id/detailedEventPrice" 
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		style="@style/SmallFont"
-	/>
-	<ScrollView 
-		android:id="@+id/detailedEventScrollView1"
-		android:layout_height="wrap_content" 
-		android:layout_width="fill_parent" 
-		android:layout_marginTop="10dp">
-		<LinearLayout 
-			android:id="@+id/detailedEventLinearLayout1"
-			android:layout_width="fill_parent" 
-			android:layout_height="fill_parent">
-
-			<TextView 
-				style="@style/MediumFont"
-				android:id="@+id/detailedEventDescription" 
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-			/>
-		</LinearLayout>
-	</ScrollView>
-</LinearLayout>

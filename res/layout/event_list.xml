@@ -15,8 +15,10 @@
 				android:layout_marginTop="4dp" 
 				android:layout_alignParentTop="true"
 				android:layout_centerHorizontal="true"
-				android:id="@+id/event_list_header" android:src="@drawable/uka_logo_header"
-				android:layout_width="wrap_content" android:layout_gravity="center_horizontal">
+				android:id="@+id/event_list_header" 
+				android:src="@drawable/uka_logo_header"
+				android:layout_width="wrap_content" 
+				android:layout_gravity="center_horizontal">
 			</ImageView>
 			<LinearLayout
 				style="@style/HorizontalLine"
@@ -25,22 +27,25 @@
 				android:layout_height="2px">
 			</LinearLayout>
 		</LinearLayout>
-		<Button style="@style/CalendarButton" 
-			android:id="@+id/event_list_calendar_button"
-			android:layout_alignParentRight="true" 
-			android:layout_below="@id/header"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
-			
+		
 		<Button style="@style/EventCategoryButton"
+			android:layout_marginTop="10dp"
+			android:layout_below="@id/header"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:id="@+id/event_list_category_button"
 			android:layout_alignParentLeft="true" 
-			android:layout_alignBottom="@id/event_list_calendar_button"
-			android:background="@drawable/katbuttonfest" />
-
-
+			android:background="@drawable/katbuttonfest" 
+			android:layout_marginLeft="10dp"/>
+		
+		<Button style="@style/CalendarButton" 
+			android:id="@+id/event_list_calendar_button"
+			android:layout_alignParentRight="true" 
+			android:layout_alignBottom="@id/event_list_category_button"
+			android:layout_height="40dp"
+			android:layout_width="40dp"  
+			android:layout_marginRight="10dp"/>
+			
 	</RelativeLayout>
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical" 
@@ -54,6 +59,8 @@
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent" 
 		android:footerDividersEnabled="true" 
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
 		/>
 
 </LinearLayout>

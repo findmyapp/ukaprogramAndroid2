@@ -25,10 +25,10 @@ import android.widget.ListView;
 
 public class EventListActivity extends ListActivity implements OnClickListener{	
 	private final static String debug = "EventListActivity";
-	private final static String KONSERT = "'Konsert'";
-	private final static String REVY = "'Revy og Teater'";
-	private final static String KURS = "'Kurs & Events'";
-	private final static String FEST = "'Fest & Moro'";
+	private final static String KONSERT = "'konsert'";
+	private final static String REVY = "'revy-og-teater'";
+	private final static String KURS = "'andelig-fode'";
+	private final static String FEST = "'fest-og-moro'";
 	private Cursor eventCursor;
 
 	private final static String ORDER_BY = UkaEventContract.SHOWING_TIME + " asc";

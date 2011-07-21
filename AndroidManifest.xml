@@ -29,6 +29,7 @@
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FiveNextActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.SettingsActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.LocationActivity"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.PlacesActivity"></activity>
 		
 		<provider android:name="no.uka.findmyapp.android.rest.providers.UkaEventProvider" 
 			android:authorities="no.uka.findmyapp.android.rest.providers" 
