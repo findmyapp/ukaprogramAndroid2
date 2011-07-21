@@ -12,7 +12,7 @@
 	<color name="uka_pink">#E04DFF</color>
 	<color name="uka_orange">#FF5919</color>
 	<color name="white">#FFFFFF</color>
-	<color name="grey">#F7F9F6</color>
+	<color name="grey">#D0D0D0</color>
 
 	<!-- Menu spesific colors -->
 	<color name="firstMenuItem">#03BED7</color>
@@ -95,6 +95,14 @@
 		<item name="android:background">@drawable/event_list_event_type_button</item>
 		<item name="android:focusable">false</item>
 		<item name="android:clickable">true</item>
+	</style>
+
+	<style name="FavoritesButton" parent="@android:style/Widget.CompoundButton.CheckBox">
+		<item name="android:background">@drawable/favorites_button</item>
+	</style>
+
+	<style name="HorizontalLine">
+		<item name="android:background">@color/grey</item>
 	</style>
 
 </resources>

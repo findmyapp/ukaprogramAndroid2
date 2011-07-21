@@ -55,6 +55,7 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 			TextView title = (TextView) findViewById(R.id.detailedEventTitle);
 			TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
 			TextView description = (TextView) findViewById(R.id.detailedEventDescription);
+			TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
 
 			timeAndPlace.setText(	
 				du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
@@ -63,6 +64,7 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 				+ selectedEvent.getPlace());
 			
 			title.setText(selectedEvent.getTitle());
+			headerTitle.setText(selectedEvent.getTitle());
 			description.setText(selectedEvent.getText());
 			ageLimit.setText("Aldersgrense: " + selectedEvent.getAgeLimit() + " år");
 			if(selectedEvent.isFree()){
