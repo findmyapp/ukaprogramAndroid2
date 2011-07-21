@@ -1,33 +1,13 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import no.uka.findmyapp.android.library.R.color;
-import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
-import no.uka.findmyapp.android.rest.client.UkappsServices;
-import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
-import no.uka.findmyapp.android.rest.datamodels.constants.ServiceDataFormat;
-import no.uka.findmyapp.android.rest.datamodels.core.ServiceModel;
-import no.uka.findmyapp.android.rest.datamodels.enums.HttpType;
-import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.utils.ColorUtils;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
-import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
 

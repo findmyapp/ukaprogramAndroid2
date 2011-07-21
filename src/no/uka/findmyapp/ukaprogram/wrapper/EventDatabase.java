@@ -9,7 +9,6 @@ import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.os.Debug;
 import android.util.Log;
 
 

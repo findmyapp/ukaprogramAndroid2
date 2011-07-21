@@ -1,6 +1,5 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 public class FavoritesListActivity extends PopupMenuActivity {
