@@ -17,6 +17,7 @@ public class SettingsActivity extends Activity implements OnClickListener {
 	
 	private static final String debug = "SettingsActivity";
 	private Class previous_class = null;
+	private UkaEvent selectedEvent;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,14 +57,21 @@ public class SettingsActivity extends Activity implements OnClickListener {
 	    
 	    if(bundle != null) {
 	    	previous_class = (Class) bundle.getSerializable("previous_context");
+	    	if(previous_class.equals(EventDetailsActivity.class)) {
+	    		selectedEvent = (UkaEvent) bundle.getSerializable("selectedEvent");
+	    	}
 	    }
+	    
 	}
 
 	@Override
 	public void onClick(View v) {
 		Log.v(debug, "Submit button clicked..");
 		// Save settings
-		Intent i = new Intent(this, previous_class);	
+		Intent i = new Intent(this, previous_class);
+		if(previous_class.equals(EventDetailsActivity.class)) {
+			i.putExtra("selectedEvent", selectedEvent);
+		}
 		startActivity(i);
 	}
 
