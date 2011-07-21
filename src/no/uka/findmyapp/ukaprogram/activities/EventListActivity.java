@@ -4,6 +4,7 @@ import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.adapters.EventListCursorAdapter;
+import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -21,6 +22,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventListActivity extends ListActivity implements OnClickListener{	
 	private final static String debug = "EventListActivity";
@@ -42,14 +45,18 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		Button categoryButton = (Button) findViewById(R.id.event_list_category_button);
 		Button calendarButton = (Button) findViewById(R.id.event_list_calendar_button);
 		LinearLayout line = (LinearLayout) findViewById(R.id.event_list_line);
-		categoryButton.setOnClickListener(this);
-		calendarButton.setOnClickListener(this);
 		Drawable drawable = getResources().getDrawable(R.drawable.katbuttonalle);
 		String whereStatement = getResources().getString(R.string.alle);
-		
+
+		categoryButton.setOnClickListener(this);
+		calendarButton.setOnClickListener(this);
+
 		refresh(drawable, R.color.alle, null, whereStatement);
-		
-		this.setSelection(4);
+
+		if (bundle != null) {
+			moveToDate(this.eventCursor, bundle.getInt("SelectedDate"));
+		}
+
 	}
 
 	@Override
@@ -75,7 +82,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			v.setLongClickable(false);
 			openContextMenu(v);
 			break;
-		
+
 		case R.id.event_list_calendar_button:
 			Intent intent = new Intent().setClass(this, CalendarActivity.class);
 			startActivity(intent);
@@ -83,7 +90,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		default:
 			break;
 		}
-		
+
 	}
 
 	@Override
@@ -99,7 +106,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 	public boolean onContextItemSelected(MenuItem item){
 		return setUpdateSettings(item);
 	}
-	
+
 	private boolean setUpdateSettings(MenuItem item){
 		Drawable drawable;
 		int color;
@@ -150,7 +157,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			return false;
 		}
 	}
-		
+
 	private void refresh(Drawable drawable, int color, String whereStatement, String categoryName){
 		Log.v(debug, "Refreshing page");
 		Button categoryButton = (Button) findViewById(R.id.event_list_category_button);
@@ -160,6 +167,30 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		categoryButton.setText(categoryName);
 		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, whereStatement, null, ORDER_BY);
 		this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
+	}
+
+
+	private void moveToDate(Cursor c, int date)  {
+		DateUtils du = new DateUtils();
+		c.moveToFirst();
+
+		boolean dateNotFound = true; 
+		while (dateNotFound && c.moveToNext()) {
+			int i = du.getDayIntFromTimestamp(c.getLong(c.getColumnIndex(UkaEventContract.SHOWING_TIME))); 
+			if(i == date) {
+				dateNotFound = false; 
+			}
+			c.moveToNext();
+		}
+		if (dateNotFound){
+
+		}
+		else{
+			this.setSelection(c.getPosition());
+			Intent intent = new Intent();
+			intent.setClass(getApplicationContext(), EventListActivity.class);
+			startActivity(intent);
+		}
 	}
 
 }

@@ -151,6 +151,15 @@ public final class R {
         public static final int event_details=0x7f030003;
         public static final int event_list=0x7f030004;
         public static final int event_list_for_day=0x7f030005;
+<<<<<<< HEAD
+        public static final int five_next_list=0x7f030006;
+        public static final int friends_list=0x7f030007;
+        public static final int list_item=0x7f030008;
+        public static final int main=0x7f030009;
+        public static final int main_menu=0x7f03000a;
+        public static final int settings=0x7f03000b;
+        public static final int splash=0x7f03000c;
+=======
         public static final int event_list_item=0x7f030006;
         public static final int five_next_list=0x7f030007;
         public static final int friends_list=0x7f030008;
@@ -160,6 +169,7 @@ public final class R {
         public static final int main_menu=0x7f03000c;
         public static final int settings=0x7f03000d;
         public static final int splash=0x7f03000e;
+>>>>>>> 0433f0942d6e38d6b54d188d42af23b75e2c94d9
     }
     public static final class menu {
         public static final int category_menu=0x7f080000;

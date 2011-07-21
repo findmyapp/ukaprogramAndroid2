@@ -38,7 +38,7 @@ public class CalendarActivity extends Activity
 					populateList();
 				 */
 				Intent viewDate = new Intent();
-		//		viewDate.setClass(getApplicationContext(), DateActivity.class);
+				viewDate.setClass(getApplicationContext(), EventListActivity.class);
 				Log.i("e","date pressed was: " + (position + 3));
 				viewDate.putExtra("SelectedDate", (position + 3));///////
 				startActivity(viewDate); 
