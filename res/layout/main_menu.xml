@@ -55,7 +55,7 @@
 		<Button 
 			style="@style/MainMenuButton"
 			android:text="Konserter" 
-			android:id="@+id/artister"
+			android:id="@+id/konserter"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="10dp">

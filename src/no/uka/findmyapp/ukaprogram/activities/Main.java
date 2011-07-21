@@ -1,6 +1,5 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
 import android.content.Intent;
@@ -12,9 +11,7 @@ import android.widget.Button;
 
 public class Main extends PopupMenuActivity implements OnClickListener {
 	private static final String debug = "Main";
-
-	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,7 +20,7 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 		
 		Button favorites = (Button) findViewById(R.id.favoritter);
 		Button program = (Button) findViewById(R.id.program);
-		Button artists = (Button) findViewById(R.id.artister);
+		Button artists = (Button) findViewById(R.id.konserter);
 		Button places = (Button) findViewById(R.id.steder);
 		Button update = (Button) findViewById(R.id.update);
 		
@@ -53,7 +50,9 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 			eu.updateEvents();
 			break;
 		}
-		case (R.id.artister):{
+		case (R.id.konserter):{
+			intent = new Intent().setClass(this, ConcertListActivity.class);
+			startActivity(intent);
 			break;
 		}
 		case (R.id.steder):{

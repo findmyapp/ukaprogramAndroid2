@@ -14,7 +14,9 @@ import android.widget.GridView;
 
 public class CalendarActivity extends Activity 
 {
-	GridView calenderGrid;
+	public static final String SELECTED_DATE = "SelectedDate";
+	
+	private GridView calenderGrid;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
