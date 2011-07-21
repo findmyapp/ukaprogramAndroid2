@@ -4,6 +4,7 @@ import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -22,7 +23,6 @@ public class StartupLoader extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Log.v(debug, "loading splash screen");
 		setContentView(R.layout.splash);
-		
 		Log.v(debug, "Loading UkaProgram");
 		
 		EventsUpdater eu = new EventsUpdater(getApplicationContext());

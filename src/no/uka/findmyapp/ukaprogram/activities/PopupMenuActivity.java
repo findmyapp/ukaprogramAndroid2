@@ -1,7 +1,7 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import no.uka.findmyapp.android.library.R;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
+import no.uka.findmyapp.ukaprogram.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
