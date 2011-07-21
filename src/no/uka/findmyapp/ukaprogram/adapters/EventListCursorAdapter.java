@@ -15,7 +15,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EventListCursorAdapter extends CursorAdapter implements OnClickListener{
 		private static final String debug = "EventListCursorAdapter";
@@ -71,7 +70,7 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 	
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		final View view = this.inflater.inflate(R.layout.list_item, parent, false);
+		final View view = this.inflater.inflate(R.layout.event_list_item, parent, false);
 		return view;
 	}
 

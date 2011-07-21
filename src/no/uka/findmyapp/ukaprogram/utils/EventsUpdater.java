@@ -8,7 +8,6 @@ import no.uka.findmyapp.android.rest.client.UkappsServices;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.activities.Main;
 import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -62,7 +61,7 @@ public class EventsUpdater {
 	private void update() throws UpdateException{
 		Log.v(debug, "update called");
 		try {		
-			serviceHelper.callStartService(this.context, UkappsServices.UKAEVENTS); 
+			serviceHelper.callStartService(this.context, UkappsServices.UKAEVENTS, new String[] {"uka11"}); 
 		} catch (URISyntaxException e) {
 			throw new UpdateException(UpdateException.URI_SYNTAX_EXCEPTION, e); 
 		} catch (IllegalAccessException e) {

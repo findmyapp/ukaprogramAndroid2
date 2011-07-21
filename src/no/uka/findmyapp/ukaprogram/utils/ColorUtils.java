@@ -1,6 +1,5 @@
 package no.uka.findmyapp.ukaprogram.utils;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.widget.Button;
 
