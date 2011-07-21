@@ -61,6 +61,7 @@ public class EventsUpdater {
 	private void update() throws UpdateException{
 		Log.v(debug, "update called");
 		try {		
+			Log.v(debug, "inside");
 			serviceHelper.callStartService(this.context, UkappsServices.UKAEVENTS, new String[] {"uka11"}); 
 		} catch (URISyntaxException e) {
 			throw new UpdateException(UpdateException.URI_SYNTAX_EXCEPTION, e); 
