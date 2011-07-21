@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_details);
 		
 		Log.v(debug, debug + " onCreate()");
@@ -37,50 +39,48 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		Bundle bundle = getIntent().getExtras(); 
 		Log.v(debug, "Bundle toString " + bundle.toString());
 		
-		if (bundle != null) {
-			DateUtils du = new DateUtils(); 
-
-			Button friendsButton = (Button) findViewById(R.id.detailedEventFriendsOnEventButton);
-			friendsButton.setOnClickListener(this); 
-			
-			friendList = new ArrayList<String>();
-			if(bundle.getSerializable(EventListActivity.ITEM_CLICKED) != null) {
-				selectedEvent = (UkaEvent) bundle.getSerializable(EventListActivity.ITEM_CLICKED);
-			}
-			else {
-				selectedEvent = (UkaEvent) bundle.getSerializable("selectedEvent");
-			}
-			super.setSelectedEvent(selectedEvent);
-			Log.v(debug, "selectedEvent " + selectedEvent.toString());
-
-			TextView ageLimit = (TextView) findViewById(R.id.detailedEventAgeLimit);
-			TextView price = (TextView) findViewById(R.id.detailedEventPrice);
-			TextView title = (TextView) findViewById(R.id.detailedEventTitle);
-			TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
-			TextView description = (TextView) findViewById(R.id.detailedEventDescription);
-			TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
-
-			timeAndPlace.setText(	
-				du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
-				+ du.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) + " " 
-				+ du.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
-				+ selectedEvent.getPlace());
-			
-			title.setText(selectedEvent.getTitle());
-			headerTitle.setText(selectedEvent.getTitle());
-			description.setText(selectedEvent.getText());
-			ageLimit.setText("Aldersgrense: " + selectedEvent.getAgeLimit() + " år");
-			if(selectedEvent.isFree()){
-				price.setText("Gratis");
-			}
-			else{
-				String exception = "Exception: empty bundle!";
-				Toast t = Toast.makeText(getApplicationContext(), exception, Toast.LENGTH_LONG);
-			}
-			
+		if (bundle.getSerializable(EventListActivity.ITEM_CLICKED) != null) {
+			selectedEvent = (UkaEvent) bundle.getSerializable(EventListActivity.ITEM_CLICKED);
+			populateView(selectedEvent);
+		}
+		else{
+			String exception = "Exception: empty bundle!";
+			Toast t = Toast.makeText(getApplicationContext(), exception, Toast.LENGTH_LONG);
+			t.show();
 		}
 	}
 	
+	public void populateView(UkaEvent selectedEvent){
+		DateUtils du = new DateUtils(); 
+
+		Button friendsButton = (Button) findViewById(R.id.detailedEventFriendsOnEventButton);
+		friendsButton.setOnClickListener(this); 
+		
+		friendList = new ArrayList<String>();
+		super.setSelectedEvent(selectedEvent);
+		Log.v(debug, "selectedEvent " + selectedEvent.toString());
+
+		TextView ageLimit = (TextView) findViewById(R.id.detailedEventAgeLimit);
+		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
+		TextView title = (TextView) findViewById(R.id.detailedEventTitle);
+		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
+		TextView description = (TextView) findViewById(R.id.detailedEventDescription);
+		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
+
+		timeAndPlace.setText(	
+			du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
+			+ du.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) + " " 
+			+ du.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
+			+ selectedEvent.getPlace());
+		
+		title.setText(selectedEvent.getTitle());
+		headerTitle.setText(selectedEvent.getTitle());
+		description.setText(selectedEvent.getText());
+		ageLimit.setText("Aldersgrense: " + selectedEvent.getAgeLimit() + " år");
+		if(selectedEvent.isFree()){
+			price.setText("Gratis");
+		}
+	}
 	public void populateFriendList() {
 		 friendList.clear();
 		 friendList.add("Audun");

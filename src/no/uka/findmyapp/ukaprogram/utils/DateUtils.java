@@ -71,7 +71,7 @@ public class DateUtils {
 			return FRIDAY;
 		case 6:
 			return SATURDAY;
-		case 0:
+		case 7:
 			return SUNDAG;
 		default: 
 			return null; 

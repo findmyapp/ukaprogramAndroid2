@@ -39,7 +39,17 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_list);
+	
+		initView();
+		
 		Bundle bundle = getIntent().getExtras();
+		if (bundle != null) {
+			moveToDate(this.eventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
+		}
+
+	}
+
+	private void initView() {
 		Button categoryButton = (Button) findViewById(R.id.event_list_category_button);
 		Button calendarButton = (Button) findViewById(R.id.event_list_calendar_button);
 		LinearLayout line = (LinearLayout) findViewById(R.id.event_list_line);
@@ -50,11 +60,6 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		calendarButton.setOnClickListener(this);
 
 		refresh(drawable, R.color.alle, null, whereStatement);
-
-		if (bundle != null) {
-			moveToDate(this.eventCursor, bundle.getInt("SelectedDate"));
-		}
-
 	}
 
 	@Override

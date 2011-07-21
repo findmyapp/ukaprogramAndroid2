@@ -20,13 +20,11 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 		private static final String debug = "EventListCursorAdapter";
 
 	private Cursor cursor;
-	private Context context;
 	private final LayoutInflater inflater;
 	
 	public EventListCursorAdapter(Context context, Cursor cursor) {
 		super(context, cursor, true);
 		this.inflater = LayoutInflater.from(context);
-		this.context = context;
 		this.cursor = cursor;
 	}
 	
