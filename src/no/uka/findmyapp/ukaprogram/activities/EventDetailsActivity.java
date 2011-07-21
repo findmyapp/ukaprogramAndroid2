@@ -46,8 +46,13 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 			friendsButton.setOnClickListener(this); 
 			
 			friendList = new ArrayList<String>();
-
-			selectedEvent = (UkaEvent) bundle.getSerializable(EventListActivity.ITEM_CLICKED);
+			if(bundle.getSerializable(EventListActivity.ITEM_CLICKED) != null) {
+				selectedEvent = (UkaEvent) bundle.getSerializable(EventListActivity.ITEM_CLICKED);
+			}
+			else {
+				selectedEvent = (UkaEvent) bundle.getSerializable("selectedEvent");
+			}
+			super.setSelectedEvent(selectedEvent);
 			Log.v(debug, "selectedEvent " + selectedEvent.toString());
 
 			TextView ageLimit = (TextView) findViewById(R.id.detailedEventAgeLimit);
@@ -74,6 +79,7 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 				String exception = "Exception: empty bundle!";
 				Toast t = Toast.makeText(getApplicationContext(), exception, Toast.LENGTH_LONG);
 			}
+			
 		}
 	}
 	
