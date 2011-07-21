@@ -7,28 +7,51 @@
 	<ImageView 
 		android:layout_height="wrap_content"
 		android:paddingTop="10dp" 
-		android:paddingBottom="10dp" 
 		android:id="@+id/imageView1"
 		android:src="@drawable/uka_logo_header" 
 		android:layout_width="wrap_content"
 		android:layout_gravity="center_horizontal"></ImageView>
-	<RelativeLayout 
+	<LinearLayout 
+		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/relativeLayout1" 
-		android:layout_width="fill_parent">
-		<Button 
-			style="@style/EventCategoryButton"
-			android:layout_width="wrap_content" 
+		android:orientation="vertical">
+			<LinearLayout
+				style="@style/HorizontalLine"
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_marginBottom="4dp"
+				android:layout_height="2px">
+			</LinearLayout>
+			<TextView 
+				android:id="@+id/event_details_header_title" 
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content"
+				style="@style/BigFont"
+				android:paddingRight="25dp"
+				android:gravity="center_horizontal"
+				android:layout_gravity="center_horizontal"
+			/>
+			<LinearLayout
+				style="@style/HorizontalLine"
+				android:layout_marginTop="4dp"
+				android:layout_width="fill_parent"
+				android:layout_height="2px">
+			</LinearLayout>
+			<RelativeLayout 
+			android:layout_width="fill_parent"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
 			android:layout_height="wrap_content"
-			android:id="@+id/event_list_event_type_button"
-			android:layout_alignParentLeft="true" 
-			android:tint="@color/uka_orange" />
-		<Button style="@style/CalendarButton" 
-			android:id="@+id/event_list_calendar_button"
-			android:layout_alignParentRight="true" 
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
-	</RelativeLayout>
+			android:background="@drawable/round_border">
+				<TextView 
+					android:id="@+id/detailedEventTimeAndPlace" 
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					style="@style/SmallFont"
+				/>
+			</RelativeLayout>
+	</LinearLayout>
 	<LinearLayout 
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="horizontal" 
@@ -40,6 +63,7 @@
 			android:layout_width="wrap_content"
 			style="@style/BigFont"
 			android:paddingRight="25dp"
+
 		/>
 		<Button 
 			android:id="@+id/detailedEventFriendsOnEventButton"
@@ -49,12 +73,7 @@
 	    	android:text="@string/detailedEventFriendsbutton"
 	    />
 	</LinearLayout>
-	<TextView 
-		android:id="@+id/detailedEventTimeAndPlace" 
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		style="@style/SmallFont"
-	/>
+
 	<TextView 
 		android:id="@+id/detailedEventAgeLimit" 
 		android:layout_height="wrap_content"

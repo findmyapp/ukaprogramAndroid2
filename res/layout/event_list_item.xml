@@ -43,24 +43,28 @@
 		android:layout_centerVertical="true"
 		android:focusable="false"
 	/>
-
-	<TextView 
-		android:id="@+id/listItemTitle" 
-		style="@style/BigFont" 
+	<LinearLayout 
+		android:layout_centerVertical="true"
+		android:orientation="vertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_toRightOf="@id/listItemDateTimeContainer"
 		android:layout_toLeftOf="@id/listItemAttending"
-		android:layout_margin="5dp"
-	/>
-	<TextView 
-		android:id="@+id/listItemPlace" 
-		style="@style/SmallFont"
-		android:layout_width="fill_parent" 
-		android:layout_height="fill_parent"
-		android:gravity="center_horizontal"
-		android:layout_below="@id/listItemTitle"
-		android:layout_toRightOf="@id/listItemDateTimeContainer"
-		android:layout_toLeftOf="@id/listItemAttending"
-	/>
+		android:layout_marginLeft="5dp"
+		>
+		<TextView 
+			android:id="@+id/listItemTitle" 
+			style="@style/BigFont" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+		/>
+		<TextView 
+			android:id="@+id/listItemPlace" 
+			style="@style/SmallFont"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:layout_below="@id/listItemTitle"
+		/>
+	</LinearLayout>
 </RelativeLayout>

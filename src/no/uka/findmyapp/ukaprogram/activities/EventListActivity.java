@@ -28,11 +28,6 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 	private final static String REVY = "'Revy og Teater'";
 	private final static String KURS = "'Kurs & Events'";
 	private final static String FEST = "'Fest & Moro'";
-	private Drawable drawable;
-	private int color;
-	private int name;
-	private String categoryName;
-	private String whereStatement;
 	private Cursor eventCursor;
 
 	private final static String ORDER_BY = UkaEventContract.SHOWING_TIME + " asc";
@@ -49,10 +44,12 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		LinearLayout line = (LinearLayout) findViewById(R.id.event_list_line);
 		categoryButton.setOnClickListener(this);
 		calendarButton.setOnClickListener(this);
-
-		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, ORDER_BY);
-
-		this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
+		Drawable drawable = getResources().getDrawable(R.drawable.katbuttonalle);
+		String whereStatement = getResources().getString(R.string.alle);
+		
+		refresh(drawable, R.color.alle, null, whereStatement);
+		
+		this.setSelection(4);
 	}
 
 	@Override
@@ -100,13 +97,21 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item){
-		Intent intent;
+		return setUpdateSettings(item);
+	}
+	
+	private boolean setUpdateSettings(MenuItem item){
+		Drawable drawable;
+		int color;
+		String whereStatement;
+		String categoryName;
 		switch (item.getItemId()){
 		case R.id.category_menu_alle:
 			drawable = getResources().getDrawable(R.drawable.katbuttonalle);
 			color = R.color.alle;
 			categoryName = getResources().getString(R.string.alle);
-			refresh();
+			whereStatement = null;
+			refresh(drawable, color, whereStatement, categoryName);
 			return true;
 
 		case R.id.category_menu_fest:
@@ -114,7 +119,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			drawable = getResources().getDrawable(R.drawable.katbuttonfest);
 			color = R.color.fest;
 			categoryName = getResources().getString(R.string.fest);
-			refresh();
+			refresh(drawable, color, whereStatement, categoryName);
 			return true;
 
 		case R.id.category_menu_konsert:
@@ -122,7 +127,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			drawable = getResources().getDrawable(R.drawable.katbuttonkonsert);
 			color = R.color.konsert;
 			categoryName = getResources().getString(R.string.konsert);
-			refresh();
+			refresh(drawable, color, whereStatement, categoryName);
 			return true;
 
 		case R.id.category_menu_kurs:
@@ -130,7 +135,7 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			drawable = getResources().getDrawable(R.drawable.katbuttonkurs);
 			color = R.color.kurs;
 			categoryName = getResources().getString(R.string.kurs);
-			refresh();
+			refresh(drawable, color, whereStatement, categoryName);
 			return true;
 
 		case R.id.category_menu_revy:
@@ -138,15 +143,15 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 			drawable = getResources().getDrawable(R.drawable.katbuttonrevy);
 			color = R.color.revy;
 			categoryName = getResources().getString(R.string.revy);
-			refresh();
+			refresh(drawable, color, whereStatement, categoryName);
 			return true;
 
 		default:
-			return super.onContextItemSelected(item);
+			return false;
 		}
 	}
-
-	private void refresh(){
+		
+	private void refresh(Drawable drawable, int color, String whereStatement, String categoryName){
 		Log.v(debug, "Refreshing page");
 		Button categoryButton = (Button) findViewById(R.id.event_list_category_button);
 		LinearLayout line = (LinearLayout) findViewById(R.id.event_list_line);
