@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import android.util.Log;
+
 public class DateUtils {
 	private static final String debug = "DateUtils";
 	
@@ -41,7 +43,10 @@ public class DateUtils {
 	
 	public int getDayIntFromTimestamp(long timestamp) {
 		if(timestamp == 0) return 0;
-		else return new Integer(standardDayFormat.format(new Date(timestamp)));  
+		else {
+			Log.v(debug, "getCustomDay " + new Integer(standardDayFormat.format(new Date(timestamp))));
+			return new Integer(standardDayFormat.format(new Date(timestamp)));  
+		}
 	}
 	
 	public String getWeekdayNameFromTimestamp(long timestamp) {
