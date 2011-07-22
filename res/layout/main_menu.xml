@@ -44,6 +44,23 @@
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="10dp">
 		</Button>
+
+		<Button 
+			style="@style/MainMenuButton"
+			android:text="Konserter" 
+			android:id="@+id/konserter"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp">
+		</Button>
+		<Button 
+			style="@style/MainMenuButton"
+			android:text="Steder" 
+			android:id="@+id/steder"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp">
+		</Button>
 		<Button 
 			style="@style/MainMenuButton"
 			android:text="Favoritter" 
@@ -54,28 +71,12 @@
 		</Button>
 		<Button 
 			style="@style/MainMenuButton"
-			android:text="Konserter" 
-			android:id="@+id/konserter"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-			</Button>
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Steder" 
-			android:id="@+id/steder"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-			</Button>
-		<Button 
-			style="@style/MainMenuButton"
 			android:text="Oppdater" 
 			android:id="@+id/update"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="10dp">
-			</Button>
+		</Button>
 		</LinearLayout>
 	</LinearLayout>
 	<ImageView 
