@@ -11,10 +11,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +67,9 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
 		TextView description = (TextView) findViewById(R.id.detailedEventDescription);
 		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
+		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
+		
+		favorites.setButtonDrawable(R.drawable.favorites_button);
 
 		timeAndPlace.setText(	
 			du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
