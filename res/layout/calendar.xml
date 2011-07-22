@@ -3,12 +3,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<ImageView android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:src="@drawable/uka_logo_black"
-		android:id="@+id/header"></ImageView>
+<ImageView 
+		android:layout_height="wrap_content"
+		android:paddingTop="10dp" 
+		android:id="@+id/imageView1"
+		android:src="@drawable/uka_logo_header" 
+		android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal"></ImageView>
+	<LinearLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+			<LinearLayout
+				style="@style/HorizontalLine"
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_marginBottom="4dp"
+				android:layout_height="2px">
+			</LinearLayout>
+			<RelativeLayout 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			>
+				<TextView 
+					android:id="@+id/calendar_header_title" 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content"
+					style="@style/BigFont"
+					android:text="Kalender"
+					android:layout_centerInParent="true"
+				/>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="horizontal" android:layout_width="fill_parent"
+			</RelativeLayout>
+			<LinearLayout
+				style="@style/HorizontalLine"
+				android:layout_marginTop="4dp"
+				android:layout_width="fill_parent"
+				android:layout_height="2px">
+			</LinearLayout>
+		</LinearLayout>
+
+	<LinearLayout 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_marginTop="20dp"
+		android:orientation="horizontal" 
+		android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
 		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			android:orientation="vertical" android:layout_weight="1"
