@@ -48,7 +48,7 @@
 	android:orientation="vertical">
 		<ImageView 
 			android:layout_width="wrap_content" 
-			android:src="@drawable/testbutton" 
+			android:src="@drawable/kartbodegaen" 
 			android:id="@+id/places_map" 
 			android:layout_marginTop="20dp"
 			android:layout_marginBottom="20dp"
