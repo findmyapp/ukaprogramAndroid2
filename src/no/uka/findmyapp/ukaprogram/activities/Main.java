@@ -111,5 +111,3 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		}
 	}
 }
-
-
