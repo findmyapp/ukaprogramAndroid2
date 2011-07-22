@@ -21,7 +21,6 @@
 		android:orientation="vertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_toLeftOf="@id/concertListItemAttending"
 		android:layout_marginLeft="5dp"
 		>
 		<TextView 
@@ -29,14 +28,6 @@
 			style="@style/BigFont" 
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-		/>
-		<TextView 
-			android:id="@+id/concertListItemPlace" 
-			style="@style/SmallFont"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:gravity="center_horizontal"
-			android:layout_below="@id/concertListItemTitle"
 		/>
 	</LinearLayout>
 </RelativeLayout>

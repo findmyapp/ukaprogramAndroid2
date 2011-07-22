@@ -2,24 +2,31 @@ package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
 
+import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Contacts.People;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EventDetailsActivity extends PopupMenuActivity implements OnClickListener {
+public class EventDetailsActivity extends PopupMenuActivity implements OnClickListener, OnCheckedChangeListener {
 	private static final String debug = "EventsDetailsActivity";
 	
 	private UkaEvent selectedEvent; 
@@ -66,6 +73,10 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
 		TextView description = (TextView) findViewById(R.id.detailedEventDescription);
 		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
+		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
+		favorites.setOnCheckedChangeListener(this);
+		
+		favorites.setButtonDrawable(R.drawable.favorites_button);
 
 		timeAndPlace.setText(	
 			du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
@@ -79,6 +90,10 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		ageLimit.setText("Aldersgrense: " + selectedEvent.getAgeLimit() + " år");
 		if(selectedEvent.isFree()){
 			price.setText("Gratis");
+		}
+		
+		if(selectedEvent.isFavourite()) {
+			favorites.setChecked(true);
 		}
 	}
 	public void populateFriendList() {
@@ -105,5 +120,32 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 	@Override
 	public void onClick(View v) {
 		showPopupWindow();
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		if(isChecked) {
+			Toast t = Toast.makeText(getApplicationContext(), selectedEvent.getTitle() + " is added as favourite", Toast.LENGTH_SHORT);
+			t.show(); 
+
+			ContentValues values = new ContentValues();
+			values.put(UkaEventContract.FAVOURITE, 1);
+			
+			String where = UkaEventContract.EVENT_ID + " = '" + selectedEvent.getEventId() + "'"; 
+			t = Toast.makeText(getApplicationContext(), where, Toast.LENGTH_SHORT);
+			t.show(); 
+			
+			
+			int rowsAffected = getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
+			
+			t = Toast.makeText(getApplicationContext(), rowsAffected + "", Toast.LENGTH_SHORT);
+			t.show(); 
+			//this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
+		}
+		else {
+			Toast t = Toast.makeText(getApplicationContext(), selectedEvent.getTitle() + " is removed as favourite", Toast.LENGTH_SHORT);
+			t.show(); 
+		}
+
 	}
 }

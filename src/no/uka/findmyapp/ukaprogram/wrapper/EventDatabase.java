@@ -92,7 +92,6 @@ public class EventDatabase {
 	}
 
 	public ArrayList<UkaEvent> getEventsFromPlace(ContentResolver contentResolver, String place){
-		ContentValues contentValues = new ContentValues();
 		UkaEvent ukaEvent;
 		Date now = new Date();
 		ArrayList<UkaEvent> eventList = new ArrayList<UkaEvent>();

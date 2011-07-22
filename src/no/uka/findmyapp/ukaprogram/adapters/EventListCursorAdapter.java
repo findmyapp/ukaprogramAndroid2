@@ -54,11 +54,12 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 			
 			CheckBox cb = (CheckBox) eventView.findViewById(R.id.listItemAttending);
 			cb.setButtonDrawable(R.drawable.favorites_button);
+			cb.setChecked(getBooleanFromTableColumn(UkaEventContract.FAVOURITE));
 			
 			cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+					
 				}
 			});
 		}
@@ -79,6 +80,12 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 	
 	private long getLongFromTableColumn(String tableColumnName) {
 		return this.cursor.getLong(this.cursor.getColumnIndex(tableColumnName));
+	}
+	
+	private boolean getBooleanFromTableColumn(String tableColumnName) {
+		if(this.cursor.getInt(this.cursor.getColumnIndex(tableColumnName)) == 1)
+			return true; 
+		return false; 
 	}
 
 	@Override

@@ -31,10 +31,7 @@ public class ConsertListCursorAdapter extends CursorAdapter{
 		TextView t = (TextView) eventView.findViewById(R.id.concertListItemTitle);
 		Log.v(debug, "set concertListItemTitle " + getStringFromTableColumn(UkaEventContract.TITLE));
 		t.setText(getStringFromTableColumn(UkaEventContract.TITLE));
-		
-		t = (TextView) eventView.findViewById(R.id.concertListItemPlace);
-		t.setText(getStringFromTableColumn(UkaEventContract.PLACE));
-		
+	
 		CheckBox cb = (CheckBox) eventView.findViewById(R.id.concertListItemAttending);
 		cb.setButtonDrawable(R.drawable.favorites_button);
 		
@@ -48,7 +45,7 @@ public class ConsertListCursorAdapter extends CursorAdapter{
 	
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		final View view = this.inflater.inflate(R.layout.event_list_item, parent, false);
+		final View view = this.inflater.inflate(R.layout.concert_list_item, parent, false);
 		return view;
 	}
 

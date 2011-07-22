@@ -11,6 +11,11 @@
 	<classpathentry kind="lib" path="lib/gson-1.6.jar"/>
 	<classpathentry kind="src" path="UkappsRestClient_src"/>
 	<classpathentry kind="src" path="UkappsContentProvider_src"/>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="lib/facebook-sdk.jar"/>
+	<classpathentry kind="lib" path="lib/gson-1.6.jar"/>
+>>>>>>> 209f8df29828bc91d76e058b026b69d7930c1736
 	<classpathentry kind="src" path="UkappsDataModels_src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
