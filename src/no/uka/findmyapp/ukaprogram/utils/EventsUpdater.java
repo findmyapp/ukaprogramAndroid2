@@ -18,14 +18,11 @@ import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.Toast;
 
-public class EventsUpdater {
+public class EventsUpdater extends Updater {
 	private static final String debug = "EventsUpdater";
 	
-	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
-	private Context context; 
-	
 	public EventsUpdater(Context c) {
-		this.context = c; 
+		super(c);
 	}
 	
 	public void initUpdate() {
@@ -102,16 +99,6 @@ public class EventsUpdater {
 		return false; 
 	}
 	
-	private boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
-	}
-	
 	private void startMainActivity() {
 		Log.v(debug, "startMainActivity called");
 		Intent i = new Intent(context, Main.class); 
@@ -127,31 +114,5 @@ public class EventsUpdater {
 				startMainActivity();
 			}
 		}
-	}
-	
-	private static class UpdateException extends Exception {
-		private static final long serialVersionUID = 1042598607999418184L;
-		public static final String ILLEGAL_ACCESS_EXCEPTION = 
-			"Illegal access exception caught during update";
-		public static final String URI_SYNTAX_EXCEPTION = 
-			"URI syntax exception caught during update";
-		public static final String INSTANTIATION_EXCEPTION = 
-			"Instantiation exception caught during update";
-		public static final String NO_CONNECTION_EXCEPTION  = 
-			"No internet connection available!";
-		
-		private Exception e; 
-		
-		public UpdateException(String errorMessage) {
-			super(errorMessage);
-			e = new Exception(errorMessage); 
-		}
-		
-		public UpdateException(String errorMessage, Exception e) {
-			super(errorMessage);
-			this.e = e; 
-		}
-		
-		public Exception getException() { return this.e; }
 	}
 }

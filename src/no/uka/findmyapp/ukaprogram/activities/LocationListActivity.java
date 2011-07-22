@@ -15,7 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ListView;
 
-public class LocationActivity extends ListActivity implements OnClickListener {
+public class LocationListActivity extends ListActivity implements OnClickListener {
 	
 	private final static String debug = "EventListActivity";
 	public final static String ITEM_CLICKED = "clicked";
@@ -25,20 +25,15 @@ public class LocationActivity extends ListActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.location_list);
-		
-		Log.v(debug, "Before cursor..");
 
 		Cursor locationCursor = this.managedQuery(LocationContract.LOCATION_CONTENT_URI,
 				null, null, null, null);
 		
-		Log.v(debug, "After cursor..");
 
 		this.setListAdapter(new LocationListCursorAdapter(this, locationCursor));
-		
-		Log.v(debug, "After adapter..");
 	}
 
-	@Override
+	/*@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
@@ -51,7 +46,7 @@ public class LocationActivity extends ListActivity implements OnClickListener {
 		intent.putExtra(ITEM_CLICKED, event);
 
 		startActivity(intent);
-	}
+	}*/
 
 	@Override
 	public void onClick(View v) {

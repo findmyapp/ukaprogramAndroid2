@@ -56,7 +56,7 @@ public class Main extends PopupMenuActivity implements OnClickListener {
 			break;
 		}
 		case (R.id.steder):{
-			intent = new Intent().setClass(this, PlacesActivity.class);
+			intent = new Intent().setClass(this, LocationListActivity.class);
 			startActivity(intent);
 			break;
 		}

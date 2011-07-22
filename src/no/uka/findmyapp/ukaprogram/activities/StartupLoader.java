@@ -1,10 +1,14 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
+import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
+import no.uka.findmyapp.ukaprogram.utils.LocationUpdater;
 import android.app.Activity;
-import android.net.Uri;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -26,6 +30,10 @@ public class StartupLoader extends Activity {
 		Log.v(debug, "Loading UkaProgram");
 		
 		EventsUpdater eu = new EventsUpdater(getApplicationContext());
+		LocationUpdater lu = new LocationUpdater(getApplicationContext());
+
 		eu.initUpdate(); 
+		lu.updateLocations();
 	}
+	
 }
