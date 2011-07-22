@@ -38,7 +38,7 @@ public class ConcertListActivity extends ListActivity {
 		
 		String selection = UkaEventContract.EVENT_TYPE + " = " + CONCERT;
 		
-		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
+		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
 		this.setListAdapter(new ConsertListCursorAdapter(this, eventCursor));
 	}
 

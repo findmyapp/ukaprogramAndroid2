@@ -31,7 +31,8 @@ public class ConsertListCursorAdapter extends CursorAdapter{
 		TextView t = (TextView) eventView.findViewById(R.id.concertListItemTitle);
 		Log.v(debug, "set concertListItemTitle " + getStringFromTableColumn(UkaEventContract.TITLE));
 		t.setText(getStringFromTableColumn(UkaEventContract.TITLE));
-		
+		/*
+		Log.v(debug, "set concertListItemTitle " + getStringFromTableColumn(UkaEventContract.TITLE));
 		t = (TextView) eventView.findViewById(R.id.concertListItemPlace);
 		t.setText(getStringFromTableColumn(UkaEventContract.PLACE));
 		
@@ -44,6 +45,8 @@ public class ConsertListCursorAdapter extends CursorAdapter{
 				Log.v(debug, "buttozRPhun, " + getStringFromTableColumn(UkaEventContract.TITLE));
 			}
 		});
+		
+		*/
 	}
 	
 	@Override
