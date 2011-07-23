@@ -1,6 +1,7 @@
 package no.uka.findmyapp.ukaprogram.adapters;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
+import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import android.content.Context;
@@ -54,7 +55,9 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 			
 			CheckBox cb = (CheckBox) eventView.findViewById(R.id.listItemAttending);
 			cb.setButtonDrawable(R.drawable.favorites_button);
-			cb.setChecked(getBooleanFromTableColumn(UkaEventContract.FAVOURITE));
+			cb.setChecked(getBooleanFromTableColumn(UkaEventContract.CANCELED));
+			cb.setClickable(false);
+			//getBooleanFromTableColumn(UkaEventContract.FAVOURITE);
 			
 			cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				@Override
@@ -83,8 +86,9 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 	}
 	
 	private boolean getBooleanFromTableColumn(String tableColumnName) {
-		if(this.cursor.getInt(this.cursor.getColumnIndex(tableColumnName)) == 1)
-			return true; 
+		Log.v(debug, "getBooleanFromTableColumn " + tableColumnName); 
+		Log.v(debug, "getBooleanFromTableColumn is " + this.cursor.getInt(this.cursor.getColumnIndex(tableColumnName))); 
+		if(this.cursor.getInt(this.cursor.getColumnIndex(tableColumnName)) == 1) { return true; }
 		return false; 
 	}
 

@@ -14,15 +14,30 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConcertListActivity.
+ */
 public class ConcertListActivity extends ListActivity {	
+	
+	/** The Constant debug. */
 	private final static String debug = "ConcertListActivity";
 	
+	/** The Constant CONCERT. */
 	private final static String CONCERT = "'konsert'";
+	
+	/** The event cursor. */
 	private Cursor eventCursor;
 
+	/** The Constant ORDER_BY. */
 	private final static String ORDER_BY = UkaEventContract.TITLE + " desc";
+	
+	/** The Constant ITEM_CLICKED. */
 	public final static String ITEM_CLICKED = "clicked";
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +58,9 @@ public class ConcertListActivity extends ListActivity {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);

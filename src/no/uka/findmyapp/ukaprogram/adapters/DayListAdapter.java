@@ -14,14 +14,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DayListAdapter.
+ */
 public class DayListAdapter extends ArrayAdapter<UkaEvent> {
+	
+	/** The text view resource id. */
 	private int textViewResourceId;
 
+	/**
+	 * Instantiates a new day list adapter.
+	 *
+	 * @param context the context
+	 * @param textViewResourceId the text view resource id
+	 * @param items the items
+	 */
 	public DayListAdapter(Context context, int textViewResourceId, List<UkaEvent> items) {	
 		super(context, textViewResourceId, items);
 		this.textViewResourceId = textViewResourceId;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	public View getView(int position, View convertView, ViewGroup parent){
 		LinearLayout eventView = null;
 		UkaEvent event = getItem(position);

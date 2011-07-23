@@ -18,12 +18,21 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Main.
+ */
 public class Main extends PopupMenuActivity implements OnClickListener, OnGesturePerformedListener {
+	
+	/** The Constant debug. */
 	private static final String debug = "Main";
 
+	/** The gesture lib. */
 	private GestureLibrary gestureLib; 
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +43,9 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 	}
 
 
+	/**
+	 * Inits the view.
+	 */
 	private void initView() {
 		Button favorites = (Button) findViewById(R.id.favoritter);
 		Button program = (Button) findViewById(R.id.program);
@@ -55,6 +67,9 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 	}
 
 
+	/**
+	 * Gesture init.
+	 */
 	private void gestureInit() {
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.main_menu, null);
@@ -68,6 +83,9 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		setContentView(gestureOverlayView);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.gesture.GestureOverlayView.OnGesturePerformedListener#onGesturePerformed(android.gesture.GestureOverlayView, android.gesture.Gesture)
+	 */
 	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
 		ArrayList<Prediction> predictions = this.gestureLib.recognize(gesture);
 		for (Prediction prediction : predictions) {
@@ -83,6 +101,9 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	public void onClick(View v) {
 		Intent intent;
 		switch (v.getId()) {
@@ -95,7 +116,7 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 			eu.updateEvents();
 			break;
 		case (R.id.favoritter):
-			intent = new Intent().setClass(this, FavoritesListActivity.class);
+			intent = new Intent().setClass(this, FavouritesListActivity.class);
 			startActivity(intent);
 			break; 
 		case (R.id.konserter):

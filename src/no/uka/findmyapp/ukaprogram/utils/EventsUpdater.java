@@ -18,16 +18,33 @@ import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.Toast;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventsUpdater.
+ */
 public class EventsUpdater {
+	
+	/** The Constant debug. */
 	private static final String debug = "EventsUpdater";
 	
+	/** The service helper. */
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
+	
+	/** The context. */
 	private Context context; 
 	
+	/**
+	 * Instantiates a new events updater.
+	 *
+	 * @param c the c
+	 */
 	public EventsUpdater(Context c) {
 		this.context = c; 
 	}
 	
+	/**
+	 * Inits the update.
+	 */
 	public void initUpdate() {
 		Log.v(debug, "initUpdate starting update routine");
 		if(eventsDatabaseNotEmtpy()) {
@@ -40,6 +57,9 @@ public class EventsUpdater {
 		}
 	}
 	
+	/**
+	 * Update events.
+	 */
 	public void updateEvents() {
 		Log.v(debug, "updateEvents called");
 		try {
@@ -58,6 +78,11 @@ public class EventsUpdater {
 		} 
 	}
 	
+	/**
+	 * Update.
+	 *
+	 * @throws UpdateException the update exception
+	 */
 	private void update() throws UpdateException{
 		Log.v(debug, "update called");
 		try {		
@@ -72,6 +97,9 @@ public class EventsUpdater {
 		}
 	}
 	
+	/**
+	 * Startup update.
+	 */
 	private void startupUpdate() {
 		try {
 			Log.v(debug, "startUpdate setting up IntentReciever and IntentFilter");
@@ -92,6 +120,11 @@ public class EventsUpdater {
 		} 
 	}
 	
+	/**
+	 * Events database not emtpy.
+	 *
+	 * @return true, if successful
+	 */
 	private boolean eventsDatabaseNotEmtpy() {
 		Log.v(debug, "inside eventsDatabaseNotEmtpy");
 		Log.v(debug, UkaEventContract.EVENT_CONTENT_URI.toString());
@@ -102,6 +135,11 @@ public class EventsUpdater {
 		return false; 
 	}
 	
+	/**
+	 * Checks if is online.
+	 *
+	 * @return true, if is online
+	 */
 	private boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -112,6 +150,9 @@ public class EventsUpdater {
 	    return false;
 	}
 	
+	/**
+	 * Start main activity.
+	 */
 	private void startMainActivity() {
 		Log.v(debug, "startMainActivity called");
 		Intent i = new Intent(context, Main.class); 
@@ -119,7 +160,14 @@ public class EventsUpdater {
 		this.context.startActivity(i);
 	}
 
+	/**
+	 * The Class ReciveIntent.
+	 */
 	private class ReciveIntent extends BroadcastReceiver {
+		
+		/* (non-Javadoc)
+		 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
+		 */
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
@@ -129,29 +177,59 @@ public class EventsUpdater {
 		}
 	}
 	
+	/**
+	 * The Class UpdateException.
+	 */
 	private static class UpdateException extends Exception {
+		
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1042598607999418184L;
+		
+		/** The Constant ILLEGAL_ACCESS_EXCEPTION. */
 		public static final String ILLEGAL_ACCESS_EXCEPTION = 
 			"Illegal access exception caught during update";
+		
+		/** The Constant URI_SYNTAX_EXCEPTION. */
 		public static final String URI_SYNTAX_EXCEPTION = 
 			"URI syntax exception caught during update";
+		
+		/** The Constant INSTANTIATION_EXCEPTION. */
 		public static final String INSTANTIATION_EXCEPTION = 
 			"Instantiation exception caught during update";
+		
+		/** The Constant NO_CONNECTION_EXCEPTION. */
 		public static final String NO_CONNECTION_EXCEPTION  = 
 			"No internet connection available!";
 		
+		/** The e. */
 		private Exception e; 
 		
+		/**
+		 * Instantiates a new update exception.
+		 *
+		 * @param errorMessage the error message
+		 */
 		public UpdateException(String errorMessage) {
 			super(errorMessage);
 			e = new Exception(errorMessage); 
 		}
 		
+		/**
+		 * Instantiates a new update exception.
+		 *
+		 * @param errorMessage the error message
+		 * @param e the e
+		 */
 		public UpdateException(String errorMessage, Exception e) {
 			super(errorMessage);
 			this.e = e; 
 		}
 		
+		/**
+		 * Gets the exception.
+		 *
+		 * @return the exception
+		 */
 		public Exception getException() { return this.e; }
 	}
 }

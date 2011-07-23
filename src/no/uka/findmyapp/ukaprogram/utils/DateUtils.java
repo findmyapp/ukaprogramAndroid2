@@ -7,40 +7,91 @@ import java.util.GregorianCalendar;
 
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DateUtils.
+ */
 public class DateUtils {
+	
+	/** The Constant debug. */
 	private static final String debug = "DateUtils";
 	
+	/** The Constant standardDateFormat. */
 	private static final SimpleDateFormat standardDateFormat = 
 		new SimpleDateFormat("dd.MM");
+	
+	/** The Constant standardTimeFormat. */
 	private static final SimpleDateFormat standardTimeFormat = 
 		new SimpleDateFormat("hh:mm");
+	
+	/** The Constant standardDayFormat. */
 	private static final SimpleDateFormat standardDayFormat = 
 		new SimpleDateFormat("dd"); 
-	public static final String MONDAY = "man";
-	public static final String TUESDAY = "tirs";
-	public static final String WEDNESDAY = "ons";
-	public static final String THURSDAY = "torsdag";
-	public static final String FRIDAY = "fre";
-	public static final String SATURDAY = "lør";
-	public static final String SUNDAG = "søn"; 
 	
+	/** The Constant MONDAY. */
+	public static final String MONDAY = "man";
+	
+	/** The Constant TUESDAY. */
+	public static final String TUESDAY = "tirs";
+	
+	/** The Constant WEDNESDAY. */
+	public static final String WEDNESDAY = "ons";
+	
+	/** The Constant THURSDAY. */
+	public static final String THURSDAY = "torsdag";
+	
+	/** The Constant FRIDAY. */
+	public static final String FRIDAY = "fre";
+	
+	/** The Constant SATURDAY. */
+	public static final String SATURDAY = "lør";
+	
+	/** The Constant SUNDAG. */
+	public static final String SUNDAY = "søn"; 
+	
+	/** The constructed date format. */
 	private String constructedDateFormat; 
 	
+	/**
+	 * Gets the custom date format from timestamp.
+	 *
+	 * @param dateFormat the date format
+	 * @param timestamp the timestamp
+	 * @return the custom date format from timestamp
+	 */
 	public String getCustomDateFormatFromTimestamp(String dateFormat, long timestamp) {
 		if(timestamp == 0) return null; 
 		else return new SimpleDateFormat(dateFormat).format(new Date(timestamp));
 	}
 
+	/**
+	 * Gets the date string from timestamp.
+	 *
+	 * @param timestamp the timestamp
+	 * @return the date string from timestamp
+	 */
 	public String getDateStringFromTimestamp(long timestamp) {
 		if(timestamp == 0) return null;
 		else return standardDateFormat.format(new Date(timestamp)); 
 	}
 	
+	/**
+	 * Gets the time from timestamp.
+	 *
+	 * @param timestamp the timestamp
+	 * @return the time from timestamp
+	 */
 	public String getTimeFromTimestamp(long timestamp) {
 		if(timestamp == 0) return null; 
 		else return standardTimeFormat.format(new Date(timestamp)); 
 	}
 	
+	/**
+	 * Gets the day int from timestamp.
+	 *
+	 * @param timestamp the timestamp
+	 * @return the day int from timestamp
+	 */
 	public int getDayIntFromTimestamp(long timestamp) {
 		if(timestamp == 0) return 0;
 		else {
@@ -49,11 +100,23 @@ public class DateUtils {
 		}
 	}
 	
+	/**
+	 * Gets the weekday name from timestamp.
+	 *
+	 * @param timestamp the timestamp
+	 * @return the weekday name from timestamp
+	 */
 	public String getWeekdayNameFromTimestamp(long timestamp) {
 		if(timestamp == 0) return null; 
 		else return getShortWeekDayName(getDayIntFromTimestamp(timestamp));
 	}
 	
+	/**
+	 * Gets the short week day name.
+	 *
+	 * @param dayOfMonth the day of month
+	 * @return the short week day name
+	 */
 	private String getShortWeekDayName(int dayOfMonth) {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -72,7 +135,7 @@ public class DateUtils {
 		case 6:
 			return SATURDAY;
 		case 7:
-			return SUNDAG;
+			return SUNDAY;
 		default: 
 			return null; 
 		}

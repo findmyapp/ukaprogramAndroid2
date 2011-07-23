@@ -10,11 +10,21 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StartupLoader.
+ */
 public class StartupLoader extends Activity {
+	
+	/** The Constant debug. */
 	private static final String debug = "StartupLoader";
 
+	/** The service helper. */
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -117,10 +117,12 @@ public class EventDatabase {
 //		ukaEvent.setCanceled((boolean) cursor.getInt(cursor.getColumnIndex(UkaEventContract.CANCELED)));
 		ukaEvent.setEventType(cursor.getString(cursor.getColumnIndex(UkaEventContract.EVENT_TYPE)));
 		ukaEvent.setId(cursor.getInt(cursor.getColumnIndex(UkaEventContract.ID)));
+		ukaEvent.setEventId((cursor.getInt(cursor.getColumnIndex(UkaEventContract.EVENT_ID))));
 		ukaEvent.setText(cursor.getString(cursor.getColumnIndex(UkaEventContract.TEXT)));
 		ukaEvent.setShowingTime((cursor.getLong(cursor.getColumnIndex(UkaEventContract.SHOWING_TIME))));
 		ukaEvent.setPlace(cursor.getString(cursor.getColumnIndex(UkaEventContract.PLACE)));
 		ukaEvent.setTitle(cursor.getString(cursor.getColumnIndex(UkaEventContract.TITLE)));
+		ukaEvent.setFavourite(cursor.getInt(cursor.getColumnIndex(UkaEventContract.CANCELED)));
 		
 		return ukaEvent;
 	}

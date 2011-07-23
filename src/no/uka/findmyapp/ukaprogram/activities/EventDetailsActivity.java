@@ -129,22 +129,34 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 			t.show(); 
 
 			ContentValues values = new ContentValues();
-			values.put(UkaEventContract.FAVOURITE, 1);
+			values.put(UkaEventContract.CANCELED, 1);
 			
+			Log.v(debug, "selectedEvent id " + selectedEvent.getEventId());
 			String where = UkaEventContract.EVENT_ID + " = '" + selectedEvent.getEventId() + "'"; 
-			t = Toast.makeText(getApplicationContext(), where, Toast.LENGTH_SHORT);
-			t.show(); 
+//			t = Toast.makeText(getApplicationContext(), where, Toast.LENGTH_SHORT);
+//			t.show(); 
 			
 			
 			int rowsAffected = getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
 			
-			t = Toast.makeText(getApplicationContext(), rowsAffected + "", Toast.LENGTH_SHORT);
-			t.show(); 
-			//this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
+//			t = Toast.makeText(getApplicationContext(), rowsAffected + "", Toast.LENGTH_SHORT);
+//			t.show(); 
+//			this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
 		}
 		else {
 			Toast t = Toast.makeText(getApplicationContext(), selectedEvent.getTitle() + " is removed as favourite", Toast.LENGTH_SHORT);
 			t.show(); 
+			
+			ContentValues values = new ContentValues();
+			values.put(UkaEventContract.CANCELED, 0);
+			
+			Log.v(debug, "selectedEvent id " + selectedEvent.getEventId());
+			String where = UkaEventContract.EVENT_ID + " = '" + selectedEvent.getEventId() + "'"; 
+//			t = Toast.makeText(getApplicationContext(), where, Toast.LENGTH_SHORT);
+//			t.show(); 
+			
+			
+			int rowsAffected = getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
 		}
 
 	}
