@@ -4,7 +4,6 @@ import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -12,7 +11,7 @@ import android.view.WindowManager;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class StartupLoader.
+ * The Class StartupLoader 
  */
 public class StartupLoader extends Activity {
 	

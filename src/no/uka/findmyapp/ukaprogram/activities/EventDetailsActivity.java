@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Contacts.People;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +30,6 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 	
 	private UkaEvent selectedEvent; 
 	private ArrayList<String> friendList;
-	private String TAG = "EventDetails";
 	private ArrayAdapter<String> friendAdapter;
 	private ListView friendListView;
 
@@ -41,61 +39,91 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_details);
 		
-		Log.v(debug, debug + " onCreate()");
-		
 		Bundle bundle = getIntent().getExtras(); 
 		Log.v(debug, "Bundle toString " + bundle.toString());
 		
-		if (bundle.getSerializable(EventListActivity.ITEM_CLICKED) != null) {
-			selectedEvent = (UkaEvent) bundle.getSerializable(EventListActivity.ITEM_CLICKED);
+		if (bundle.getSerializable(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL) != null) {
+			selectedEvent = (UkaEvent) bundle.getSerializable(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL);
 			populateView(selectedEvent);
 		}
 		else{
-			String exception = "Exception: empty bundle!";
-			Toast t = Toast.makeText(getApplicationContext(), exception, Toast.LENGTH_LONG);
-			t.show();
+			// Toast empty bundle exception
+			showToast(getResources().getString(R.string.exception_emptyBundle));
 		}
 	}
 	
 	public void populateView(UkaEvent selectedEvent){
+		Log.v(debug, "populateView: selectedEvent " + selectedEvent.toString());
+		
 		DateUtils du = new DateUtils(); 
 
 		Button friendsButton = (Button) findViewById(R.id.detailedEventFriendsOnEventButton);
 		friendsButton.setOnClickListener(this); 
-		
 		friendList = new ArrayList<String>();
-		super.setSelectedEvent(selectedEvent);
-		Log.v(debug, "selectedEvent " + selectedEvent.toString());
+		
+		TextView title = (TextView) findViewById(R.id.detailedEventTitle);
+		title.setText(selectedEvent.getTitle());
+		
+		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
+		timeAndPlace.setText(	
+				du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
+				+ du.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) 
+				+ " " + du.getTimeFromTimestamp(selectedEvent.getShowingTime()) 
+				+ ", " + selectedEvent.getPlace());
+		
+		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
+		headerTitle.setText(selectedEvent.getTitle());
+		
+		TextView description = (TextView) findViewById(R.id.detailedEventDescription);
+		description.setText(selectedEvent.getText());
 
 		TextView ageLimit = (TextView) findViewById(R.id.detailedEventAgeLimit);
+		ageLimit.setText(getResources().getString(R.string.eventDetailedActivity_agelimit)
+				+ selectedEvent.getAgeLimit() 
+				+ getResources().getString(R.string.eventDetailedActivity_year));
+		
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
-		TextView title = (TextView) findViewById(R.id.detailedEventTitle);
-		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
-		TextView description = (TextView) findViewById(R.id.detailedEventDescription);
-		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
-		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
-		favorites.setOnCheckedChangeListener(this);
-		
-		favorites.setButtonDrawable(R.drawable.favorites_button);
-
-		timeAndPlace.setText(	
-			du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
-			+ du.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) + " " 
-			+ du.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
-			+ selectedEvent.getPlace());
-		
-		title.setText(selectedEvent.getTitle());
-		headerTitle.setText(selectedEvent.getTitle());
-		description.setText(selectedEvent.getText());
-		ageLimit.setText("Aldersgrense: " + selectedEvent.getAgeLimit() + " år");
 		if(selectedEvent.isFree()){
-			price.setText("Gratis");
+			price.setText(getResources().getString(R.string.eventDetailedActivity_free));
 		}
 		
+		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
+		favorites.setOnCheckedChangeListener(this);	
+		favorites.setButtonDrawable(R.drawable.favorites_button);
 		if(selectedEvent.isFavourite()) {
 			favorites.setChecked(true);
 		}
+	
 	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		Log.v(debug, "selectedEvent id " + selectedEvent.getEventId());
+		String info;
+		if(isChecked) {
+			changeFavourite(this.selectedEvent.getEventId(), true);
+			info = this.selectedEvent.getTitle() + getResources().getString(R.string.toast_isAddedAsFavourite);
+		}
+		else {			
+			changeFavourite(this.selectedEvent.getEventId(), false);
+			info = this.selectedEvent.getTitle() + getResources().getString(R.string.toast_isAddedAsFavourite);
+		}
+		
+		showToast(info); 
+	}
+
+	private void showToast(String info ) {
+		Toast t = Toast.makeText(getApplicationContext(), info, Toast.LENGTH_SHORT);
+		t.show();
+	}
+
+	private void changeFavourite(int id, boolean isFavourite) {
+		ContentValues values = new ContentValues();
+		values.put(UkaEventContract.CANCELED, 0);
+		String where = UkaEventContract.EVENT_ID + " = '" + id + "'"; 
+		getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
+	}
+	
 	public void populateFriendList() {
 		 friendList.clear();
 		 friendList.add("Audun");
@@ -122,42 +150,5 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		showPopupWindow();
 	}
 
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		if(isChecked) {
-			Toast t = Toast.makeText(getApplicationContext(), selectedEvent.getTitle() + " is added as favourite", Toast.LENGTH_SHORT);
-			t.show(); 
 
-			ContentValues values = new ContentValues();
-			values.put(UkaEventContract.CANCELED, 1);
-			
-			Log.v(debug, "selectedEvent id " + selectedEvent.getEventId());
-			String where = UkaEventContract.EVENT_ID + " = '" + selectedEvent.getEventId() + "'"; 
-//			t = Toast.makeText(getApplicationContext(), where, Toast.LENGTH_SHORT);
-//			t.show(); 
-			
-			
-			int rowsAffected = getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
-			
-//			t = Toast.makeText(getApplicationContext(), rowsAffected + "", Toast.LENGTH_SHORT);
-//			t.show(); 
-//			this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
-		}
-		else {
-			Toast t = Toast.makeText(getApplicationContext(), selectedEvent.getTitle() + " is removed as favourite", Toast.LENGTH_SHORT);
-			t.show(); 
-			
-			ContentValues values = new ContentValues();
-			values.put(UkaEventContract.CANCELED, 0);
-			
-			Log.v(debug, "selectedEvent id " + selectedEvent.getEventId());
-			String where = UkaEventContract.EVENT_ID + " = '" + selectedEvent.getEventId() + "'"; 
-//			t = Toast.makeText(getApplicationContext(), where, Toast.LENGTH_SHORT);
-//			t.show(); 
-			
-			
-			int rowsAffected = getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
-		}
-
-	}
 }

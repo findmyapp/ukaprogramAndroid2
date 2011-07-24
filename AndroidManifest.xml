@@ -21,8 +21,8 @@
 		</activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.Main"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListActivity"></activity>
-		<activity android:name=".activities.FavouritesListActivity"></activity>
+		<activity android:name=".activities.lists.EventListActivity"></activity>
+		<activity android:name=".activities.lists.FavouritesListActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EditContactActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity"></activity>
@@ -30,7 +30,7 @@
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.SettingsActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.LocationActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.PlacesActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.ConcertListActivity"></activity>
+		<activity android:name=".activities.lists.ConcertListActivity"></activity>
 		
 		<provider android:name="no.uka.findmyapp.android.rest.providers.UkaEventProvider" 
 			android:authorities="no.uka.findmyapp.android.rest.providers" 

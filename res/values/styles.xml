@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- General color settings -->
-	<color name="custom_theme_color">#000000</color>
-	<color name="black">#000000</color>
-	<color name="uka_red">#8F0000</color>
-	<color name="uka_purple">#4019FF</color>
-	<color name="uka_greygreen">#73FF8C</color>
-	<color name="uka_yellow">#FFD919</color>
-	<color name="uka_green">#BFFF19</color>
-	<color name="uka_blue">#4DFFD9</color>
-	<color name="uka_pink">#E04DFF</color>
-	<color name="uka_orange">#FF5919</color>
-	<color name="white">#FFFFFF</color>
-	<color name="grey">#D0D0D0</color>
-
-	<!-- Menu spesific colors -->
-	<color name="firstMenuItem">#03BED7</color>
-	<color name="secondMenuItem">#72c6a5</color>
-	<color name="thirdMenuItem">#cadc44</color>
-	<color name="fourthMenuItem">#ffd530</color>
-
-	<!-- Category spesific colors -->
-	<color name="alle">#000000</color>
-	<color name="konsert">#AC8FC4</color>
-	<color name="revy">#F9B385</color>
-	<color name="kurs">#74DAE8</color>
-	<color name="fest">#ECAED0</color>
-
-	<!-- General themesettings -->
+	<!-- General themesettings -->	
 	<style name="CustomTheme" parent="android:Theme.Light">
 		<item name="android:windowBackground">@color/white</item>
 		<item name="android:colorBackground">@color/white</item>
@@ -59,6 +32,20 @@
 		<item name="android:textSize">16dp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
+	
+	<!-- EventList category button section -->
+	<style name="eventCategoryButton" parent="@android:style/Widget.Button">
+		<item name="android:background">@drawable/event_list_event_type_button</item>
+		<item name="android:focusable">false</item>
+		<item name="android:clickable">true</item>
+		<item name="android:gravity">center_vertical|center_horizontal</item>
+		<item name="android:shadowColor">@color/shadowColor</item>
+		<item name="android:shadowDx">0</item>
+		<item name="android:shadowDy">-1</item>
+		<item name="android:shadowRadius">0.2</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:textAppearance">@style/BigFont</item>
+	</style>
 
 	<style name="CalendarButton" parent="@android:style/Widget.Button">
 		<item name="android:gravity">center_vertical|center_horizontal</item>
@@ -67,19 +54,6 @@
 		<item name="android:shadowDy">-1</item>
 		<item name="android:shadowRadius">0.2</item>
 		<item name="android:background">@drawable/calendar</item>
-		<item name="android:focusable">false</item>
-		<item name="android:clickable">true</item>
-	</style>
-
-	<style name="EventCategoryButton" parent="@android:style/Widget.Button">
-		<item name="android:gravity">center_vertical|center_horizontal</item>
-		<item name="android:shadowColor">#FF000000</item>
-		<item name="android:shadowDx">0</item>
-		<item name="android:shadowDy">-1</item>
-		<item name="android:shadowRadius">0.2</item>
-		<item name="android:textColor">@color/white</item>
-		<item name="android:textAppearance">@style/BigFont</item>
-		<item name="android:background">@drawable/event_list_event_type_button</item>
 		<item name="android:focusable">false</item>
 		<item name="android:clickable">true</item>
 	</style>

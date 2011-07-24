@@ -16,7 +16,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="3px" 
 		android:id="@+id/event_list_line"
-		android:background="@color/fest" />
+		android:background="@color/category_party" />
 	<ListView android:id="@android:id/list" 
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent" 

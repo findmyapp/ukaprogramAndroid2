@@ -1,68 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	<RelativeLayout 
 		android:layout_height="wrap_content" 
 		android:layout_width="fill_parent">
 		<LinearLayout 
+			android:id="@+id/header"
 			android:layout_height="wrap_content"
 			android:layout_width="fill_parent"
-			android:orientation="vertical"
-			android:id="@+id/header">
-			<ImageView android:layout_height="wrap_content"
-				android:layout_marginTop="4dp" 
+			android:orientation="vertical">
+			<ImageView
+				android:id="@+id/event_list_header"  
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp" 
 				android:layout_alignParentTop="true"
 				android:layout_centerHorizontal="true"
-				android:id="@+id/event_list_header" 
 				android:src="@drawable/uka_logo_header"
 				android:layout_width="wrap_content" 
 				android:layout_gravity="center_horizontal">
 			</ImageView>
-			<LinearLayout
-				style="@style/HorizontalLine"
-				android:layout_marginTop="4dp"
-				android:layout_width="fill_parent"
-				android:layout_height="2px">
-			</LinearLayout>
 		</LinearLayout>
-		
-		<Button style="@style/EventCategoryButton"
-			android:layout_marginTop="10dp"
-			android:layout_below="@id/header"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:id="@+id/event_list_category_button"
-			android:layout_alignParentLeft="true" 
-			android:background="@drawable/katbuttonfest" 
-			android:layout_marginLeft="10dp"/>
-		
-		<Button style="@style/CalendarButton" 
-			android:id="@+id/event_list_calendar_button"
-			android:layout_alignParentRight="true" 
-			android:layout_alignBottom="@id/event_list_category_button"
-			android:layout_height="40dp"
-			android:layout_width="40dp"  
-			android:layout_marginRight="10dp"/>
-			
 	</RelativeLayout>
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout
+		android:id="@+id/eventList_HorizontalRulingHeader"
 		android:orientation="vertical" 
 		android:layout_width="fill_parent"
 		android:layout_height="3px" 
-		android:id="@+id/event_list_line"
-		android:background="@color/fest" />
-
-	
+		android:background="@color/category_party" />
 	<ListView android:id="@android:id/list" 
-		android:layout_height="wrap_content"
+		android:layout_height="420dp"
 		android:layout_width="fill_parent" 
-		android:footerDividersEnabled="true" 
+		android:footerDividersEnabled="false" 
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
 		/>
-
+	<LinearLayout
+		android:id="@+id/eventList_HorizontalRulingFooter"
+		android:orientation="vertical" 
+		android:layout_width="fill_parent"
+		android:layout_height="3px" 
+		android:layout_marginBottom="3dp" />
+	<HorizontalScrollView
+		android:id="@+id/eventList_horizontalScrollView"
+		android:background="@color/shadowColor"
+		android:layout_height="fill_parent"
+		android:layout_width="match_parent"
+		android:scrollbars="none">
+		<LinearLayout 
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:gravity="center_vertical">
+			<Button 
+				android:id="@+id/categorymenu_all"
+				style="@style/eventCategoryButton"
+				android:background="@drawable/categorybutton_all"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" 
+				android:layout_marginLeft="3dp"
+				android:layout_marginTop="3dp"/>
+			<Button 
+				android:id="@+id/categorymenu_concert"
+				style="@style/eventCategoryButton"
+				android:background="@drawable/categorybutton_concert"
+				android:layout_marginTop="3dp"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" 
+				android:layout_marginLeft="3dp"/>
+			<Button 
+				android:id="@+id/categorymenu_revue"
+				style="@style/eventCategoryButton"
+				android:background="@drawable/categorybutton_revue"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" 
+				android:layout_marginLeft="3dp"
+				android:layout_marginTop="3dp"/>
+			<Button 
+				android:id="@+id/categorymenu_lecture"
+				style="@style/eventCategoryButton"
+				android:background="@drawable/categorybutton_lecture"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" 
+				android:layout_marginLeft="3dp"
+				android:layout_marginTop="3dp"/>
+			<Button 
+				android:id="@+id/categorymenu_party"
+				style="@style/eventCategoryButton"
+				android:background="@drawable/categorybutton_party"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" 
+				android:layout_marginLeft="3dp"
+				android:layout_marginTop="3dp"/>
+			<Button 
+				android:id="@+id/categorymenu_favourites"
+				style="@style/eventCategoryButton"
+				android:background="@drawable/categorybutton_revue"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" 
+				android:layout_marginLeft="3dp"
+				android:layout_marginTop="3dp"/>
+		</LinearLayout>
+	</HorizontalScrollView>
 </LinearLayout>
 
 

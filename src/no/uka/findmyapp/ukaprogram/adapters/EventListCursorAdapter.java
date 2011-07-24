@@ -1,7 +1,6 @@
 package no.uka.findmyapp.ukaprogram.adapters;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
-import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import android.content.Context;

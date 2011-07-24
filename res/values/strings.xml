@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Contacts!</string>
 	<string name="app_name">UKA11 Program</string>
-	<string name="fiveNext">5 Neste</string>
 	<string name="calendar">Calendar</string>
 	<string name="fullList">Alle arr.</string>
 	<string name="select_category">Velg eventkategori</string>
@@ -11,23 +9,36 @@
 	<string name="setting_prompt">Velg restriksjon</string>
 	<string name="setting_menu_item">Innstillinger</string>
 
-	<string name="alle">Alle</string>
-	<string name="konsert">Konsert</string>
-	<string name="revy">Revy \u0026 Teater</string>
-	<string name="kurs">Kurs \u0026 Events</string>
-	<string name="fest">Fest \u0026 Moro</string>
-
-	<string-array name="category_array">
-		<item>Alle</item>
-		<item>Konsert</item>
-		<item>Revy \u0026 Teater</item>
-		<item>Kurs \u0026 Events</item>
-		<item>Fest \u0026 Moro</item>
-	</string-array>
-	<string-array name="countries_array">
-		<item>Norway</item>
-		<item>Sweden</item>
-		<item>UK</item>
-		<item>USA</item>
-	</string-array>
+	<!-- Category naming section -->
+	<string name="category_all">Alle</string>
+	<string name="category_concert">Konsert</string>
+	<string name="category_revue">Revy \u0026 Teater</string>
+	<string name="category_lecture">Kurs \u0026 Events</string>
+	<string name="category_party">Fest \u0026 Moro</string>
+	<string name="category_favourites">Favoritter</string>
+	
+	<!-- Calendar -->
+	<string name="calendar_header">Kalender</string>
+	
+	<!-- CalendarActivity days -->
+	<string name="calendar_monday">man</string>
+	<string name="calendar_tuesday">tirs</string>
+	<string name="calendar_wednesday">ons</string>
+	<string name="calendar_thursday">tors</string>
+	<string name="calendar_friday">fre</string>
+	<string name="calendar_saturday">lør</string>
+	<string name="calendar_sunday">søn</string>
+	
+	
+	<!-- Toast section -->
+	<string name="toast_isAddedAsFavourite"> lagt til som favoritt</string>
+	<string name="toast_isRemovedAsFavourite"> fjernet som favoritt</string>
+	
+	<!-- Exception section -->
+	<string name="exception_emptyBundle">Exception: empty bundle!</string>
+	
+	<!-- EventDetailedActivity strings -->
+	<string name="eventDetailedActivity_agelimit">Aldersgrense: </string>
+	<string name="eventDetailedActivity_year"> år.</string>
+	<string name="eventDetailedActivity_free">Gratis</string>
 </resources>

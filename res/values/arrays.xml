@@ -5,4 +5,17 @@
         <item>Venner</item>
         <item>Alle</item>
     </string-array>
+	<string-array name="category_array">
+		<item>Alle</item>
+		<item>Konsert</item>
+		<item>Revy \u0026 Teater</item>
+		<item>Kurs \u0026 Events</item>
+		<item>Fest \u0026 Moro</item>
+	</string-array>
+	<string-array name="countries_array">
+		<item>Norway</item>
+		<item>Sweden</item>
+		<item>UK</item>
+		<item>USA</item>
+	</string-array>
 </resources>

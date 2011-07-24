@@ -1,7 +1,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke android:width="2px" android:color="@color/uka_red" />
-    <padding android:left="7dp" android:top="7dp"
-            android:right="7dp" android:bottom="7dp" />
+    <stroke 
+    	android:width="2px" 
+    	android:color="@color/uka_red" />
+    <padding 
+    	android:left="7dp" 
+    	android:top="7dp"
+		android:right="7dp" 
+		android:bottom="7dp" />
     <corners android:radius="3dp" />
     <solid android:color="@color/uka_red" />
 </shape> 

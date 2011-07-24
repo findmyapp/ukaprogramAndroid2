@@ -1,8 +1,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">﻿
-	<item android:state_enabled="false" android:drawable="@drawable/menu_button" />
-	<item android:state_pressed="true" android:state_enabled="true"
-		android:drawable="@drawable/menu_button" />
-	<item android:state_focused="true" android:state_enabled="true"
-		android:drawable="@drawable/menu_button" />
-	<item android:state_enabled="true" android:drawable="@drawable/menu_button" />
+	<item 
+		android:state_enabled="false" 
+		android:drawable="@drawable/mainmenubutton_default" />
+	<item 
+		android:state_pressed="true" 
+		android:state_enabled="true"
+		android:drawable="@drawable/mainmenubutton_default" />
+	<item 
+		android:state_focused="true" 
+		android:state_enabled="true"
+		android:drawable="@drawable/mainmenubutton_default" />
+	<item 
+		android:state_enabled="true" 
+		android:drawable="@drawable/mainmenubutton_default" />
 </selector>

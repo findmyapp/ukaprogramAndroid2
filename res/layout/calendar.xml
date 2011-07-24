@@ -1,112 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-<ImageView 
+	<ImageView 
 		android:layout_height="wrap_content"
 		android:paddingTop="10dp" 
 		android:id="@+id/imageView1"
 		android:src="@drawable/uka_logo_header" 
 		android:layout_width="wrap_content"
-		android:layout_gravity="center_horizontal"></ImageView>
+		android:layout_gravity="center_horizontal"/>
 	<LinearLayout 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
-			<LinearLayout
-				style="@style/HorizontalLine"
-				android:layout_marginTop="10dp"
-				android:layout_width="fill_parent"
-				android:layout_marginBottom="4dp"
-				android:layout_height="2px">
-			</LinearLayout>
-			<RelativeLayout 
+		<LinearLayout
+			style="@style/HorizontalLine"
+			android:layout_marginTop="10dp"
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			>
-				<TextView 
-					android:id="@+id/calendar_header_title" 
-					android:layout_height="wrap_content" 
-					android:layout_width="wrap_content"
-					style="@style/BigFont"
-					android:text="Kalender"
-					android:layout_centerInParent="true"
-				/>
-
-			</RelativeLayout>
-			<LinearLayout
-				style="@style/HorizontalLine"
-				android:layout_marginTop="4dp"
-				android:layout_width="fill_parent"
-				android:layout_height="2px">
-			</LinearLayout>
+			android:layout_marginBottom="4dp"
+			android:layout_height="2px">
 		</LinearLayout>
-
+		<TextView 
+			android:id="@+id/calendar_header_title" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent"
+			style="@style/BigFont"
+			android:text="@string/calendar_header"
+			android:gravity="center"/>
+		<LinearLayout
+			style="@style/HorizontalLine"
+			android:layout_marginTop="4dp"
+			android:layout_width="fill_parent"
+			android:layout_height="2px">
+		</LinearLayout>
+	</LinearLayout>
 	<LinearLayout 
-		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_marginTop="20dp"
 		android:orientation="horizontal" 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_weight="1"
-			android:layout_height="wrap_content" android:layout_width="wrap_content">
-			<TextView android:text="man" android:id="@+id/textView1"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
+		<LinearLayout 
+			android:orientation="vertical" 
+			android:layout_weight="1"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content">
+			<TextView 
+				android:id="@+id/textView1"
+				android:text="@string/calendar_monday" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_gravity="center" />
+		</LinearLayout>
+		<LinearLayout 
+			android:orientation="vertical" 
+			android:layout_weight="1"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content">
+			<TextView 
+				android:id="@+id/textView2"
+				android:text="@string/calendar_tuesday" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
 				android:layout_gravity="center"></TextView>
 		</LinearLayout>
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_weight="1"
-			android:layout_width="wrap_content" android:layout_height="wrap_content">
-			<TextView android:text="tir" android:id="@+id/textView2"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
+		<LinearLayout 
+			xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical" 
+			android:layout_weight="1"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content">
+			<TextView 
+				android:id="@+id/textView3"
+				android:text="@string/calendar_wednesday" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"/>
+		</LinearLayout>
+		<LinearLayout 
+			android:orientation="vertical" 
+			android:layout_weight="1"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content">
+			<TextView 
+				android:id="@+id/textView4"
+				android:text="@string/calendar_wednesday" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
 				android:layout_gravity="center"></TextView>
 		</LinearLayout>
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_weight="1"
-			android:layout_height="wrap_content" android:layout_width="wrap_content">
-			<TextView android:text="ons" android:id="@+id/textView3"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_gravity="center"></TextView>
-		</LinearLayout>
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_weight="1"
-			android:layout_height="wrap_content" android:layout_width="wrap_content">
-			<TextView android:text="tor" android:id="@+id/textView4"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_gravity="center"></TextView>
-		</LinearLayout>
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_weight="1"
-			android:layout_height="wrap_content" android:layout_width="wrap_content"
+		<LinearLayout 
+			android:orientation="vertical" 
+			android:layout_weight="1"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content"
 			android:layout_gravity="center">
-			<TextView android:text="fre" android:id="@+id/textViev5"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_gravity="center"></TextView>
+			<TextView 
+				android:id="@+id/textViev5"
+				android:text="@string/calendar_friday" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"/>
 		</LinearLayout>
-
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_weight="1"
-			android:layout_height="wrap_content" android:layout_width="wrap_content">
-			<TextView android:text="lør" android:id="@+id/textView6"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_gravity="center"></TextView>
+		<LinearLayout 
+			android:orientation="vertical" 
+			android:layout_weight="1"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content">
+			<TextView 
+				android:id="@+id/textView6"
+				android:text="@string/calendar_saturday" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"/>
 		</LinearLayout>
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:orientation="vertical" android:layout_weight="1"
-			android:layout_height="wrap_content" android:layout_width="wrap_content">
-			<TextView android:text="søn" android:id="@+id/textView7"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_gravity="center"></TextView>
+		<LinearLayout 
+			android:orientation="vertical" 
+			android:layout_weight="1"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content">
+			<TextView 
+				android:id="@+id/textView7"
+				android:text="@string/calendar_sunday" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"/>
 		</LinearLayout>
 	</LinearLayout>
-
-	<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/MyGrid" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:verticalSpacing="5dp"
-		android:horizontalSpacing="5dp" android:numColumns="7"
-		android:columnWidth="60dp" android:stretchMode="columnWidth"
+	<GridView 
+		android:id="@+id/MyGrid" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:verticalSpacing="5dp"
+		android:horizontalSpacing="5dp" 
+		android:numColumns="7"
+		android:columnWidth="60dp" 
+		android:stretchMode="columnWidth"
 		android:gravity="center_horizontal">
 	</GridView>
 </LinearLayout>

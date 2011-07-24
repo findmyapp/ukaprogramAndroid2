@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/category_menu_alle" android:title="@string/alle" />
-	<item android:id="@+id/category_menu_konsert" android:title="@string/konsert" />
-	<item android:id="@+id/category_menu_revy" android:title="@string/revy" />
-	<item android:id="@+id/category_menu_kurs" android:title="@string/kurs" />
-	<item android:id="@+id/category_menu_fest" android:title="@string/fest" />
+	<item android:id="@+id/category_menu_all" android:title="@string/category_all" />
+	<item android:id="@+id/category_menu_concert" android:title="@string/category_concert" />
+	<item android:id="@+id/category_menu_revue" android:title="@string/category_revue" />
+	<item android:id="@+id/category_menu_lecture" android:title="@string/category_lecture" />
+	<item android:id="@+id/category_menu_party" android:title="@string/category_party" />
 </menu>
 

@@ -1,6 +1,7 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.activities.lists.EventListActivity;
 import no.uka.findmyapp.ukaprogram.adapters.CalenderAdapter;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +15,8 @@ import android.widget.GridView;
 
 public class CalendarActivity extends Activity 
 {
+	private static final String debug = "CalendarActivity";
+	
 	public static final String SELECTED_DATE = "SelectedDate";
 	
 	private GridView calenderGrid;

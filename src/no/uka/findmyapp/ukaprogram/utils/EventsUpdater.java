@@ -7,8 +7,9 @@ import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.client.UkappsServices;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.activities.Main;
-import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
+import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -36,10 +37,10 @@ public class EventsUpdater {
 	/**
 	 * Instantiates a new events updater.
 	 *
-	 * @param c the c
+	 * @param context the c
 	 */
-	public EventsUpdater(Context c) {
-		this.context = c; 
+	public EventsUpdater(Context context) {
+		this.context = context; 
 	}
 	
 	/**
@@ -78,6 +79,12 @@ public class EventsUpdater {
 		} 
 	}
 	
+	
+	public void clearEventTable(ContentResolver cr){
+		Log.v(debug, "clearEventTable " + cr.toString());
+		cr.delete(UkaEventContract.EVENT_CONTENT_URI, null, null);
+	}
+	
 	/**
 	 * Update.
 	 *
@@ -86,7 +93,6 @@ public class EventsUpdater {
 	private void update() throws UpdateException{
 		Log.v(debug, "update called");
 		try {		
-			Log.v(debug, "inside");
 			serviceHelper.callStartService(this.context, UkappsServices.UKAEVENTS, new String[] {"uka11"}); 
 		} catch (URISyntaxException e) {
 			throw new UpdateException(UpdateException.URI_SYNTAX_EXCEPTION, e); 
@@ -109,7 +115,7 @@ public class EventsUpdater {
 			context.registerReceiver(intentReceiver, intentFilter); 
 			
 			Log.v(debug, "Atempting to clear Events table");
-			EventDatabase.getInstance().clearEventTable(this.context.getContentResolver());
+			clearEventTable(this.context.getContentResolver());
 			
 			updateEvents();
 		} 
@@ -127,7 +133,6 @@ public class EventsUpdater {
 	 */
 	private boolean eventsDatabaseNotEmtpy() {
 		Log.v(debug, "inside eventsDatabaseNotEmtpy");
-		Log.v(debug, UkaEventContract.EVENT_CONTENT_URI.toString());
 		Cursor eventCursor = context.getContentResolver().query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
 		if(eventCursor.getCount() > 0) {
 			return true; 

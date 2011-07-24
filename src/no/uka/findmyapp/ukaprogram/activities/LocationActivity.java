@@ -4,7 +4,7 @@ import no.uka.findmyapp.android.rest.contracts.Location.LocationContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.adapters.LocationListCursorAdapter;
-import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
+import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -44,7 +44,7 @@ public class LocationActivity extends ListActivity implements OnClickListener {
 
 		Cursor c = (Cursor) l.getItemAtPosition(position);
 
-		UkaEvent event = EventDatabase.getInstance().getEventFromCursor(c);
+		UkaEvent event = UkaEventMapper.getUkaEventFromCursor(c);
 		Log.v(debug, event.toString());
 
 		Intent intent = new Intent(this, EventDetailsActivity.class);

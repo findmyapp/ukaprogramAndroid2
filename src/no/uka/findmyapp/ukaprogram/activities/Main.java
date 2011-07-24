@@ -2,10 +2,16 @@ package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
 
+import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.activities.lists.ConcertListActivity;
+import no.uka.findmyapp.ukaprogram.activities.lists.EventListActivity;
+import no.uka.findmyapp.ukaprogram.activities.lists.FavouritesListActivity;
+import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
-import no.uka.findmyapp.ukaprogram.wrapper.EventDatabase;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
@@ -13,10 +19,12 @@ import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -38,31 +46,52 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main_menu);
+		
+		/* Initializing the gesture layer */
 		gestureInit();
+		
+		/* Initializing the view*/
 		initView();
+		
+		/*
+		int[] df = new int[100];
+		
+		ContentResolver cr = getContentResolver(); 
+		
+		Cursor c = cr.query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
+		int i = 0; 
+		Log.v(debug, "column count" + c.getColumnCount());
+		while(c.moveToNext()) {
+			df[i] = c.getInt(c.getColumnIndex("age"));
+			i++; 
+		}
+		Toast t = Toast.makeText(getApplicationContext(), df.toString(), Toast.LENGTH_LONG);
+		t.show();
+		*/ 
 	}
-
 
 	/**
 	 * Inits the view.
 	 */
 	private void initView() {
 		Button favorites = (Button) findViewById(R.id.favoritter);
-		Button program = (Button) findViewById(R.id.program);
-		Button artists = (Button) findViewById(R.id.konserter);
-		Button places = (Button) findViewById(R.id.steder);
-		Button update = (Button) findViewById(R.id.update);
-		
+		favorites.setBackgroundResource(R.drawable.mainmenubutton_favourites);
 		favorites.setOnClickListener(this);
-		program.setOnClickListener(this);
-		artists.setOnClickListener(this);
-		places.setOnClickListener(this);
-		update.setOnClickListener(this);
 		
-		program.setBackgroundResource(R.drawable.mainbuttonprogram);
-		favorites.setBackgroundResource(R.drawable.mainbuttonfav);
-		artists.setBackgroundResource(R.drawable.mainbuttonartister);
-		places.setBackgroundResource(R.drawable.mainbuttonsteder);
+		Button program = (Button) findViewById(R.id.program);
+		program.setOnClickListener(this);
+		program.setBackgroundResource(R.drawable.mainmenubutton_program);
+		
+		Button artists = (Button) findViewById(R.id.konserter);
+		artists.setOnClickListener(this);
+		artists.setBackgroundResource(R.drawable.mainmenubutton_artist);
+		
+		Button places = (Button) findViewById(R.id.steder);
+		places.setOnClickListener(this);
+		places.setBackgroundResource(R.drawable.mainmenubutton_places);
+		
+		Button update = (Button) findViewById(R.id.update);
+		update.setOnClickListener(this);
 		places.setHighlightColor(R.color.uka_pink);
 	}
 
@@ -90,12 +119,17 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		ArrayList<Prediction> predictions = this.gestureLib.recognize(gesture);
 		for (Prediction prediction : predictions) {
 			if (prediction.score > 3.0) {
-				if(prediction.name.equals("delete")) {
-					EventDatabase.getInstance().clearEventTable(getContentResolver());
+				if(prediction.name.equals(ApplicationConstants.GESTURE_DELETE)) {
+					EventsUpdater eu = new EventsUpdater(getApplicationContext());
+					eu.clearEventTable(getContentResolver());
 				}
-				else if(prediction.name.equals("update")) {
+				else if(prediction.name.equals(ApplicationConstants.GESTURE_UPDATE)) {
 					EventsUpdater eu = new EventsUpdater(getApplicationContext());
 					eu.updateEvents(); 
+				}
+				else if (prediction.name.equalsIgnoreCase(ApplicationConstants.GESTURE_RIGHT)) {
+					Intent i = new Intent(this, CalendarActivity.class);
+					startActivity(i);
 				}
 			}
 		}
