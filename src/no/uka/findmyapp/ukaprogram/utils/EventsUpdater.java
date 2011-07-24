@@ -1,17 +1,17 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.utils;
 
 import java.net.URISyntaxException;
 
-import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.client.UkappsServices;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
-import no.uka.findmyapp.ukaprogram.activities.Main;
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,16 +22,17 @@ import android.widget.Toast;
 /**
  * The Class EventsUpdater.
  */
-public class EventsUpdater {
-	
+public class EventsUpdater 
+{
 	/** The Constant debug. */
 	private static final String debug = "EventsUpdater";
 	
 	/** The service helper. */
-	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
+	private static RestServiceHelper serviceHelper 
+		= RestServiceHelper.getInstance(); 
 	
 	/** The context. */
-	private Context context; 
+	private Context mContext; 
 	
 	/**
 	 * Instantiates a new events updater.
@@ -39,22 +40,22 @@ public class EventsUpdater {
 	 * @param context the c
 	 */
 	public EventsUpdater(Context context) {
-		this.context = context; 
+		this.mContext = context; 
 	}
 	
 	/**
-	 * Inits the update.
+	 * Events database not emtpy.
+	 *
+	 * @return true, if successful
 	 */
-	public void initUpdate() {
-		Log.v(debug, "initUpdate starting update routine");
-		if(eventsDatabaseNotEmtpy()) {
-			Log.v(debug, "Event database not empty");
-			startMainActivity();
+	public boolean eventsDatabaseNotEmtpy() {
+		Log.v(debug, "inside eventsDatabaseNotEmtpy");
+		Cursor eventCursor = mContext.getContentResolver()
+			.query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
+		if(eventCursor.getCount() > 0) {
+			return true; 
 		}
-		else {	
-			Log.v(debug, "Empty event database, updating on boot");
-			startupUpdate();
-		}
+		return false; 
 	}
 	
 	/**
@@ -73,15 +74,19 @@ public class EventsUpdater {
 			}	
 		} catch (UpdateException e) {
 			Log.e(debug, "updateEvents exception caught " + e.getException().getMessage());
-			Toast t = Toast.makeText(this.context, e.getMessage(), Toast.LENGTH_LONG);
+			Toast t = Toast.makeText(this.mContext, e.getMessage(), Toast.LENGTH_LONG);
 			t.show(); 
 		} 
 	}
 	
-	
-	public void clearEventTable(ContentResolver cr){
-		Log.v(debug, "clearEventTable " + cr.toString());
-		cr.delete(UkaEventContract.EVENT_CONTENT_URI, null, null);
+	/**
+	 * Clear event table.
+	 *
+	 * @param contentResolver the content resolver
+	 */
+	public void clearEventTable(ContentResolver contentResolver){
+		Log.v(debug, "clearEventTable " + contentResolver.toString());
+		contentResolver.delete(UkaEventContract.EVENT_CONTENT_URI, null, null);
 	}
 	
 	/**
@@ -91,8 +96,9 @@ public class EventsUpdater {
 	 */
 	private void update() throws UpdateException{
 		Log.v(debug, "update called");
-		try {		
-			serviceHelper.callStartService(this.context, UkappsServices.UKAEVENTS, new String[] {"uka11"}); 
+		try {
+			clearEventTable(mContext.getContentResolver());
+			serviceHelper.callStartService(this.mContext, UkappsServices.UKAEVENTS, new String[] {"uka11"}); 
 		} catch (URISyntaxException e) {
 			throw new UpdateException(UpdateException.URI_SYNTAX_EXCEPTION, e); 
 		} catch (IllegalAccessException e) {
@@ -103,82 +109,18 @@ public class EventsUpdater {
 	}
 	
 	/**
-	 * Startup update.
-	 */
-	private void startupUpdate() {
-		try {
-			Log.v(debug, "startUpdate setting up IntentReciever and IntentFilter");
-	        ReciveIntent intentReceiver = new ReciveIntent();
-			IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
-			
-			context.registerReceiver(intentReceiver, intentFilter); 
-			
-			Log.v(debug, "Atempting to clear Events table");
-			clearEventTable(this.context.getContentResolver());
-			
-			updateEvents();
-		} 
-		catch (Exception e) {
-			Log.e(debug, "startupUpdate Runtime error!");
-			Toast t = Toast.makeText(this.context, e.getMessage(), Toast.LENGTH_LONG);
-			t.show(); 
-		} 
-	}
-	
-	/**
-	 * Events database not emtpy.
-	 *
-	 * @return true, if successful
-	 */
-	private boolean eventsDatabaseNotEmtpy() {
-		Log.v(debug, "inside eventsDatabaseNotEmtpy");
-		Cursor eventCursor = context.getContentResolver().query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
-		if(eventCursor.getCount() > 0) {
-			return true; 
-		}
-		return false; 
-	}
-	
-	/**
 	 * Checks if is online.
 	 *
 	 * @return true, if is online
 	 */
 	private boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager cm = (ConnectivityManager) this.mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
 	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
 	        return true;
 	    }
 	    return false;
-	}
-	
-	/**
-	 * Start main activity.
-	 */
-	private void startMainActivity() {
-		Log.v(debug, "startMainActivity called");
-		Intent i = new Intent(context, Main.class); 
-		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		this.context.startActivity(i);
-	}
-
-	/**
-	 * The Class ReciveIntent.
-	 */
-	private class ReciveIntent extends BroadcastReceiver {
-		
-		/* (non-Javadoc)
-		 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
-		 */
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
-				Log.v(debug, "Intent recieved, starting Main activity");
-				startMainActivity();
-			}
-		}
 	}
 	
 	/**

@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.utils;
 
 import java.text.SimpleDateFormat;
@@ -11,7 +16,8 @@ import android.util.Log;
 /**
  * The Class DateUtils.
  */
-public class DateUtils {
+public class DateUtils 
+{
 	
 	/** The Constant debug. */
 	private static final String debug = "DateUtils";
@@ -49,9 +55,6 @@ public class DateUtils {
 	/** The Constant SUNDAG. */
 	public static final String SUNDAY = "søn"; 
 	
-	/** The constructed date format. */
-	private String constructedDateFormat; 
-	
 	/**
 	 * Gets the custom date format from timestamp.
 	 *
@@ -59,7 +62,7 @@ public class DateUtils {
 	 * @param timestamp the timestamp
 	 * @return the custom date format from timestamp
 	 */
-	public String getCustomDateFormatFromTimestamp(String dateFormat, long timestamp) {
+	public static String getCustomDateFormatFromTimestamp(String dateFormat, long timestamp) {
 		if(timestamp == 0) return null; 
 		else return new SimpleDateFormat(dateFormat).format(new Date(timestamp));
 	}
@@ -70,7 +73,7 @@ public class DateUtils {
 	 * @param timestamp the timestamp
 	 * @return the date string from timestamp
 	 */
-	public String getDateStringFromTimestamp(long timestamp) {
+	public static String getDateStringFromTimestamp(long timestamp) {
 		if(timestamp == 0) return null;
 		else return standardDateFormat.format(new Date(timestamp)); 
 	}
@@ -81,7 +84,7 @@ public class DateUtils {
 	 * @param timestamp the timestamp
 	 * @return the time from timestamp
 	 */
-	public String getTimeFromTimestamp(long timestamp) {
+	public static String getTimeFromTimestamp(long timestamp) {
 		if(timestamp == 0) return null; 
 		else return standardTimeFormat.format(new Date(timestamp)); 
 	}
@@ -92,7 +95,7 @@ public class DateUtils {
 	 * @param timestamp the timestamp
 	 * @return the day int from timestamp
 	 */
-	public int getDayIntFromTimestamp(long timestamp) {
+	public static int getDayIntFromTimestamp(long timestamp) {
 		if(timestamp == 0) return 0;
 		else {
 			Log.v(debug, "getCustomDay " + new Integer(standardDayFormat.format(new Date(timestamp))));
@@ -106,7 +109,7 @@ public class DateUtils {
 	 * @param timestamp the timestamp
 	 * @return the weekday name from timestamp
 	 */
-	public String getWeekdayNameFromTimestamp(long timestamp) {
+	public static String getWeekdayNameFromTimestamp(long timestamp) {
 		if(timestamp == 0) return null; 
 		else return getShortWeekDayName(getDayIntFromTimestamp(timestamp));
 	}
@@ -117,7 +120,7 @@ public class DateUtils {
 	 * @param dayOfMonth the day of month
 	 * @return the short week day name
 	 */
-	private String getShortWeekDayName(int dayOfMonth) {
+	private static String getShortWeekDayName(int dayOfMonth) {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 		

@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
@@ -25,13 +30,14 @@ import android.widget.Button;
 /**
  * The Class Main.
  */
-public class Main extends PopupMenuActivity implements OnClickListener, OnGesturePerformedListener {
-	
+public class Main extends PopupMenuActivity implements OnClickListener, OnGesturePerformedListener 
+{
 	/** The Constant debug. */
+	@SuppressWarnings("unused")
 	private static final String debug = "Main";
 
 	/** The gesture lib. */
-	private GestureLibrary gestureLib; 
+	private GestureLibrary mGestureLib; 
 	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -53,56 +59,62 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 	 * Inits the view.
 	 */
 	private void initView() {
-		Button favorites = (Button) findViewById(R.id.favoritter);
-		favorites.setBackgroundResource(R.drawable.mainmenubutton_favourites);
-		favorites.setOnClickListener(this);
+		Button menuButton = (Button) findViewById(R.id.mainMenu_favourites);
+		menuButton.setBackgroundResource(R.drawable.mainmenubutton_favourites);
+		menuButton.setOnClickListener(this);
 		
-		Button program = (Button) findViewById(R.id.program);
-		program.setOnClickListener(this);
-		program.setBackgroundResource(R.drawable.mainmenubutton_program);
+		menuButton = (Button) findViewById(R.id.mainMenu_program);
+		menuButton.setOnClickListener(this);
+		menuButton.setBackgroundResource(R.drawable.mainmenubutton_program);
 		
-		Button artists = (Button) findViewById(R.id.konserter);
-		artists.setOnClickListener(this);
-		artists.setBackgroundResource(R.drawable.mainmenubutton_artist);
+		menuButton = (Button) findViewById(R.id.mainMenu_concerts);
+		menuButton.setOnClickListener(this);
+		menuButton.setBackgroundResource(R.drawable.mainmenubutton_artist);
 		
-		Button places = (Button) findViewById(R.id.steder);
-		places.setOnClickListener(this);
-		places.setBackgroundResource(R.drawable.mainmenubutton_places);
+		menuButton = (Button) findViewById(R.id.mainMenu_places);
+		menuButton.setOnClickListener(this);
+		menuButton.setBackgroundResource(R.drawable.mainmenubutton_places);
 		
-		Button update = (Button) findViewById(R.id.update);
-		update.setOnClickListener(this);
-		places.setHighlightColor(R.color.uka_pink);
+		menuButton = (Button) findViewById(R.id.mainMenu_refresh);
+		menuButton.setOnClickListener(this);
+		menuButton.setHighlightColor(R.color.uka_pink);
 	}
 	
 	/* (non-Javadoc)
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	public void onClick(View v) {
-		Intent intent;
 		switch (v.getId()) {
-		case (R.id.program):
-			intent = new Intent().setClass(this, EventListActivity.class);
-			startActivity(intent);
+		case (R.id.mainMenu_program):
+			gotoActivity(EventListActivity.class);
 			break;
-		case (R.id.update):
+		case (R.id.mainMenu_refresh):
 			EventsUpdater eu = new EventsUpdater(getApplicationContext()); 
 			eu.updateEvents();
 			break;
-		case (R.id.favoritter):
-			intent = new Intent().setClass(this, FavouritesListActivity.class);
-			startActivity(intent);
+		case (R.id.mainMenu_favourites):
+			gotoActivity(FavouritesListActivity.class);
 			break; 
-		case (R.id.konserter):
-			intent = new Intent().setClass(this, ConcertListActivity.class);
-			startActivity(intent);
+		case (R.id.mainMenu_concerts):
+			gotoActivity(ConcertListActivity.class);
 			break;
-		case (R.id.steder):
-			intent = new Intent().setClass(this, PlacesActivity.class);
-			startActivity(intent);
+		case (R.id.mainMenu_places):
+			gotoActivity(PlacesActivity.class);
 			break;
 		default:
 			break;
 		}
+	}
+	
+	/**
+	 * Goto activity.
+	 *
+	 * @param <T> the generic type
+	 * @param activity the activity
+	 */
+	public <T> void gotoActivity(Class<T> activity) {
+		Intent intent = new Intent().setClass(this, activity);
+		startActivity(intent);
 	}
 	
 	/**
@@ -114,8 +126,8 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		gestureOverlayView.addView(inflate);
 		gestureOverlayView.addOnGesturePerformedListener(this);
 		gestureOverlayView.setGestureVisible(false);
-		this.gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
-		if (!gestureLib.load()) {
+		mGestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+		if (!mGestureLib.load()) {
 			finish();
 		}
 		setContentView(gestureOverlayView);
@@ -125,7 +137,7 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 	 * @see android.gesture.GestureOverlayView.OnGesturePerformedListener#onGesturePerformed(android.gesture.GestureOverlayView, android.gesture.Gesture)
 	 */
 	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
-		ArrayList<Prediction> predictions = this.gestureLib.recognize(gesture);
+		ArrayList<Prediction> predictions = mGestureLib.recognize(gesture);
 		for (Prediction prediction : predictions) {
 			if (prediction.score > 3.0) {
 				if(prediction.name.equals(ApplicationConstants.GESTURE_DELETE)) {

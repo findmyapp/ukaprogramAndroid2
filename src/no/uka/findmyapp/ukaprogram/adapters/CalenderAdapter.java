@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.adapters;
 
 import no.uka.findmyapp.ukaprogram.R;
@@ -10,35 +15,47 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import android.content.Context;
-import android.graphics.Color;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CalenderAdapter.
+ */
 public class CalenderAdapter extends BaseAdapter
 {	
 	
+	/** The s uka year. */
 	private static int sUkaYear = 2011; 
+	
+	/** The s uka month. */
 	private static int sUkaMonth = 10; 
+	
+	/** The s uka start date. */
 	private static int sUkaStartDate = 6;
+	
+	/** The s uka end date. */
 	private static int sUkaEndDate = 30;
+	
+	/** The s uka start day. */
 	private static int sUkaStartDay = 3; 
+	
+	/** The m context. */
 	private Context mContext;
 
+	/**
+	 * Instantiates a new calender adapter.
+	 *
+	 * @param context the context
+	 */
 	public CalenderAdapter(Context context) { mContext = context; }
 
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getCount()
+	 */
 	@Override
 	public int getCount() { return sUkaEndDate - sUkaStartDate; }
 
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View myView = convertView;
@@ -63,18 +80,31 @@ public class CalenderAdapter extends BaseAdapter
 		return myView;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItem(int)
+	 */
 	@Override
 	public Object getItem(int arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItemId(int)
+	 */
 	@Override
 	public long getItemId(int arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
+	/**
+	 * Gets the dates.
+	 *
+	 * @param startDate the start date
+	 * @param endDate the end date
+	 * @return the dates
+	 */
 	public int[] getDates(int startDate, int endDate){
 		int[] days = new int[endDate];
 		for(int i = startDate; i<=endDate; i++){

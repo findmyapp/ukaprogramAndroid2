@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.activities.lists;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
@@ -25,12 +30,24 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-public class EventListActivity extends ListActivity implements OnClickListener{	
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventListActivity.
+ */
+public class EventListActivity extends ListActivity implements OnClickListener
+{	
+	/** The Constant debug. */
 	private final static String debug = "EventListActivity";
+	
+	/** The Constant ORDER_BY. */
 	private final static String ORDER_BY = UkaEventContract.SHOWING_TIME + " asc";
 	
-	private Cursor eventCursor;
+	/** The m event cursor. */
+	private Cursor mEventCursor;
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,32 +56,41 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
-			moveCursorToDate(this.eventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
+			moveCursorToDate(mEventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
 		}
 		
 		initView();
 	}
 
+	/**
+	 * Inits the view.
+	 */
 	private void initView() {
 		//Initializing category buttons
 		// All button
-		buttonInit(R.id.categorymenu_all, R.drawable.categorybutton_all, R.string.category_all, this);
+		buttonInit(R.id.categorymenu_all, R.drawable.categorybutton_all, 
+				R.string.category_all, this);
 		
 		// Concert button
-		buttonInit(R.id.categorymenu_concert, R.drawable.categorybutton_concert, R.string.category_concert, this);
+		buttonInit(R.id.categorymenu_concert, R.drawable.categorybutton_concert, 
+				R.string.category_concert, this);
 
 		// Revue button
-		buttonInit(R.id.categorymenu_revue, R.drawable.categorybutton_revue, R.string.category_revue, this);
+		buttonInit(R.id.categorymenu_revue, R.drawable.categorybutton_revue, 
+				R.string.category_revue, this);
 		
 		// Lecture button
-		buttonInit(R.id.categorymenu_lecture, R.drawable.categorybutton_lecture, R.string.category_lecture, this);
+		buttonInit(R.id.categorymenu_lecture, R.drawable.categorybutton_lecture, 
+				R.string.category_lecture, this);
 		
 		// Party button
-		buttonInit(R.id.categorymenu_party, R.drawable.categorybutton_party, R.string.category_party, this);
+		buttonInit(R.id.categorymenu_party, R.drawable.categorybutton_party, 
+				R.string.category_party, this);
 		
 		// Favourites button
 		//TODO create favourite button background
-		buttonInit(R.id.categorymenu_favourites, R.drawable.categorybutton_revue, R.string.category_favourites, this);
+		buttonInit(R.id.categorymenu_favourites, R.drawable.categorybutton_revue, 
+				R.string.category_favourites, this);
 		
 		// Sets the header line color
 		setHorizontalRulingLinesColor(R.color.categorySelected_all);
@@ -73,6 +99,14 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		refreshList(null);
 	}
 
+	/**
+	 * Button init.
+	 *
+	 * @param viewId the view id
+	 * @param drawableId the drawable id
+	 * @param stringId the string id
+	 * @param l the l
+	 */
 	private void buttonInit(int viewId, int drawableId, int stringId, OnClickListener l) {
 		Button button = (Button) findViewById(viewId);
 		button.setBackgroundDrawable(getResources().getDrawable(drawableId));
@@ -80,6 +114,9 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		button.setOnClickListener(l);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
@@ -95,6 +132,9 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		startActivity(intent);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v) {
 		String selection = UkaEventContract.EVENT_TYPE + " = ";
@@ -134,6 +174,11 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		}
 	}
 
+	/**
+	 * Sets the horizontal ruling lines color.
+	 *
+	 * @param colorId the new horizontal ruling lines color
+	 */
 	private void setHorizontalRulingLinesColor(int colorId) {
 		LinearLayout line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingHeader);
 		line.setBackgroundColor(getResources().getColor(colorId));
@@ -145,6 +190,9 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 		hsv.setBackgroundColor(getResources().getColor(colorId));
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, android.view.View, android.view.ContextMenu.ContextMenuInfo)
+	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -154,25 +202,37 @@ public class EventListActivity extends ListActivity implements OnClickListener{
 
 	}
 
+	/**
+	 * Refresh list.
+	 *
+	 * @param selection the selection
+	 */
 	private void refreshList(String selection){
 		Log.v(debug, "Refreshing page");
-		this.eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
-		this.setListAdapter(new EventListCursorAdapter(this, this.eventCursor));
+		mEventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
+		this.setListAdapter(new EventListCursorAdapter(this, mEventCursor));
 	}
 
-	private void moveCursorToDate(Cursor c, int date)  {
-		DateUtils du = new DateUtils();
+	//TODO FIX moveCursorToDate, CalendarActivity or EventListActivity?
+	/**
+	 * Move cursor to date.
+	 *
+	 * @param cursor the cursor
+	 * @param date the date
+	 */
+	private void moveCursorToDate(Cursor cursor, int date)  {
 		boolean dateFound = false; 
 		
-		c.moveToFirst();
-		while (!dateFound && c.moveToNext()) {
-			int i = du.getDayIntFromTimestamp(c.getLong(c.getColumnIndex(UkaEventContract.SHOWING_TIME))); 
+		cursor.moveToFirst();
+		while (!dateFound && cursor.moveToNext()) {
+			int i = DateUtils.getDayIntFromTimestamp(cursor.getLong(
+					cursor.getColumnIndex(UkaEventContract.SHOWING_TIME))); 
 			if(i == date) dateFound = true;
-			c.moveToNext();
+			cursor.moveToNext();
 		}
 		
 		if (dateFound){
-			this.setSelection(c.getPosition());
+			this.setSelection(cursor.getPosition());
 			Intent intent = new Intent();
 			intent.setClass(getApplicationContext(), CalendarActivity.class);
 			startActivity(intent);

@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.activities;
 
 import no.uka.findmyapp.ukaprogram.R;
@@ -13,14 +18,26 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CalendarActivity.
+ */
 public class CalendarActivity extends Activity 
 {
+	
+	/** The Constant debug. */
+	@SuppressWarnings("unused")
 	private static final String debug = "CalendarActivity";
 	
+	/** The Constant SELECTED_DATE. */
 	public static final String SELECTED_DATE = "SelectedDate";
 	
+	/** The calender grid. */
 	private GridView calenderGrid;
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -30,7 +47,7 @@ public class CalendarActivity extends Activity
 		/*Here we setContentView() to calendar.xml, get the GridView and then fill it with the 
 	                   ImageAdapter class that extend from BaseAdapter */
 
-		calenderGrid = (GridView)findViewById(R.id.MyGrid);
+		calenderGrid = (GridView)findViewById(R.id.calendar_dayGrid);
 		calenderGrid.setAdapter(new CalenderAdapter(this));
 		
 		calenderGrid.setOnItemClickListener(new OnItemClickListener(){

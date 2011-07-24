@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.adapters;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
@@ -18,10 +23,10 @@ import android.widget.TextView;
 /**
  * The Class ConsertListCursorAdapter.
  */
-public class ConsertListCursorAdapter extends CursorAdapter{
-		
-		/** The Constant debug. */
-		private static final String debug = "ConsertListCursorAdapter";
+public class ConsertListCursorAdapter extends CursorAdapter
+{
+	/** The Constant debug. */
+	private static final String debug = "ConsertListCursorAdapter";
 
 	/** The cursor. */
 	private Cursor cursor;
@@ -46,11 +51,11 @@ public class ConsertListCursorAdapter extends CursorAdapter{
 	 */
 	@Override
 	public void bindView(View eventView, Context context, Cursor cursor) {
-		TextView t = (TextView) eventView.findViewById(R.id.concertListItemTitle);
+		TextView t = (TextView) eventView.findViewById(R.id.concertListItem_title);
 		Log.v(debug, "set concertListItemTitle " + getStringFromTableColumn(UkaEventContract.TITLE));
 		t.setText(getStringFromTableColumn(UkaEventContract.TITLE));
 	
-		CheckBox cb = (CheckBox) eventView.findViewById(R.id.concertListItemAttending);
+		CheckBox cb = (CheckBox) eventView.findViewById(R.id.concertListItem_attending);
 		cb.setButtonDrawable(R.drawable.favorites_button);
 		
 		cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {

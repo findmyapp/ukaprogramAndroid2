@@ -1,7 +1,13 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.adapters;
 
 import no.uka.findmyapp.android.rest.contracts.Location.LocationContract;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -11,25 +17,44 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-public class LocationListCursorAdapter extends CursorAdapter {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LocationListCursorAdapter.
+ */
+public class LocationListCursorAdapter extends CursorAdapter 
+{
 	
+	/** The Constant debug. */
 	private static final String debug = "LocationListCursorAdapter";
-	private final LayoutInflater inflater;
-	private Cursor cursor;
+	
+	/** The m inflater. */
+	private final LayoutInflater mInflater;
+	
+	/** The m cursor. */
+	private Cursor mCursor;
 
+	/**
+	 * Instantiates a new location list cursor adapter.
+	 *
+	 * @param context the context
+	 * @param c the c
+	 */
 	public LocationListCursorAdapter(Context context, Cursor c) {
 		super(context, c);
-		this.inflater = LayoutInflater.from(context);
-		this.cursor = c;
+		this.mInflater = LayoutInflater.from(context);
+		this.mCursor = c;
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.widget.CursorAdapter#bindView(android.view.View, android.content.Context, android.database.Cursor)
+	 */
 	@Override
 	public void bindView(View eventView, Context context, Cursor cursor) {		
 		try {
-			TextView t = (TextView) eventView.findViewById(R.id.locationListItemTitle);
-			t.setText(getStringFromTableColumn(LocationContract.LOCATIONNAME));
+			TextView t = (TextView) eventView.findViewById(R.id.locationListItem_title);
+			t.setText(UkaEventMapper.getStringFromTableColumn(mCursor, LocationContract.LOCATIONNAME));
 			
-			t = (TextView) eventView.findViewById(R.id.locationListHappeningNow);
+			t = (TextView) eventView.findViewById(R.id.locationList_happeningNow);
 			t.setText("Fest!");
 			
 		}
@@ -38,18 +63,12 @@ public class LocationListCursorAdapter extends CursorAdapter {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.widget.CursorAdapter#newView(android.content.Context, android.database.Cursor, android.view.ViewGroup)
+	 */
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		final View view = this.inflater.inflate(R.layout.location_list_item, parent, false);
+		final View view = mInflater.inflate(R.layout.location_list_item, parent, false);
 		return view;
 	}
-
-	private String getStringFromTableColumn(String tableColumnName) {
-		return this.cursor.getString(this.cursor.getColumnIndex(tableColumnName));
-	}
-	
-	private long getLongFromTableColumn(String tableColumnName) {
-		return this.cursor.getLong(this.cursor.getColumnIndex(tableColumnName));
-	}
-
 }

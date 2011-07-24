@@ -9,6 +9,13 @@
 	<string name="setting_prompt">Velg restriksjon</string>
 	<string name="setting_menu_item">Innstillinger</string>
 
+	<!-- Main menu section -->
+	<string name="mainMenu_program">Program</string>
+	<string name="mainMenu_concert">Konserter</string>
+	<string name="mainMenu_places">Steder</string>
+	<string name="mainMenu_favourites">Favoritter</string>
+	<string name="mainMenu_refresh">Oppdater</string>
+	
 	<!-- Category naming section -->
 	<string name="category_all">Alle</string>
 	<string name="category_concert">Konsert</string>
@@ -28,6 +35,12 @@
 	<string name="calendar_friday">fre</string>
 	<string name="calendar_saturday">lør</string>
 	<string name="calendar_sunday">søn</string>
+	
+	<!-- Settings section -->
+	<string name="settings_positionText">Posisjon:</string>
+	<string name="settings_eventText">Arrangement:</string>
+	<string name="settings_moneyText">Penger:</string>
+	<string name="settings_mediaText">Media</string>
 	
 	<!-- Toast section -->
 	<string name="toast_isAddedAsFavourite">" lagt til som favoritt"</string>
