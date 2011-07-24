@@ -10,7 +10,6 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
@@ -18,7 +17,6 @@ import android.widget.ListView;
 public class FavouritesListActivity extends ListActivity {
 	private final static String debug = "FavouritesListListActivity";
 	
-	private final static String CONCERT = "'konsert'";
 	private Cursor eventCursor;
 
 	private final static String ORDER_BY = UkaEventContract.TITLE + " desc";
@@ -30,14 +28,7 @@ public class FavouritesListActivity extends ListActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.concert_list);
 		
-		Log.v(debug, "Inside onCreate");
-		
-		Log.v(debug, "UkaEventContract.EVENT_TYPE fieldname = " + UkaEventContract.EVENT_TYPE );
-		Log.v(debug, "CONCERT = " + CONCERT );
-		Log.v(debug, "WHERE " + UkaEventContract.CANCELED + " = 1" );
-
-		
-		String selection = UkaEventContract.CANCELED + " = 1";
+		String selection = UkaEventContract.FAVOURITE + " = 1";
 		
 		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
 		this.setListAdapter(new ConsertListCursorAdapter(this, eventCursor));
@@ -51,7 +42,6 @@ public class FavouritesListActivity extends ListActivity {
 		Cursor c = (Cursor) l.getItemAtPosition(position);
 
 		UkaEvent event = UkaEventMapper.getUkaEventFromCursor(c);
-		Log.v(debug, event.toString());
 
 		Intent intent = new Intent(this, EventDetailsActivity.class); 
 		intent.putExtra(ITEM_CLICKED, event);

@@ -2,16 +2,13 @@ package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
 
-import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.activities.lists.ConcertListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.EventListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.FavouritesListActivity;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
@@ -19,12 +16,10 @@ import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -52,22 +47,6 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		
 		/* Initializing the view*/
 		initView();
-		
-		/*
-		int[] df = new int[100];
-		
-		ContentResolver cr = getContentResolver(); 
-		
-		Cursor c = cr.query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
-		int i = 0; 
-		Log.v(debug, "column count" + c.getColumnCount());
-		while(c.moveToNext()) {
-			df[i] = c.getInt(c.getColumnIndex("age"));
-			i++; 
-		}
-		Toast t = Toast.makeText(getApplicationContext(), df.toString(), Toast.LENGTH_LONG);
-		t.show();
-		*/ 
 	}
 
 	/**
@@ -94,8 +73,38 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		update.setOnClickListener(this);
 		places.setHighlightColor(R.color.uka_pink);
 	}
-
-
+	
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
+	public void onClick(View v) {
+		Intent intent;
+		switch (v.getId()) {
+		case (R.id.program):
+			intent = new Intent().setClass(this, EventListActivity.class);
+			startActivity(intent);
+			break;
+		case (R.id.update):
+			EventsUpdater eu = new EventsUpdater(getApplicationContext()); 
+			eu.updateEvents();
+			break;
+		case (R.id.favoritter):
+			intent = new Intent().setClass(this, FavouritesListActivity.class);
+			startActivity(intent);
+			break; 
+		case (R.id.konserter):
+			intent = new Intent().setClass(this, ConcertListActivity.class);
+			startActivity(intent);
+			break;
+		case (R.id.steder):
+			intent = new Intent().setClass(this, PlacesActivity.class);
+			startActivity(intent);
+			break;
+		default:
+			break;
+		}
+	}
+	
 	/**
 	 * Gesture init.
 	 */
@@ -132,37 +141,6 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 					startActivity(i);
 				}
 			}
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see android.view.View.OnClickListener#onClick(android.view.View)
-	 */
-	public void onClick(View v) {
-		Intent intent;
-		switch (v.getId()) {
-		case (R.id.program):
-			intent = new Intent().setClass(this, EventListActivity.class);
-			startActivity(intent);
-			break;
-		case (R.id.update):
-			EventsUpdater eu = new EventsUpdater(getApplicationContext()); 
-			eu.updateEvents();
-			break;
-		case (R.id.favoritter):
-			intent = new Intent().setClass(this, FavouritesListActivity.class);
-			startActivity(intent);
-			break; 
-		case (R.id.konserter):
-			intent = new Intent().setClass(this, ConcertListActivity.class);
-			startActivity(intent);
-			break;
-		case (R.id.steder):
-			intent = new Intent().setClass(this, PlacesActivity.class);
-			startActivity(intent);
-			break;
-		default:
-			break;
 		}
 	}
 }

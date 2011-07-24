@@ -54,16 +54,9 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 			
 			CheckBox cb = (CheckBox) eventView.findViewById(R.id.listItemAttending);
 			cb.setButtonDrawable(R.drawable.favorites_button);
-			cb.setChecked(getBooleanFromTableColumn(UkaEventContract.CANCELED));
+			cb.setChecked(getBooleanFromTableColumn(UkaEventContract.FAVOURITE));
 			cb.setClickable(false);
-			//getBooleanFromTableColumn(UkaEventContract.FAVOURITE);
-			
-			cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					
-				}
-			});
+			//TODO setClickable true, implement onclick listener
 		}
 		catch(Exception e) {
 			Log.v(debug, "Exception: " + e.getMessage());
@@ -85,8 +78,6 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 	}
 	
 	private boolean getBooleanFromTableColumn(String tableColumnName) {
-		Log.v(debug, "getBooleanFromTableColumn " + tableColumnName); 
-		Log.v(debug, "getBooleanFromTableColumn is " + this.cursor.getInt(this.cursor.getColumnIndex(tableColumnName))); 
 		if(this.cursor.getInt(this.cursor.getColumnIndex(tableColumnName)) == 1) { return true; }
 		return false; 
 	}

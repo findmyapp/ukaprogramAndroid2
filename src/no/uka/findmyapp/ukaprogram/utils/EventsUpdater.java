@@ -7,7 +7,6 @@ import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.client.UkappsServices;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.activities.Main;
-import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -223,7 +222,7 @@ public class EventsUpdater {
 		 * Instantiates a new update exception.
 		 *
 		 * @param errorMessage the error message
-		 * @param e the e
+		 * @param e the exception
 		 */
 		public UpdateException(String errorMessage, Exception e) {
 			super(errorMessage);

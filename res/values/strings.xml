@@ -29,16 +29,15 @@
 	<string name="calendar_saturday">lør</string>
 	<string name="calendar_sunday">søn</string>
 	
-	
 	<!-- Toast section -->
-	<string name="toast_isAddedAsFavourite"> lagt til som favoritt</string>
-	<string name="toast_isRemovedAsFavourite"> fjernet som favoritt</string>
+	<string name="toast_isAddedAsFavourite">" lagt til som favoritt"</string>
+	<string name="toast_isRemovedAsFavourite">" fjernet som favoritt"</string>
 	
 	<!-- Exception section -->
 	<string name="exception_emptyBundle">Exception: empty bundle!</string>
 	
 	<!-- EventDetailedActivity strings -->
-	<string name="eventDetailedActivity_agelimit">Aldersgrense: </string>
-	<string name="eventDetailedActivity_year"> år.</string>
+	<string name="eventDetailedActivity_agelimit" >"Aldersgrense: "</string>
+	<string name="eventDetailedActivity_year">" år."</string>
 	<string name="eventDetailedActivity_free">Gratis</string>
 </resources>

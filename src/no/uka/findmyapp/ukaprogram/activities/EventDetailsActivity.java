@@ -88,11 +88,9 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		}
 		
 		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
-		favorites.setOnCheckedChangeListener(this);	
 		favorites.setButtonDrawable(R.drawable.favorites_button);
-		if(selectedEvent.isFavourite()) {
-			favorites.setChecked(true);
-		}
+		if(selectedEvent.isFavourite()) favorites.setChecked(true); 
+		favorites.setOnCheckedChangeListener(this);	
 	
 	}
 
@@ -106,22 +104,23 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		}
 		else {			
 			changeFavourite(this.selectedEvent.getEventId(), false);
-			info = this.selectedEvent.getTitle() + getResources().getString(R.string.toast_isAddedAsFavourite);
+			info = this.selectedEvent.getTitle() + getResources().getString(R.string.toast_isRemovedAsFavourite);
 		}
 		
 		showToast(info); 
 	}
 
+	private void changeFavourite(int id, boolean isFavourite) {
+		ContentValues values = new ContentValues();
+		values.put(UkaEventContract.FAVOURITE, isFavourite);
+		String where = UkaEventContract.EVENT_ID + " = '" + id + "'"; 
+		getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
+	}
+	
+
 	private void showToast(String info ) {
 		Toast t = Toast.makeText(getApplicationContext(), info, Toast.LENGTH_SHORT);
 		t.show();
-	}
-
-	private void changeFavourite(int id, boolean isFavourite) {
-		ContentValues values = new ContentValues();
-		values.put(UkaEventContract.CANCELED, 0);
-		String where = UkaEventContract.EVENT_ID + " = '" + id + "'"; 
-		getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
 	}
 	
 	public void populateFriendList() {

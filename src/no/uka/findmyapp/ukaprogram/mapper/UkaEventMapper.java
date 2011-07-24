@@ -2,7 +2,6 @@
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
-import android.content.ContentResolver;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -23,9 +22,9 @@ public class UkaEventMapper {
 		ukaEvent.setPlace(getStringFromTableColumn(cursor, UkaEventContract.PLACE));
 		ukaEvent.setEventType(getStringFromTableColumn(cursor, UkaEventContract.EVENT_TYPE));
 		ukaEvent.setCanceled(getBooleanFromTableColumn(cursor, UkaEventContract.CANCELED));
-		//ukaEvent.setPrice(getIntFromTableColumn(cursor, UkaEventContract.LOWEST_PRICE));
-		ukaEvent.setFavourite(getBooleanFromTableColumn(cursor, UkaEventContract.CANCELED));
-		//ukaEvent.setAgeLimit(getIntFromTableColumn(cursor, UkaEventContract.AGE_LIMIT));			
+		ukaEvent.setPrice(getIntFromTableColumn(cursor, UkaEventContract.LOWEST_PRICE));
+		ukaEvent.setFavourite(getBooleanFromTableColumn(cursor, UkaEventContract.FAVOURITE));
+		ukaEvent.setAgeLimit(getIntFromTableColumn(cursor, UkaEventContract.AGE_LIMIT));			
 		ukaEvent.setEventType(getStringFromTableColumn(cursor, UkaEventContract.EVENT_TYPE));
 		ukaEvent.setShowingTime(getLongFromTableColumn(cursor, UkaEventContract.SHOWING_TIME));
 		ukaEvent.setFree(getBooleanFromTableColumn(cursor, UkaEventContract.FREE));
