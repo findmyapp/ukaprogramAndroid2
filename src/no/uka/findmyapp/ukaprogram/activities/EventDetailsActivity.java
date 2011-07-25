@@ -5,11 +5,18 @@
  */
 package no.uka.findmyapp.ukaprogram.activities;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +26,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,6 +101,22 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 				+ getResources().getString(R.string.eventDetailedActivity_year));
 		
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
+		
+		ImageView eventImage = (ImageView) findViewById(R.id.event_details_picture);
+		
+		try {
+			URL imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
+			Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
+			eventImage.setImageBitmap(eventBitmap);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+		Log.v(debug, "Event URI image: " + ApplicationConstants.UKA_PATH + selectedEvent.getImage());
 		if(selectedEvent.isFree()){
 			price.setText(getResources().getString(R.string.eventDetailedActivity_free));
 		}
