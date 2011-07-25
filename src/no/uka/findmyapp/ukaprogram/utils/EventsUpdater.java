@@ -5,6 +5,7 @@
  */
 package no.uka.findmyapp.ukaprogram.utils;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -25,7 +26,6 @@ import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.Toast;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EventsUpdater.
  */
@@ -124,7 +124,7 @@ public class EventsUpdater
 			
 			// Setup reciver that update favourite flags
 			setupBroadCastReciver();
-			serviceHelper.callStartService(this.mContext, UkappsServices.UKAEVENTS, new String[] {"uka11"}); 
+			serviceHelper.callStartService(this.mContext, UkappsServices.UKAEVENTS, new URI(UkaEventContract.EVENT_CONTENT_URI.toString()), new String[] {"uka11"}); 
 		} catch (URISyntaxException e) {
 			throw new UpdateException(UpdateException.URI_SYNTAX_EXCEPTION, e); 
 		} catch (IllegalAccessException e) {
