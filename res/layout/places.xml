@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" 
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
+	
 	<ImageView 
-		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:paddingTop="10dp" 
 		android:src="@drawable/uka_logo_header" 
-		android:layout_gravity="center_horizontal"/>
+		android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal"></ImageView>
 	<LinearLayout 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -37,135 +37,245 @@
 			</LinearLayout>
 	</LinearLayout>
 	<ScrollView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp">
-		<LinearLayout 
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginRight="20dp"
-		android:orientation="vertical">
-			<ImageView 
-				android:id="@+id/places_map" 
-				android:layout_width="wrap_content" 
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginLeft="20dp"
+	>
+	<LinearLayout 
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginRight="20dp"
+	android:orientation="vertical">
+		<ImageView 
+			android:layout_width="wrap_content" 
+			android:src="@drawable/kartbodegaen" 
+			android:id="@+id/places_map" 
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:layout_height="wrap_content">
+		</ImageView>
+			<TextView 
+				style="@style/MediumFont"
+				android:id="@+id/places_last_played"
+				android:text="Forrige: Oktoberfest"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+			<TextView 
+				style="@style/MediumFont"
+				android:id="@+id/places_playing_next"
+				android:text="Neste: Melissa Horn"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:src="@drawable/kartbodegaen" 
-				android:layout_marginTop="20dp"
-				android:layout_marginBottom="20dp">
-			</ImageView>
+				android:paddingTop="5dp"/>
+				
+<!-- 			Live reported info from this place -->
+			<TextView 
+				style="@style/BigFont"
+				android:text="Live rapport"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+			<RelativeLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
 				<TextView 
-					android:id="@+id/places_last_played"
 					style="@style/MediumFont"
+					android:id="@+id/places_stemning"
+					android:text="Stemning: "
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Forrige: Oktoberfest"/>
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content"
+					android:id="@+id/places_progressbar_stemning" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					/>
+			</RelativeLayout>
+			<RelativeLayout 
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
 				<TextView 
-					android:id="@+id/places_playing_next"
 					style="@style/MediumFont"
+					android:id="@+id/places_dansing"
+					android:text="Dansing: "
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Neste: Melissa Horn"
-					android:paddingTop="5dp"/>
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content"
+					android:id="@+id/places_progressbar_dansing" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					/>
+			</RelativeLayout>
+			<RelativeLayout 
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_prating"
+					android:text="Prating: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content"
+					android:id="@+id/places_progressbar_prating" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+				/>
+			</RelativeLayout>
+			<RelativeLayout 
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_sjekking"
+					android:text="Sjekking: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_sjekking" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+<!--  		Live feed	 	-->
+			<ListView android:id="@+id/places_live_feed" 
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent" 
+				android:footerDividersEnabled="false" 
+				android:paddingLeft="10dp"
+				android:paddingRight="10dp"
+				/>			
+<!-- 			Report info from this place -->
 				<TextView 
 					style="@style/BigFont"
+					android:layout_marginTop="10dp"
+					android:text="Rapporter: "
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Live rapport"/>
+					android:layout_height="wrap_content"/>
 				<RelativeLayout 
-					android:layout_marginTop="10dp"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content">
-					<TextView 
-						android:id="@+id/places_stemning"
-						style="@style/MediumFont"
-						android:text="Stemning: "
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"/>
-					<ProgressBar 
-						android:id="@+id/places_progressbar_stemning" 
-						style="?android:attr/progressBarStyleHorizontal" 
-						android:layout_height="wrap_content"
-						android:layout_width="140dp" 
-						android:layout_alignParentRight="true"
-						/>
-				</RelativeLayout>
-				<RelativeLayout 
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="5dp">
-					<TextView 
-						android:id="@+id/places_dansing"
-						style="@style/MediumFont"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="Dansing: "/>
-					<ProgressBar 
-						android:id="@+id/places_progressbar_dansing" 
-						android:layout_width="140dp"  
-						android:layout_height="wrap_content"
-						style="?android:attr/progressBarStyleHorizontal"
-						android:layout_alignParentRight="true"
-						/>
-				</RelativeLayout>
-				<RelativeLayout 
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="5dp">
-					<TextView 
-						android:id="@+id/places_prating"
-						style="@style/MediumFont"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="Prating: "/>
-					<ProgressBar 
-						android:id="@+id/places_progressbar_prating" 
-						style="?android:attr/progressBarStyleHorizontal" 
-						android:layout_width="140dp" 
-						android:layout_height="wrap_content"
-						android:layout_alignParentRight="true"
-					/>
-				</RelativeLayout>
-				<RelativeLayout 
-					android:layout_marginTop="10dp"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content">
-					
-					<TextView 
-						android:id="@+id/places_sjekking"
-						style="@style/MediumFont"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="Sjekking: "/>
-					<ProgressBar 
-						android:id="@+id/places_progressbar_sjekking" 
-						style="?android:attr/progressBarStyleHorizontal" 
-						android:layout_width="140dp" 
-						android:layout_height="wrap_content"
-						android:layout_alignParentRight="true"
-						>
-					</ProgressBar>	
-				</RelativeLayout>
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
 				<TextView 
 					style="@style/MediumFont"
+					android:id="@+id/places_stemning"
+					android:text="Stemning: "
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:paddingTop="10dp"
-					android:text="Si din mening om det som skjer under UKA akkurat nå!" />
-				<EditText 
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content" 
-					android:id="@+id/places_comment" 
-					android:paddingTop="5dp"
-					android:inputType="textMultiLine">
-				</EditText>
-				<Button 
-					android:id="@+id/places_share"
-			    	style="@style/Button"
-					android:layout_width="90dp"
-			    	android:layout_height="wrap_content"
-			    	android:text="Del"
-			    	android:layout_gravity="right"
-		    	/>
-			</LinearLayout>
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_stemning_reported" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+						<RelativeLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_dansing"
+					android:text="Dansing: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_dansing_reported" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+						<RelativeLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_prating"
+					android:text="Prating: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_prating_reported" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+						<RelativeLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_sjekking"
+					android:text="Sjekking: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_sjekking_reported" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+			<Button 
+				android:layout_marginTop="5dp"
+				android:id="@+id/places_report"
+				android:layout_width="90dp"
+		    	android:layout_height="wrap_content"
+		    	style="@style/Button"
+		    	android:text="Rapporter"
+		    	android:layout_gravity="right"
+	    	/>
+			<TextView 
+				android:paddingTop="10dp"
+				style="@style/MediumFont"
+				android:text="Si din mening om det som skjer under UKA akkurat nå!"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+			/>
+			<EditText 
+				android:paddingTop="5dp"
+				android:id="@+id/places_comment" 
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" 
+				android:inputType="textMultiLine">
+			</EditText>
+			<Button 
+				android:layout_marginTop="5dp"
+				android:id="@+id/places_share"
+				android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	style="@style/Button"
+		    	android:text="Del kommentar"
+		    	android:layout_gravity="right"
+	    	/>
+	    	
+		</LinearLayout>
 		</ScrollView>
 </LinearLayout>
