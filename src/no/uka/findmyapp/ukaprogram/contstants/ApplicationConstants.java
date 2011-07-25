@@ -16,9 +16,10 @@ import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 public final class ApplicationConstants
 {	
 	/* General constants */
+	public static final String UKA_PATH = "http://www.uka.no";
 	
 	public static final boolean IS_FAVOURITE = true; 
-	
+
 	/* Gesture contants. */
 	/** The Constant GESTURE_LEFT. */
 	public static final String GESTURE_LEFT = "left";
