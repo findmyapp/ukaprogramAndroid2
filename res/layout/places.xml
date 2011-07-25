@@ -67,6 +67,8 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingTop="5dp"/>
+				
+<!-- 			Live reported info from this place -->
 			<TextView 
 				style="@style/BigFont"
 				android:text="Live rapport"
@@ -82,11 +84,11 @@
 					android:text="Stemning: "
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"/>
-				<ProgressBar 
-					android:layout_width="140dp" 
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content"
 					android:id="@+id/places_progressbar_stemning" 
-					style="?android:attr/progressBarStyleHorizontal" 
-					android:layout_height="wrap_content"
+					android:layout_height="40px"
 					android:layout_alignParentRight="true"
 					/>
 			</RelativeLayout>
@@ -100,11 +102,11 @@
 					android:text="Dansing: "
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"/>
-				<ProgressBar 
-					android:layout_width="140dp" 
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content"
 					android:id="@+id/places_progressbar_dansing" 
-					style="?android:attr/progressBarStyleHorizontal" 
-					android:layout_height="wrap_content"
+					android:layout_height="40px"
 					android:layout_alignParentRight="true"
 					/>
 			</RelativeLayout>
@@ -118,15 +120,110 @@
 					android:text="Prating: "
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"/>
-				<ProgressBar 
-					android:layout_width="140dp" 
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content"
 					android:id="@+id/places_progressbar_prating" 
-					style="?android:attr/progressBarStyleHorizontal" 
-					android:layout_height="wrap_content"
+					android:layout_height="40px"
 					android:layout_alignParentRight="true"
 				/>
 			</RelativeLayout>
 			<RelativeLayout 
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_sjekking"
+					android:text="Sjekking: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_sjekking" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+<!--  		Live feed	 	-->
+			<ListView android:id="@+id/places_live_feed" 
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent" 
+				android:footerDividersEnabled="false" 
+				android:paddingLeft="10dp"
+				android:paddingRight="10dp"
+				/>			
+<!-- 			Report info from this place -->
+				<TextView 
+					style="@style/BigFont"
+					android:layout_marginTop="10dp"
+					android:text="Rapporter: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RelativeLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_stemning"
+					android:text="Stemning: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_stemning_reported" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+						<RelativeLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_dansing"
+					android:text="Dansing: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_dansing_reported" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+						<RelativeLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				
+				<TextView 
+					style="@style/MediumFont"
+					android:id="@+id/places_prating"
+					android:text="Prating: "
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_prating_reported" 
+					android:layout_height="40px"
+					android:layout_alignParentRight="true"
+					>
+				</RatingBar>	
+			</RelativeLayout>
+						<RelativeLayout 
 				android:layout_marginTop="10dp"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content">
@@ -137,15 +234,24 @@
 					android:text="Sjekking: "
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"/>
-				<ProgressBar 
-					android:layout_width="140dp" 
-					android:id="@+id/places_progressbar_sjekking" 
-					style="?android:attr/progressBarStyleHorizontal" 
-					android:layout_height="wrap_content"
+				<RatingBar
+					style="@style/ukaRatingBar" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/places_progressbar_sjekking_reported" 
+					android:layout_height="40px"
 					android:layout_alignParentRight="true"
 					>
-				</ProgressBar>	
+				</RatingBar>	
 			</RelativeLayout>
+			<Button 
+				android:layout_marginTop="5dp"
+				android:id="@+id/places_report"
+				android:layout_width="90dp"
+		    	android:layout_height="wrap_content"
+		    	style="@style/Button"
+		    	android:text="Rapporter"
+		    	android:layout_gravity="right"
+	    	/>
 			<TextView 
 				android:paddingTop="10dp"
 				style="@style/MediumFont"
@@ -161,13 +267,15 @@
 				android:inputType="textMultiLine">
 			</EditText>
 			<Button 
+				android:layout_marginTop="5dp"
 				android:id="@+id/places_share"
-				android:layout_width="90dp"
+				android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
 		    	style="@style/Button"
-		    	android:text="Del"
+		    	android:text="Del kommentar"
 		    	android:layout_gravity="right"
 	    	/>
+	    	
 		</LinearLayout>
 		</ScrollView>
 </LinearLayout>

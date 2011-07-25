@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- General themesettings -->	
+	<!-- General themesettings -->
 	<style name="CustomTheme" parent="android:Theme.Light">
-		<item name="android:windowBackground">@color/white</item>
-		<item name="android:colorBackground">@color/white</item>
+		<item name="android:windowBackground">@color/background_grey</item>
+		<item name="android:colorBackground">@color/background_grey</item>
 	</style>
 
 	<style name="Button" parent="@android:style/TextAppearance.Small">
@@ -32,7 +32,7 @@
 		<item name="android:textSize">16dp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
-	
+
 	<!-- EventList category button section -->
 	<style name="eventCategoryButton" parent="@android:style/Widget.Button">
 		<item name="android:background">@drawable/event_list_event_type_button</item>
@@ -77,6 +77,14 @@
 
 	<style name="HorizontalLine">
 		<item name="android:background">@color/grey</item>
+	</style>
+
+	<style name="ukaRatingBar" parent="@android:style/Widget.RatingBar">
+		<item name="android:progressDrawable">@drawable/uka_ratingbar</item>
+	</style>
+	
+	<style name="ukaRatingBar2" parent="@android:style/Widget.RatingBar">
+		<item name="android:progressDrawable">@drawable/uka_ratingbar</item>
 	</style>
 
 </resources>
