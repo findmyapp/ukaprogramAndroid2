@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.activities.lists;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
@@ -18,13 +23,14 @@ import android.widget.ListView;
 /**
  * The Class ConcertListActivity.
  */
-public class ConcertListActivity extends ListActivity {	
-	
+public class ConcertListActivity extends ListActivity 
+{	
 	/** The Constant debug. */
+	@SuppressWarnings("unused")
 	private final static String debug = "ConcertListActivity";
 	
 	/** The event cursor. */
-	private Cursor eventCursor;
+	private Cursor mEventCursor;
 
 	/** The Constant ORDER_BY. */
 	private final static String ORDER_BY = UkaEventContract.TITLE + " desc";
@@ -40,8 +46,8 @@ public class ConcertListActivity extends ListActivity {
 		
 		String selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_CONCERT;
 		
-		eventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
-		this.setListAdapter(new ConsertListCursorAdapter(this, eventCursor));
+		mEventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
+		this.setListAdapter(new ConsertListCursorAdapter(this, mEventCursor));
 	}
 
 

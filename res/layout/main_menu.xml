@@ -3,89 +3,84 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent" 
->
+	android:layout_height="fill_parent">
 	<ImageView 
+		android:id="@+id/mainMenu_header"	
 		android:layout_height="wrap_content" 
-		android:id="@+id/main_menu_header"
-		android:src="@drawable/maintopleft" 
 		android:layout_width="wrap_content" 
+		android:src="@drawable/maintopleft" 
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentTop="true">
 	</ImageView>
 	<LinearLayout 
-	android:layout_height="wrap_content"
-	android:layout_width="wrap_content"
-	android:layout_centerInParent="true"
-	android:orientation="vertical"
-	android:layout_marginTop="20dp"
-	>
-	<ImageView 
-		android:layout_height="wrap_content" 
-		android:id="@+id/imageView1"
-		android:src="@drawable/uka_logo" 
-		android:layout_width="wrap_content" 
-		android:layout_gravity="center"
-		android:layout_marginBottom="20dp">
-	</ImageView>
-
-	<LinearLayout 
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="vertical" 
+		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:layout_gravity="center"
-		android:gravity="center">
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Program" 
-			android:id="@+id/program"
+		android:layout_centerInParent="true"
+		android:orientation="vertical"
+		android:layout_marginTop="20dp">
+		<ImageView 
+			android:id="@+id/mainMenu_ukaLogo"
+			android:layout_height="wrap_content"  
 			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-		</Button>
-
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Konserter" 
-			android:id="@+id/konserter"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-		</Button>
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Steder" 
-			android:id="@+id/steder"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-		</Button>
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Favoritter" 
-			android:id="@+id/favoritter"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-		</Button>
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Oppdater" 
-			android:id="@+id/update"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-		</Button>
+			android:src="@drawable/uka_logo"
+			android:layout_gravity="center"
+			android:layout_marginBottom="20dp">
+		</ImageView>
+		<LinearLayout 
+			android:orientation="vertical" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center"
+			android:gravity="center">
+			<Button 
+				android:id="@+id/mainMenu_program"
+				style="@style/MainMenuButton"
+				android:text="@string/mainMenu_program" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp">
+			</Button>
+	
+			<Button 
+				android:id="@+id/mainMenu_concerts"
+				style="@style/MainMenuButton"
+				android:text="@string/mainMenu_concert" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp">
+			</Button>
+			<Button 
+				android:id="@+id/mainMenu_places"
+				style="@style/MainMenuButton"
+				android:text="@string/mainMenu_places" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp">
+			</Button>
+			<Button 
+				android:id="@+id/mainMenu_favourites"
+				style="@style/MainMenuButton"
+				android:text="@string/mainMenu_favourites" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp">
+			</Button>
+			<Button 
+				android:id="@+id/mainMenu_refresh"
+				style="@style/MainMenuButton"
+				android:text="@string/mainMenu_refresh" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp">
+			</Button>
 		</LinearLayout>
 	</LinearLayout>
 	<ImageView 
+		android:id="@+id/mainMenu_footer"
 		android:layout_height="wrap_content" 
-		android:id="@+id/main_menu_footer"
-		android:src="@drawable/mainbottomright" 
 		android:layout_width="wrap_content" 
+		android:src="@drawable/mainbottomright" 
 		android:layout_alignParentRight="true"
 		android:layout_alignParentBottom="true">
 	</ImageView>
-
 </RelativeLayout>

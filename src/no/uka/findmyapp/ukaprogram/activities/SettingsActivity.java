@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.activities;
 
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
@@ -9,48 +14,49 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SettingsActivity.
+ */
 public class SettingsActivity extends Activity implements OnClickListener {
 	
+	/** The Constant debug. */
 	private static final String debug = "SettingsActivity";
-	private Class previous_class = null;
+	
+	/** The previous_class. */
+	@SuppressWarnings("rawtypes")
+	private Class previous_class;
+	
+	/** The selected event. */
 	private UkaEvent selectedEvent;
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings);
 		Log.v(debug, "getIntent.getClass " + getIntent().getClass().getCanonicalName());
-		
-		Button submitButton = (Button) findViewById(R.id.submitSettingsButton);
-		submitButton.setOnClickListener(this);
-		
-		TextView positionText = (TextView) findViewById(R.id.positionSettingText);
-		TextView eventText = (TextView) findViewById(R.id.eventSettingText);
-		TextView moneyText = (TextView) findViewById(R.id.moneySettingText);
-		TextView mediaText = (TextView) findViewById(R.id.mediaSettingText);
-		
-		positionText.setText("Posisjon:");
-		eventText.setText("Arrangement:");
-		moneyText.setText("Penger:");
-		mediaText.setText("Media:");
-		
-		Spinner positionSpinner = (Spinner) findViewById(R.id.positionSettingSpinner);
-		Spinner eventSpinner = (Spinner) findViewById(R.id.eventSettingSpinner);
-		Spinner moneySpinner = (Spinner) findViewById(R.id.moneySettingSpinner);
-		Spinner mediaSpinner = (Spinner) findViewById(R.id.mediaSettingSpinner);
-		
+
 	    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 	            this, R.array.setting_alternatives, android.R.layout.simple_spinner_item);
 	    
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    
+		
+		Spinner positionSpinner = (Spinner) findViewById(R.id.positionSetting_spinner);
 	    positionSpinner.setAdapter(adapter);
+	    
+		Spinner eventSpinner = (Spinner) findViewById(R.id.eventSetting_spinner);
 	    eventSpinner.setAdapter(adapter);
+	    
+		Spinner moneySpinner = (Spinner) findViewById(R.id.moneySetting_spinner);
 	    moneySpinner.setAdapter(adapter);
+	    
+		Spinner mediaSpinner = (Spinner) findViewById(R.id.mediaSetting_spinner);
 	    mediaSpinner.setAdapter(adapter);
 	    
 	    Bundle bundle = getIntent().getExtras();
@@ -64,6 +70,9 @@ public class SettingsActivity extends Activity implements OnClickListener {
 	    
 	}
 
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v) {
 		Log.v(debug, "Submit button clicked..");

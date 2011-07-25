@@ -22,7 +22,7 @@
 			android:layout_marginBottom="4dp"
 			android:layout_height="2px">
 		</LinearLayout>
-		<TextView 
+		<calendar_dayColumn 
 			android:id="@+id/calendar_header_title" 
 			android:layout_height="wrap_content" 
 			android:layout_width="fill_parent"
@@ -46,8 +46,8 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content">
-			<TextView 
-				android:id="@+id/textView1"
+			<calendar_dayColumn 
+				android:id="@+id/calendar_dayColumn1"
 				android:text="@string/calendar_monday" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
@@ -58,12 +58,12 @@
 			android:layout_weight="1"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content">
-			<TextView 
-				android:id="@+id/textView2"
+			<calendar_dayColumn 
+				android:id="@+id/calendar_dayColumn2"
 				android:text="@string/calendar_tuesday" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
-				android:layout_gravity="center"></TextView>
+				android:layout_gravity="center"></calendar_dayColumn>
 		</LinearLayout>
 		<LinearLayout 
 			xmlns:android="http://schemas.android.com/apk/res/android"
@@ -71,8 +71,8 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content">
-			<TextView 
-				android:id="@+id/textView3"
+			<calendar_dayColumn 
+				android:id="@+id/calendar_dayColumn3"
 				android:text="@string/calendar_wednesday" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
@@ -83,12 +83,12 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content">
-			<TextView 
-				android:id="@+id/textView4"
+			<calendar_dayColumn 
+				android:id="@+id/calendar_dayColumn4"
 				android:text="@string/calendar_wednesday" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
-				android:layout_gravity="center"></TextView>
+				android:layout_gravity="center"></calendar_dayColumn>
 		</LinearLayout>
 		<LinearLayout 
 			android:orientation="vertical" 
@@ -96,7 +96,7 @@
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content"
 			android:layout_gravity="center">
-			<TextView 
+			<calendar_dayColumn 
 				android:id="@+id/textViev5"
 				android:text="@string/calendar_friday" 
 				android:layout_width="wrap_content" 
@@ -108,8 +108,8 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content">
-			<TextView 
-				android:id="@+id/textView6"
+			<calendar_dayColumn 
+				android:id="@+id/calendar_dayColumn6"
 				android:text="@string/calendar_saturday" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
@@ -120,8 +120,8 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content">
-			<TextView 
-				android:id="@+id/textView7"
+			<calendar_dayColumn 
+				android:id="@+id/calendar_dayColumn7"
 				android:text="@string/calendar_sunday" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
 		</LinearLayout>
 	</LinearLayout>
 	<GridView 
-		android:id="@+id/MyGrid" 
+		android:id="@+id/calendar_dayGrid" 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" 
 		android:verticalSpacing="5dp"
