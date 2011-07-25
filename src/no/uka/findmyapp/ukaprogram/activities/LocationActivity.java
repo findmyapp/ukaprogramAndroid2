@@ -44,7 +44,7 @@ public class LocationActivity extends ListActivity implements OnClickListener
 
 		Cursor locationCursor = this.managedQuery(LocationContract.LOCATION_CONTENT_URI,
 				null, null, null, null);
-		
+
 		Log.v(debug, "After cursor..");
 
 		this.setListAdapter(new LocationListCursorAdapter(this, locationCursor));

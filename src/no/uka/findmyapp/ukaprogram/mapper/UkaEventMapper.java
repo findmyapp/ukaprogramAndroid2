@@ -30,7 +30,6 @@ public class UkaEventMapper
 		Log.v(debug, "Inside getEventFromCursor");
 		UkaEvent ukaEvent = new UkaEvent(); 
 		ukaEvent.setId(getIntFromTableColumn(cursor, UkaEventContract.ID));
-		ukaEvent.setEventId(getIntFromTableColumn(cursor, UkaEventContract.EVENT_ID));
 		ukaEvent.setBillingid(getIntFromTableColumn(cursor, UkaEventContract.BILLING_ID));
 		ukaEvent.setEntranceId(getIntFromTableColumn(cursor, UkaEventContract.ENTRANCE_ID));
 		ukaEvent.setTitle(getStringFromTableColumn(cursor, UkaEventContract.TITLE));

@@ -15,6 +15,10 @@ import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
  */
 public final class ApplicationConstants
 {	
+	/* General constants */
+	
+	public static final boolean IS_FAVOURITE = true; 
+	
 	/* Gesture contants. */
 	/** The Constant GESTURE_LEFT. */
 	public static final String GESTURE_LEFT = "left";
@@ -54,6 +58,7 @@ public final class ApplicationConstants
 	/** The Constant DATABASE_VERSION. */
 	public static final int DATABASE_VERSION = 1; 
 	
+	/* Favourite table constants */
 	/** Persistent favourite table. */
 	public static final String FAVOURITE_TABLE_NAME = "persistent_favourite_list";
 	
@@ -61,8 +66,13 @@ public final class ApplicationConstants
 	public static final String FAVOURITE_TABLE_COLUMN_ID = "_id";
 	
 	/** The Constant FAVOURITE_TABLE_COLUMN_EVENT_ID. */
-	public static final String FAVOURITE_TABLE_COLUMN_EVENT_ID = UkaEventContract.EVENT_ID; 
+	public static final String FAVOURITE_TABLE_COLUMN_EVENT_ID = "event_id"; 
 	
 	/** The Constant FAVOURITE_TABLE_COLUMN_IS_FAVOURITE. */
 	public static final String FAVOURITE_TABLE_COLUMN_IS_FAVOURITE = "is_favourite";
+	
+	/* Favourite related queries */
+	
+	public static final String FAVOURITE_TABLE_WHERE_CLAUSE_EVENT_ID_IS_FAVOURITE = 
+		ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID + "=?";
 }

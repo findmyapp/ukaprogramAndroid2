@@ -6,12 +6,19 @@
 package no.uka.findmyapp.ukaprogram.utils;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
+import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.client.UkappsServices;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
+import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -79,6 +86,22 @@ public class EventsUpdater
 		} 
 	}
 	
+	private void updateFavourites() {
+		FavouriteUtils fu = new FavouriteUtils(mContext);
+		ArrayList<Integer> eventIds = fu.getAllFavourites(); 
+
+		for(Integer eventId : eventIds) {
+			ContentValues values = new ContentValues(); 
+			values.put(UkaEventContract.FAVOURITE, ApplicationConstants.IS_FAVOURITE);
+			
+			mContext.getContentResolver().update(
+					UkaEventContract.EVENT_CONTENT_URI, 
+					values, 
+					UkaEventContract.ID + "=?", 
+					new String[] {String.valueOf(eventId)});
+		}
+	}
+	
 	/**
 	 * Clear event table.
 	 *
@@ -98,6 +121,9 @@ public class EventsUpdater
 		Log.v(debug, "update called");
 		try {
 			clearEventTable(mContext.getContentResolver());
+			
+			// Setup reciver that update favourite flags
+			setupBroadCastReciver();
 			serviceHelper.callStartService(this.mContext, UkappsServices.UKAEVENTS, new String[] {"uka11"}); 
 		} catch (URISyntaxException e) {
 			throw new UpdateException(UpdateException.URI_SYNTAX_EXCEPTION, e); 
@@ -121,6 +147,30 @@ public class EventsUpdater
 	        return true;
 	    }
 	    return false;
+	}
+	
+	private void setupBroadCastReciver() {
+        ReciveIntent intentReceiver = new ReciveIntent();
+		IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
+		
+		mContext.getApplicationContext().registerReceiver(intentReceiver, intentFilter); 
+	}
+	
+	/**
+	 * The Class ReciveIntent.
+	 */
+	private class ReciveIntent extends BroadcastReceiver {
+		
+		/* (non-Javadoc)
+		 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
+		 */
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
+				Log.v(debug, "Intent recieved, starting setting favourites");
+				updateFavourites(); 
+			}
+		}
 	}
 	
 	/**

@@ -109,15 +109,15 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 	 */
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		FavouriteUtils fu = new FavouriteUtils(getContentResolver());
+		FavouriteUtils fu = new FavouriteUtils(getApplicationContext());
 		String info;
 		
 		if(isChecked) {
-			fu.changeFavouriteFlag(this.mSelectedEvent.getEventId(), true);
+			fu.changeFavouriteFlag(mSelectedEvent.getId(), true);
 			info = mSelectedEvent.getTitle() + getResources().getString(R.string.toast_isAddedAsFavourite);
 		}
 		else {			
-			fu.changeFavouriteFlag(this.mSelectedEvent.getEventId(), false);
+			fu.changeFavouriteFlag(mSelectedEvent.getId(), false);
 			info = mSelectedEvent.getTitle() + getResources().getString(R.string.toast_isRemovedAsFavourite);
 		}
 		
