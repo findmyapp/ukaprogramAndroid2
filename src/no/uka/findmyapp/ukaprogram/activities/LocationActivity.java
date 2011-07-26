@@ -5,11 +5,7 @@
  */
 package no.uka.findmyapp.ukaprogram.activities;
 
-import no.uka.findmyapp.android.rest.contracts.BeerTap.BeerTapTable;
-import no.uka.findmyapp.android.rest.contracts.Humidity.HumidityTable;
 import no.uka.findmyapp.android.rest.contracts.Location.LocationContract;
-import no.uka.findmyapp.android.rest.contracts.Noise.NoiseTable;
-import no.uka.findmyapp.android.rest.contracts.Temperature.TemperatureTable;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.adapters.LocationListCursorAdapter;
@@ -47,14 +43,6 @@ public class LocationActivity extends ListActivity implements OnClickListener
 		Log.v(debug, "Before cursor..");
 
 		Cursor locationCursor = this.managedQuery(LocationContract.LOCATION_CONTENT_URI,
-				null, null, null, null);
-		Cursor locationCursor2 = this.managedQuery(TemperatureTable.CONTENT_URI,
-				null, null, null, null);
-		Cursor locationCursor3 = this.managedQuery(HumidityTable.CONTENT_URI,
-				null, null, null, null);
-		Cursor locationCursor4 = this.managedQuery(NoiseTable.CONTENT_URI,
-				null, null, null, null);
-		Cursor locationCursor5 = this.managedQuery(BeerTapTable.CONTENT_URI,
 				null, null, null, null);
 
 		Log.v(debug, "After cursor..");

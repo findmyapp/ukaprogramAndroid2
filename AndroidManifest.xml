@@ -28,9 +28,11 @@
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FiveNextActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.SettingsActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.LocationActivity"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.LocationListActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.PlacesActivity"></activity>
 		<activity android:name=".activities.lists.ConcertListActivity"></activity>
+		
+		<service android:name="no.uka.findmyapp.android.rest.client.RestIntentService" />
 		
 		<provider
 		    android:authorities="no.uka.findmyapp.android.rest.providers.program"
@@ -42,29 +44,6 @@
 		    android:multiprocess="true"
 		    android:name="no.uka.findmyapp.android.rest.providers.LocationProvider">
 		</provider>
-	    <provider
-		    android:authorities="no.uka.findmyapp.android.rest.providers.sensor.temperature"
-		    android:multiprocess="true"
-		    android:name="no.uka.findmyapp.android.rest.providers.TemperatureProvider">
-		</provider>
-		<provider
-		    android:authorities="no.uka.findmyapp.android.rest.providers.sensor.humidity"
-		    android:multiprocess="true"
-		    android:name="no.uka.findmyapp.android.rest.providers.HumidityProvider">
-		</provider>
-		<provider
-		    android:authorities="no.uka.findmyapp.android.rest.providers.sensor.noise"
-		    android:multiprocess="true"
-		    android:name="no.uka.findmyapp.android.rest.providers.NoiseProvider">
-		</provider>
-		<provider
-		    android:authorities="no.uka.findmyapp.android.rest.providers.sensor.beertap"
-		    android:multiprocess="true"
-		    android:name="no.uka.findmyapp.android.rest.providers.BeerTapProvider">
-		</provider>
-
-		<service android:name="no.uka.findmyapp.android.rest.client.RestIntentService" />
-
 	</application>
 
 </manifest>

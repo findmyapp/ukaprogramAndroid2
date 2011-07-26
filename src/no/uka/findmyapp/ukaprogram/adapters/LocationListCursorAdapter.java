@@ -7,7 +7,7 @@ package no.uka.findmyapp.ukaprogram.adapters;
 
 import no.uka.findmyapp.android.rest.contracts.Location.LocationContract;
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
+import no.uka.findmyapp.ukaprogram.utils.CursorTools;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -52,7 +52,7 @@ public class LocationListCursorAdapter extends CursorAdapter
 	public void bindView(View eventView, Context context, Cursor cursor) {		
 		try {
 			TextView t = (TextView) eventView.findViewById(R.id.locationListItem_title);
-			t.setText(UkaEventMapper.getStringFromTableColumn(mCursor, LocationContract.LOCATIONNAME));
+			t.setText(CursorTools.getStringFromTableColumn(mCursor, LocationContract.LOCATIONNAME));
 			
 			t = (TextView) eventView.findViewById(R.id.locationList_happeningNow);
 			t.setText("Fest!");

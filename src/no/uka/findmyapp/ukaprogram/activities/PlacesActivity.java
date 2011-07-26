@@ -1,24 +1,11 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-import com.google.gson.Gson;
-
-import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
-import no.uka.findmyapp.android.rest.client.UkappsServices;
-import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.R;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;

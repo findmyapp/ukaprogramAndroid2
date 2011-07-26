@@ -5,7 +5,6 @@
  */
 package no.uka.findmyapp.ukaprogram.contstants;
 
-import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 
 // TODO: Auto-generated Javadoc
 /**
