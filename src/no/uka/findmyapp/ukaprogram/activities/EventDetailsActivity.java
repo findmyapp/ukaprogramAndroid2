@@ -8,6 +8,7 @@ package no.uka.findmyapp.ukaprogram.activities;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
@@ -74,6 +75,7 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 	 */
 	public void populateView(UkaEvent selectedEvent){
 		Log.v(debug, "populateView: selectedEvent " + selectedEvent.toString());
+		
 
 		Button friendsButton = (Button) findViewById(R.id.detailedEventFriendsOnEventButton);
 		friendsButton.setOnClickListener(this);
@@ -87,6 +89,17 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 				+ DateUtils.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) + " " 
 				+ DateUtils.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
 				+ selectedEvent.getPlace());
+		
+		
+		/*Date today = new Date();
+		long now = today.getTime();
+		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
+		timeAndPlace.setText(	
+				DateUtils.getWeekdayNameFromTimestamp(now) + " " 
+				+ DateUtils.getCustomDateFormatFromTimestamp("dd E MMM.", now) + " " 
+				+ DateUtils.getTimeFromTimestamp(now) + ", " 
+				+ selectedEvent.getPlace());
+		*/
 		
 		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
 		headerTitle.setText(selectedEvent.getTitle());
