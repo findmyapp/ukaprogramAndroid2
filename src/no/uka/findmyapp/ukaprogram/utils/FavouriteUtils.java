@@ -5,7 +5,6 @@
  */
 package no.uka.findmyapp.ukaprogram.utils;
 
-import java.io.Closeable;
 import java.util.ArrayList;
 
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;

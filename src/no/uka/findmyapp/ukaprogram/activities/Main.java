@@ -11,6 +11,7 @@ import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.activities.lists.ConcertListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.EventListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.FavouritesListActivity;
+import no.uka.findmyapp.ukaprogram.activities.lists.LocationListActivity;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
 import android.content.Intent;
@@ -99,7 +100,7 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 			gotoActivity(ConcertListActivity.class);
 			break;
 		case (R.id.mainMenu_places):
-			gotoActivity(LocationActivity.class);
+			gotoActivity(LocationListActivity.class);
 			break;
 		default:
 			break;
