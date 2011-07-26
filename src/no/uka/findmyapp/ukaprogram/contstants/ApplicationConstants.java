@@ -15,7 +15,11 @@ import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
  */
 public final class ApplicationConstants
 {	
+	/* General constants */
 	public static final String UKA_PATH = "http://www.uka.no";
+	
+	public static final boolean IS_FAVOURITE = true; 
+
 	/* Gesture contants. */
 	/** The Constant GESTURE_LEFT. */
 	public static final String GESTURE_LEFT = "left";
@@ -55,6 +59,7 @@ public final class ApplicationConstants
 	/** The Constant DATABASE_VERSION. */
 	public static final int DATABASE_VERSION = 1; 
 	
+	/* Favourite table constants */
 	/** Persistent favourite table. */
 	public static final String FAVOURITE_TABLE_NAME = "persistent_favourite_list";
 	
@@ -62,8 +67,29 @@ public final class ApplicationConstants
 	public static final String FAVOURITE_TABLE_COLUMN_ID = "_id";
 	
 	/** The Constant FAVOURITE_TABLE_COLUMN_EVENT_ID. */
-	public static final String FAVOURITE_TABLE_COLUMN_EVENT_ID = UkaEventContract.EVENT_ID; 
+	public static final String FAVOURITE_TABLE_COLUMN_EVENT_ID = "event_id"; 
 	
 	/** The Constant FAVOURITE_TABLE_COLUMN_IS_FAVOURITE. */
 	public static final String FAVOURITE_TABLE_COLUMN_IS_FAVOURITE = "is_favourite";
+	
+	/* Favourite related queries */
+	public static final String FAVOURITE_TABLE_WHERE_CLAUSE_EVENT_ID_IS_FAVOURITE = 
+		ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID + "=?";
+	
+	/* User privacy table constants */
+	
+	public static final String USER_PRICVAY_TABLE_NAME = "user_privacy_settings";
+	
+	public static final String USER_PRICVAY_COLUMN_ID = "_id";
+	
+	public static final String USER_PRICVAY_COLUMN_USER_PRIVACY_ID = "user_privacy_id";
+	
+	public static final String USER_PRICVAY_COLUMN_POSITION = "position";
+	
+	public static final String USER_PRICVAY_COLUMN_MONEY = "money";
+	
+	public static final String USER_PRICVAY_COLUMN_EVENTS = "events";
+	
+	public static final String USER_PRICVAY_COLUMN_MEDIA = "media";
+	
 }

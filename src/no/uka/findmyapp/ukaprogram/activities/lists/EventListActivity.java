@@ -129,7 +129,7 @@ public class EventListActivity extends ListActivity implements OnClickListener
 
 		UkaEvent event = UkaEventMapper.getUkaEventFromCursor(c);
 		Log.v(debug, event.toString());
-
+		
 		Intent intent = new Intent(this, EventDetailsActivity.class); 
 		intent.putExtra(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL, event);
 
@@ -214,7 +214,19 @@ public class EventListActivity extends ListActivity implements OnClickListener
 	private void refreshList(String selection){
 		Log.v(debug, "Refreshing page");
 		mEventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
-		this.setListAdapter(new EventListCursorAdapter(this, mEventCursor));
+	
+		Log.v(debug, "refreshList: Setting list adapter");
+		Log.v(debug, "refreshList:cursor " + mEventCursor);
+		while (mEventCursor.moveToNext()) {
+			Log.v(debug, "refreshingList count cursor: " + mEventCursor.getCount());
+			String columnNames = ""; 
+			for (int i = 0; i < mEventCursor.getColumnCount(); i++) {
+				columnNames += "  " + mEventCursor.getColumnName(i);
+			}
+			Log.v(debug, "refreshingList fields count " + mEventCursor.getColumnCount());
+			Log.v(debug, "refreshingList fields in cursor " + columnNames);
+		}
+		setListAdapter(new EventListCursorAdapter(this, mEventCursor));
 	}
 
 	//TODO FIX moveCursorToDate, CalendarActivity or EventListActivity?

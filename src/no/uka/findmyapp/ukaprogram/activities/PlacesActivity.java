@@ -56,13 +56,13 @@ public class PlacesActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.places);
 		
 		Button shareComment = (Button) findViewById(R.id.places_share);
-		Button report = (Button) findViewById(R.id.places_report);
-		
-		report.setOnClickListener(this);
 		shareComment.setOnClickListener(this);
 		
+		Button report = (Button) findViewById(R.id.places_report);
+		report.setOnClickListener(this);
+	
 		setupPlaceSpecificViews();
-		setReportedParamenters(getDansing(), getSjekking(), getStemning(), getPrating());
+		setReportedParamenters(getDancing(), getFlirt(), getMood(), getChat());
 	}
 
 	/**
@@ -82,28 +82,30 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	/**
 	 * Sets the reported paramenters.
 	 *
-	 * @param dansing the dansing
-	 * @param sjekking the sjekking
-	 * @param stemning the stemning
-	 * @param prating the prating
+	 * @param dancing the dansing
+	 * @param flirt the sjekking
+	 * @param mood the stemning
+	 * @param chat the prating
 	 */
-	private void setReportedParamenters(float dansing, float sjekking,
-			float stemning, float prating) {
+	private void setReportedParamenters(float dancing, float flirt,
+			float mood, float chat) {
 		RatingBar pbSjekking = (RatingBar) findViewById(R.id.places_progressbar_sjekking);
-		RatingBar pbDansing = (RatingBar) findViewById(R.id.places_progressbar_dansing);
-		RatingBar pbPrating = (RatingBar) findViewById(R.id.places_progressbar_prating);
-		RatingBar pbStemning = (RatingBar) findViewById(R.id.places_progressbar_stemning);
-		
 		pbSjekking.setIsIndicator(true);
+		pbSjekking.setRating(flirt);
+		
+		RatingBar pbDansing = (RatingBar) findViewById(R.id.places_progressbar_dansing);
 		pbDansing.setIsIndicator(true);
+		pbDansing.setRating(dancing);
+		
+		RatingBar pbPrating = (RatingBar) findViewById(R.id.places_progressbar_prating);
 		pbPrating.setIsIndicator(true);
+		pbPrating.setRating(chat);
+
+		
+		RatingBar pbStemning = (RatingBar) findViewById(R.id.places_progressbar_stemning);
 		pbStemning.setIsIndicator(true);
-		
-		
-		pbSjekking.setRating(sjekking);
-		pbDansing.setRating(dansing);
-		pbPrating.setRating(prating);
-		pbStemning.setRating(stemning);
+		pbStemning.setRating(mood);
+
 	}
 
 	/* 
@@ -145,15 +147,17 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	private ArrayList<Float> getReport(){
 		ArrayList<Float> list = new ArrayList<Float>();
 		
-		RatingBar dansing = (RatingBar) findViewById(R.id.places_progressbar_dansing_reported);
-		RatingBar sjekking = (RatingBar) findViewById(R.id.places_progressbar_sjekking_reported);
-		RatingBar prating = (RatingBar) findViewById(R.id.places_progressbar_prating_reported);
-		RatingBar stemning = (RatingBar) findViewById(R.id.places_progressbar_stemning_reported);
+		RatingBar dancing = (RatingBar) findViewById(R.id.places_progressbar_dansing_reported);
+		list.add(dancing.getRating());
 		
-		list.add(stemning.getRating());
-		list.add(dansing.getRating());
-		list.add(prating.getRating());
-		list.add(sjekking.getRating());
+		RatingBar flirt = (RatingBar) findViewById(R.id.places_progressbar_sjekking_reported);
+		list.add(flirt.getRating());
+		
+		RatingBar chat = (RatingBar) findViewById(R.id.places_progressbar_prating_reported);
+		list.add(chat.getRating());
+		
+		RatingBar mood = (RatingBar) findViewById(R.id.places_progressbar_stemning_reported);
+		list.add(mood.getRating());
 		
 		return list;
 	}
@@ -163,7 +167,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	 *
 	 * @return the dansing
 	 */
-	private int getDansing(){
+	private int getDancing(){
 		return 2;
 	}
 	
@@ -172,7 +176,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	 *
 	 * @return the stemning
 	 */
-	private int getStemning(){
+	private int getMood(){
 		return 3;
 	}
 	
@@ -181,7 +185,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	 *
 	 * @return the prating
 	 */
-	private int getPrating(){
+	private int getChat(){
 		return 5;
 	}
 	
@@ -190,7 +194,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	 *
 	 * @return the sjekking
 	 */
-	private int getSjekking(){
+	private int getFlirt(){
 		return 1;
 	}
 	

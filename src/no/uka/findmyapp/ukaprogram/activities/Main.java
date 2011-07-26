@@ -99,7 +99,7 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 			gotoActivity(ConcertListActivity.class);
 			break;
 		case (R.id.mainMenu_places):
-			gotoActivity(PlacesActivity.class);
+			gotoActivity(LocationActivity.class);
 			break;
 		default:
 			break;

@@ -42,6 +42,7 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 	 */
 	public EventListCursorAdapter(Context context, Cursor cursor) {
 		super(context, cursor, true);
+		Log.v(debug, "Inside EventListCursorAdapter constructor");
 		this.inflater = LayoutInflater.from(context);
 		this.mCursor = cursor;
 	}
