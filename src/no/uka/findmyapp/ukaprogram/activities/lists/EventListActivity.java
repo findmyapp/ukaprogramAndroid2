@@ -51,8 +51,12 @@ public class EventListActivity extends ListActivity implements OnClickListener
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_list);
+		
+		HorizontalScrollView sv = (HorizontalScrollView) findViewById(R.id.eventList_horizontalScrollView);
 		
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {

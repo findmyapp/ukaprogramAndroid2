@@ -49,6 +49,8 @@
 		android:background="@color/shadowColor"
 		android:layout_height="fill_parent"
 		android:layout_width="match_parent"
+		android:focusable="true"
+		android:foregroundGravity="center"
 		android:scrollbars="none">
 		<LinearLayout 
 			android:layout_height="wrap_content"
