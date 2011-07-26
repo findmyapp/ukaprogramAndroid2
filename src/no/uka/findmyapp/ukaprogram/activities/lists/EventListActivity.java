@@ -28,6 +28,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.HorizontalScrollView;
@@ -39,8 +40,7 @@ import android.widget.TextView;
 /**
  * The Class EventListActivity.
  */
-public class EventListActivity extends ListActivity implements OnClickListener
-{	
+public class EventListActivity extends ListActivity implements OnClickListener{	
 	/** The Constant debug. */
 	private final static String debug = "EventListActivity";
 	
@@ -76,6 +76,7 @@ public class EventListActivity extends ListActivity implements OnClickListener
 
 	    gallery.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView parent, View v, int position, long id) {
+	        	
 	        	TextView dayNumberTV = (TextView) v.findViewById(R.id.date_item_day_number);
 	        	int day = Integer.valueOf(dayNumberTV.getText().toString());
 	            Log.v(debug, dayNumberTV.getText().toString());
@@ -84,6 +85,31 @@ public class EventListActivity extends ListActivity implements OnClickListener
 	            refreshList(selection);
 	        }
 	    });
+	    
+	    gallery.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView parent, View v,
+					int arg2, long arg3) {
+				
+				TextView dayNumberTV = (TextView) v.findViewById(R.id.date_item_day_number);
+	        	int day = Integer.valueOf(dayNumberTV.getText().toString());
+	            Log.v(debug, dayNumberTV.getText().toString());
+	            String selection = UkaEventContract.SHOWING_TIME + " > " + DateUtils.getTimestampFromDayNumber(day) + " AND " + UkaEventContract.SHOWING_TIME + " < " + DateUtils.getTimestampFromDayNumber(day +1);
+	            Log.v(debug, "Where statement: " + selection);
+	            refreshList(selection);
+	            
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView parent) {
+				// TODO Auto-generated method stub
+				
+			}
+	    	
+	    });
+	    
 
 	}
 	
@@ -156,6 +182,7 @@ public class EventListActivity extends ListActivity implements OnClickListener
 
 		startActivity(intent);
 	}
+	
 
 	/* (non-Javadoc)
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
@@ -275,5 +302,4 @@ public class EventListActivity extends ListActivity implements OnClickListener
 			startActivity(intent);
 		}
 	}
-
 }
