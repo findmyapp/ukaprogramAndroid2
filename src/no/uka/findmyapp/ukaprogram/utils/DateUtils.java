@@ -31,7 +31,7 @@ public class DateUtils
 	
 	/** The Constant standardTimeFormat. */
 	private static final SimpleDateFormat standardTimeFormat = 
-		new SimpleDateFormat("hh:mm");
+		new SimpleDateFormat("HH:mm");
 	
 	/** The Constant standardDayFormat. */
 	private static final SimpleDateFormat standardDayFormat = 
