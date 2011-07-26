@@ -73,7 +73,23 @@ public final class ApplicationConstants
 	public static final String FAVOURITE_TABLE_COLUMN_IS_FAVOURITE = "is_favourite";
 	
 	/* Favourite related queries */
-	
 	public static final String FAVOURITE_TABLE_WHERE_CLAUSE_EVENT_ID_IS_FAVOURITE = 
 		ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID + "=?";
+	
+	/* User privacy table constants */
+	
+	public static final String USER_PRICVAY_TABLE_NAME = "user_privacy_settings";
+	
+	public static final String USER_PRICVAY_COLUMN_ID = "_id";
+	
+	public static final String USER_PRICVAY_COLUMN_USER_PRIVACY_ID = "user_privacy_id";
+	
+	public static final String USER_PRICVAY_COLUMN_POSITION = "position";
+	
+	public static final String USER_PRICVAY_COLUMN_MONEY = "money";
+	
+	public static final String USER_PRICVAY_COLUMN_EVENTS = "events";
+	
+	public static final String USER_PRICVAY_COLUMN_MEDIA = "media";
+	
 }
