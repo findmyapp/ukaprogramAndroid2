@@ -112,14 +112,20 @@ OnCheckedChangeListener
 			OutputStream os = null;
 			URL imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
 			String filename = getFileNameFromPath(selectedEvent.getImage());
-			if (fileExist(filename)){
-				eventImage.setImageBitmap(loadBitmap(filename));
+			if (filename.length() == 0){
+				eventImage.setImageResource(R.drawable.default_artist_image);
 			}
 			else
 			{
-				Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
-				eventImage.setImageBitmap(eventBitmap);
-				saveBitmap(eventBitmap, filename, imageURL);
+				if (fileExist(filename)){
+					eventImage.setImageBitmap(loadBitmap(filename));
+				}
+				else
+				{
+					Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
+					eventImage.setImageBitmap(eventBitmap);
+					saveBitmap(eventBitmap, filename, imageURL);
+				}
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

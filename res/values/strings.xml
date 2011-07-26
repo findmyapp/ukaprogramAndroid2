@@ -8,7 +8,6 @@
 	<string name="submitSettingsbutton">Lagre</string>
 	<string name="setting_prompt">Velg restriksjon</string>
 	<string name="setting_menu_item">Innstillinger</string>
-
 	<!-- Main menu section -->
 	<string name="mainMenu_program">Program</string>
 	<string name="mainMenu_concert">Konserter</string>
@@ -26,6 +25,7 @@
 	
 	<!-- Calendar -->
 	<string name="calendar_header">Kalender</string>
+	<string name="dayGallery_all">Alle</string>
 	
 	<!-- CalendarActivity days -->
 	<string name="calendar_monday">man</string>

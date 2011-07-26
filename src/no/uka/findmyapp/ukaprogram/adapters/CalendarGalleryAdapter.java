@@ -16,14 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CalendarGalleryAdapter extends BaseAdapter implements OnItemClickListener{
+public class CalendarGalleryAdapter extends BaseAdapter{
 	 int mGalleryItemBackground;
 	    private Context mContext;
 	    private final static String debug = "CalendarGalleryAdapter";
-	    private Integer[] mDateItemsIds = {
-	    		
-	    		 
-	    };
 
 	    public CalendarGalleryAdapter(Context c) {
 	        mContext = c;
@@ -34,7 +30,8 @@ public class CalendarGalleryAdapter extends BaseAdapter implements OnItemClickLi
 	    }
 
 	    public int getCount() {
-	        return (ApplicationConstants.UKA_END_DATE - ApplicationConstants.UKA_START_DATE + 1); //mDateItemsIds.length;
+	    	//Returns number of days + 2
+	        return (ApplicationConstants.UKA_END_DATE - ApplicationConstants.UKA_START_DATE + 3); 
 	    }
 
 	    public Object getItem(int position) {
@@ -57,22 +54,18 @@ public class CalendarGalleryAdapter extends BaseAdapter implements OnItemClickLi
 	    public View initTextViews(View test, int position){
 	    	TextView dayNumber;
 	    	TextView weekday;
-	    	int day = position + ApplicationConstants.UKA_START_DATE;
-	    	
+	    	int day = position + ApplicationConstants.UKA_START_DATE - 1;
 	    	dayNumber = (TextView) test.findViewById(R.id.date_item_day_number);
 	    	weekday = (TextView) test.findViewById(R.id.date_item_weekday);
 	    	
-	    	dayNumber.setText(String.valueOf(day));
-	    	weekday.setText(DateUtils.getShortWeekDayName(day));
+	    	if (position == 0 || position == getCount()-1){
+		    	dayNumber.setText(R.string.dayGallery_all);
+	    	}
+	    	else{
+		    	dayNumber.setText(String.valueOf(day));
+		    	weekday.setText(DateUtils.getShortWeekDayName(day));
+	    	}
+	    	
 	    	return test;
 	    }
-
-
-		@Override
-		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
-			Log.v(debug, "YO!");
-			// TODO Auto-generated method stub
-			
-		}
 }

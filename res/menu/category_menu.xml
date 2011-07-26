@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/category_menu_all" android:title="@string/category_all" />
-	<item android:id="@+id/category_menu_concert" android:title="@string/category_concert" />
-	<item android:id="@+id/category_menu_revue" android:title="@string/category_revue" />
-	<item android:id="@+id/category_menu_lecture" android:title="@string/category_lecture" />
-	<item android:id="@+id/category_menu_party" android:title="@string/category_party" />
+	<item 
+		android:id="@+id/category_menu_all" 
+		android:title="@string/category_all" 
+		/>
+	<item 
+		android:id="@+id/category_menu_concert" 
+		android:title="@string/category_concert" 
+		android:icon="@drawable/catconcert"
+		/>
+	<item 
+		android:id="@+id/category_menu_revue" 
+		android:title="@string/category_revue"
+		android:icon="@drawable/catrevue" />
+	<item 
+		android:id="@+id/category_menu_lecture" 
+		android:title="@string/category_lecture" 
+		android:icon="@drawable/catlecture"
+		/>
+	<item 
+		android:id="@+id/category_menu_party" 
+		android:title="@string/category_party" 
+		android:icon="@drawable/catparty"
+		/>
 </menu>
 

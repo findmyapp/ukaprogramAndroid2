@@ -22,7 +22,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -39,7 +41,7 @@ import android.widget.TextView;
 /**
  * The Class EventListActivity.
  */
-public class EventListActivity extends ListActivity implements OnClickListener
+public class EventListActivity extends ListActivity
 {	
 	/** The Constant debug. */
 	private final static String debug = "EventListActivity";
@@ -65,64 +67,76 @@ public class EventListActivity extends ListActivity implements OnClickListener
 		if (bundle != null) {
 			moveCursorToDate(mEventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
 		}
-		
-		initView();
+		//initView();
 		addDateScroll();
 	}
 	
 	private void addDateScroll(){
 		Gallery gallery = (Gallery) findViewById(R.id.gallery);
 	    gallery.setAdapter(new CalendarGalleryAdapter(this));
-
 	    gallery.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView parent, View v, int position, long id) {
+	        	String selection;
 	        	TextView dayNumberTV = (TextView) v.findViewById(R.id.date_item_day_number);
-	        	int day = Integer.valueOf(dayNumberTV.getText().toString());
-	            Log.v(debug, dayNumberTV.getText().toString());
-	            String selection = UkaEventContract.SHOWING_TIME + " > " + DateUtils.getTimestampFromDayNumber(day) + " AND " + UkaEventContract.SHOWING_TIME + " < " + DateUtils.getTimestampFromDayNumber(day +1);
-	            Log.v(debug, "Where statement: " + selection);
+	        	if(isInteger(dayNumberTV.getText().toString())){
+	        		int day = Integer.valueOf(dayNumberTV.getText().toString());
+		            selection = UkaEventContract.SHOWING_TIME + " > " + DateUtils.getTimestampFromDayNumber(day) + " AND " + UkaEventContract.SHOWING_TIME + " < " + DateUtils.getTimestampFromDayNumber(day +1);
+		            Log.v(debug, "Where statement: " + selection);
+	        	}
+	        	else{
+		            selection = null;
+	        	}
 	            refreshList(selection);
 	        }
 	    });
 
 	}
 	
+	public boolean isInteger(String string) {
+	    try {
+	        Integer.valueOf(string);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
+	
 	/**
 	 * Inits the view.
 	 */
-	private void initView() {
-		//Initializing category buttons
-		// All button
-		buttonInit(R.id.categorymenu_all, R.drawable.categorybutton_all, 
-				R.string.category_all, this);
-		
-		// Concert button
-		buttonInit(R.id.categorymenu_concert, R.drawable.categorybutton_concert, 
-				R.string.category_concert, this);
-
-		// Revue button
-		buttonInit(R.id.categorymenu_revue, R.drawable.categorybutton_revue, 
-				R.string.category_revue, this);
-		
-		// Lecture button
-		buttonInit(R.id.categorymenu_lecture, R.drawable.categorybutton_lecture, 
-				R.string.category_lecture, this);
-		
-		// Party button
-		buttonInit(R.id.categorymenu_party, R.drawable.categorybutton_party, 
-				R.string.category_party, this);
-		
-		// Favourites button
-		//TODO create favourite button background
-		buttonInit(R.id.categorymenu_favourites, R.drawable.categorybutton_revue, 
-				R.string.category_favourites, this);
-		
-		// Sets the header line color
-		setHorizontalRulingLinesColor(R.color.categorySelected_all);
-	
-		// Shows all events, null selection criteria
-		refreshList(null);
-	}
+//	private void initView() {
+//		//Initializing category buttons
+//		// All button
+//		buttonInit(R.id.categorymenu_all, R.drawable.categorybutton_all, 
+//				R.string.category_all, this);
+//		
+//		// Concert button
+//		buttonInit(R.id.categorymenu_concert, R.drawable.categorybutton_concert, 
+//				R.string.category_concert, this);
+//
+//		// Revue button
+//		buttonInit(R.id.categorymenu_revue, R.drawable.categorybutton_revue, 
+//				R.string.category_revue, this);
+//		
+//		// Lecture button
+//		buttonInit(R.id.categorymenu_lecture, R.drawable.categorybutton_lecture, 
+//				R.string.category_lecture, this);
+//		
+//		// Party button
+//		buttonInit(R.id.categorymenu_party, R.drawable.categorybutton_party, 
+//				R.string.category_party, this);
+//		
+//		// Favourites button
+//		//TODO create favourite button background
+//		buttonInit(R.id.categorymenu_favourites, R.drawable.categorybutton_revue, 
+//				R.string.category_favourites, this);
+//		
+//		// Sets the header line color
+//		setHorizontalRulingLinesColor(R.color.categorySelected_all);
+//	
+//		// Shows all events, null selection criteria
+//		refreshList(null);
+//	}
 
 	/**
 	 * Button init.
@@ -161,41 +175,43 @@ public class EventListActivity extends ListActivity implements OnClickListener
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	@Override
-	public void onClick(View v) {
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.v(debug, "TESTTETETET");
+	    // Handle item selection
 		String selection = UkaEventContract.EVENT_TYPE + " = ";
-		switch (v.getId()) {
-			case R.id.categorymenu_all:
+		switch (item.getItemId()) {
+			case R.id.category_menu_all:
 				setHorizontalRulingLinesColor(R.color.categorySelected_all);
 				selection = null;
 				refreshList(selection);
-				break; 
+				return true;
 	
-			case R.id.categorymenu_party:
+			case R.id.category_menu_party:
 				setHorizontalRulingLinesColor(R.color.categorySelected_party);
 				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_PARTY;
 				refreshList(selection);
-				break; 
+				return true;
 	
-			case R.id.categorymenu_concert:
+			case R.id.category_menu_concert:
 				setHorizontalRulingLinesColor(R.color.categorySelected_concert);
 				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_CONCERT;
 				refreshList(selection);
-				break; 
+				return true; 
 	
-			case R.id.categorymenu_lecture:
+			case R.id.category_menu_lecture:
 				setHorizontalRulingLinesColor(R.color.categorySelected_lecture);
 				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_LECTURE;
 				refreshList(selection);
-				break; 
+				return true; 
 	
-			case R.id.categorymenu_revue:
+			case R.id.category_menu_revue:
 				setHorizontalRulingLinesColor(R.color.categorySelected_revue);
 				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_REVUE ;
 				refreshList(selection);
-				break; 
+				return true; 
 
 			default:
-				break;
+				return false;
 		}
 	}
 
@@ -275,5 +291,13 @@ public class EventListActivity extends ListActivity implements OnClickListener
 			startActivity(intent);
 		}
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.category_menu, menu);
+	    return true;
+	}
+	
 
 }
