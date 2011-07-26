@@ -10,6 +10,7 @@ import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.activities.CalendarActivity;
 import no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity;
+import no.uka.findmyapp.ukaprogram.adapters.CalendarGalleryAdapter;
 import no.uka.findmyapp.ukaprogram.adapters.EventListCursorAdapter;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
@@ -25,10 +26,14 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.Gallery;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -56,16 +61,32 @@ public class EventListActivity extends ListActivity implements OnClickListener
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_list);
 		
-		HorizontalScrollView sv = (HorizontalScrollView) findViewById(R.id.eventList_horizontalScrollView);
-		
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			moveCursorToDate(mEventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
 		}
 		
 		initView();
+		addDateScroll();
 	}
+	
+	private void addDateScroll(){
+		Gallery gallery = (Gallery) findViewById(R.id.gallery);
+	    gallery.setAdapter(new CalendarGalleryAdapter(this));
 
+	    gallery.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView parent, View v, int position, long id) {
+	        	TextView dayNumberTV = (TextView) v.findViewById(R.id.date_item_day_number);
+	        	int day = Integer.valueOf(dayNumberTV.getText().toString());
+	            Log.v(debug, dayNumberTV.getText().toString());
+	            String selection = UkaEventContract.SHOWING_TIME + " > " + DateUtils.getTimestampFromDayNumber(day) + " AND " + UkaEventContract.SHOWING_TIME + " < " + DateUtils.getTimestampFromDayNumber(day +1);
+	            Log.v(debug, "Where statement: " + selection);
+	            refreshList(selection);
+	        }
+	    });
+
+	}
+	
 	/**
 	 * Inits the view.
 	 */

@@ -5,10 +5,13 @@
  */
 package no.uka.findmyapp.ukaprogram.utils;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 
 import android.util.Log;
 
@@ -44,7 +47,7 @@ public class DateUtils
 	public static final String WEDNESDAY = "ons";
 	
 	/** The Constant THURSDAY. */
-	public static final String THURSDAY = "torsdag";
+	public static final String THURSDAY = "tors";
 	
 	/** The Constant FRIDAY. */
 	public static final String FRIDAY = "fre";
@@ -114,13 +117,17 @@ public class DateUtils
 		else return getShortWeekDayName(getDayIntFromTimestamp(timestamp));
 	}
 	
+	public static long getTimestampFromDayNumber(int day){
+		Timestamp timestamp = new Timestamp(ApplicationConstants.YEAR, ApplicationConstants.MONTH, day, 4, 0, 0, 0);
+		return timestamp.getTime();
+	}
 	/**
 	 * Gets the short week day name.
 	 *
 	 * @param dayOfMonth the day of month
 	 * @return the short week day name
 	 */
-	private static String getShortWeekDayName(int dayOfMonth) {
+	public static String getShortWeekDayName(int dayOfMonth) {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 		

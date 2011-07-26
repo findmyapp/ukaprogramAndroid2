@@ -5,32 +5,33 @@
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<RelativeLayout 
-		android:layout_height="wrap_content" 
-		android:layout_width="fill_parent">
-		<LinearLayout 
-			android:id="@+id/header"
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent"
-			android:orientation="vertical">
-			<ImageView
-				android:id="@+id/event_list_header"  
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp" 
-				android:layout_alignParentTop="true"
-				android:layout_centerHorizontal="true"
-				android:src="@drawable/uka_logo_header"
-				android:layout_width="wrap_content" 
-				android:layout_gravity="center_horizontal">
-			</ImageView>
-		</LinearLayout>
-	</RelativeLayout>
-	<LinearLayout
-		android:id="@+id/eventList_HorizontalRulingHeader"
-		android:orientation="vertical" 
+	<LinearLayout 
+		android:id="@+id/header"
+		android:layout_height="wrap_content"
 		android:layout_width="fill_parent"
-		android:layout_height="3px" 
-		android:background="@color/category_party" />
+		android:orientation="vertical">
+		<ImageView 
+			android:layout_height="wrap_content"
+			android:paddingTop="10dp" 
+			android:id="@+id/imageView1"
+			android:src="@drawable/uka_logo_header" 
+			android:layout_width="wrap_content"
+			android:layout_gravity="center_horizontal">
+		</ImageView>
+		<LinearLayout
+			android:id="@+id/eventList_HorizontalRulingHeader"
+			android:layout_marginTop="10dp"
+			android:orientation="vertical" 
+			android:layout_width="fill_parent"
+			android:layout_height="3px" 
+			android:background="@color/category_party" />
+	</LinearLayout>
+	
+	<Gallery xmlns:android="http://schemas.android.com/apk/res/android" 
+	    android:id="@+id/gallery"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	/>
 	<ListView android:id="@android:id/list" 
 		android:layout_height="420dp"
 		android:layout_width="fill_parent" 
