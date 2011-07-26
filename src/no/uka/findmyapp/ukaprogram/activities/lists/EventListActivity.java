@@ -30,6 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.HorizontalScrollView;
@@ -89,6 +90,31 @@ public class EventListActivity extends ListActivity
 	            refreshList(selection);
 	        }
 	    });
+	    
+	    gallery.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView parent, View v,
+					int arg2, long arg3) {
+				
+				TextView dayNumberTV = (TextView) v.findViewById(R.id.date_item_day_number);
+	        	int day = Integer.valueOf(dayNumberTV.getText().toString());
+	            Log.v(debug, dayNumberTV.getText().toString());
+	            String selection = UkaEventContract.SHOWING_TIME + " > " + DateUtils.getTimestampFromDayNumber(day) + " AND " + UkaEventContract.SHOWING_TIME + " < " + DateUtils.getTimestampFromDayNumber(day +1);
+	            Log.v(debug, "Where statement: " + selection);
+	            refreshList(selection);
+	            
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView parent) {
+				// TODO Auto-generated method stub
+				
+			}
+	    	
+	    });
+	    
 
 	}
 	
@@ -170,6 +196,7 @@ public class EventListActivity extends ListActivity
 
 		startActivity(intent);
 	}
+	
 
 	/* (non-Javadoc)
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
@@ -291,13 +318,10 @@ public class EventListActivity extends ListActivity
 			startActivity(intent);
 		}
 	}
-	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu){
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.category_menu, menu);
 	    return true;
 	}
-	
-
 }
