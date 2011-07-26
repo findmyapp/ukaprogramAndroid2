@@ -57,8 +57,11 @@ public class EventsUpdater
 	 */
 	public boolean eventsDatabaseNotEmtpy() {
 		Log.v(debug, "inside eventsDatabaseNotEmtpy");
+		Log.v(debug, UkaEventContract.EVENT_CONTENT_URI.toString());
+		Log.v(debug, mContext.toString());
 		Cursor eventCursor = mContext.getContentResolver()
 			.query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
+		Log.v(debug, eventCursor.toString());
 		if(eventCursor.getCount() > 0) {
 			return true; 
 		}
