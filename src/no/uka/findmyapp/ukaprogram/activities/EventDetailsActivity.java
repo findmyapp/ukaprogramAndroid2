@@ -12,13 +12,19 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
+
+import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
 import no.uka.findmyapp.ukaprogram.utils.NetworkUtils;
-import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -38,13 +44,17 @@ import android.widget.Toast;
 /**
  * The Class EventDetailsActivity.
  */
-public class EventDetailsActivity extends Activity implements OnClickListener, 
-OnCheckedChangeListener 
+public class EventDetailsActivity extends PopupMenuActivity 
+	implements OnClickListener, OnCheckedChangeListener
 {
 	private static final int BITMAP_COMPRESSION_PERCENT = 40;
 	/** The Constant debug. */
 	private static final String debug = "EventsDetailsActivity";
 
+	private RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
+	
+	private Facebook mFacebook; 
+	
 	/** The m selected event. */
 	private UkaEvent mSelectedEvent; 
 	
@@ -77,12 +87,31 @@ OnCheckedChangeListener
 		}
 	}
 
+	private void setupFacebookDialogListener() {
+		mFacebook = new Facebook(ApplicationConstants.UKA_PROGRAM_FACEBOOK_ID);
+        mFacebook.authorize(this, new DialogListener() {
+            @Override
+            public void onComplete(Bundle values) {
+            	//serviceHelper.facebookGetFriends(mFacebook.getAccessToken());
+            }
+
+            @Override
+            public void onFacebookError(FacebookError error) {}
+
+            @Override
+            public void onError(DialogError e) {}
+
+            @Override
+            public void onCancel() {}
+        });
+	}
+	
 	/**
 	 * Populate view.
 	 *
 	 * @param selectedEvent the selected event
 	 */
-	public void populateView(UkaEvent selectedEvent){
+	private void populateView(UkaEvent selectedEvent){
 		Log.v(debug, "populateView: selectedEvent " + selectedEvent.toString());
 		
 
@@ -95,7 +124,8 @@ OnCheckedChangeListener
 		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
 		timeAndPlace.setText(	
 				DateUtils.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
-				+ DateUtils.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) + " " 
+				+ DateUtils.getCustomDateFormatFromTimestamp(
+						"dd E MMM.", selectedEvent.getShowingTime()) + " " 
 				+ DateUtils.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
 				+ selectedEvent.getPlace());
 
@@ -196,7 +226,8 @@ OnCheckedChangeListener
 	}
 
 	/* (non-Javadoc)
-	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged(android.widget.CompoundButton, boolean)
+	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged
+	 * (android.widget.CompoundButton, boolean)
 	 */
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -205,11 +236,13 @@ OnCheckedChangeListener
 
 		if(isChecked) {
 			fu.changeFavouriteFlag(mSelectedEvent.getId(), true);
-			info = mSelectedEvent.getTitle() + getResources().getString(R.string.toast_isAddedAsFavourite);
+			info = mSelectedEvent.getTitle() + getResources().getString(
+					R.string.toast_isAddedAsFavourite);
 		}
 		else {			
 			fu.changeFavouriteFlag(mSelectedEvent.getId(), false);
-			info = mSelectedEvent.getTitle() + getResources().getString(R.string.toast_isRemovedAsFavourite);
+			info = mSelectedEvent.getTitle() + getResources().getString(
+					R.string.toast_isRemovedAsFavourite);
 		}
 
 		showToast(info); 

@@ -89,7 +89,6 @@ public class EventListActivity extends ListActivity
 	            refreshList(selection);
 	        }
 	    });
-	    
 	    gallery.setOnItemSelectedListener(new OnItemSelectedListener(){
 
 			@Override
@@ -106,19 +105,13 @@ public class EventListActivity extends ListActivity
 		            selection = null;
 	        	}
 	            refreshList(selection);
-	            
-				
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView parent) {
 				// TODO Auto-generated method stub
-				
 			}
-	    	
 	    });
-	    
-
 	}
 	
 	public boolean isInteger(String string) {
@@ -130,43 +123,6 @@ public class EventListActivity extends ListActivity
 	    }
 	}
 	
-	/**
-	 * Inits the view.
-	 */
-//	private void initView() {
-//		//Initializing category buttons
-//		// All button
-//		buttonInit(R.id.categorymenu_all, R.drawable.categorybutton_all, 
-//				R.string.category_all, this);
-//		
-//		// Concert button
-//		buttonInit(R.id.categorymenu_concert, R.drawable.categorybutton_concert, 
-//				R.string.category_concert, this);
-//
-//		// Revue button
-//		buttonInit(R.id.categorymenu_revue, R.drawable.categorybutton_revue, 
-//				R.string.category_revue, this);
-//		
-//		// Lecture button
-//		buttonInit(R.id.categorymenu_lecture, R.drawable.categorybutton_lecture, 
-//				R.string.category_lecture, this);
-//		
-//		// Party button
-//		buttonInit(R.id.categorymenu_party, R.drawable.categorybutton_party, 
-//				R.string.category_party, this);
-//		
-//		// Favourites button
-//		//TODO create favourite button background
-//		buttonInit(R.id.categorymenu_favourites, R.drawable.categorybutton_revue, 
-//				R.string.category_favourites, this);
-//		
-//		// Sets the header line color
-//		setHorizontalRulingLinesColor(R.color.categorySelected_all);
-//	
-//		// Shows all events, null selection criteria
-//		refreshList(null);
-//	}
-
 	/**
 	 * Button init.
 	 *
@@ -183,7 +139,8 @@ public class EventListActivity extends ListActivity
 	}
 
 	/* (non-Javadoc)
-	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, 
+	 * android.view.View, int, long)
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -192,7 +149,6 @@ public class EventListActivity extends ListActivity
 		Cursor c = (Cursor) l.getItemAtPosition(position);
 
 		UkaEvent event = UkaEventMapper.getUkaEventFromCursor(c);
-		Log.v(debug, event.toString());
 		
 		Intent intent = new Intent(this, EventDetailsActivity.class); 
 		intent.putExtra(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL, event);
@@ -218,25 +174,29 @@ public class EventListActivity extends ListActivity
 	
 			case R.id.category_menu_party:
 				setHorizontalRulingLinesColor(R.color.categorySelected_party);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_PARTY;
+				selection = UkaEventContract.EVENT_TYPE + " = "
+				+ ApplicationConstants.CATEGORY_PARTY;
 				refreshList(selection);
 				return true;
 	
 			case R.id.category_menu_concert:
 				setHorizontalRulingLinesColor(R.color.categorySelected_concert);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_CONCERT;
+				selection = UkaEventContract.EVENT_TYPE + " = "
+				+ ApplicationConstants.CATEGORY_CONCERT;
 				refreshList(selection);
 				return true; 
 	
 			case R.id.category_menu_lecture:
 				setHorizontalRulingLinesColor(R.color.categorySelected_lecture);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_LECTURE;
+				selection = UkaEventContract.EVENT_TYPE + " = " 
+				+ ApplicationConstants.CATEGORY_LECTURE;
 				refreshList(selection);
 				return true; 
 	
 			case R.id.category_menu_revue:
 				setHorizontalRulingLinesColor(R.color.categorySelected_revue);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_REVUE ;
+				selection = UkaEventContract.EVENT_TYPE + " = " 
+				+ ApplicationConstants.CATEGORY_REVUE ;
 				refreshList(selection);
 				return true; 
 
@@ -262,7 +222,8 @@ public class EventListActivity extends ListActivity
 	}
 
 	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, android.view.View, android.view.ContextMenu.ContextMenuInfo)
+	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, 
+	 * android.view.View, android.view.ContextMenu.ContextMenuInfo)
 	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -280,18 +241,13 @@ public class EventListActivity extends ListActivity
 	 */
 	private void refreshList(String selection){
 		Log.v(debug, "Refreshing page");
-		mEventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
+		mEventCursor = this.managedQuery(
+				UkaEventContract.EVENT_CONTENT_URI, 
+				null, 
+				selection, 
+				null, 
+				ORDER_BY);
 	
-		Log.v(debug, "refreshList: Setting list adapter");
-		Log.v(debug, "refreshList:cursor " + mEventCursor);
-		
-		while (mEventCursor.moveToNext()) {
-			Log.v(debug, "refreshingList count cursor: " + mEventCursor.getCount());
-			String columnNames = ""; 
-			for (int i = 0; i < mEventCursor.getColumnCount(); i++) {
-				columnNames += "  " + mEventCursor.getColumnName(i);
-			}
-		}
 		if (selection != null){
 			if (selection.indexOf(UkaEventContract.SHOWING_TIME) == -1){
 				setListAdapter(new AllEventListCursorAdapter(this, mEventCursor));
@@ -331,6 +287,7 @@ public class EventListActivity extends ListActivity
 			startActivity(intent);
 		}
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
 	    MenuInflater inflater = getMenuInflater();

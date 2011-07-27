@@ -100,4 +100,9 @@ public final class ApplicationConstants
 	
 	public static final String USER_PRICVAY_COLUMN_MEDIA = "media";
 	
+	
+	/* Facebook constants */
+	
+	public static final String UKA_PROGRAM_FACEBOOK_ID =
+		"197690866955602";
 }
