@@ -24,16 +24,26 @@
 			android:orientation="vertical" 
 			android:layout_width="fill_parent"
 			android:layout_height="3px" 
-			android:background="@color/category_party" />
+			android:background="@color/category_all" />
+		<RelativeLayout 
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:background="@color/grey">
+			<Gallery xmlns:android="http://schemas.android.com/apk/res/android" 
+			    android:id="@+id/gallery"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			/>
+		</RelativeLayout>
+		<LinearLayout
+			android:id="@+id/eventList_HorizontalRulingHeader2"
+			android:orientation="vertical" 
+			android:layout_width="fill_parent"
+			android:layout_height="3px" 
+			android:background="@color/category_all" />
 	</LinearLayout>
-	
-	<Gallery xmlns:android="http://schemas.android.com/apk/res/android" 
-	    android:id="@+id/gallery"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	/>
 	<ListView android:id="@android:id/list" 
-		android:layout_height="420dp"
+		android:layout_height="fill_parent"
 		android:layout_width="fill_parent" 
 		android:footerDividersEnabled="false" 
 		android:layout_marginLeft="10dp"
@@ -45,74 +55,6 @@
 		android:layout_width="fill_parent"
 		android:layout_height="3px" 
 		android:layout_marginBottom="3dp" />
-	<HorizontalScrollView
-		android:id="@+id/eventList_horizontalScrollView"
-		android:background="@color/shadowColor"
-		android:layout_height="fill_parent"
-		android:layout_width="match_parent"
-		android:focusable="true"
-		android:foregroundGravity="center"
-		android:scrollbars="none">
-		<LinearLayout 
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:gravity="center_vertical">
-			<Button 
-				android:id="@+id/categorymenu_all"
-				style="@style/eventCategoryButton"
-				android:background="@drawable/categorybutton_all"
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true" 
-				android:layout_marginLeft="3dp"
-				android:layout_marginTop="3dp"/>
-			<Button 
-				android:id="@+id/categorymenu_concert"
-				style="@style/eventCategoryButton"
-				android:background="@drawable/categorybutton_concert"
-				android:layout_marginTop="3dp"
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true" 
-				android:layout_marginLeft="3dp"/>
-			<Button 
-				android:id="@+id/categorymenu_revue"
-				style="@style/eventCategoryButton"
-				android:background="@drawable/categorybutton_revue"
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true" 
-				android:layout_marginLeft="3dp"
-				android:layout_marginTop="3dp"/>
-			<Button 
-				android:id="@+id/categorymenu_lecture"
-				style="@style/eventCategoryButton"
-				android:background="@drawable/categorybutton_lecture"
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true" 
-				android:layout_marginLeft="3dp"
-				android:layout_marginTop="3dp"/>
-			<Button 
-				android:id="@+id/categorymenu_party"
-				style="@style/eventCategoryButton"
-				android:background="@drawable/categorybutton_party"
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true" 
-				android:layout_marginLeft="3dp"
-				android:layout_marginTop="3dp"/>
-			<Button 
-				android:id="@+id/categorymenu_favourites"
-				style="@style/eventCategoryButton"
-				android:background="@drawable/categorybutton_revue"
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true" 
-				android:layout_marginLeft="3dp"
-				android:layout_marginTop="3dp"/>
-		</LinearLayout>
-	</HorizontalScrollView>
 </LinearLayout>
 
 

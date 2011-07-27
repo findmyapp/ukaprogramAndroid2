@@ -25,6 +25,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -96,12 +97,16 @@ public class EventListActivity extends ListActivity
 			@Override
 			public void onItemSelected(AdapterView parent, View v,
 					int arg2, long arg3) {
-				
 				TextView dayNumberTV = (TextView) v.findViewById(R.id.date_item_day_number);
-	        	int day = Integer.valueOf(dayNumberTV.getText().toString());
-	            Log.v(debug, dayNumberTV.getText().toString());
-	            String selection = UkaEventContract.SHOWING_TIME + " > " + DateUtils.getTimestampFromDayNumber(day) + " AND " + UkaEventContract.SHOWING_TIME + " < " + DateUtils.getTimestampFromDayNumber(day +1);
-	            Log.v(debug, "Where statement: " + selection);
+				String selection;
+				if(isInteger(dayNumberTV.getText().toString())){
+	        		int day = Integer.valueOf(dayNumberTV.getText().toString());
+		            selection = UkaEventContract.SHOWING_TIME + " > " + DateUtils.getTimestampFromDayNumber(day) + " AND " + UkaEventContract.SHOWING_TIME + " < " + DateUtils.getTimestampFromDayNumber(day +1);
+		            Log.v(debug, "Where statement: " + selection);
+	        	}
+	        	else{
+		            selection = null;
+	        	}
 	            refreshList(selection);
 	            
 				
@@ -254,8 +259,8 @@ public class EventListActivity extends ListActivity
 		line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingFooter);
 		line.setBackgroundColor(getResources().getColor(colorId));
 		
-		HorizontalScrollView hsv = (HorizontalScrollView) findViewById(R.id.eventList_horizontalScrollView);
-		hsv.setBackgroundColor(getResources().getColor(colorId));
+		//HorizontalScrollView hsv = (HorizontalScrollView) findViewById(R.id.eventList_horizontalScrollView);
+		//hsv.setBackgroundColor(getResources().getColor(colorId));
 	}
 
 	/* (non-Javadoc)

@@ -8,20 +8,19 @@ package no.uka.findmyapp.ukaprogram.activities;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Date;
 
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
+import no.uka.findmyapp.ukaprogram.utils.NetworkUtils;
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,10 +38,10 @@ import android.widget.Toast;
 /**
  * The Class EventDetailsActivity.
  */
-public class EventDetailsActivity extends PopupMenuActivity implements OnClickListener, 
+public class EventDetailsActivity extends Activity implements OnClickListener, 
 OnCheckedChangeListener 
 {
-
+	private static final int BITMAP_COMPRESSION_PERCENT = 40;
 	/** The Constant debug. */
 	private static final String debug = "EventsDetailsActivity";
 
@@ -125,7 +124,7 @@ OnCheckedChangeListener
 			OutputStream os = null;
 			URL imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
 			String filename = getFileNameFromPath(selectedEvent.getImage());
-			if (filename.length() == 0){
+			if (filename.length() == 0 || !fileExist(filename) && NetworkUtils.isOnline(this.getApplicationContext())){
 				eventImage.setImageResource(R.drawable.default_artist_image);
 			}
 			else
@@ -223,7 +222,7 @@ OnCheckedChangeListener
 		} 
 	    try {
 	        OutputStream os = new FileOutputStream(file);
-	        image.compress(Bitmap.CompressFormat.PNG, 40, os);
+	        image.compress(Bitmap.CompressFormat.PNG, BITMAP_COMPRESSION_PERCENT, os);
 	        os.close();
 	    } catch (IOException e) {
 	        // Unable to create file, likely because external storage is
