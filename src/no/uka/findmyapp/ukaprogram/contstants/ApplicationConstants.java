@@ -17,8 +17,17 @@ public final class ApplicationConstants
 	/* General constants */
 	public static final String UKA_PATH = "http://www.uka.no";
 	
+	public static final int UKA_START_DATE = 6;
+	
+	public static final int UKA_END_DATE = 30;
+	
 	public static final boolean IS_FAVOURITE = true; 
 
+	/*Date Constants. */
+	public static final int YEAR = 111;
+	
+	public static final int MONTH = 9;
+	
 	/* Gesture contants. */
 	/** The Constant GESTURE_LEFT. */
 	public static final String GESTURE_LEFT = "left";

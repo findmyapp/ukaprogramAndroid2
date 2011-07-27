@@ -69,6 +69,8 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 			t.setText(DateUtils.getCustomDateFormatFromTimestamp("dd",
 					getLongFromTableColumn(UkaEventContract.SHOWING_TIME)));
 			
+			
+			
 			t = (TextView) eventView.findViewById(R.id.listItemPlace);
 			t.setText(getStringFromTableColumn(UkaEventContract.PLACE));
 			

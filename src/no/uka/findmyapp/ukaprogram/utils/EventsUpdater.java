@@ -74,8 +74,8 @@ public class EventsUpdater
 	public void updateEvents() {
 		Log.v(debug, "updateEvents called");
 		try {
-			Log.v(debug, "isOnline " + isOnline());
-			if(isOnline()) { 
+			Log.v(debug, "isOnline " + NetworkUtils.isOnline(this.mContext));
+			if(NetworkUtils.isOnline(this.mContext)) { 
 				update(); 
 			}
 			else { 
@@ -142,15 +142,7 @@ public class EventsUpdater
 	 *
 	 * @return true, if is online
 	 */
-	private boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) this.mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
-	}
 	
 	private void setupBroadCastReciver() {
         ReciveIntent intentReceiver = new ReciveIntent();
