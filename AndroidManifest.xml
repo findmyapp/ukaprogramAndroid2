@@ -14,24 +14,24 @@
 		android:theme="@style/CustomTheme" android:screenOrientation="portrait">
 
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.StartupLoader"
-			android:label="@string/app_name" android:screenOrientation="portrait" android:allowTaskReparenting="false">
+			android:label="@string/app_name" android:screenOrientation="portrait"  android:allowTaskReparenting="false">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.Main"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity"></activity>
-		<activity android:name=".activities.lists.EventListActivity"></activity>
-		<activity android:name=".activities.lists.FavouritesListActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EditContactActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FiveNextActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.SettingsActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.LocationListActivity"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.Main" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.lists.EventListActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.lists.FavouritesListActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EditContactActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FiveNextActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.SettingsActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.lists.LocationListActivity" android:screenOrientation="portrait"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.PlacesActivity"></activity>
-		<activity android:name=".activities.lists.ConcertListActivity"></activity>
+		<activity android:name=".activities.lists.ConcertListActivity" android:screenOrientation="portrait"></activity>
 		
 		<service android:name="no.uka.findmyapp.android.rest.client.RestIntentService" />
 		

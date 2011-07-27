@@ -10,6 +10,7 @@ import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.activities.CalendarActivity;
 import no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity;
+import no.uka.findmyapp.ukaprogram.adapters.AllEventListCursorAdapter;
 import no.uka.findmyapp.ukaprogram.adapters.CalendarGalleryAdapter;
 import no.uka.findmyapp.ukaprogram.adapters.EventListCursorAdapter;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
@@ -25,7 +26,6 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.VelocityTracker;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -34,7 +34,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Gallery;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -69,7 +68,6 @@ public class EventListActivity extends ListActivity
 		if (bundle != null) {
 			moveCursorToDate(mEventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
 		}
-		//initView();
 		addDateScroll();
 	}
 	
@@ -286,16 +284,26 @@ public class EventListActivity extends ListActivity
 	
 		Log.v(debug, "refreshList: Setting list adapter");
 		Log.v(debug, "refreshList:cursor " + mEventCursor);
+		
 		while (mEventCursor.moveToNext()) {
 			Log.v(debug, "refreshingList count cursor: " + mEventCursor.getCount());
 			String columnNames = ""; 
 			for (int i = 0; i < mEventCursor.getColumnCount(); i++) {
 				columnNames += "  " + mEventCursor.getColumnName(i);
 			}
-			Log.v(debug, "refreshingList fields count " + mEventCursor.getColumnCount());
-			Log.v(debug, "refreshingList fields in cursor " + columnNames);
 		}
-		setListAdapter(new EventListCursorAdapter(this, mEventCursor));
+		if (selection != null){
+			if (selection.indexOf(UkaEventContract.SHOWING_TIME) == -1){
+				setListAdapter(new AllEventListCursorAdapter(this, mEventCursor));
+			}
+			else{
+				setListAdapter(new EventListCursorAdapter(this, mEventCursor));
+			}
+		}
+		else
+		{
+			setListAdapter(new AllEventListCursorAdapter(this, mEventCursor));
+		}
 	}
 
 	//TODO FIX moveCursorToDate, CalendarActivity or EventListActivity?

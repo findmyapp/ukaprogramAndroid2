@@ -60,25 +60,19 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 	 * Inits the view.
 	 */
 	private void initView() {
-		Button menuButton = (Button) findViewById(R.id.mainMenu_favourites);
-		menuButton.setBackgroundResource(R.drawable.mainmenubutton_favourites);
+		Button menuButton = (Button) findViewById(R.id.mainMenu_news);
+		menuButton.setBackgroundResource(R.drawable.mainbutton_news);
 		menuButton.setOnClickListener(this);
 		
 		menuButton = (Button) findViewById(R.id.mainMenu_program);
 		menuButton.setOnClickListener(this);
-		menuButton.setBackgroundResource(R.drawable.mainmenubutton_program);
-		
-		menuButton = (Button) findViewById(R.id.mainMenu_concerts);
-		menuButton.setOnClickListener(this);
-		menuButton.setBackgroundResource(R.drawable.mainmenubutton_artist);
+		menuButton.setBackgroundResource(R.drawable.mainbutton_program);
 		
 		menuButton = (Button) findViewById(R.id.mainMenu_places);
 		menuButton.setOnClickListener(this);
-		menuButton.setBackgroundResource(R.drawable.mainmenubutton_places);
+		menuButton.setBackgroundResource(R.drawable.mainbutton_places);
 		
-		menuButton = (Button) findViewById(R.id.mainMenu_refresh);
-		menuButton.setOnClickListener(this);
-		menuButton.setHighlightColor(R.color.uka_pink);
+	
 	}
 	
 	/* (non-Javadoc)
@@ -89,16 +83,9 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		case (R.id.mainMenu_program):
 			gotoActivity(EventListActivity.class);
 			break;
-		case (R.id.mainMenu_refresh):
-			EventsUpdater eu = new EventsUpdater(getApplicationContext()); 
-			eu.updateEvents();
-			break;
-		case (R.id.mainMenu_favourites):
-			gotoActivity(FavouritesListActivity.class);
+		case (R.id.mainMenu_news):
+			//gotoActivity(FavouritesListActivity.class);
 			break; 
-		case (R.id.mainMenu_concerts):
-			gotoActivity(ConcertListActivity.class);
-			break;
 		case (R.id.mainMenu_places):
 			gotoActivity(LocationListActivity.class);
 			break;

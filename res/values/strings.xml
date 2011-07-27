@@ -10,10 +10,8 @@
 	<string name="setting_menu_item">Innstillinger</string>
 	<!-- Main menu section -->
 	<string name="mainMenu_program">Program</string>
-	<string name="mainMenu_concert">Konserter</string>
+	<string name="mainMenu_news">Nyheter</string>
 	<string name="mainMenu_places">Steder</string>
-	<string name="mainMenu_favourites">Favoritter</string>
-	<string name="mainMenu_refresh">Oppdater</string>
 	
 	<!-- Category naming section -->
 	<string name="category_all">Alle</string>

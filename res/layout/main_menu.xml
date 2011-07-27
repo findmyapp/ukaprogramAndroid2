@@ -24,7 +24,7 @@
 			android:layout_width="wrap_content" 
 			android:src="@drawable/uka_logo"
 			android:layout_gravity="center"
-			android:layout_marginBottom="20dp">
+			android:layout_marginBottom="40dp">
 		</ImageView>
 		<LinearLayout 
 			android:orientation="vertical" 
@@ -33,21 +33,21 @@
 			android:layout_gravity="center"
 			android:gravity="center">
 			<Button 
+				android:id="@+id/mainMenu_news"
+				style="@style/MainMenuButton"
+				android:text="@string/mainMenu_news" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="20dp">
+			</Button>
+
+			<Button 
 				android:id="@+id/mainMenu_program"
 				style="@style/MainMenuButton"
 				android:text="@string/mainMenu_program" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="10dp">
-			</Button>
-	
-			<Button 
-				android:id="@+id/mainMenu_concerts"
-				style="@style/MainMenuButton"
-				android:text="@string/mainMenu_concert" 
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="10dp">
+				android:layout_marginBottom="20dp">
 			</Button>
 			<Button 
 				android:id="@+id/mainMenu_places"
@@ -55,23 +55,7 @@
 				android:text="@string/mainMenu_places" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="10dp">
-			</Button>
-			<Button 
-				android:id="@+id/mainMenu_favourites"
-				style="@style/MainMenuButton"
-				android:text="@string/mainMenu_favourites" 
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="10dp">
-			</Button>
-			<Button 
-				android:id="@+id/mainMenu_refresh"
-				style="@style/MainMenuButton"
-				android:text="@string/mainMenu_refresh" 
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="10dp">
+				android:layout_marginBottom="20dp">
 			</Button>
 		</LinearLayout>
 	</LinearLayout>

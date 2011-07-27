@@ -23,7 +23,7 @@ import android.widget.TextView;
 /**
  * The Class EventListCursorAdapter.
  */
-public class EventListCursorAdapter extends CursorAdapter implements OnClickListener
+public class AllEventListCursorAdapter extends CursorAdapter implements OnClickListener
 {
 	/** The Constant debug. */
 	private static final String debug = "EventListCursorAdapter";
@@ -40,7 +40,7 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 	 * @param context the context
 	 * @param cursor the cursor
 	 */
-	public EventListCursorAdapter(Context context, Cursor cursor) {
+	public AllEventListCursorAdapter(Context context, Cursor cursor) {
 		super(context, cursor, true);
 		Log.v(debug, "Inside EventListCursorAdapter constructor");
 		this.inflater = LayoutInflater.from(context);
@@ -57,9 +57,20 @@ public class EventListCursorAdapter extends CursorAdapter implements OnClickList
 			TextView t = (TextView) eventView.findViewById(R.id.listItemTitle);
 			t.setText(getStringFromTableColumn(UkaEventContract.TITLE));
 			
-			t = (TextView) eventView.findViewById(R.id.listItemDayNumber);
+			t = (TextView) eventView.findViewById(R.id.listItemEventTime);
 			t.setText(DateUtils.getTimeFromTimestamp(
 					getLongFromTableColumn(UkaEventContract.SHOWING_TIME)));
+			
+			t = (TextView) eventView.findViewById(R.id.listItemWeekday); 
+			String showingEvent = DateUtils.getWeekdayNameFromTimestamp(
+					getLongFromTableColumn(UkaEventContract.SHOWING_TIME));
+			t.setText(showingEvent);
+			
+			t = (TextView) eventView.findViewById(R.id.listItemDayNumber);
+			t.setText(DateUtils.getCustomDateFormatFromTimestamp("dd",
+					getLongFromTableColumn(UkaEventContract.SHOWING_TIME)));
+			
+			
 			
 			t = (TextView) eventView.findViewById(R.id.listItemPlace);
 			t.setText(getStringFromTableColumn(UkaEventContract.PLACE));

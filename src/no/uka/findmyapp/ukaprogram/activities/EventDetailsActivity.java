@@ -47,6 +47,11 @@ OnCheckedChangeListener
 
 	/** The m selected event. */
 	private UkaEvent mSelectedEvent; 
+	
+	private URL imageURL;
+	private Bitmap eventBitmap;
+	private String filename;
+	private ImageView eventImage;
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -118,13 +123,14 @@ OnCheckedChangeListener
 
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
 
-		ImageView eventImage = (ImageView) findViewById(R.id.event_details_picture);
+		eventImage = (ImageView) findViewById(R.id.event_details_picture);
 
 		try {
 			OutputStream os = null;
-			URL imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
-			String filename = getFileNameFromPath(selectedEvent.getImage());
-			if (filename.length() == 0 || !fileExist(filename) && NetworkUtils.isOnline(this.getApplicationContext())){
+			imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
+			filename = getFileNameFromPath(selectedEvent.getImage());
+			if (filename.length() == 0){
+				Log.v(debug, "Finner ikke bilde");
 				eventImage.setImageResource(R.drawable.default_artist_image);
 			}
 			else
@@ -134,9 +140,30 @@ OnCheckedChangeListener
 				}
 				else
 				{
-					Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
-					eventImage.setImageBitmap(eventBitmap);
-					saveBitmap(eventBitmap, filename, imageURL);
+					
+					new Thread(new Runnable() {
+						public void run() {
+							try {
+								Log.v(debug, "ehiheihe");
+								eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream());
+								saveBitmap(eventBitmap, filename, imageURL);
+								
+								runOnUiThread(new Runnable() {
+									public void run() {
+										// TODO Auto-generated method stub
+										eventImage.setImageBitmap(eventBitmap);
+									}
+								});
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} 
+							
+						}
+					}).start();
+					//Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
+					//eventImage.setImageBitmap(eventBitmap);
+					//saveBitmap(eventBitmap, filename, imageURL);
 				}
 			}
 		} catch (MalformedURLException e) {
@@ -157,6 +184,7 @@ OnCheckedChangeListener
 		if(selectedEvent.isFavourite()) favorites.setChecked(true); 
 		favorites.setOnCheckedChangeListener(this);	
 	}
+	
 	private boolean fileExist(String filename){
 		File file = new File(getExternalCacheDir(), filename);
 		if (file != null) {
