@@ -12,19 +12,12 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.facebook.android.DialogError;
-import com.facebook.android.Facebook;
-import com.facebook.android.Facebook.DialogListener;
-import com.facebook.android.FacebookError;
-
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
-import no.uka.findmyapp.ukaprogram.utils.NetworkUtils;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -37,8 +30,14 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -46,7 +45,7 @@ import android.widget.Toast;
  */
 public class EventDetailsActivity extends PopupMenuActivity 
 	implements OnClickListener, OnCheckedChangeListener
-{
+{	
 	private static final int BITMAP_COMPRESSION_PERCENT = 40;
 	/** The Constant debug. */
 	private static final String debug = "EventsDetailsActivity";
@@ -61,8 +60,10 @@ public class EventDetailsActivity extends PopupMenuActivity
 	private URL imageURL;
 	private Bitmap eventBitmap;
 	private String filename;
+	
 	private ImageView eventImage;
-
+	private ProgressBar imageProgressBar;
+	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -152,7 +153,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 				+ getResources().getString(R.string.eventDetailedActivity_year));
 
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
-
+		imageProgressBar = (ProgressBar) findViewById(R.id.event_details_image_progressbar);
 		eventImage = (ImageView) findViewById(R.id.event_details_picture);
 
 		try {
@@ -170,7 +171,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 				}
 				else
 				{
-					
+					imageProgressBar.setVisibility(ProgressBar.VISIBLE);
 					new Thread(new Runnable() {
 						public void run() {
 							try {
@@ -182,6 +183,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 									public void run() {
 										// TODO Auto-generated method stub
 										eventImage.setImageBitmap(eventBitmap);
+										imageProgressBar.setVisibility(ProgressBar.INVISIBLE);
 									}
 								});
 							} catch (IOException e) {

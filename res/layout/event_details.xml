@@ -10,7 +10,8 @@
 		android:id="@+id/imageView1"
 		android:src="@drawable/uka_logo_header" 
 		android:layout_width="wrap_content"
-		android:layout_gravity="center_horizontal"></ImageView>
+		android:layout_gravity="center_horizontal">
+	</ImageView>
 	<LinearLayout 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -85,13 +86,27 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"			
 			>
-				<ImageView 
-					android:layout_height="wrap_content"
-					android:id="@+id/event_details_picture"
-					android:src="@drawable/melissahorn" 
+				<RelativeLayout 
 					android:layout_width="fill_parent"
-					android:layout_gravity="center_horizontal">
-				</ImageView>
+					android:layout_height="wrap_content"
+					>
+					<ImageView 
+						android:layout_height="wrap_content"
+						android:id="@+id/event_details_picture"
+						android:src="@drawable/melissahorn" 
+						android:layout_width="fill_parent"
+						android:layout_centerInParent="true">
+					</ImageView>
+					<ProgressBar
+						style="@android:style/Widget.ProgressBar.Small"
+						android:layout_centerInParent="true"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/event_details_image_progressbar"
+						android:visibility="invisible">
+					</ProgressBar>"
+					
+				</RelativeLayout>
 			</RelativeLayout>
 				<TextView 
 					android:id="@+id/detailedEventTitle" 
