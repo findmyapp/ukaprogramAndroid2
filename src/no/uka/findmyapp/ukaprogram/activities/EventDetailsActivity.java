@@ -9,11 +9,18 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
+
+import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -33,12 +40,16 @@ import android.widget.Toast;
 /**
  * The Class EventDetailsActivity.
  */
-public class EventDetailsActivity extends PopupMenuActivity implements OnClickListener, 
-	OnCheckedChangeListener 
+public class EventDetailsActivity extends PopupMenuActivity 
+	implements OnClickListener, OnCheckedChangeListener
 {
 	
 	/** The Constant debug. */
 	private static final String debug = "EventsDetailsActivity";
+	
+	private RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
+	
+	private Facebook mFacebook; 
 	
 	/** The m selected event. */
 	private UkaEvent mSelectedEvent; 
@@ -67,12 +78,31 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		}
 	}
 	
+	private void setupFacebookDialogListener() {
+		mFacebook = new Facebook(ApplicationConstants.UKA_PROGRAM_FACEBOOK_ID);
+        mFacebook.authorize(this, new DialogListener() {
+            @Override
+            public void onComplete(Bundle values) {
+            	//serviceHelper.facebookGetFriends(mFacebook.getAccessToken());
+            }
+
+            @Override
+            public void onFacebookError(FacebookError error) {}
+
+            @Override
+            public void onError(DialogError e) {}
+
+            @Override
+            public void onCancel() {}
+        });
+	}
+	
 	/**
 	 * Populate view.
 	 *
 	 * @param selectedEvent the selected event
 	 */
-	public void populateView(UkaEvent selectedEvent){
+	private void populateView(UkaEvent selectedEvent){
 		Log.v(debug, "populateView: selectedEvent " + selectedEvent.toString());
 
 		Button friendsButton = (Button) findViewById(R.id.detailedEventFriendsOnEventButton);
@@ -84,7 +114,8 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
 		timeAndPlace.setText(	
 				DateUtils.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
-				+ DateUtils.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) + " " 
+				+ DateUtils.getCustomDateFormatFromTimestamp(
+						"dd E MMM.", selectedEvent.getShowingTime()) + " " 
 				+ DateUtils.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
 				+ selectedEvent.getPlace());
 		
@@ -105,7 +136,8 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		
 		try {
 			URL imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
-			Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
+			Bitmap eventBitmap = BitmapFactory.decodeStream(
+					imageURL.openConnection() .getInputStream()); 
 			eventImage.setImageBitmap(eventBitmap);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -124,11 +156,11 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		favorites.setButtonDrawable(R.drawable.favorites_button);
 		if(selectedEvent.isFavourite()) favorites.setChecked(true); 
 		favorites.setOnCheckedChangeListener(this);	
-	
 	}
 
 	/* (non-Javadoc)
-	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged(android.widget.CompoundButton, boolean)
+	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged
+	 * (android.widget.CompoundButton, boolean)
 	 */
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -137,11 +169,13 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		
 		if(isChecked) {
 			fu.changeFavouriteFlag(mSelectedEvent.getId(), true);
-			info = mSelectedEvent.getTitle() + getResources().getString(R.string.toast_isAddedAsFavourite);
+			info = mSelectedEvent.getTitle() + getResources().getString(
+					R.string.toast_isAddedAsFavourite);
 		}
 		else {			
 			fu.changeFavouriteFlag(mSelectedEvent.getId(), false);
-			info = mSelectedEvent.getTitle() + getResources().getString(R.string.toast_isRemovedAsFavourite);
+			info = mSelectedEvent.getTitle() + getResources().getString(
+					R.string.toast_isRemovedAsFavourite);
 		}
 		
 		showToast(info); 
@@ -162,7 +196,13 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 	 */
 	@Override
 	public void onClick(View v ) {
-		// TODO Auto-generated method stub
-		
+		setupFacebookDialogListener();
 	}
+	
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.v(debug, "Inside onActivityResult");
+        mFacebook.authorizeCallback(requestCode, resultCode, data); 
+    }
 }

@@ -56,7 +56,8 @@ public class EventListActivity extends ListActivity implements OnClickListener
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_list);
 		
-		HorizontalScrollView sv = (HorizontalScrollView) findViewById(R.id.eventList_horizontalScrollView);
+		HorizontalScrollView sv = (HorizontalScrollView) findViewById(
+				R.id.eventList_horizontalScrollView);
 		
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
@@ -119,7 +120,8 @@ public class EventListActivity extends ListActivity implements OnClickListener
 	}
 
 	/* (non-Javadoc)
-	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, 
+	 * android.view.View, int, long)
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -128,7 +130,6 @@ public class EventListActivity extends ListActivity implements OnClickListener
 		Cursor c = (Cursor) l.getItemAtPosition(position);
 
 		UkaEvent event = UkaEventMapper.getUkaEventFromCursor(c);
-		Log.v(debug, event.toString());
 		
 		Intent intent = new Intent(this, EventDetailsActivity.class); 
 		intent.putExtra(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL, event);
@@ -151,25 +152,29 @@ public class EventListActivity extends ListActivity implements OnClickListener
 	
 			case R.id.categorymenu_party:
 				setHorizontalRulingLinesColor(R.color.categorySelected_party);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_PARTY;
+				selection = UkaEventContract.EVENT_TYPE + " = "
+				+ ApplicationConstants.CATEGORY_PARTY;
 				refreshList(selection);
 				break; 
 	
 			case R.id.categorymenu_concert:
 				setHorizontalRulingLinesColor(R.color.categorySelected_concert);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_CONCERT;
+				selection = UkaEventContract.EVENT_TYPE + " = "
+				+ ApplicationConstants.CATEGORY_CONCERT;
 				refreshList(selection);
 				break; 
 	
 			case R.id.categorymenu_lecture:
 				setHorizontalRulingLinesColor(R.color.categorySelected_lecture);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_LECTURE;
+				selection = UkaEventContract.EVENT_TYPE + " = " 
+				+ ApplicationConstants.CATEGORY_LECTURE;
 				refreshList(selection);
 				break; 
 	
 			case R.id.categorymenu_revue:
 				setHorizontalRulingLinesColor(R.color.categorySelected_revue);
-				selection = UkaEventContract.EVENT_TYPE + " = " + ApplicationConstants.CATEGORY_REVUE ;
+				selection = UkaEventContract.EVENT_TYPE + " = " 
+				+ ApplicationConstants.CATEGORY_REVUE ;
 				refreshList(selection);
 				break; 
 
@@ -213,19 +218,13 @@ public class EventListActivity extends ListActivity implements OnClickListener
 	 */
 	private void refreshList(String selection){
 		Log.v(debug, "Refreshing page");
-		mEventCursor = this.managedQuery(UkaEventContract.EVENT_CONTENT_URI, null, selection, null, ORDER_BY);
+		mEventCursor = this.managedQuery(
+				UkaEventContract.EVENT_CONTENT_URI, 
+				null, 
+				selection, 
+				null, 
+				ORDER_BY);
 	
-		Log.v(debug, "refreshList: Setting list adapter");
-		Log.v(debug, "refreshList:cursor " + mEventCursor);
-		while (mEventCursor.moveToNext()) {
-			Log.v(debug, "refreshingList count cursor: " + mEventCursor.getCount());
-			String columnNames = ""; 
-			for (int i = 0; i < mEventCursor.getColumnCount(); i++) {
-				columnNames += "  " + mEventCursor.getColumnName(i);
-			}
-			Log.v(debug, "refreshingList fields count " + mEventCursor.getColumnCount());
-			Log.v(debug, "refreshingList fields in cursor " + columnNames);
-		}
 		setListAdapter(new EventListCursorAdapter(this, mEventCursor));
 	}
 
