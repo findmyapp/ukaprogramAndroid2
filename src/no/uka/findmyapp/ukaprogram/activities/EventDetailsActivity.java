@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
+import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
@@ -155,6 +156,8 @@ public class EventDetailsActivity extends PopupMenuActivity
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
 		imageProgressBar = (ProgressBar) findViewById(R.id.event_details_image_progressbar);
 		eventImage = (ImageView) findViewById(R.id.event_details_picture);
+		
+		setHeaderImage(selectedEvent);
 
 		try {
 			OutputStream os = null;
@@ -162,7 +165,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 			filename = getFileNameFromPath(selectedEvent.getImage());
 			if (filename.length() == 0){
 				Log.v(debug, "Finner ikke bilde");
-				eventImage.setImageResource(R.drawable.default_artist_image);
+				eventImage.setImageResource(R.drawable.eventplaceholder);
 			}
 			else
 			{
@@ -305,5 +308,39 @@ public class EventDetailsActivity extends PopupMenuActivity
 		if (file != null) {
 			file.delete();
 		}
+	}
+	
+	private void setHeaderImage(UkaEvent event){
+		ImageView img = (ImageView) findViewById(R.id.event_details_category_header);
+		Log.v(debug, ApplicationConstants.CATEGORY_REVUE + "    =     " + event.getEventType());
+		if (isConcert(event)){
+			Log.v(debug, "inside if");
+			img.setImageResource(R.drawable.headerconcert);
+		}
+		else if (isParty(event)){
+			img.setImageResource(R.drawable.headerparty);
+		}
+		else if (isRevue(event)){
+			img.setImageResource(R.drawable.headerrevu);
+		}
+		else if (isLecture(event)){
+			img.setImageResource(R.drawable.headerlecture);
+		}
+	}
+
+	private boolean isConcert(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_CONCERT);
+	}
+
+	private boolean isParty(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_PARTY);
+	}
+
+	private boolean isRevue(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_REVUE);
+	}
+
+	private boolean isLecture(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equalsIgnoreCase(ApplicationConstants.CATEGORY_LECTURE);
 	}
 }

@@ -3,6 +3,7 @@
 	<item 
 		android:id="@+id/category_menu_all" 
 		android:title="@string/category_all" 
+		android:icon="@drawable/catall"
 		/>
 	<item 
 		android:id="@+id/category_menu_concert" 

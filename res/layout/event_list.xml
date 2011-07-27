@@ -3,58 +3,88 @@
 <LinearLayout 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" 
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	<LinearLayout 
-		android:id="@+id/header"
-		android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/background">
+	<FrameLayout 
 		android:layout_width="fill_parent"
-		android:orientation="vertical">
-		<ImageView 
-			android:layout_height="wrap_content"
-			android:paddingTop="10dp" 
-			android:id="@+id/imageView1"
-			android:src="@drawable/uka_logo_header" 
-			android:layout_width="wrap_content"
-			android:layout_gravity="center_horizontal">
-		</ImageView>
-		<LinearLayout
-			android:id="@+id/eventList_HorizontalRulingHeader"
-			android:layout_marginTop="10dp"
-			android:orientation="vertical" 
-			android:layout_width="fill_parent"
-			android:layout_height="3px" 
-			android:background="@color/category_all" />
-		<RelativeLayout 
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:background="@color/grey">
-			<Gallery xmlns:android="http://schemas.android.com/apk/res/android" 
-			    android:id="@+id/gallery"
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"
-			/>
-		</RelativeLayout>
-		<LinearLayout
-			android:id="@+id/eventList_HorizontalRulingHeader2"
-			android:orientation="vertical" 
-			android:layout_width="fill_parent"
-			android:layout_height="3px" 
-			android:background="@color/category_all" />
-	</LinearLayout>
-	<ListView android:id="@android:id/list" 
 		android:layout_height="fill_parent"
-		android:layout_width="fill_parent" 
-		android:footerDividersEnabled="false" 
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
-		/>
-	<LinearLayout
-		android:id="@+id/eventList_HorizontalRulingFooter"
-		android:orientation="vertical" 
-		android:layout_width="fill_parent"
-		android:layout_height="3px" 
-		android:layout_marginBottom="3dp" />
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp">
+		<LinearLayout 
+			android:id="@+id/header"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+			android:orientation="vertical">
+			<LinearLayout 
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:orientation="vertical">
+				<ImageView 
+					android:layout_height="wrap_content"
+					android:paddingTop="5dp" 
+					android:paddingBottom="15dp"
+					android:id="@+id/uka_header"
+					android:src="@drawable/uka_logo_header" 
+					android:layout_width="wrap_content"
+					android:layout_centerHorizontal="true"
+					android:layout_alignParentTop="true"
+					android:layout_gravity="center">
+				</ImageView>
+			<RelativeLayout 
+				android:layout_width="fill_parent"
+				android:layout_height="45dp"
+				android:background="@drawable/round_border_grey">
+				<ImageView 
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:src="@drawable/headerprogram_left" 
+					android:layout_alignParentLeft="true"
+					android:layout_alignParentBottom="true">
+				</ImageView>
+				
+				<ImageView 
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:src="@drawable/headerprogram_right" 
+					android:layout_alignParentRight="true"
+					android:layout_alignParentTop="true">
+				</ImageView>
+				
+				<TextView 
+					android:id="@+id/event_list_header_title" 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content"
+					style="@style/BigFont"
+					android:layout_centerInParent="true"
+					android:text="Program"
+					android:layout_marginBottom="10dp"
+				/>
+
+			</RelativeLayout>
+			</LinearLayout>
+			<LinearLayout
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:orientation="vertical">
+				<Gallery xmlns:android="http://schemas.android.com/apk/res/android" 
+					android:id="@+id/gallery"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:fadingEdgeLength="100dp"
+				/>
+				<ListView android:id="@android:id/list" 
+					android:layout_height="fill_parent"
+					android:layout_width="fill_parent" 
+					android:footerDividersEnabled="false" 
+					android:background="@drawable/round_border_grey"
+					/>
+			</LinearLayout>
+		</LinearLayout>
+	</FrameLayout>
 </LinearLayout>
 
 
