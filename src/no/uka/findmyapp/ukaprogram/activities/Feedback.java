@@ -3,9 +3,13 @@
  */
 package no.uka.findmyapp.ukaprogram.activities;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestMethod.HTTPStatusException;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.model.CustomParameter;
 import no.uka.findmyapp.ukaprogram.utils.Toaster;
 import no.uka.findmyapp.ukaprogram.utils.UserFeedback;
 import android.app.Activity;
@@ -41,9 +45,9 @@ public class Feedback extends Activity
 		setupReceiver(); 
 		UserFeedback uf = new UserFeedback(getApplicationContext());
 		
-		// Request parameters location - parameter name - limitResult
+		// Request parameters location - comments - limitResult
 		String[] params = new String[] {"10", "comment", "20"}; 
-		uf.getUserCommentsFromLocation(params, IntentMessages.BROADCAST_INTENT_TOKEN);
+		uf.getCustomParameterDataFromLocation(params, IntentMessages.BROADCAST_INTENT_TOKEN);
 	}
 	
 	private void setupReceiver() {
@@ -61,7 +65,11 @@ public class Feedback extends Activity
 	private void handleResult(Intent i) {
 		Toaster.shoutLong(getApplicationContext(), i.toString());
 		if(i.getAction().equals(IntentMessages.BROADCAST_RETURN_PAYLOAD_ID)) {
-			Toaster.shoutLong(getApplicationContext(), "Has extras " + i.getExtras().toString()); 
+			Toaster.shoutLong(getApplicationContext(), "Has extras " + i.getExtras().toString());
+			
+			GsonBuilder gs = new GsonBuilder(); 
+			
+			CustomParameter customParamter = new CustomParameter(); 
 		}
 	}
 	

@@ -23,7 +23,7 @@ import android.util.Log;
  */
 public class UserFeedback
 {
-	private static final String debug = "UserFeedBack";
+	private static final String debug = "UserFeedback";
 	
 	private static final String CUSTOM_PARAMETER_URL = 
 		"http://findmyapp.net/findmyapp/locations/??/userreports?parname=??&noe=??";
@@ -45,9 +45,12 @@ public class UserFeedback
 		}
 	}
 	
-	public void getUserCommentsFromLocation(String[] params, String broadcastIdentifier) {
+	public void getCustomParameterDataFromLocation(String[] params, 
+			String broadcastIdentifier) {
+		
 		ServiceModel serviceModel = createCustomParameterServiceModel(
 				HttpType.GET, CustomParameter.class, null, broadcastIdentifier);
+		
 		serviceModel.setParameters(params);
 		
 		serviceHelper.callStartService(mContext, serviceModel);
