@@ -11,14 +11,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
+import no.uka.findmyapp.ukaprogram.models.Tweet;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
+import no.uka.findmyapp.ukaprogram.utils.TweetReader;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -73,10 +76,9 @@ public class EventDetailsActivity extends PopupMenuActivity
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_details);
-
+		
 		Bundle bundle = getIntent().getExtras(); 
 		Log.v(debug, "Bundle toString " + bundle.toString());
-
 		if(bundle.getSerializable(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL) != null) {
 			mSelectedEvent = (UkaEvent) bundle.getSerializable(
 					ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL);
@@ -107,6 +109,7 @@ public class EventDetailsActivity extends PopupMenuActivity
             public void onCancel() {}
         });
 	}
+	
 	
 	/**
 	 * Populate view.

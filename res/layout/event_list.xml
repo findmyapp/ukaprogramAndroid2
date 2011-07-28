@@ -66,7 +66,6 @@
 			</RelativeLayout>
 			</LinearLayout>
 			<LinearLayout
-				android:layout_marginTop="10dp"
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:orientation="vertical">
@@ -74,7 +73,7 @@
 					android:id="@+id/gallery"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:fadingEdgeLength="100dp"
+					android:fadingEdgeLength="60dp"
 				/>
 				<ListView android:id="@android:id/list" 
 					android:layout_height="fill_parent"
