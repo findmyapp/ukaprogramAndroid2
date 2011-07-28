@@ -6,8 +6,11 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
 import no.uka.findmyapp.android.rest.client.IntentMessages;
+import no.uka.findmyapp.android.rest.datamodels.enums.PrivacySetting;
+import no.uka.findmyapp.android.rest.datamodels.models.UserPrivacy;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
+import no.uka.findmyapp.ukaprogram.utils.PrivacySettings;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -41,7 +44,7 @@ public class StartupLoader extends Activity {
 		Log.v(debug, "Loading UkaProgram");
 		
 		EventsUpdater eu = new EventsUpdater(getApplicationContext());
-		
+			
 		if(eu.eventsDatabaseNotEmtpy()) {
 			startMainActivity();
 		}

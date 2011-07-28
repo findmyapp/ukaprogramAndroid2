@@ -65,9 +65,16 @@ public final class ApplicationConstants
 	public static final String DATABASE_NAME = "ukaprogram.db"; 
 	
 	/** The Constant DATABASE_VERSION. */
-	public static final int DATABASE_VERSION = 1; 
+	public static final int DATABASE_VERSION = 3; 
 	
 	/* Favourite table constants */
+	public static final String FAVOURITE_DATABASE_CREATE_TABLE = 
+		  "CREATE TABLE " + ApplicationConstants.FAVOURITE_TABLE_NAME + " ("	
+		  + ApplicationConstants.FAVOURITE_TABLE_COLUMN_ID + " INTEGER PRIMARY KEY, "
+		  + ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID + " INTEGER, "
+		  + ApplicationConstants.FAVOURITE_TABLE_COLUMN_IS_FAVOURITE + " BOOLEAN "
+		  + ");";
+	
 	/** Persistent favourite table. */
 	public static final String FAVOURITE_TABLE_NAME = "persistent_favourite_list";
 	
@@ -86,19 +93,29 @@ public final class ApplicationConstants
 	
 	/* User privacy table constants */
 	
-	public static final String USER_PRICVAY_TABLE_NAME = "user_privacy_settings";
+	public static final String USER_PRIVACY_CREATE_TABLE = 
+		  "CREATE TABLE " + ApplicationConstants.USER_PRIVACY_TABLE_NAME + " ("	
+		  + ApplicationConstants.USER_PRIVACY_COLUMN_ID + " INTEGER PRIMARY KEY, "
+		  + ApplicationConstants.USER_PRIVACY_COLUMN_USER_PRIVACY_ID + " INTEGER, "
+		  + ApplicationConstants.USER_PRIVACY_COLUMN_MONEY + " INTEGER,  "
+		  + ApplicationConstants.USER_PRIVACY_COLUMN_EVENTS + " INTEGER,  "
+		  + ApplicationConstants.USER_PRIVACY_COLUMN_MEDIA + " INTEGER,  "
+		  + ApplicationConstants.USER_PRIVACY_COLUMN_POSITION + " INTEGER"
+		  + ");";
 	
-	public static final String USER_PRICVAY_COLUMN_ID = "_id";
+	public static final String USER_PRIVACY_TABLE_NAME = "user_privacy_settings";
 	
-	public static final String USER_PRICVAY_COLUMN_USER_PRIVACY_ID = "user_privacy_id";
+	public static final String USER_PRIVACY_COLUMN_ID = "_id";
 	
-	public static final String USER_PRICVAY_COLUMN_POSITION = "position";
+	public static final String USER_PRIVACY_COLUMN_USER_PRIVACY_ID = "user_privacy_id";
 	
-	public static final String USER_PRICVAY_COLUMN_MONEY = "money";
+	public static final String USER_PRIVACY_COLUMN_POSITION = "position";
 	
-	public static final String USER_PRICVAY_COLUMN_EVENTS = "events";
+	public static final String USER_PRIVACY_COLUMN_MONEY = "money";
 	
-	public static final String USER_PRICVAY_COLUMN_MEDIA = "media";
+	public static final String USER_PRIVACY_COLUMN_EVENTS = "events";
+	
+	public static final String USER_PRIVACY_COLUMN_MEDIA = "media";
 	
 	
 	/* Facebook constants */
