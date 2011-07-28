@@ -66,8 +66,6 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 		
 		menuButton = (Button) findViewById(R.id.mainMenu_places);
 		menuButton.setOnClickListener(this);
-		
-	
 	}
 	
 	/* (non-Javadoc)
@@ -131,6 +129,14 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 				else if(prediction.name.equals(ApplicationConstants.GESTURE_UPDATE)) {
 					EventsUpdater eu = new EventsUpdater(getApplicationContext());
 					eu.updateEvents(); 
+				}
+				else if(prediction.name.equals(ApplicationConstants.GESTURE_RIGHT)) {
+					Intent intent = new Intent(this, Feedback.class);
+					startActivity(intent);
+				}
+				else if(prediction.name.equals(ApplicationConstants.GESTURE_LEFT)) {
+					Intent intent = new Intent(this, FacebookAuthentication.class);
+					startActivity(intent);
 				}
 			}
 		}

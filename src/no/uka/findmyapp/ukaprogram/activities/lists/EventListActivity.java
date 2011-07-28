@@ -10,7 +10,6 @@ import java.util.Date;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.activities.CalendarActivity;
 import no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity;
 import no.uka.findmyapp.ukaprogram.adapters.AllEventListCursorAdapter;
 import no.uka.findmyapp.ukaprogram.adapters.CalendarGalleryAdapter;
@@ -65,12 +64,7 @@ public class EventListActivity extends ListActivity
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_list);
-		
-		
-		Bundle bundle = getIntent().getExtras();
-		if (bundle != null) {
-			moveCursorToDate(mEventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
-		}
+
 		addDateScroll();
 		moveGalleryToCurrentDate();
 	}
@@ -210,8 +204,6 @@ public class EventListActivity extends ListActivity
 		}
 	}
 
-
-
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, 
 	 * android.view.View, android.view.ContextMenu.ContextMenuInfo)
@@ -246,8 +238,7 @@ public class EventListActivity extends ListActivity
 				setListAdapter(new EventListCursorAdapter(this, mEventCursor));
 			}
 		}
-		else
-		{
+		else {
 			setListAdapter(new AllEventListCursorAdapter(this, mEventCursor));
 		}
 	}
@@ -256,35 +247,9 @@ public class EventListActivity extends ListActivity
 		Date toDay = new Date();
 		if (toDay.getMonth() == ApplicationConstants.MONTH){
 			Log.v(debug, "Today is day number: " + toDay.getDate());
-			
 			gallery.setSelection(toDay.getDate() - ApplicationConstants.UKA_START_DATE + 1, true);
 		}
 		
-	}
-	//TODO FIX moveCursorToDate, CalendarActivity or EventListActivity?
-	/**
-	 * Move cursor to date.
-	 *
-	 * @param cursor the cursor
-	 * @param date the date
-	 */
-	private void moveCursorToDate(Cursor cursor, int date)  {
-		boolean dateFound = false; 
-		
-		cursor.moveToFirst();
-		while (!dateFound && cursor.moveToNext()) {
-			int i = DateUtils.getDayIntFromTimestamp(cursor.getLong(
-					cursor.getColumnIndex(UkaEventContract.SHOWING_TIME))); 
-			if(i == date) dateFound = true;
-			cursor.moveToNext();
-		}
-		
-		if (dateFound){
-			this.setSelection(cursor.getPosition());
-			Intent intent = new Intent();
-			intent.setClass(getApplicationContext(), CalendarActivity.class);
-			startActivity(intent);
-		}
 	}
 	
 	@Override

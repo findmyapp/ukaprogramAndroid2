@@ -54,12 +54,9 @@ public class EventsUpdater extends Updater
 	 * @return true, if successful
 	 */
 	public boolean eventsDatabaseNotEmtpy() {
-		Log.v(debug, "inside eventsDatabaseNotEmtpy");
-		Log.v(debug, UkaEventContract.EVENT_CONTENT_URI.toString());
-		Log.v(debug, mContext.toString());
+		Log.v(debug, "Updating " + UkaEventContract.EVENT_CONTENT_URI.toString());
 		Cursor eventCursor = mContext.getContentResolver()
 			.query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
-		Log.v(debug, eventCursor.toString());
 		if(eventCursor.getCount() > 0) {
 			return true; 
 		}
@@ -72,13 +69,13 @@ public class EventsUpdater extends Updater
 	 * @throws UpdateException 
 	 */
 	public void updateEvents() {
+		Log.v(debug, "updateEvents called");
 		try { 
-			Log.v(debug, "updateEvents called");
 			if(readyState()) { 
 				clearEventTable(mContext.getContentResolver());
 				setupBroadCastReciver();
 				update(
-					UkappsServices.GET_UKA_PROGRAM_PLACES, 
+					UkappsServices.GET_ALL_UKAEVENTS, 
 					new URI(UkaEventContract.EVENT_CONTENT_URI.toString()), 
 					new String[] {"uka11"});
 			}
@@ -94,7 +91,8 @@ public class EventsUpdater extends Updater
 
 		for(Integer eventId : eventIds) {
 			ContentValues values = new ContentValues(); 
-			values.put(UkaEventContract.FAVOURITE, ApplicationConstants.IS_FAVOURITE);
+			values.put(UkaEventContract.FAVOURITE, 
+					ApplicationConstants.IS_FAVOURITE);
 			
 			mContext.getContentResolver().update(
 					UkaEventContract.EVENT_CONTENT_URI, 
@@ -140,11 +138,10 @@ public class EventsUpdater extends Updater
 			}
 			else if(intent.getAction().equals(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION)) {
 				Log.v(debug, "Intent recieved, containin http exception");
-				Bundle bundle = intent.getBundleExtra(IntentMessages.BROADCAST_RETURN_VALUE_NAME);
+				Bundle bundle = intent.getBundleExtra(IntentMessages.BROADCAST_RETURN_PAYLOAD_ID);
 				HTTPStatusException exception = 
-					(HTTPStatusException) bundle.getSerializable(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);
-				Toast t = Toast.makeText(mContext, exception.getMessage(), Toast.LENGTH_LONG);
-				t.show();
+					(HTTPStatusException) bundle.getSerializable(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);	
+				Toaster.shoutShort(mContext, exception.getMessage());
 			}
 		}
 	}

@@ -22,8 +22,7 @@ public class Updater
 	
 	protected Context mContext; 
 
-	protected Updater(Context c) {
-		Log.v(debug, "Creating updater!");
+	protected Updater(Context c) {;
 		mContext = c; 
 		try {
 			serviceHelper.setCredentials(ApplicationConstants.FINDMYAPP_API_KEY, 
@@ -41,7 +40,6 @@ public class Updater
 	
 	protected void update(UkappsServices ukappsService, URI contentProvider, String[] parameters) {
 		try {
-			Log.v(debug, "update called");
 			Log.v(debug, "update readystate: " + readyState());
 			if(readyState()) {		
 				try {

@@ -6,11 +6,13 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
 import no.uka.findmyapp.android.rest.client.IntentMessages;
+import no.uka.findmyapp.android.rest.client.RestMethod.HTTPStatusException;
 import no.uka.findmyapp.android.rest.datamodels.enums.PrivacySetting;
 import no.uka.findmyapp.android.rest.datamodels.models.UserPrivacy;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
 import no.uka.findmyapp.ukaprogram.utils.PrivacySettings;
+import no.uka.findmyapp.ukaprogram.utils.Toaster;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -60,6 +62,7 @@ public class StartupLoader extends Activity {
 	private void setupBroadCastReciver() {
         ReciveIntent intentReceiver = new ReciveIntent();
 		IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
+		intentFilter.addAction(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);
 		
 		getApplicationContext().registerReceiver(intentReceiver, intentFilter); 
 	}
@@ -86,6 +89,11 @@ public class StartupLoader extends Activity {
 			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {
 				Log.v(debug, "Intent recieved, starting Main activity");
 				startMainActivity();
+			}
+			else if(intent.getAction().equals(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION)) {
+				HTTPStatusException e = (HTTPStatusException) 
+						intent.getSerializableExtra(IntentMessages.BROADCAST_RETURN_PAYLOAD_ID);
+				Toaster.shoutLong(getApplicationContext(), e.getMessage());
 			}
 		}
 	}

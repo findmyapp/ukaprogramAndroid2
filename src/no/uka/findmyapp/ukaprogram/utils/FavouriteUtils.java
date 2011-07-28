@@ -64,16 +64,17 @@ public class FavouriteUtils
 	}
 	
 	public ArrayList<Integer> getAllFavourites() {		
-		Log.v(debug, "Inside getAllFavourites");
-		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
+		UkaProgramDatabaseHelper mDatabaseHelper
+				= new UkaProgramDatabaseHelper(mContext);
 		SQLiteDatabase db = mDatabaseHelper.getReadableDatabase(); 
 		Cursor cursor = db.query(
-				ApplicationConstants.FAVOURITE_TABLE_NAME, null, null, null, null, null, null);
+				ApplicationConstants.FAVOURITE_TABLE_NAME,
+				null, null, null, null, null, null);
 		ArrayList<Integer> eventIds = new ArrayList<Integer>(); 
 		
 		while(cursor.moveToNext())  {
-			eventIds.add(cursor.getInt(cursor.getColumnIndex(ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID)));
-			Log.v(debug, "eventsIds: " + eventIds.toArray().toString());
+			eventIds.add(cursor.getInt(cursor.getColumnIndex(
+					ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID)));
 		}
 		db.close(); 
 	
@@ -106,11 +107,9 @@ public class FavouriteUtils
 	}
 	
 	private void addPeristentFavourite(ContentValues values) {
-		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
 		Log.v(debug, "addPersistentFavourite: values" + values.toString());
-		Log.v(debug, "addPersistentFavourite: databasehelper " + mDatabaseHelper.toString());
+		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
-		Log.v(debug, "addPersistentFavourite: checking");
 		db.insert(ApplicationConstants.FAVOURITE_TABLE_NAME, null, values);
 		db.close(); 
 	}
@@ -126,7 +125,6 @@ public class FavouriteUtils
 	}
 	
 	private ContentValues getFavouriteContentValues(int eventId, boolean flag) {
-		Log.v(debug, "getFavouriteContentValues eventId" + eventId + " flag " + flag);
 		ContentValues values = new ContentValues(); 
 		values.put(ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID, eventId);
 		values.put(ApplicationConstants.FAVOURITE_TABLE_COLUMN_IS_FAVOURITE, flag);
