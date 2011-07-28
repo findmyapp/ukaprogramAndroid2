@@ -11,17 +11,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
-import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
-import no.uka.findmyapp.ukaprogram.models.Tweet;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
-import no.uka.findmyapp.ukaprogram.utils.TweetReader;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -158,10 +154,22 @@ public class EventDetailsActivity extends PopupMenuActivity
 
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
 		imageProgressBar = (ProgressBar) findViewById(R.id.event_details_image_progressbar);
-		eventImage = (ImageView) findViewById(R.id.event_details_picture);
+		downloadEventPicture(selectedEvent);
 		
 		setHeaderImage(selectedEvent);
+	
+		if(selectedEvent.isFree()){
+			price.setText(getResources().getString(R.string.eventDetailedActivity_free));
+		}
 
+		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
+		favorites.setButtonDrawable(R.drawable.favorites_button);
+		if(selectedEvent.isFavourite()) favorites.setChecked(true); 
+		favorites.setOnCheckedChangeListener(this);	
+	}
+	
+	private void downloadEventPicture(UkaEvent selectedEvent) {
+		eventImage = (ImageView) findViewById(R.id.event_details_picture);
 		try {
 			OutputStream os = null;
 			imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
@@ -170,13 +178,11 @@ public class EventDetailsActivity extends PopupMenuActivity
 				Log.v(debug, "Finner ikke bilde");
 				eventImage.setImageResource(R.drawable.eventplaceholder);
 			}
-			else
-			{
+			else {
 				if (fileExist(filename)){
 					eventImage.setImageBitmap(loadBitmap(filename));
 				}
-				else
-				{
+				else {
 					imageProgressBar.setVisibility(ProgressBar.VISIBLE);
 					new Thread(new Runnable() {
 						public void run() {
@@ -187,40 +193,24 @@ public class EventDetailsActivity extends PopupMenuActivity
 								
 								runOnUiThread(new Runnable() {
 									public void run() {
-										// TODO Auto-generated method stub
 										eventImage.setImageBitmap(eventBitmap);
 										imageProgressBar.setVisibility(ProgressBar.INVISIBLE);
 									}
 								});
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
+							} 
+							catch (IOException e) {
 								e.printStackTrace();
 							} 
-							
 						}
 					}).start();
-					//Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
-					//eventImage.setImageBitmap(eventBitmap);
-					//saveBitmap(eventBitmap, filename, imageURL);
 				}
 			}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} 
-
-		Log.v(debug, "Event URI image: " + ApplicationConstants.UKA_PATH + selectedEvent.getImage());
-		if(selectedEvent.isFree()){
-			price.setText(getResources().getString(R.string.eventDetailedActivity_free));
+		catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.v(debug, "Event URI image: " + ApplicationConstants.UKA_PATH + selectedEvent.getImage());
 		}
-
-		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
-		favorites.setButtonDrawable(R.drawable.favorites_button);
-		if(selectedEvent.isFavourite()) favorites.setChecked(true); 
-		favorites.setOnCheckedChangeListener(this);	
 	}
 	
 	private boolean fileExist(String filename){
