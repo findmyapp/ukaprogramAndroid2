@@ -11,13 +11,23 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> 375e669cd5126465db52cfbeccd974c049d083d3
 
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
+import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
+import no.uka.findmyapp.ukaprogram.models.Tweet;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
+<<<<<<< HEAD
+=======
+import no.uka.findmyapp.ukaprogram.utils.TweetReader;
+>>>>>>> 375e669cd5126465db52cfbeccd974c049d083d3
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -30,6 +40,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +55,7 @@ import com.facebook.android.FacebookError;
  */
 public class EventDetailsActivity extends PopupMenuActivity 
 	implements OnClickListener, OnCheckedChangeListener
-{
+{	
 	private static final int BITMAP_COMPRESSION_PERCENT = 40;
 	/** The Constant debug. */
 	private static final String debug = "EventsDetailsActivity";
@@ -59,8 +70,10 @@ public class EventDetailsActivity extends PopupMenuActivity
 	private URL imageURL;
 	private Bitmap eventBitmap;
 	private String filename;
+	
 	private ImageView eventImage;
-
+	private ProgressBar imageProgressBar;
+	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -69,10 +82,9 @@ public class EventDetailsActivity extends PopupMenuActivity
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_details);
-
+		
 		Bundle bundle = getIntent().getExtras(); 
 		Log.v(debug, "Bundle toString " + bundle.toString());
-
 		if(bundle.getSerializable(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL) != null) {
 			mSelectedEvent = (UkaEvent) bundle.getSerializable(
 					ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL);
@@ -103,6 +115,7 @@ public class EventDetailsActivity extends PopupMenuActivity
             public void onCancel() {}
         });
 	}
+	
 	
 	/**
 	 * Populate view.
@@ -150,8 +163,10 @@ public class EventDetailsActivity extends PopupMenuActivity
 				+ getResources().getString(R.string.eventDetailedActivity_year));
 
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
-
+		imageProgressBar = (ProgressBar) findViewById(R.id.event_details_image_progressbar);
 		eventImage = (ImageView) findViewById(R.id.event_details_picture);
+		
+		setHeaderImage(selectedEvent);
 
 		try {
 			OutputStream os = null;
@@ -159,7 +174,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 			filename = getFileNameFromPath(selectedEvent.getImage());
 			if (filename.length() == 0){
 				Log.v(debug, "Finner ikke bilde");
-				eventImage.setImageResource(R.drawable.default_artist_image);
+				eventImage.setImageResource(R.drawable.eventplaceholder);
 			}
 			else
 			{
@@ -168,7 +183,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 				}
 				else
 				{
-					
+					imageProgressBar.setVisibility(ProgressBar.VISIBLE);
 					new Thread(new Runnable() {
 						public void run() {
 							try {
@@ -180,6 +195,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 									public void run() {
 										// TODO Auto-generated method stub
 										eventImage.setImageBitmap(eventBitmap);
+										imageProgressBar.setVisibility(ProgressBar.INVISIBLE);
 									}
 								});
 							} catch (IOException e) {
@@ -301,5 +317,39 @@ public class EventDetailsActivity extends PopupMenuActivity
 		if (file != null) {
 			file.delete();
 		}
+	}
+	
+	private void setHeaderImage(UkaEvent event){
+		ImageView img = (ImageView) findViewById(R.id.event_details_category_header);
+		Log.v(debug, ApplicationConstants.CATEGORY_REVUE + "    =     " + event.getEventType());
+		if (isConcert(event)){
+			Log.v(debug, "inside if");
+			img.setImageResource(R.drawable.headerconcert);
+		}
+		else if (isParty(event)){
+			img.setImageResource(R.drawable.headerparty);
+		}
+		else if (isRevue(event)){
+			img.setImageResource(R.drawable.headerrevu);
+		}
+		else if (isLecture(event)){
+			img.setImageResource(R.drawable.headerlecture);
+		}
+	}
+
+	private boolean isConcert(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_CONCERT);
+	}
+
+	private boolean isParty(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_PARTY);
+	}
+
+	private boolean isRevue(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_REVUE);
+	}
+
+	private boolean isLecture(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equalsIgnoreCase(ApplicationConstants.CATEGORY_LECTURE);
 	}
 }

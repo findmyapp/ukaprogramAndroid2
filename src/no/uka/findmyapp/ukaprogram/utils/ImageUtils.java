@@ -1,16 +1,5 @@
-//package no.uka.findmyapp.ukaprogram.utils;
-//
-//import java.io.BufferedInputStream;
-//import java.io.BufferedOutputStream;
-//import java.io.ByteArrayOutputStream;
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.net.URL;
-//
-//import android.graphics.Bitmap;
-//import android.graphics.BitmapFactory;
-//import android.util.Log;
-//
+package no.uka.findmyapp.ukaprogram.utils;
+
 //public class ImageUtils {
 //	public static Bitmap loadBitmap(String url) {
 //	    Bitmap bitmap = null;
