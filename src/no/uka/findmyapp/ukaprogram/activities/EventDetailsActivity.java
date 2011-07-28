@@ -12,19 +12,12 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.facebook.android.DialogError;
-import com.facebook.android.Facebook;
-import com.facebook.android.Facebook.DialogListener;
-import com.facebook.android.FacebookError;
-
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
-import no.uka.findmyapp.ukaprogram.utils.NetworkUtils;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -39,6 +32,11 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
 
 // TODO: Auto-generated Javadoc
 /**

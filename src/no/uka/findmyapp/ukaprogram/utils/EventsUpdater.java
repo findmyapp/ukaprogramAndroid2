@@ -9,7 +9,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import org.apache.http.HttpException;
+
 import no.uka.findmyapp.android.rest.client.IntentMessages;
+import no.uka.findmyapp.android.rest.client.RestMethod.HTTPStatusException;
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
 import no.uka.findmyapp.android.rest.client.UkappsServices;
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
@@ -23,23 +26,18 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.test.IsolatedContext;
 import android.util.Log;
 import android.widget.Toast;
 
 /**
  * The Class EventsUpdater.
  */
-public class EventsUpdater 
+public class EventsUpdater extends Updater 
 {
 	/** The Constant debug. */
 	private static final String debug = "EventsUpdater";
-	
-	/** The service helper. */
-	private static RestServiceHelper serviceHelper 
-		= RestServiceHelper.getInstance(); 
-	
-	/** The context. */
-	private Context mContext; 
 	
 	/**
 	 * Instantiates a new events updater.
@@ -47,7 +45,7 @@ public class EventsUpdater
 	 * @param context the c
 	 */
 	public EventsUpdater(Context context) {
-		this.mContext = context; 
+		super(context);
 	}
 	
 	/**
@@ -70,23 +68,24 @@ public class EventsUpdater
 	
 	/**
 	 * Update events.
+	 * @throws URISyntaxException 
+	 * @throws UpdateException 
 	 */
 	public void updateEvents() {
-		Log.v(debug, "updateEvents called");
-		try {
-			Log.v(debug, "isOnline " + NetworkUtils.isOnline(this.mContext));
-			if(NetworkUtils.isOnline(this.mContext)) { 
-				update(); 
+		try { 
+			Log.v(debug, "updateEvents called");
+			if(readyState()) { 
+				clearEventTable(mContext.getContentResolver());
+				setupBroadCastReciver();
+				update(
+					UkappsServices.UKAEVENTS, 
+					new URI(UkaEventContract.EVENT_CONTENT_URI.toString()), 
+					new String[] {"uka11"});
 			}
-			else { 
-				Log.v(debug, "No internet connection!");
-				throw new UpdateException(UpdateException.NO_CONNECTION_EXCEPTION); 
-			}	
-		} catch (UpdateException e) {
-			Log.e(debug, "updateEvents exception caught " + e.getException().getMessage());
-			Toast t = Toast.makeText(this.mContext, e.getMessage(), Toast.LENGTH_LONG);
-			t.show(); 
-		} 
+		}
+		catch (Exception e) {
+			Toaster.shoutLong(mContext, e.getMessage());
+		}
 	}
 	
 	private void updateFavourites() {
@@ -111,46 +110,20 @@ public class EventsUpdater
 	 * @param contentResolver the content resolver
 	 */
 	public void clearEventTable(ContentResolver contentResolver){
-		Log.v(debug, "clearEventTable " + contentResolver.toString());
+		Log.v(debug, "clearEventTable");
 		contentResolver.delete(UkaEventContract.EVENT_CONTENT_URI, null, null);
 	}
-	
-	/**
-	 * Update.
-	 *
-	 * @throws UpdateException the update exception
-	 */
-	private void update() throws UpdateException{
-		Log.v(debug, "update called");
-		try {
-			clearEventTable(mContext.getContentResolver());
-			
-			// Setup reciver that update favourite flags
-			setupBroadCastReciver();
-			serviceHelper.callStartService(this.mContext, UkappsServices.UKAEVENTS, new URI(UkaEventContract.EVENT_CONTENT_URI.toString()), new String[] {"uka11"}); 
-		} catch (URISyntaxException e) {
-			throw new UpdateException(UpdateException.URI_SYNTAX_EXCEPTION, e); 
-		} catch (IllegalAccessException e) {
-			throw new UpdateException(UpdateException.ILLEGAL_ACCESS_EXCEPTION, e); 
-		} catch (InstantiationException e) {
-			throw new UpdateException(UpdateException.INSTANTIATION_EXCEPTION, e); 
-		}
-	}
-	
-	/**
-	 * Checks if is online.
-	 *
-	 * @return true, if is online
-	 */
-
 	
 	private void setupBroadCastReciver() {
         ReciveIntent intentReceiver = new ReciveIntent();
 		IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
+		IntentFilter intentFilter2 = new IntentFilter(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);
 		
-		mContext.getApplicationContext().registerReceiver(intentReceiver, intentFilter); 
+		mContext.getApplicationContext().registerReceiver(intentReceiver, intentFilter);
+		mContext.getApplicationContext().registerReceiver(intentReceiver, intentFilter2);
 	}
 	
+
 	/**
 	 * The Class ReciveIntent.
 	 */
@@ -165,62 +138,14 @@ public class EventsUpdater
 				Log.v(debug, "Intent recieved, starting setting favourites");
 				updateFavourites(); 
 			}
+			else if(intent.getAction().equals(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION)) {
+				Log.v(debug, "Intent recieved, containin http exception");
+				Bundle bundle = intent.getBundleExtra(IntentMessages.BROADCAST_RETURN_VALUE_NAME);
+				HTTPStatusException exception = 
+					(HTTPStatusException) bundle.getSerializable(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);
+				Toast t = Toast.makeText(mContext, exception.getMessage(), Toast.LENGTH_LONG);
+				t.show();
+			}
 		}
-	}
-	
-	/**
-	 * The Class UpdateException.
-	 */
-	private static class UpdateException extends Exception {
-		
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1042598607999418184L;
-		
-		/** The Constant ILLEGAL_ACCESS_EXCEPTION. */
-		public static final String ILLEGAL_ACCESS_EXCEPTION = 
-			"Illegal access exception caught during update";
-		
-		/** The Constant URI_SYNTAX_EXCEPTION. */
-		public static final String URI_SYNTAX_EXCEPTION = 
-			"URI syntax exception caught during update";
-		
-		/** The Constant INSTANTIATION_EXCEPTION. */
-		public static final String INSTANTIATION_EXCEPTION = 
-			"Instantiation exception caught during update";
-		
-		/** The Constant NO_CONNECTION_EXCEPTION. */
-		public static final String NO_CONNECTION_EXCEPTION  = 
-			"No internet connection available!";
-		
-		/** The e. */
-		private Exception e; 
-		
-		/**
-		 * Instantiates a new update exception.
-		 *
-		 * @param errorMessage the error message
-		 */
-		public UpdateException(String errorMessage) {
-			super(errorMessage);
-			e = new Exception(errorMessage); 
-		}
-		
-		/**
-		 * Instantiates a new update exception.
-		 *
-		 * @param errorMessage the error message
-		 * @param e the exception
-		 */
-		public UpdateException(String errorMessage, Exception e) {
-			super(errorMessage);
-			this.e = e; 
-		}
-		
-		/**
-		 * Gets the exception.
-		 *
-		 * @return the exception
-		 */
-		public Exception getException() { return this.e; }
 	}
 }
