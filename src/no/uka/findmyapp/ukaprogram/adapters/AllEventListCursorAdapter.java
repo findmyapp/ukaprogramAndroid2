@@ -73,7 +73,7 @@ public class AllEventListCursorAdapter extends CursorAdapter implements OnClickL
 			
 			
 			t = (TextView) eventView.findViewById(R.id.listItemPlace);
-			t.setText(getStringFromTableColumn(UkaEventContract.PLACE));
+			t.setText(getStringFromTableColumn(UkaEventContract.PLACE_STRING));
 			
 			CheckBox cb = (CheckBox) eventView.findViewById(R.id.listItemAttending);
 			cb.setButtonDrawable(R.drawable.favorites_button);
