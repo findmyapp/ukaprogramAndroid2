@@ -21,6 +21,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -41,6 +42,8 @@ public class SettingsActivity extends Activity implements OnClickListener,OnItem
 	/** The selected privacy settings. */
 	private UserPrivacy usersettings;
 	
+	private PrivacySettings ps;
+	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -54,10 +57,14 @@ public class SettingsActivity extends Activity implements OnClickListener,OnItem
 	            this, R.array.setting_alternatives, android.R.layout.simple_spinner_item);
 	    
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		
+	    //Initializing
+	    usersettings = new UserPrivacy();
+	    ps = new PrivacySettings(getApplicationContext());
+	    
+	    
+		//Making spinners
 		Spinner positionSpinner = (Spinner) findViewById(R.id.positionSetting_spinner);
 	    positionSpinner.setAdapter(adapter);
-	    
 	    
 		Spinner eventSpinner = (Spinner) findViewById(R.id.eventSetting_spinner);
 	    eventSpinner.setAdapter(adapter);
@@ -77,8 +84,15 @@ public class SettingsActivity extends Activity implements OnClickListener,OnItem
 	    moneySpinner.setOnItemSelectedListener(this);
 	    
 	    Bundle bundle = getIntent().getExtras();
-	    usersettings = new UserPrivacy();
 	    
+	    //Checking if privacy settings already stored
+	    UserPrivacy up = ps.getPrivacySettings();
+	    if(up != null){
+	    	eventSpinner.setSelection(PrivacySetting.toInt(up.getEventsPrivacySetting()));
+	    	positionSpinner.setSelection(PrivacySetting.toInt(up.getPositionPrivacySetting()));
+	    	moneySpinner.setSelection(PrivacySetting.toInt(up.getMoneyPrivacySetting()));
+	    	mediaSpinner.setSelection(PrivacySetting.toInt(up.getMediaPrivacySetting()));
+	    }
 	    
 	    if(bundle != null) {
 	    	previous_class = (Class) bundle.getSerializable("previous_context");
@@ -94,10 +108,12 @@ public class SettingsActivity extends Activity implements OnClickListener,OnItem
 	 */
 	@Override
 	public void onClick(View v) {
-		Context context = getApplicationContext();
-		PrivacySettings ps = new PrivacySettings(context);
 		ps.changePrivacySettings(usersettings);
-		ps.getPrivacySettings();
+		Context context = getApplicationContext();
+		CharSequence text = "Instillinger lagret";
+		int duration = Toast.LENGTH_SHORT;
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
 		
 	}
 

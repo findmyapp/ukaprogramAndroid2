@@ -130,6 +130,7 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 					EventsUpdater eu = new EventsUpdater(getApplicationContext());
 					eu.updateEvents(); 
 				}
+				/*
 				else if(prediction.name.equals(ApplicationConstants.GESTURE_RIGHT)) {
 					Intent intent = new Intent(this, Feedback.class);
 					startActivity(intent);
@@ -138,6 +139,7 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 					Intent intent = new Intent(this, FacebookAuthentication.class);
 					startActivity(intent);
 				}
+				*/
 			}
 		}
 	}

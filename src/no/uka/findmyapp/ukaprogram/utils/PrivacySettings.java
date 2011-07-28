@@ -57,12 +57,19 @@ public class PrivacySettings
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
 		Cursor cursor = db.query(ApplicationConstants.USER_PRIVACY_TABLE_NAME, 
 				null, null, null, null, null, null);
+		if(cursor.getCount()==0){
+			db.close(); 
+			cursor.close();
+			Log.v(debug, "getPrivacySettings: The db is empty!");
+			return null;
+		}else{
 		cursor.moveToFirst();
 		UserPrivacy userprivacy = PrivacySettingsMapper.getUserPrivacyUkaEventFromCursor(cursor);
 		Log.v(debug, "getPrivacySettings: The following data is stored in db:  " + userprivacy.toString());
-	
 		db.close(); 
-		return null;
+		cursor.close();
+		return userprivacy;
+		}
 	}
 
 	
@@ -72,9 +79,12 @@ public class PrivacySettings
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
 		if(privacySettingsDatabaseNoteEmpty()){
 			db.delete(ApplicationConstants.USER_PRIVACY_TABLE_NAME,null,null);
+			db.insert(ApplicationConstants.USER_PRIVACY_TABLE_NAME,null,values);
+			db.close();
+		}else{
+			db.insert(ApplicationConstants.USER_PRIVACY_TABLE_NAME,null,values);
+			db.close();
 		}
-		db.insert(ApplicationConstants.USER_PRIVACY_TABLE_NAME,null,values);
-		db.close(); 
 	}	
 	
 	public boolean privacySettingsDatabaseNoteEmpty() {
