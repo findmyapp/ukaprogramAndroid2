@@ -27,6 +27,7 @@ public class PrivacySettingsMapper {
 		userprivacy.setMoneyPrivacySetting(PrivacySetting.getSetting(CursorTools.getIntFromTableColumn(cursor, ApplicationConstants.USER_PRIVACY_COLUMN_MONEY)));
 		userprivacy.setPositionPrivacySetting(PrivacySetting.getSetting(CursorTools.getIntFromTableColumn(cursor, ApplicationConstants.USER_PRIVACY_COLUMN_POSITION)));
 		userprivacy.setId(CursorTools.getIntFromTableColumn(cursor, ApplicationConstants.USER_PRIVACY_COLUMN_USER_PRIVACY_ID));
+		cursor.close();
 		return userprivacy;
 	}
 
