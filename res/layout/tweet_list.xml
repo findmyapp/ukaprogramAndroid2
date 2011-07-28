@@ -1,13 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
-    <ListView 
-    	android:id="@+id/tweet_list_listview"
-    	android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
-    	>
-    </ListView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/background">
+	<FrameLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp">
+		<LinearLayout 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical">
+			<ImageView 
+				android:layout_height="wrap_content"
+				android:paddingTop="5dp" 
+				android:paddingBottom="15dp"
+				android:id="@+id/imageView1"
+				android:src="@drawable/uka_logo_header" 
+				android:layout_width="wrap_content"
+				android:layout_gravity="center_horizontal">
+			</ImageView>
+			<LinearLayout 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+				<RelativeLayout 
+					android:layout_width="fill_parent"
+					android:layout_height="45dp"
+					android:background="@drawable/round_border_grey"
+					>
+					<TextView 
+						android:id="@+id/location_list_header_title" 
+						android:layout_height="wrap_content" 
+						android:layout_width="wrap_content"
+						style="@style/BigFont"
+						android:text="@string/tweet_list_header"
+						android:layout_centerInParent="true"
+					/>
+					<ImageView 
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:id="@+id/tweet_list_category_header"
+						android:src="@drawable/headernews_left" 
+						android:layout_alignParentLeft="true"
+						android:layout_alignParentBottom="true">
+					</ImageView>
+				</RelativeLayout>	
+			</LinearLayout>
+			<LinearLayout 
+				android:layout_marginTop="10dp"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:orientation="vertical">
+			    <ListView 
+			    	android:id="@+id/tweet_list_listview"
+			    	android:layout_width="fill_parent"
+			    	android:layout_height="fill_parent"
+					android:footerDividersEnabled="true"
+					android:background="@drawable/round_border_grey">
+			    </ListView>
+			</LinearLayout>
+		</LinearLayout>¨
+	</FrameLayout>
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
