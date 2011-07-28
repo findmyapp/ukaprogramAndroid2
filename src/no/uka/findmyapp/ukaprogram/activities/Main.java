@@ -85,6 +85,7 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 			break;
 		case (R.id.mainMenu_news):
 			//gotoActivity(FavouritesListActivity.class);
+			gotoActivity(NewsActivity.class);
 			break; 
 		case (R.id.mainMenu_places):
 			gotoActivity(LocationListActivity.class);
