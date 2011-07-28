@@ -38,7 +38,7 @@
 						android:layout_height="wrap_content" 
 						android:layout_width="wrap_content"
 						style="@style/BigFont"
-						android:text="Dødens dal"
+						android:text="@string/location_list_header"
 						android:layout_centerInParent="true"
 					/>
 					<ImageView 

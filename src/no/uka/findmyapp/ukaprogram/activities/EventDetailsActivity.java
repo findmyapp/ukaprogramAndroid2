@@ -130,7 +130,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 				+ DateUtils.getCustomDateFormatFromTimestamp(
 						"dd E MMM.", selectedEvent.getShowingTime()) + " " 
 				+ DateUtils.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
-				+ selectedEvent.getPlace());
+				+ selectedEvent.getPlaceString());
 
 		
 		/*Date today = new Date();
@@ -145,7 +145,10 @@ public class EventDetailsActivity extends PopupMenuActivity
 		
 		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
 		headerTitle.setText(selectedEvent.getTitle());
-
+		
+		TextView lead = (TextView) findViewById(R.id.detailedEventLead);
+		lead.setText(selectedEvent.getLead());
+		
 		TextView description = (TextView) findViewById(R.id.detailedEventDescription);
 		description.setText(selectedEvent.getText());
 
@@ -189,7 +192,6 @@ public class EventDetailsActivity extends PopupMenuActivity
 					new Thread(new Runnable() {
 						public void run() {
 							try {
-								Log.v(debug, "ehiheihe");
 								eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream());
 								saveBitmap(eventBitmap, filename, imageURL);
 								

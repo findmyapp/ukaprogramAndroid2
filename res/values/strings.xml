@@ -22,6 +22,9 @@
 	<string name="category_party">Fest \u0026 Moro</string>
 	<string name="category_favourites">Favoritter</string>
 	
+	<!-- Location list -->
+	<string name="location_list_header">Steder</string>
+	
 	<!-- Calendar -->
 	<string name="calendar_header">Kalender</string>
 	<string name="dayGallery_all">Alle</string>
@@ -47,6 +50,7 @@
 	<string name="settings_eventText">Arrangement:</string>
 	<string name="settings_moneyText">Penger:</string>
 	<string name="settings_mediaText">Media</string>
+	<string name="settings_header">Instillinger</string>
 	
 	<!-- Toast section -->
 	<string name="toast_isAddedAsFavourite">" lagt til som favoritt"</string>
@@ -59,4 +63,6 @@
 	<string name="eventDetailedActivity_agelimit" >"Aldersgrense: "</string>
 	<string name="eventDetailedActivity_year">" år."</string>
 	<string name="eventDetailedActivity_free">Gratis</string>
+	
+	<string name="tweet_list_header">Nyheter</string>
 </resources>
