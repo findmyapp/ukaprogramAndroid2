@@ -61,16 +61,13 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 	 */
 	private void initView() {
 		Button menuButton = (Button) findViewById(R.id.mainMenu_news);
-		menuButton.setBackgroundResource(R.drawable.mainbutton_news);
 		menuButton.setOnClickListener(this);
 		
 		menuButton = (Button) findViewById(R.id.mainMenu_program);
 		menuButton.setOnClickListener(this);
-		menuButton.setBackgroundResource(R.drawable.mainbutton_program);
 		
 		menuButton = (Button) findViewById(R.id.mainMenu_places);
 		menuButton.setOnClickListener(this);
-		menuButton.setBackgroundResource(R.drawable.mainbutton_places);
 		
 	
 	}

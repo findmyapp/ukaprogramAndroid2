@@ -5,6 +5,8 @@
  */
 package no.uka.findmyapp.ukaprogram.activities.lists;
 
+import java.util.Date;
+
 import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
@@ -34,7 +36,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Gallery;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ public class EventListActivity extends ListActivity
 	/** The m event cursor. */
 	private Cursor mEventCursor;
 
+	private Gallery gallery; 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -64,15 +66,17 @@ public class EventListActivity extends ListActivity
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_list);
 		
+		
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			moveCursorToDate(mEventCursor, bundle.getInt(CalendarActivity.SELECTED_DATE));
 		}
 		addDateScroll();
+		moveGalleryToCurrentDate();
 	}
 	
 	private void addDateScroll(){
-		Gallery gallery = (Gallery) findViewById(R.id.gallery);
+		gallery = (Gallery) findViewById(R.id.gallery);
 	    gallery.setAdapter(new CalendarGalleryAdapter(this));
 	    gallery.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -162,64 +166,51 @@ public class EventListActivity extends ListActivity
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Log.v(debug, "TESTTETETET");
 	    // Handle item selection
 		String selection = UkaEventContract.EVENT_TYPE + " = ";
 		switch (item.getItemId()) {
 			case R.id.category_menu_all:
-				setHorizontalRulingLinesColor(R.color.categorySelected_all);
 				selection = null;
 				refreshList(selection);
 				return true;
 	
 			case R.id.category_menu_party:
-				setHorizontalRulingLinesColor(R.color.categorySelected_party);
 				selection = UkaEventContract.EVENT_TYPE + " = "
 				+ ApplicationConstants.CATEGORY_PARTY;
 				refreshList(selection);
 				return true;
 	
 			case R.id.category_menu_concert:
-				setHorizontalRulingLinesColor(R.color.categorySelected_concert);
 				selection = UkaEventContract.EVENT_TYPE + " = "
 				+ ApplicationConstants.CATEGORY_CONCERT;
 				refreshList(selection);
 				return true; 
 	
 			case R.id.category_menu_lecture:
-				setHorizontalRulingLinesColor(R.color.categorySelected_lecture);
 				selection = UkaEventContract.EVENT_TYPE + " = " 
 				+ ApplicationConstants.CATEGORY_LECTURE;
 				refreshList(selection);
 				return true; 
 	
 			case R.id.category_menu_revue:
-				setHorizontalRulingLinesColor(R.color.categorySelected_revue);
 				selection = UkaEventContract.EVENT_TYPE + " = " 
 				+ ApplicationConstants.CATEGORY_REVUE ;
 				refreshList(selection);
+				Log.v(debug, selection);
 				return true; 
-
+				
+			case R.id.category_menu_favourites:
+				selection = UkaEventContract.FAVOURITE  ;
+				refreshList(selection);
+				Log.v(debug, selection);
+				return true; 
+				
 			default:
 				return false;
 		}
 	}
 
-	/**
-	 * Sets the horizontal ruling lines color.
-	 *
-	 * @param colorId the new horizontal ruling lines color
-	 */
-	private void setHorizontalRulingLinesColor(int colorId) {
-//		LinearLayout line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingHeader);
-//		line.setBackgroundColor(getResources().getColor(colorId));
-//		
-//		line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingFooter);
-//		line.setBackgroundColor(getResources().getColor(colorId));
-		
-		//HorizontalScrollView hsv = (HorizontalScrollView) findViewById(R.id.eventList_horizontalScrollView);
-		//hsv.setBackgroundColor(getResources().getColor(colorId));
-	}
+
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, 
@@ -231,7 +222,6 @@ public class EventListActivity extends ListActivity
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.category_menu, menu);
-
 	}
 
 	/**
@@ -261,7 +251,16 @@ public class EventListActivity extends ListActivity
 			setListAdapter(new AllEventListCursorAdapter(this, mEventCursor));
 		}
 	}
-
+	
+	private void moveGalleryToCurrentDate(){
+		Date toDay = new Date();
+		if (toDay.getMonth() == ApplicationConstants.MONTH){
+			Log.v(debug, "Today is day number: " + toDay.getDate());
+			
+			gallery.setSelection(toDay.getDate() - ApplicationConstants.UKA_START_DATE + 1, true);
+		}
+		
+	}
 	//TODO FIX moveCursorToDate, CalendarActivity or EventListActivity?
 	/**
 	 * Move cursor to date.
