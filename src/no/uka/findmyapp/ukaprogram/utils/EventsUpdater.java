@@ -78,7 +78,7 @@ public class EventsUpdater extends Updater
 				clearEventTable(mContext.getContentResolver());
 				setupBroadCastReciver();
 				update(
-					UkappsServices.UKAEVENTS, 
+					UkappsServices.GET_UKA_PROGRAM_PLACES, 
 					new URI(UkaEventContract.EVENT_CONTENT_URI.toString()), 
 					new String[] {"uka11"});
 			}
