@@ -7,12 +7,11 @@ package no.uka.findmyapp.ukaprogram.activities.lists;
 
 import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.contracts.Location.LocationContract;
-import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
+import no.uka.findmyapp.android.rest.datamodels.models.Location;
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.activities.Main;
+import no.uka.findmyapp.ukaprogram.activities.PlacesActivity;
 import no.uka.findmyapp.ukaprogram.adapters.LocationListCursorAdapter;
-import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
-import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
+import no.uka.findmyapp.ukaprogram.mapper.LocationMapper;
 import no.uka.findmyapp.ukaprogram.utils.LocationUpdater;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
@@ -35,8 +34,9 @@ public class LocationListActivity extends ListActivity implements OnClickListene
 {
 	
 	/** The Constant debug. */
-	private final static String debug = "EventListActivity";
-
+	private final static String debug = "LocationListActivity";
+	
+	public final static String SELECTED_LOCATION = "selectedLocation";
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -60,16 +60,19 @@ public class LocationListActivity extends ListActivity implements OnClickListene
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
+		
+		//Cursor c = (Cursor) l.getItemAtPosition(position);
 
+		//UkaEvent event = UkaEventMapper.getUkaEventFromCursor(c);
+		//Log.v(debug, event.toString());
 		Cursor c = (Cursor) l.getItemAtPosition(position);
 
-		UkaEvent event = UkaEventMapper.getUkaEventFromCursor(c);
-		Log.v(debug, event.toString());
-
-		Intent intent = new Intent(this, Main.class);
-		intent.putExtra(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL, event);
-
+		Location location = LocationMapper.getLocationFromCursor(c);
+		Log.v(debug, location.toString());
+		Intent intent = new Intent().setClass(this, PlacesActivity.class);
+		intent.putExtra(SELECTED_LOCATION, location);
 		startActivity(intent);
+
 	}
 	
 	protected void setAdapter() {

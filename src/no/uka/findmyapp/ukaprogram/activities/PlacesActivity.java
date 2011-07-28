@@ -1,10 +1,18 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import no.uka.findmyapp.android.rest.client.RestServiceHelper;
+import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
+import no.uka.findmyapp.android.rest.datamodels.models.Location;
+import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.activities.lists.LocationListActivity;
+import no.uka.findmyapp.ukaprogram.contstants.LocationConstants;
+import no.uka.findmyapp.ukaprogram.mapper.UkaEventMapper;
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,36 +28,50 @@ import android.widget.TextView;
  * The Class PlacesActivity.
  */
 public class PlacesActivity extends Activity implements OnClickListener{
-	
+
 	/** The service helper. */
 	private static RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
-	
+
 	/** The Constant debug. */
 	private static final String debug = "PlacesActivity";
-	
+
 	/** The Constant PLACE. */
 	public static final String PLACE = "Place";
-	
+
 	/** The bundle. */
 	private Bundle bundle;
 	
+	private Cursor eventCursor;
+
+	private Location location;
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.places);
+
+		bundle = getIntent().getExtras();
+		Log.v(debug, "Bundle = " + (bundle.toString()) );
+		location = (Location) bundle.getSerializable(LocationListActivity.SELECTED_LOCATION);
+		Log.v(debug, location.toString());
+		initButtons();
+
+		setupPlaceSpecificViews(location);
+
+		setReportedParamenters(getDancing(), getFlirt(), getMood(), getChat());
 		
+	}
+
+	private void initButtons() {
 		Button shareComment = (Button) findViewById(R.id.places_share);
 		shareComment.setOnClickListener(this);
-		
+
 		Button report = (Button) findViewById(R.id.places_report);
 		report.setOnClickListener(this);
-	
-		setupPlaceSpecificViews();
-		setReportedParamenters(getDancing(), getFlirt(), getMood(), getChat());
 	}
 
 	/**
@@ -63,9 +85,9 @@ public class PlacesActivity extends Activity implements OnClickListener{
 		reportedComment =  comment.getText().toString();
 		return reportedComment;
 	}
-	
 
-	
+
+
 	/**
 	 * Sets the reported paramenters.
 	 *
@@ -79,16 +101,16 @@ public class PlacesActivity extends Activity implements OnClickListener{
 		RatingBar pbSjekking = (RatingBar) findViewById(R.id.places_progressbar_sjekking);
 		pbSjekking.setIsIndicator(true);
 		pbSjekking.setRating(flirt);
-		
+
 		RatingBar pbDansing = (RatingBar) findViewById(R.id.places_progressbar_dansing);
 		pbDansing.setIsIndicator(true);
 		pbDansing.setRating(dancing);
-		
+
 		RatingBar pbPrating = (RatingBar) findViewById(R.id.places_progressbar_prating);
 		pbPrating.setIsIndicator(true);
 		pbPrating.setRating(chat);
 
-		
+
 		RatingBar pbStemning = (RatingBar) findViewById(R.id.places_progressbar_stemning);
 		pbStemning.setIsIndicator(true);
 		pbStemning.setRating(mood);
@@ -104,28 +126,71 @@ public class PlacesActivity extends Activity implements OnClickListener{
 		case R.id.places_report:
 			sendReport(getReport());
 			break;
-			
+
 		case R.id.places_share:
 			sendComment(getReportedComment());
 			break;
-			
+
 		default:
 			break;
 		}
 	}
-	
+
 	/**
 	 * Setup place specific views.
 	 */
-	private void setupPlaceSpecificViews(){
+	private void setupPlaceSpecificViews(Location location){
 		ImageView map = (ImageView) findViewById(R.id.places_map);
 		TextView place_name = (TextView) findViewById(R.id.places_name);
 		TextView next_event = (TextView) findViewById(R.id.places_playing_next);
 		TextView prev_event = (TextView) findViewById(R.id.places_last_played);
-		
+		Log.v(debug, location.getLocationName());
+
+		place_name.setText(location.getLocationName());
+
+		setMap(map, location);
+		setNextEvent(next_event, location);
+		setPrevEvent(prev_event, location);
 		//TODO: add method to inflate views
 	}
-	
+
+
+	void setMap(ImageView map, Location location){	
+
+		map.setImageResource(R.drawable.mapplaceholder);
+		Log.v(debug, "Is " + location.getLocationStringId() + "  =  " + LocationConstants.EDGAR);
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.BODEGAEN)){
+			map.setImageResource(R.drawable.mapbodegaen);
+		}
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.DODENSDAL)){
+			map.setImageResource(R.drawable.mapdodensdal);
+		}	
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.EDGAR)){
+			map.setImageResource(R.drawable.mapedgar);
+			Log.v(debug, "YES");
+		}	
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.KLUBBEN)){
+			map.setImageResource(R.drawable.mapklubben);
+		}	
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.KNAUS)){
+			map.setImageResource(R.drawable.mapknaus);
+		}	
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.LYCHE)){
+			map.setImageResource(R.drawable.maplyche);
+		}	
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.SELSKAPSSIDEN)){
+			map.setImageResource(R.drawable.mapselskapssiden);
+		}	
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.STORSALEN)){
+			map.setImageResource(R.drawable.mapstorsalen);
+		}	
+		if (location.getLocationStringId().equalsIgnoreCase(LocationConstants.STROSSA)){
+			map.setImageResource(R.drawable.mapstrossa);
+		}	
+	}
+
+
+
 	/**
 	 * Gets the report.
 	 *
@@ -133,22 +198,61 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	 */
 	private ArrayList<Float> getReport(){
 		ArrayList<Float> list = new ArrayList<Float>();
-		
+
 		RatingBar dancing = (RatingBar) findViewById(R.id.places_progressbar_dansing_reported);
 		list.add(dancing.getRating());
-		
+
 		RatingBar flirt = (RatingBar) findViewById(R.id.places_progressbar_sjekking_reported);
 		list.add(flirt.getRating());
-		
+
 		RatingBar chat = (RatingBar) findViewById(R.id.places_progressbar_prating_reported);
 		list.add(chat.getRating());
-		
+
 		RatingBar mood = (RatingBar) findViewById(R.id.places_progressbar_stemning_reported);
 		list.add(mood.getRating());
-		
+
 		return list;
 	}
 	
+	private void setNextEvent(TextView tv, Location location){
+		try {
+			UkaEvent  event;
+			String selection = (UkaEventContract.PLACE +"=? AND " +UkaEventContract.SHOWING_TIME+ "> strftime('%s','now')");
+			eventCursor = this.managedQuery(
+					UkaEventContract.EVENT_CONTENT_URI, 
+					null, 
+					selection, 
+					new String[]{location.getLocationStringId()}, 
+					UkaEventContract.SHOWING_TIME);
+			eventCursor.moveToFirst();
+			event = UkaEventMapper.getUkaEventFromCursor(eventCursor);
+			tv.setText("Neste: " + event.getTitle());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			tv.setText("");
+			e.printStackTrace();
+		}
+	}
+	private void setPrevEvent(TextView tv, Location location){
+		try {
+			UkaEvent  event;
+			String selection = (UkaEventContract.PLACE +"=? AND " +UkaEventContract.SHOWING_TIME+ "< strftime('%s','now')");
+			eventCursor = this.managedQuery(
+					UkaEventContract.EVENT_CONTENT_URI, 
+					null, 
+					selection, 
+					new String[]{location.getLocationStringId()}, 
+					UkaEventContract.SHOWING_TIME);
+			eventCursor.moveToFirst();
+			event = UkaEventMapper.getUkaEventFromCursor(eventCursor);
+			tv.setText("Forrige: " + event.getTitle());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			tv.setText("");
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Gets the dansing.
 	 *
@@ -157,7 +261,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	private int getDancing(){
 		return 2;
 	}
-	
+
 	/**
 	 * Gets the stemning.
 	 *
@@ -166,7 +270,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	private int getMood(){
 		return 3;
 	}
-	
+
 	/**
 	 * Gets the prating.
 	 *
@@ -175,7 +279,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	private int getChat(){
 		return 5;
 	}
-	
+
 	/**
 	 * Gets the sjekking.
 	 *
@@ -184,7 +288,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	private int getFlirt(){
 		return 1;
 	}
-	
+
 	/**
 	 * Send report.
 	 *
@@ -194,7 +298,7 @@ public class PlacesActivity extends Activity implements OnClickListener{
 		//report contains reported float value of stemning, dansing, prating and sjekking in that order, index 0-3
 		Log.v(debug, "Reported values: " + report.toString());
 	}
-	
+
 	/**
 	 * Send comment.
 	 *
