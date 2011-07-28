@@ -8,9 +8,7 @@ package no.uka.findmyapp.ukaprogram.activities;
 import java.util.ArrayList;
 
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.activities.lists.ConcertListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.EventListActivity;
-import no.uka.findmyapp.ukaprogram.activities.lists.FavouritesListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.LocationListActivity;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
