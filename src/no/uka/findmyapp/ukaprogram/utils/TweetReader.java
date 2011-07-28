@@ -19,7 +19,7 @@ public class TweetReader {
 	public static ArrayList<Tweet> getTweets(String searchTerm, int page) {
 		  String searchUrl =
 		        "http://search.twitter.com/search.json?q=@"
-		        + searchTerm + "&rpp=100&page=" + page;
+		        + searchTerm + "&rpp=20&page=" + page;
 		   
 		  ArrayList<Tweet> tweets =
 		        new ArrayList<Tweet>();

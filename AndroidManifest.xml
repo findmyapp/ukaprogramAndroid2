@@ -31,6 +31,7 @@
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.SettingsActivity" android:screenOrientation="portrait"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.lists.LocationListActivity" android:screenOrientation="portrait"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.PlacesActivity"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.NewsActivity"></activity>
 		<activity android:name=".activities.lists.ConcertListActivity" android:screenOrientation="portrait"></activity>
 		
 		<service android:name="no.uka.findmyapp.android.rest.client.RestIntentService" />

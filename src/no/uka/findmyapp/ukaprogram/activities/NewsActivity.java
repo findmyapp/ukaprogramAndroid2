@@ -14,13 +14,13 @@ public class NewsActivity extends Activity{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		ArrayList<Tweet> tweets = TweetReader.getTweets("android", 1);
+		setContentView(R.layout.tweet_list);
+		ArrayList<Tweet> tweets = TweetReader.getTweets("UKA", 1);
 
 
 
 		ListView listView = (ListView) findViewById(R.id.tweet_list_listview);
-
+		
 		listView.setAdapter(new TweetItemAdapter(this, R.layout.tweet_list, tweets));
 	}
 }

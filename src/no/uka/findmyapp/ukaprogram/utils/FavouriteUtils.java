@@ -14,7 +14,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 // TODO: Auto-generated Javadoc
@@ -32,7 +31,7 @@ public class FavouriteUtils
 	/** The m content resolver. */
 	private ContentResolver mContentResolver; 
 
-	private FavouriteDatabaseHelper mDatabaseHelper; 
+	private UkaProgramDatabaseHelper mDatabaseHelper; 
 	
 	/**
 	 * Instantiates a new favourite utils.
@@ -66,7 +65,7 @@ public class FavouriteUtils
 	
 	public ArrayList<Integer> getAllFavourites() {		
 		Log.v(debug, "Inside getAllFavourites");
-		FavouriteDatabaseHelper mDatabaseHelper = new FavouriteDatabaseHelper(mContext);
+		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
 		SQLiteDatabase db = mDatabaseHelper.getReadableDatabase(); 
 		Cursor cursor = db.query(
 				ApplicationConstants.FAVOURITE_TABLE_NAME, null, null, null, null, null, null);
@@ -107,7 +106,7 @@ public class FavouriteUtils
 	}
 	
 	private void addPeristentFavourite(ContentValues values) {
-		FavouriteDatabaseHelper mDatabaseHelper = new FavouriteDatabaseHelper(mContext);
+		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
 		Log.v(debug, "addPersistentFavourite: values" + values.toString());
 		Log.v(debug, "addPersistentFavourite: databasehelper " + mDatabaseHelper.toString());
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
@@ -118,7 +117,7 @@ public class FavouriteUtils
 	
 	private void removePeristentFavourite(int eventId) {
 		String[] whereArgs = new String[] {String.valueOf(eventId)}; 
-		FavouriteDatabaseHelper mDatabaseHelper = new FavouriteDatabaseHelper(mContext);
+		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
 		db.delete(ApplicationConstants.FAVOURITE_TABLE_NAME, 
 				ApplicationConstants.FAVOURITE_TABLE_WHERE_CLAUSE_EVENT_ID_IS_FAVOURITE,
@@ -136,48 +135,4 @@ public class FavouriteUtils
 		return values;
 	}
 	
-	/**
-	 * The Class FavouriteDatabaseHelper.
-	 */
-	private static class FavouriteDatabaseHelper extends SQLiteOpenHelper {
-		
-		/** The Constant CREATE_TABLE. */
-		private static final String CREATE_TABLE = 
-			  "CREATE TABLE " + ApplicationConstants.FAVOURITE_TABLE_NAME + " ("	
-			  + ApplicationConstants.FAVOURITE_TABLE_COLUMN_ID + " INTEGER PRIMARY KEY, "
-			  + ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID + " INTEGER, "
-			  + ApplicationConstants.FAVOURITE_TABLE_COLUMN_IS_FAVOURITE + " BOOLEAN "
-			  + ");";
-		
-		/** The Constant DROP_TABLE_QUERY. */
-		private static final String DROP_TABLE_QUERY = 
-			"DROP TABLE IF EXISTS " + ApplicationConstants.FAVOURITE_TABLE_NAME + ";";
-		
-		/**
-		 * Instantiates a new favourite database helper.
-		 *
-		 * @param context the context
-		 */
-		public FavouriteDatabaseHelper(Context context) {
-			super(context, ApplicationConstants.DATABASE_NAME, 
-					null, ApplicationConstants.DATABASE_VERSION);
-		}
-		
-		/* (non-Javadoc)
-		 * @see android.database.sqlite.SQLiteOpenHelper#onCreate(android.database.sqlite.SQLiteDatabase)
-		 */
-		@Override
-		public void onCreate(SQLiteDatabase db ) {
-			db.execSQL(CREATE_TABLE);
-		}
-
-		/* (non-Javadoc)
-		 * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
-		 */
-		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion ) {
-	        db.execSQL(DROP_TABLE_QUERY);
-	        onCreate(db);
-		}
-	}
 }
