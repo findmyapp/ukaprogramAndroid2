@@ -36,21 +36,33 @@ public class PrivacySettings
 		Log.v(debug, "inside changePrivacySettings");
 		ContentValues values = new ContentValues();
 				
-		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_USER_PRIVACY_ID, settings.getUserPrivacyId());
-		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_EVENTS,PrivacySetting.toInt(settings.getEventsPrivacySetting()));
-		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_MEDIA,PrivacySetting.toInt(settings.getMediaPrivacySetting()));
-		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_MONEY,PrivacySetting.toInt(settings.getMoneyPrivacySetting()));
-		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_POSITION, PrivacySetting.toInt(settings.getPositionPrivacySetting()));
+		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_USER_PRIVACY_ID, 
+				settings.getUserPrivacyId());
+		
+		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_EVENTS,
+				PrivacySetting.toInt(settings.getEventsPrivacySetting()));
+		
+		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_MEDIA,
+				PrivacySetting.toInt(settings.getMediaPrivacySetting()));
+		
+		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_MONEY,
+				PrivacySetting.toInt(settings.getMoneyPrivacySetting()));
+		
+		values.put(ApplicationConstants.USER_PRIVACY_COLUMN_POSITION, 
+				PrivacySetting.toInt(settings.getPositionPrivacySetting()));
 		
 		//store the privacy settings to database
 		setPrivacySettings(values);
 	
 	}
 	public UserPrivacy getPrivacySettings(){
-		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
-		Log.v(debug, "getPrivacySettings: databasehelper " + mDatabaseHelper.toString());
+		UkaProgramDatabaseHelper mDatabaseHelper = 
+				new UkaProgramDatabaseHelper(mContext);
+		Log.v(debug, "getPrivacySettings: databasehelper " 
+				+ mDatabaseHelper.toString());
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
-		Cursor cursor = db.query(ApplicationConstants.USER_PRIVACY_TABLE_NAME, null, null, null, null, null, null);
+		Cursor cursor = db.query(ApplicationConstants.USER_PRIVACY_TABLE_NAME, 
+				null, null, null, null, null, null);
 		if(cursor.getCount()==0){
 			db.close(); 
 			cursor.close();
@@ -58,8 +70,10 @@ public class PrivacySettings
 			return null;
 		}else{
 		cursor.moveToFirst();
-		UserPrivacy userprivacy = PrivacySettingsMapper.getUserPrivacyUkaEventFromCursor(cursor);
-		Log.v(debug, "getPrivacySettings: The following data is stored in db:  " + userprivacy.toString());
+		UserPrivacy userprivacy = 
+				PrivacySettingsMapper.getUserPrivacyUkaEventFromCursor(cursor);
+		Log.v(debug, "getPrivacySettings: The following data is stored in db:  " 
+				+ userprivacy.toString());
 		db.close(); 
 		cursor.close();
 		return userprivacy;
@@ -68,9 +82,9 @@ public class PrivacySettings
 
 	
 	private void setPrivacySettings(ContentValues values) {
-		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
+		UkaProgramDatabaseHelper mDatabaseHelper = 
+				new UkaProgramDatabaseHelper(mContext);
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
-		Log.v(debug, "setPrivacySettings: checking");
 		if(privacySettingsDatabaseNoteEmpty()){
 			db.delete(ApplicationConstants.USER_PRIVACY_TABLE_NAME,null,null);
 			db.insert(ApplicationConstants.USER_PRIVACY_TABLE_NAME,null,values);
@@ -86,7 +100,8 @@ public class PrivacySettings
 		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
 		SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
 		Cursor privacyCursor = 
-			db.query(ApplicationConstants.USER_PRIVACY_TABLE_NAME, null, null, null, null, null, null);
+				db.query(ApplicationConstants.USER_PRIVACY_TABLE_NAME, 
+				null, null, null, null, null, null);
 		if(privacyCursor.getCount() > 0) {
 			db.close();
 			return true; 

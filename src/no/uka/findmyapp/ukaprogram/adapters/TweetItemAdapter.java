@@ -84,6 +84,4 @@ public class TweetItemAdapter extends ArrayAdapter<Tweet> {
 		      cacheDir.mkdirs();
 		  }
 		}
-
-
 }

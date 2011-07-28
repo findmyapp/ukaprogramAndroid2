@@ -18,6 +18,7 @@ import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
 import no.uka.findmyapp.ukaprogram.utils.FavouriteUtils;
+import no.uka.findmyapp.ukaprogram.utils.Toaster;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -83,7 +84,8 @@ public class EventDetailsActivity extends PopupMenuActivity
 		}
 		else{
 			// Toast empty bundle exception
-			showToast(getResources().getString(R.string.exception_emptyBundle));
+			Toaster.shoutLong(getApplicationContext(),
+					getResources().getString(R.string.exception_emptyBundle));
 		}
 	}
 
@@ -225,10 +227,6 @@ public class EventDetailsActivity extends PopupMenuActivity
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged
-	 * (android.widget.CompoundButton, boolean)
-	 */
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		FavouriteUtils fu = new FavouriteUtils(getApplicationContext());
@@ -245,26 +243,9 @@ public class EventDetailsActivity extends PopupMenuActivity
 					R.string.toast_isRemovedAsFavourite);
 		}
 
-		showToast(info); 
-	}
+		Toaster.shoutLong(getApplicationContext(), info);
+		}
 
-	/**
-	 * Show toast.
-	 *
-	 * @param info the info
-	 */
-	private void showToast(String info) {
-		Toast t = Toast.makeText(getApplicationContext(), info, Toast.LENGTH_SHORT);
-		t.show();
-	}
-
-	/* (non-Javadoc)
-	 * @see android.view.View.OnClickListener#onClick(android.view.View)
-	 */
-	@Override
-	public void onClick(View v ) {
-		// TODO Auto-generated method stub
-	}
 	public String getFileNameFromPath(String path){
 		String test = path;
 		String[] arr = test.split("/");
@@ -307,7 +288,7 @@ public class EventDetailsActivity extends PopupMenuActivity
 	
 	private void setHeaderImage(UkaEvent event){
 		ImageView img = (ImageView) findViewById(R.id.event_details_category_header);
-		Log.v(debug, ApplicationConstants.CATEGORY_REVUE + "    =     " + event.getEventType());
+		Log.v(debug, ApplicationConstants.CATEGORY_REVUE + " = " + event.getEventType());
 		if (isConcert(event)){
 			Log.v(debug, "inside if");
 			img.setImageResource(R.drawable.headerconcert);
@@ -337,5 +318,14 @@ public class EventDetailsActivity extends PopupMenuActivity
 
 	private boolean isLecture(UkaEvent event) {
 		return ("'"+event.getEventType()+"'").equalsIgnoreCase(ApplicationConstants.CATEGORY_LECTURE);
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
+	@Override
+	public void onClick(View v ) {
+		setupFacebookDialogListener(); 
 	}
 }

@@ -8,6 +8,7 @@
 	<string name="submitSettingsbutton">Lagre</string>
 	<string name="setting_prompt">Velg restriksjon</string>
 	<string name="setting_menu_item">Innstillinger</string>
+	
 	<!-- Main menu section -->
 	<string name="mainMenu_program">Program</string>
 	<string name="mainMenu_news">Nyheter</string>
@@ -36,6 +37,13 @@
 	<string name="calendar_friday">fre</string>
 	<string name="calendar_saturday">lør</string>
 	<string name="calendar_sunday">søn</string>
+	
+	<!-- Facebook authentication -->
+	<string name="facebookAuthentication_headerText">Facebook Login</string>
+	<string name="facebookAuthentication_login">Login?</string>
+	<string name="facebookAuthentication_logout">Logout?</string>
+	<string name="facebookAuthentication_loggedOut">Logged out!</string>
+		<string name="facebookAuthentication_loggedIn">Logged in!</string>
 	
 	<!-- Settings section -->
 	<string name="settings_positionText">Posisjon:</string>

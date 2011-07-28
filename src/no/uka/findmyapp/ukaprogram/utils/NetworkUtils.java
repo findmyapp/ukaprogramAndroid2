@@ -4,7 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-public class NetworkUtils {
+public class NetworkUtils 
+{
 	public static final boolean isOnline(Context mContext) {
 		ConnectivityManager cm = (ConnectivityManager) 
 			mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
