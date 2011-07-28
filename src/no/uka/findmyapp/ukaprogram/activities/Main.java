@@ -135,10 +135,6 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 					EventsUpdater eu = new EventsUpdater(getApplicationContext());
 					eu.updateEvents(); 
 				}
-				else if (prediction.name.equalsIgnoreCase(ApplicationConstants.GESTURE_RIGHT)) {
-					Intent i = new Intent(this, CalendarActivity.class);
-					startActivity(i);
-				}
 			}
 		}
 	}
