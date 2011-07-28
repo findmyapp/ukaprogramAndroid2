@@ -211,11 +211,11 @@ public class EventListActivity extends ListActivity
 	 * @param colorId the new horizontal ruling lines color
 	 */
 	private void setHorizontalRulingLinesColor(int colorId) {
-		LinearLayout line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingHeader);
-		line.setBackgroundColor(getResources().getColor(colorId));
-		
-		line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingFooter);
-		line.setBackgroundColor(getResources().getColor(colorId));
+//		LinearLayout line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingHeader);
+//		line.setBackgroundColor(getResources().getColor(colorId));
+//		
+//		line = (LinearLayout) findViewById(R.id.eventList_HorizontalRulingFooter);
+//		line.setBackgroundColor(getResources().getColor(colorId));
 		
 		//HorizontalScrollView hsv = (HorizontalScrollView) findViewById(R.id.eventList_horizontalScrollView);
 		//hsv.setBackgroundColor(getResources().getColor(colorId));

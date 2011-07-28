@@ -52,7 +52,7 @@ public class LocationListCursorAdapter extends CursorAdapter
 	public void bindView(View eventView, Context context, Cursor cursor) {		
 		try {
 			TextView t = (TextView) eventView.findViewById(R.id.locationListItem_title);
-			t.setText(CursorTools.getStringFromTableColumn(mCursor, LocationContract.LOCATIONNAME));
+			t.setText(CursorTools.getStringFromTableColumn(mCursor, LocationContract.LOCATION_NAME));
 			
 			t = (TextView) eventView.findViewById(R.id.locationList_happeningNow);
 			t.setText("Fest!");

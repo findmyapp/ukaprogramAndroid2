@@ -72,10 +72,9 @@ public class EventDetailsActivity extends PopupMenuActivity
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.event_details);
-
+		
 		Bundle bundle = getIntent().getExtras(); 
 		Log.v(debug, "Bundle toString " + bundle.toString());
-
 		if(bundle.getSerializable(ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL) != null) {
 			mSelectedEvent = (UkaEvent) bundle.getSerializable(
 					ApplicationConstants.LIST_ITEM_CLICKED_SIGNAL);
@@ -106,6 +105,7 @@ public class EventDetailsActivity extends PopupMenuActivity
             public void onCancel() {}
         });
 	}
+	
 	
 	/**
 	 * Populate view.
@@ -154,23 +154,35 @@ public class EventDetailsActivity extends PopupMenuActivity
 
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
 		imageProgressBar = (ProgressBar) findViewById(R.id.event_details_image_progressbar);
-		eventImage = (ImageView) findViewById(R.id.event_details_picture);
+		downloadEventPicture(selectedEvent);
+		
+		setHeaderImage(selectedEvent);
+	
+		if(selectedEvent.isFree()){
+			price.setText(getResources().getString(R.string.eventDetailedActivity_free));
+		}
 
+		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
+		favorites.setButtonDrawable(R.drawable.favorites_button);
+		if(selectedEvent.isFavourite()) favorites.setChecked(true); 
+		favorites.setOnCheckedChangeListener(this);	
+	}
+	
+	private void downloadEventPicture(UkaEvent selectedEvent) {
+		eventImage = (ImageView) findViewById(R.id.event_details_picture);
 		try {
 			OutputStream os = null;
 			imageURL = new URL(ApplicationConstants.UKA_PATH + selectedEvent.getImage());
 			filename = getFileNameFromPath(selectedEvent.getImage());
 			if (filename.length() == 0){
 				Log.v(debug, "Finner ikke bilde");
-				eventImage.setImageResource(R.drawable.default_artist_image);
+				eventImage.setImageResource(R.drawable.eventplaceholder);
 			}
-			else
-			{
+			else {
 				if (fileExist(filename)){
 					eventImage.setImageBitmap(loadBitmap(filename));
 				}
-				else
-				{
+				else {
 					imageProgressBar.setVisibility(ProgressBar.VISIBLE);
 					new Thread(new Runnable() {
 						public void run() {
@@ -181,40 +193,24 @@ public class EventDetailsActivity extends PopupMenuActivity
 								
 								runOnUiThread(new Runnable() {
 									public void run() {
-										// TODO Auto-generated method stub
 										eventImage.setImageBitmap(eventBitmap);
 										imageProgressBar.setVisibility(ProgressBar.INVISIBLE);
 									}
 								});
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
+							} 
+							catch (IOException e) {
 								e.printStackTrace();
 							} 
-							
 						}
 					}).start();
-					//Bitmap eventBitmap = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream()); 
-					//eventImage.setImageBitmap(eventBitmap);
-					//saveBitmap(eventBitmap, filename, imageURL);
 				}
 			}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} 
-
-		Log.v(debug, "Event URI image: " + ApplicationConstants.UKA_PATH + selectedEvent.getImage());
-		if(selectedEvent.isFree()){
-			price.setText(getResources().getString(R.string.eventDetailedActivity_free));
+		catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.v(debug, "Event URI image: " + ApplicationConstants.UKA_PATH + selectedEvent.getImage());
 		}
-
-		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
-		favorites.setButtonDrawable(R.drawable.favorites_button);
-		if(selectedEvent.isFavourite()) favorites.setChecked(true); 
-		favorites.setOnCheckedChangeListener(this);	
 	}
 	
 	private boolean fileExist(String filename){
@@ -305,5 +301,39 @@ public class EventDetailsActivity extends PopupMenuActivity
 		if (file != null) {
 			file.delete();
 		}
+	}
+	
+	private void setHeaderImage(UkaEvent event){
+		ImageView img = (ImageView) findViewById(R.id.event_details_category_header);
+		Log.v(debug, ApplicationConstants.CATEGORY_REVUE + "    =     " + event.getEventType());
+		if (isConcert(event)){
+			Log.v(debug, "inside if");
+			img.setImageResource(R.drawable.headerconcert);
+		}
+		else if (isParty(event)){
+			img.setImageResource(R.drawable.headerparty);
+		}
+		else if (isRevue(event)){
+			img.setImageResource(R.drawable.headerrevu);
+		}
+		else if (isLecture(event)){
+			img.setImageResource(R.drawable.headerlecture);
+		}
+	}
+
+	private boolean isConcert(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_CONCERT);
+	}
+
+	private boolean isParty(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_PARTY);
+	}
+
+	private boolean isRevue(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_REVUE);
+	}
+
+	private boolean isLecture(UkaEvent event) {
+		return ("'"+event.getEventType()+"'").equalsIgnoreCase(ApplicationConstants.CATEGORY_LECTURE);
 	}
 }

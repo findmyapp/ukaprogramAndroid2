@@ -14,7 +14,7 @@
 	<color name="uka_orange">#FF5919</color>
 	<color name="white">#FFFFFF</color>
 	<color name="grey">#D0D0D0</color>
-	<color name="background_grey">#FAFAF8</color>
+	<color name="background_grey">#EAEAE8</color>
 
 	<!-- Menu spesific colors -->
 	<color name="firstMenuItem">#03BED7</color>

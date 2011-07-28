@@ -22,6 +22,11 @@ public final class ApplicationConstants
 	public static final int UKA_END_DATE = 30;
 	
 	public static final boolean IS_FAVOURITE = true; 
+	
+	public static final String FINDMYAPP_API_KEY = "key1231231";
+	
+	public static final String FINDMYAPP_API_SECRET = "aodsfiaocenaodi";
+	
 
 	/*Date Constants. */
 	public static final int YEAR = 111;
