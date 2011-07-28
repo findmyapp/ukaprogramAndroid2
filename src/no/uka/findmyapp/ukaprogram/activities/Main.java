@@ -8,9 +8,7 @@ package no.uka.findmyapp.ukaprogram.activities;
 import java.util.ArrayList;
 
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.activities.lists.ConcertListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.EventListActivity;
-import no.uka.findmyapp.ukaprogram.activities.lists.FavouritesListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.LocationListActivity;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
@@ -133,10 +131,6 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 				else if(prediction.name.equals(ApplicationConstants.GESTURE_UPDATE)) {
 					EventsUpdater eu = new EventsUpdater(getApplicationContext());
 					eu.updateEvents(); 
-				}
-				else if (prediction.name.equalsIgnoreCase(ApplicationConstants.GESTURE_RIGHT)) {
-					Intent i = new Intent(this, CalendarActivity.class);
-					startActivity(i);
 				}
 			}
 		}
