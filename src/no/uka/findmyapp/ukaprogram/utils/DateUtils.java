@@ -101,7 +101,7 @@ public class DateUtils
 	public static int getDayIntFromTimestamp(long timestamp) {
 		if(timestamp == 0) return 0;
 		else {
-			Log.v(debug, "getCustomDay " + new Integer(standardDayFormat.format(new Date(timestamp))));
+			Log.v(debug, "getCustomDay " + (standardDateFormat.format(new Date(timestamp))));
 			return new Integer(standardDayFormat.format(new Date(timestamp)));  
 		}
 	}

@@ -73,7 +73,8 @@
 					android:id="@+id/gallery"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:fadingEdgeLength="60dp"
+					android:fadingEdgeLength="10dp"
+					android:spacing="3px"
 				/>
 				<ListView android:id="@android:id/list" 
 					android:layout_height="fill_parent"

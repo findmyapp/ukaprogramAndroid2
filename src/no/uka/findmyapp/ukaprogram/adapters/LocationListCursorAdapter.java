@@ -55,7 +55,7 @@ public class LocationListCursorAdapter extends CursorAdapter
 			t.setText(CursorTools.getStringFromTableColumn(mCursor, LocationContract.LOCATION_NAME));
 			
 			t = (TextView) eventView.findViewById(R.id.locationList_happeningNow);
-			t.setText("Fest!");
+			t.setText((CursorTools.getStringFromTableColumn(mCursor, LocationContract.LOCATION_ID)));
 			
 		}
 		catch(Exception e) {
@@ -70,5 +70,12 @@ public class LocationListCursorAdapter extends CursorAdapter
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
 		final View view = mInflater.inflate(R.layout.location_list_item, parent, false);
 		return view;
+	}
+	
+	public String getNextEventOnLocation(String location){
+		
+		
+		
+		return "YO";
 	}
 }

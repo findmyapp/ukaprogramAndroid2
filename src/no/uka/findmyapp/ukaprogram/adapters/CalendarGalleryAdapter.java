@@ -24,8 +24,8 @@ public class CalendarGalleryAdapter extends BaseAdapter{
 	    public CalendarGalleryAdapter(Context c) {
 	        mContext = c;
 	        TypedArray attr = mContext.obtainStyledAttributes(R.styleable.DateItemCarousel);
-	        mGalleryItemBackground = attr.getResourceId(
-	                R.styleable.DateItemCarousel_android_galleryItemBackground, 0);
+	        /*mGalleryItemBackground = attr.getResourceId(
+	                R.styleable.DateItemCarousel_android_galleryItemBackground, 0);*/
 	        attr.recycle();
 	    }
 

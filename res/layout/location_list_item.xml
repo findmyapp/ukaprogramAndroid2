@@ -9,16 +9,15 @@
 	<TextView 
 		android:id="@+id/locationList_happeningNow" 
 		style="@style/MediumFont"
-		android:layout_width="fill_parent" 
-		android:layout_height="fill_parent"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
-		android:layout_margin="5dp"	/>
+		android:layout_alignParentRight="true"/>
 	<TextView 
 		android:id="@+id/locationListItem_title" 
 		style="@style/BigFont" 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
-		android:layout_toLeftOf="@id/locationList_happeningNow"
-		android:layout_margin="5dp" />
+		android:layout_alignParentLeft="true"/>
 </RelativeLayout>

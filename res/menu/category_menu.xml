@@ -6,6 +6,11 @@
 		android:icon="@drawable/catall"
 		/>
 	<item 
+		android:id="@+id/category_menu_favourites" 
+		android:title="@string/category_favourites" 
+		android:icon="@drawable/catfav"
+	/>
+	<item 
 		android:id="@+id/category_menu_concert" 
 		android:title="@string/category_concert" 
 		android:icon="@drawable/catconcert"
