@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- General color settings -->
-	<color name="customThemeColor">#000000</color>
 	<color name="shadowColor">#DCDCDB</color>
 	<color name="black">#000000</color>
 	<color name="uka_red">#8F0000</color>

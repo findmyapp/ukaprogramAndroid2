@@ -50,8 +50,8 @@ public class LocationListActivity extends ListActivity implements OnClickListene
 		IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
 		getApplicationContext().registerReceiver(intentReceiver, intentFilter); 
 		
-		LocationUpdater lu = new LocationUpdater(getApplicationContext());
-		lu.updateLocations(); 
+		LocationUpdater lu = new LocationUpdater(getApplicationContext()); 
+		lu.updateLocations();
 	}
 
 	/* (non-Javadoc)

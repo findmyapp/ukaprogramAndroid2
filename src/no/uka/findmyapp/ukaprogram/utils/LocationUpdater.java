@@ -28,4 +28,22 @@ public class LocationUpdater extends Updater
 			Toaster.shoutLong(mContext, e.getMessage());
 		} 
 	}
+	
+	/* 
+	 * 	
+	public void softUpdate() {
+		if(tableExistsAndNotEmpty() == true) {}
+		else updateLocations();
+	}
+
+	private boolean tableExistsAndNotEmpty( ) {
+		Cursor eventCursor = mContext.getContentResolver()
+			.query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
+		if(eventCursor.getCount() > 0) {
+			return true; 
+		}
+		return false;
+	}
+	
+	 */
 }

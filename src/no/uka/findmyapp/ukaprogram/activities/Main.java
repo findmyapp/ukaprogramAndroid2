@@ -12,6 +12,7 @@ import no.uka.findmyapp.ukaprogram.activities.lists.EventListActivity;
 import no.uka.findmyapp.ukaprogram.activities.lists.LocationListActivity;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
 import no.uka.findmyapp.ukaprogram.utils.EventsUpdater;
+import no.uka.findmyapp.ukaprogram.utils.LocationUpdater;
 import android.content.Intent;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
@@ -128,6 +129,10 @@ public class Main extends PopupMenuActivity implements OnClickListener, OnGestur
 				else if(prediction.name.equals(ApplicationConstants.GESTURE_UPDATE)) {
 					EventsUpdater eu = new EventsUpdater(getApplicationContext());
 					eu.updateEvents(); 
+				}
+				else if(prediction.name.equals(ApplicationConstants.GESTURE_LEFT)) {
+					LocationUpdater lu = new LocationUpdater(getApplicationContext());
+					lu.updateLocations();
 				}
 				/*
 				else if(prediction.name.equals(ApplicationConstants.GESTURE_RIGHT)) {

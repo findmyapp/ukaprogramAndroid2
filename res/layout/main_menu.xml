@@ -4,14 +4,14 @@
 	android:orientation="vertical" 
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	 <!-- android:background="@drawable/background" -->
+	android:background="@drawable/background">
 	<ImageView 
 		android:id="@+id/mainMenu_header"	
 		android:layout_height="wrap_content" 
 		android:layout_width="wrap_content" 
 		android:src="@drawable/maintopleft" 
 		android:layout_alignParentLeft="true"
-		android:layout_alignParentTop="true">
+		android:background="@drawable/background">
 	</ImageView>
 	<LinearLayout 
 		android:layout_height="wrap_content"
