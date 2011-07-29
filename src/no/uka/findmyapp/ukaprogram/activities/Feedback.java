@@ -11,7 +11,7 @@ import com.google.gson.GsonBuilder;
 import no.uka.findmyapp.android.rest.client.IntentMessages;
 import no.uka.findmyapp.android.rest.client.RestMethod.HTTPStatusException;
 import no.uka.findmyapp.ukaprogram.R;
-import no.uka.findmyapp.ukaprogram.model.CustomParameter;
+import no.uka.findmyapp.ukaprogram.models.CustomParameter;
 import no.uka.findmyapp.ukaprogram.utils.Toaster;
 import no.uka.findmyapp.ukaprogram.utils.UserFeedback;
 import android.app.Activity;

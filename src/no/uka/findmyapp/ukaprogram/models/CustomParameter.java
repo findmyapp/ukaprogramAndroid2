@@ -3,7 +3,7 @@
  * Licensed under the MIT open source license
  * http://www.opensource.org/licenses/mit-license.php
  */
-package no.uka.findmyapp.ukaprogram.model;
+package no.uka.findmyapp.ukaprogram.models;
 
 // TODO: Auto-generated Javadoc
 /**

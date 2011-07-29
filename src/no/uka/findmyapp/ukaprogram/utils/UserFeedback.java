@@ -15,7 +15,7 @@ import no.uka.findmyapp.android.rest.datamodels.core.ServiceModel;
 import no.uka.findmyapp.android.rest.datamodels.enums.HttpType;
 import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
-import no.uka.findmyapp.ukaprogram.model.CustomParameter;
+import no.uka.findmyapp.ukaprogram.models.CustomParameter;
 import android.content.Context;
 import android.util.Log;
 

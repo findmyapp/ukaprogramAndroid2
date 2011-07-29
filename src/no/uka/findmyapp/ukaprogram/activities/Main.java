@@ -26,7 +26,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Main.
  */

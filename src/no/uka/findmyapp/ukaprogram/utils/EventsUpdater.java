@@ -59,6 +59,7 @@ public class EventsUpdater extends Updater
 		Log.v(debug, "Updating " + UkaEventContract.EVENT_CONTENT_URI.toString());
 		Cursor eventCursor = mContext.getContentResolver()
 			.query(UkaEventContract.EVENT_CONTENT_URI, null, null, null, null);
+		eventCursor.close(); 
 		if(eventCursor.getCount() > 0) {
 			return true; 
 		}
@@ -121,7 +122,6 @@ public class EventsUpdater extends Updater
 	private void setupBroadCastReciver() {
         ReciveIntent intentReceiver = new ReciveIntent();
 		IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
-		intentFilter.addAction(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);
 		
 		mContext.getApplicationContext().registerReceiver(intentReceiver, intentFilter);
 	}
@@ -141,6 +141,7 @@ public class EventsUpdater extends Updater
 				Log.v(debug, "Intent recieved, starting setting favourites");
 				updateFavourites(); 
 			}
+			/*
 			else if(intent.getAction().equals(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION)) {
 				Log.v(debug, "Intent recieved, containin http exception");
 				Bundle bundle = 
@@ -151,6 +152,7 @@ public class EventsUpdater extends Updater
 				
 				Toaster.shoutShort(mContext, exception.getMessage());
 			}
+			*/
 		}
 	}
 }
