@@ -19,24 +19,26 @@ import android.util.Log;
 // TODO: Auto-generated Javadoc
 /**
  * The Class FavouriteUtils.
- *
- * @author torstein.barkve
  */
 public class FavouriteUtils
 {
+	
+	/** The Constant debug. */
 	private static final String debug = "FavouriteUtils";
 	
+	/** The m context. */
 	private Context mContext; 
 	
 	/** The m content resolver. */
 	private ContentResolver mContentResolver; 
 
+	/** The m database helper. */
 	private UkaProgramDatabaseHelper mDatabaseHelper; 
 	
 	/**
 	 * Instantiates a new favourite utils.
 	 *
-	 * @param contentResolver the content resolver
+	 * @param context the context
 	 */
 	public FavouriteUtils(Context context) {
 		mContext = context; 
@@ -46,7 +48,7 @@ public class FavouriteUtils
 	/**
 	 * Change favourite flag.
 	 *
-	 * @param id the id
+	 * @param eventId the event id
 	 * @param isFavourite the is favourite
 	 */
 	public void changeFavouriteFlag(int eventId, boolean isFavourite) {
@@ -63,13 +65,20 @@ public class FavouriteUtils
 		updatePersistentFavouriteTable(eventId, isFavourite);
 	}
 	
+	/**
+	 * Gets the all favourites.
+	 *
+	 * @return the all favourites
+	 */
 	public ArrayList<Integer> getAllFavourites() {		
 		UkaProgramDatabaseHelper mDatabaseHelper
 				= new UkaProgramDatabaseHelper(mContext);
+
 		SQLiteDatabase db = mDatabaseHelper.getReadableDatabase(); 
 		Cursor cursor = db.query(
 				ApplicationConstants.FAVOURITE_TABLE_NAME,
 				null, null, null, null, null, null);
+		
 		ArrayList<Integer> eventIds = new ArrayList<Integer>(); 
 		
 		while(cursor.moveToNext())  {
@@ -85,7 +94,7 @@ public class FavouriteUtils
 	 * Change uka events table.
 	 *
 	 * @param values the values
-	 * @param id the id
+	 * @param eventId the event id
 	 */
 	private void changeUkaEventsTable(ContentValues values, int eventId) {
 		Log.v(debug, "changeUkaEventsTable init values " + values.toString() + " eventId " + eventId);
@@ -100,12 +109,20 @@ public class FavouriteUtils
 	//TODO Implement persistant fav storing
 	/**
 	 * Update persistent favourite table.
+	 *
+	 * @param eventId the event id
+	 * @param flag the flag
 	 */
 	private void updatePersistentFavouriteTable(int eventId, boolean flag) {
 		if(flag) addPeristentFavourite(getFavouriteContentValues(eventId, flag));
 		else removePeristentFavourite(eventId);
 	}
 	
+	/**
+	 * Adds the peristent favourite.
+	 *
+	 * @param values the values
+	 */
 	private void addPeristentFavourite(ContentValues values) {
 		Log.v(debug, "addPersistentFavourite: values" + values.toString());
 		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
@@ -114,6 +131,11 @@ public class FavouriteUtils
 		db.close(); 
 	}
 	
+	/**
+	 * Removes the peristent favourite.
+	 *
+	 * @param eventId the event id
+	 */
 	private void removePeristentFavourite(int eventId) {
 		String[] whereArgs = new String[] {String.valueOf(eventId)}; 
 		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);
@@ -124,6 +146,13 @@ public class FavouriteUtils
 		db.close(); 
 	}
 	
+	/**
+	 * Gets the favourite content values.
+	 *
+	 * @param eventId the event id
+	 * @param flag the flag
+	 * @return the favourite content values
+	 */
 	private ContentValues getFavouriteContentValues(int eventId, boolean flag) {
 		ContentValues values = new ContentValues(); 
 		values.put(ApplicationConstants.FAVOURITE_TABLE_COLUMN_EVENT_ID, eventId);

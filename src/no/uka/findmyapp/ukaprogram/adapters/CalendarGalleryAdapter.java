@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.adapters;
 
 import no.uka.findmyapp.ukaprogram.R;
@@ -16,12 +21,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CalendarGalleryAdapter.
+ */
 public class CalendarGalleryAdapter extends BaseAdapter{
-	 int mGalleryItemBackground;
-	    private Context mContext;
-	    private final static String debug = "CalendarGalleryAdapter";
+	 
+ 	/** The m gallery item background. */
+ 	int mGalleryItemBackground;
+	    
+    	/** The m context. */
+    	private Context mContext;
+	    
+    	/** The Constant debug. */
+    	private final static String debug = "CalendarGalleryAdapter";
 
-	    public CalendarGalleryAdapter(Context c) {
+	    /**
+    	 * Instantiates a new calendar gallery adapter.
+    	 *
+    	 * @param c the c
+    	 */
+    	public CalendarGalleryAdapter(Context c) {
 	        mContext = c;
 	        TypedArray attr = mContext.obtainStyledAttributes(R.styleable.DateItemCarousel);
 	        /*mGalleryItemBackground = attr.getResourceId(
@@ -29,20 +49,32 @@ public class CalendarGalleryAdapter extends BaseAdapter{
 	        attr.recycle();
 	    }
 
-	    public int getCount() {
+	    /* (non-Javadoc)
+    	 * @see android.widget.Adapter#getCount()
+    	 */
+    	public int getCount() {
 	    	//Returns number of days + 2
 	        return (ApplicationConstants.UKA_END_DATE - ApplicationConstants.UKA_START_DATE + 3); 
 	    }
 
-	    public Object getItem(int position) {
+	    /* (non-Javadoc)
+    	 * @see android.widget.Adapter#getItem(int)
+    	 */
+    	public Object getItem(int position) {
 	        return position;
 	    }
 
-	    public long getItemId(int position) {
+	    /* (non-Javadoc)
+    	 * @see android.widget.Adapter#getItemId(int)
+    	 */
+    	public long getItemId(int position) {
 	        return position;
 	    }
 
-	    public View getView(int position, View convertView, ViewGroup parent) {
+	    /* (non-Javadoc)
+    	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+    	 */
+    	public View getView(int position, View convertView, ViewGroup parent) {
 
 	    	View test =  View.inflate(mContext, R.layout.date_item, null);
 	    	LinearLayout layout = null;
@@ -51,7 +83,14 @@ public class CalendarGalleryAdapter extends BaseAdapter{
 	        return initTextViews(test, position);
 	    }
 	    
-	    public View initTextViews(View test, int position){
+	    /**
+    	 * Inits the text views.
+    	 *
+    	 * @param test the test
+    	 * @param position the position
+    	 * @return the view
+    	 */
+    	public View initTextViews(View test, int position){
 	    	TextView dayNumber;
 	    	TextView weekday;
 	    	int day = position + ApplicationConstants.UKA_START_DATE - 1;

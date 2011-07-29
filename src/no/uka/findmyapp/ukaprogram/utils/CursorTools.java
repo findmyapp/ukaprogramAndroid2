@@ -1,16 +1,19 @@
-/**
- * 
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
  */
 package no.uka.findmyapp.ukaprogram.utils;
 
 import android.database.Cursor;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author torstein.barkve
- *
+ * The Class CursorTools.
  */
 public class CursorTools
 {
+	
 	/**
 	 * Gets the string from table column.
 	 *

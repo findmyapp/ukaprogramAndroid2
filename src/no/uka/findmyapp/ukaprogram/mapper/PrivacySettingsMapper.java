@@ -16,9 +16,21 @@ import android.database.Cursor;
 import android.util.Log;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PrivacySettingsMapper.
+ */
 public class PrivacySettingsMapper {
+	
+	/** The Constant debug. */
 	private static final String debug ="Inside PrivacySettingsMapper"; 
 	
+	/**
+	 * Gets the user privacy uka event from cursor.
+	 *
+	 * @param cursor the cursor
+	 * @return the user privacy uka event from cursor
+	 */
 	public static UserPrivacy getUserPrivacyUkaEventFromCursor(Cursor cursor) {
 		CursorTools ct = new CursorTools();
 		UserPrivacy userprivacy = new UserPrivacy(); 

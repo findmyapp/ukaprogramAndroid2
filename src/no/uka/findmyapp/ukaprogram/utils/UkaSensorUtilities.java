@@ -1,5 +1,7 @@
-/**
- * 
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
  */
 package no.uka.findmyapp.ukaprogram.utils;
 
@@ -11,17 +13,25 @@ import android.content.Context;
 import android.util.Log;
 
 /**
- * @author torstein.barkve
- *
+ * The Class UkaSensorUtilities.
  */
 public class UkaSensorUtilities
 {
+	
+	/** The Constant debug. */
 	private static final String debug = "UkaSensorUtilities";
 	
+	/** The service helper. */
 	private RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
 	
+	/** The m context. */
 	private Context mContext;
 	
+	/**
+	 * Instantiates a new uka sensor utilities.
+	 *
+	 * @param context the context
+	 */
 	public UkaSensorUtilities(Context context) {
 		mContext = context;
 		try {
@@ -33,6 +43,12 @@ public class UkaSensorUtilities
 		}
 	}
 	
+	/**
+	 * Gets the temperature from location.
+	 *
+	 * @param locationStringId the location string id
+	 * @return the temperature from location
+	 */
 	public Temperature getTemperatureFromLocation(String locationStringId) {
 		/*inti
 		

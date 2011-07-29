@@ -47,22 +47,35 @@ import com.facebook.android.FacebookError;
 public class EventDetailsActivity extends PopupMenuActivity 
 	implements OnClickListener, OnCheckedChangeListener
 {	
+	
+	/** The Constant BITMAP_COMPRESSION_PERCENT. */
 	private static final int BITMAP_COMPRESSION_PERCENT = 40;
+	
 	/** The Constant debug. */
 	private static final String debug = "EventsDetailsActivity";
 
+	/** The service helper. */
 	private RestServiceHelper serviceHelper = RestServiceHelper.getInstance(); 
 	
+	/** The m facebook. */
 	private Facebook mFacebook; 
 	
 	/** The m selected event. */
 	private UkaEvent mSelectedEvent; 
 	
+	/** The image url. */
 	private URL imageURL;
+	
+	/** The event bitmap. */
 	private Bitmap eventBitmap;
+	
+	/** The filename. */
 	private String filename;
 	
+	/** The event image. */
 	private ImageView eventImage;
+	
+	/** The image progress bar. */
 	private ProgressBar imageProgressBar;
 	
 	/* (non-Javadoc)
@@ -89,6 +102,9 @@ public class EventDetailsActivity extends PopupMenuActivity
 		}
 	}
 
+	/**
+	 * Setup facebook dialog listener.
+	 */
 	private void setupFacebookDialogListener() {
 		mFacebook = new Facebook(ApplicationConstants.UKA_PROGRAM_FACEBOOK_ID);
         mFacebook.authorize(this, new DialogListener() {
@@ -173,6 +189,11 @@ public class EventDetailsActivity extends PopupMenuActivity
 		favorites.setOnCheckedChangeListener(this);	
 	}
 	
+	/**
+	 * Download event picture.
+	 *
+	 * @param selectedEvent the selected event
+	 */
 	private void downloadEventPicture(UkaEvent selectedEvent) {
 		eventImage = (ImageView) findViewById(R.id.event_details_picture);
 		try {
@@ -217,6 +238,12 @@ public class EventDetailsActivity extends PopupMenuActivity
 		}
 	}
 	
+	/**
+	 * File exist.
+	 *
+	 * @param filename the filename
+	 * @return true, if successful
+	 */
 	private boolean fileExist(String filename){
 		File file = new File(getExternalCacheDir(), filename);
 		if (file != null) {
@@ -227,6 +254,9 @@ public class EventDetailsActivity extends PopupMenuActivity
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged(android.widget.CompoundButton, boolean)
+	 */
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		FavouriteUtils fu = new FavouriteUtils(getApplicationContext());
@@ -246,11 +276,25 @@ public class EventDetailsActivity extends PopupMenuActivity
 		Toaster.shoutLong(getApplicationContext(), info);
 		}
 
+	/**
+	 * Gets the file name from path.
+	 *
+	 * @param path the path
+	 * @return the file name from path
+	 */
 	public String getFileNameFromPath(String path){
 		String test = path;
 		String[] arr = test.split("/");
 		return arr[arr.length-1];
 	}
+	
+	/**
+	 * Save bitmap.
+	 *
+	 * @param bitmap the bitmap
+	 * @param filename the filename
+	 * @param imageURL the image url
+	 */
 	public void saveBitmap(Bitmap bitmap, String filename, URL imageURL){
 	    // Create a path where we will place our private file on external
 	    // storage.
@@ -272,11 +316,22 @@ public class EventDetailsActivity extends PopupMenuActivity
 	        Log.w("ExternalStorage", "Error writing " + file, e);
 	    }
 	}	
+	
+	/**
+	 * Load bitmap.
+	 *
+	 * @param filename the filename
+	 * @return the bitmap
+	 */
 	private Bitmap loadBitmap(String filename){
 	    File fileUri = new File(getExternalCacheDir(), filename);
 		Bitmap bm = BitmapFactory.decodeFile(fileUri.toString());
 		return bm;
 	}
+	
+	/**
+	 * Delete external storage private file.
+	 */
 	void deleteExternalStoragePrivateFile() {
 		// Get path for the file on external storage.  If external
 		// storage is not currently mounted this will fail.
@@ -286,6 +341,11 @@ public class EventDetailsActivity extends PopupMenuActivity
 		}
 	}
 	
+	/**
+	 * Sets the header image.
+	 *
+	 * @param event the new header image
+	 */
 	private void setHeaderImage(UkaEvent event){
 		ImageView img = (ImageView) findViewById(R.id.event_details_category_header);
 		Log.v(debug, ApplicationConstants.CATEGORY_REVUE + " = " + event.getEventType());
@@ -304,18 +364,42 @@ public class EventDetailsActivity extends PopupMenuActivity
 		}
 	}
 
+	/**
+	 * Checks if is concert.
+	 *
+	 * @param event the event
+	 * @return true, if is concert
+	 */
 	private boolean isConcert(UkaEvent event) {
 		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_CONCERT);
 	}
 
+	/**
+	 * Checks if is party.
+	 *
+	 * @param event the event
+	 * @return true, if is party
+	 */
 	private boolean isParty(UkaEvent event) {
 		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_PARTY);
 	}
 
+	/**
+	 * Checks if is revue.
+	 *
+	 * @param event the event
+	 * @return true, if is revue
+	 */
 	private boolean isRevue(UkaEvent event) {
 		return ("'"+event.getEventType()+"'").equals(ApplicationConstants.CATEGORY_REVUE);
 	}
 
+	/**
+	 * Checks if is lecture.
+	 *
+	 * @param event the event
+	 * @return true, if is lecture
+	 */
 	private boolean isLecture(UkaEvent event) {
 		return ("'"+event.getEventType()+"'").equalsIgnoreCase(ApplicationConstants.CATEGORY_LECTURE);
 	}

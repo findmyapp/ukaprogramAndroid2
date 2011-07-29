@@ -21,10 +21,11 @@ import android.widget.TextView;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class EventListCursorAdapter.
+ * The Class AllEventListCursorAdapter.
  */
 public class AllEventListCursorAdapter extends CursorAdapter implements OnClickListener
 {
+	
 	/** The Constant debug. */
 	private static final String debug = "EventListCursorAdapter";
 
@@ -35,7 +36,7 @@ public class AllEventListCursorAdapter extends CursorAdapter implements OnClickL
 	private final LayoutInflater inflater;
 	
 	/**
-	 * Instantiates a new event list cursor adapter.
+	 * Instantiates a new all event list cursor adapter.
 	 *
 	 * @param context the context
 	 * @param cursor the cursor

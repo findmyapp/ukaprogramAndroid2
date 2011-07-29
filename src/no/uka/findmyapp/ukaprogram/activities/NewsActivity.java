@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
@@ -22,10 +27,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewsActivity.
+ */
 public class NewsActivity extends Activity {
 
+	/** The placeholder. */
 	public Bitmap placeholder;
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +57,14 @@ public class NewsActivity extends Activity {
 				tweets));
 	}
 
+	/**
+	 * Gets the tweets.
+	 *
+	 * @param searchTerm the search term
+	 * @param page the page
+	 * @return the tweets
+	 * @throws JSONException the jSON exception
+	 */
 	public ArrayList<Tweet> getTweets(String searchTerm, int page)
 			throws JSONException {
 		String noLang = "no";

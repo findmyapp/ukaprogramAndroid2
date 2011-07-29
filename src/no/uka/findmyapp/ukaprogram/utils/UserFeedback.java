@@ -1,5 +1,7 @@
-/**
- * 
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
  */
 package no.uka.findmyapp.ukaprogram.utils;
 
@@ -17,22 +19,32 @@ import no.uka.findmyapp.ukaprogram.model.CustomParameter;
 import android.content.Context;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author torstein.barkve
- *
+ * The Class UserFeedback.
  */
 public class UserFeedback
 {
+	
+	/** The Constant debug. */
 	private static final String debug = "UserFeedback";
 	
+	/** The Constant CUSTOM_PARAMETER_URL. */
 	private static final String CUSTOM_PARAMETER_URL = 
 		"http://findmyapp.net/findmyapp/locations/??/userreports?parname=??&noe=??";
 	
+	/** The service helper. */
 	private static RestServiceHelper serviceHelper = 
 			RestServiceHelper.getInstance(); 
 	
+	/** The m context. */
 	private Context mContext; 
 
+	/**
+	 * Instantiates a new user feedback.
+	 *
+	 * @param context the context
+	 */
 	public UserFeedback (Context context){
 		mContext = context; 
 		
@@ -45,6 +57,13 @@ public class UserFeedback
 		}
 	}
 	
+	/**
+	 * Gets the custom parameter data from location.
+	 *
+	 * @param params the params
+	 * @param broadcastIdentifier the broadcast identifier
+	 * @return the custom parameter data from location
+	 */
 	public void getCustomParameterDataFromLocation(String[] params, 
 			String broadcastIdentifier) {
 		
@@ -56,6 +75,15 @@ public class UserFeedback
 		serviceHelper.callStartService(mContext, serviceModel);
 	}
 	
+	/**
+	 * Creates the custom parameter service model.
+	 *
+	 * @param httpType the http type
+	 * @param returnType the return type
+	 * @param params the params
+	 * @param broadcastIdentifier the broadcast identifier
+	 * @return the service model
+	 */
 	private ServiceModel createCustomParameterServiceModel(HttpType httpType, 
 			Class returnType, String params, String broadcastIdentifier) {
 		

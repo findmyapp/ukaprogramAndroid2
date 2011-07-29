@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.utils;
 
 import java.util.ArrayList;
@@ -15,7 +20,18 @@ import org.json.simple.parser.JSONParser;
 
 import android.util.Log;
 
+/**
+ * The Class TweetReader.
+ */
 public class TweetReader {
+	
+	/**
+	 * Gets the tweets.
+	 *
+	 * @param searchTerm the search term
+	 * @param page the page
+	 * @return the tweets
+	 */
 	public static ArrayList<Tweet> getTweets(String searchTerm, int page) {
 		  String searchUrl =
 		        "http://search.twitter.com/search.json?q=@"

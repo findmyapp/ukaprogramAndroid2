@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.activities;
 
 import java.util.ArrayList;
@@ -41,8 +46,10 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	/** The bundle. */
 	private Bundle bundle;
 	
+	/** The event cursor. */
 	private Cursor eventCursor;
 
+	/** The location. */
 	private Location location;
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -66,6 +73,9 @@ public class PlacesActivity extends Activity implements OnClickListener{
 		
 	}
 
+	/**
+	 * Inits the buttons.
+	 */
 	private void initButtons() {
 		Button shareComment = (Button) findViewById(R.id.places_share);
 		shareComment.setOnClickListener(this);
@@ -91,10 +101,10 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	/**
 	 * Sets the reported paramenters.
 	 *
-	 * @param dancing the dansing
-	 * @param flirt the sjekking
-	 * @param mood the stemning
-	 * @param chat the prating
+	 * @param dancing the dancing
+	 * @param flirt the flirt
+	 * @param mood the mood
+	 * @param chat the chat
 	 */
 	private void setReportedParamenters(float dancing, float flirt,
 			float mood, float chat) {
@@ -120,6 +130,9 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	/* 
 	 * performs action when buttons are clicked
 	 */
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -137,7 +150,9 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	}
 
 	/**
-	 * Setup place specific views.
+	 * Sets the up place specific views.
+	 *
+	 * @param location the new up place specific views
 	 */
 	private void setupPlaceSpecificViews(Location location){
 		ImageView map = (ImageView) findViewById(R.id.places_map);
@@ -155,6 +170,12 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	}
 
 
+	/**
+	 * Sets the map.
+	 *
+	 * @param map the map
+	 * @param location the location
+	 */
 	void setMap(ImageView map, Location location){	
 
 		map.setImageResource(R.drawable.mapplaceholder);
@@ -214,6 +235,12 @@ public class PlacesActivity extends Activity implements OnClickListener{
 		return list;
 	}
 	
+	/**
+	 * Sets the next event.
+	 *
+	 * @param tv the tv
+	 * @param location the location
+	 */
 	private void setNextEvent(TextView tv, Location location){
 		try {
 			UkaEvent  event;
@@ -233,6 +260,13 @@ public class PlacesActivity extends Activity implements OnClickListener{
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Sets the prev event.
+	 *
+	 * @param tv the tv
+	 * @param location the location
+	 */
 	private void setPrevEvent(TextView tv, Location location){
 		try {
 			UkaEvent  event;
@@ -254,36 +288,36 @@ public class PlacesActivity extends Activity implements OnClickListener{
 	}
 
 	/**
-	 * Gets the dansing.
+	 * Gets the dancing.
 	 *
-	 * @return the dansing
+	 * @return the dancing
 	 */
 	private int getDancing(){
 		return 2;
 	}
 
 	/**
-	 * Gets the stemning.
+	 * Gets the mood.
 	 *
-	 * @return the stemning
+	 * @return the mood
 	 */
 	private int getMood(){
 		return 3;
 	}
 
 	/**
-	 * Gets the prating.
+	 * Gets the chat.
 	 *
-	 * @return the prating
+	 * @return the chat
 	 */
 	private int getChat(){
 		return 5;
 	}
 
 	/**
-	 * Gets the sjekking.
+	 * Gets the flirt.
 	 *
-	 * @return the sjekking
+	 * @return the flirt
 	 */
 	private int getFlirt(){
 		return 1;

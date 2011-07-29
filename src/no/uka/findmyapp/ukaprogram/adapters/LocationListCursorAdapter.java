@@ -72,6 +72,12 @@ public class LocationListCursorAdapter extends CursorAdapter
 		return view;
 	}
 	
+	/**
+	 * Gets the next event on location.
+	 *
+	 * @param location the location
+	 * @return the next event on location
+	 */
 	public String getNextEventOnLocation(String location){
 		
 		

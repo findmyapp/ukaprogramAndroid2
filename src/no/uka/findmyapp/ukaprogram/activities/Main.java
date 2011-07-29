@@ -32,11 +32,12 @@ import android.widget.Button;
  */
 public class Main extends PopupMenuActivity implements OnClickListener, OnGesturePerformedListener 
 {
+	
 	/** The Constant debug. */
 	@SuppressWarnings("unused")
 	private static final String debug = "Main";
 
-	/** The gesture lib. */
+	/** The m gesture lib. */
 	private GestureLibrary mGestureLib; 
 	
 	/* (non-Javadoc)

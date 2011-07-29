@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.adapters;
 
 import java.io.File;
@@ -16,11 +21,28 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TweetItemAdapter.
+ */
 public class TweetItemAdapter extends ArrayAdapter<Tweet> {
+	
+	/** The tweets. */
 	private ArrayList<Tweet> tweets;
+	
+	/** The activity. */
 	private Activity activity;
+	
+	/** The image manager. */
 	public ImageManager imageManager;
 
+	/**
+	 * Instantiates a new tweet item adapter.
+	 *
+	 * @param a the a
+	 * @param textViewResourceId the text view resource id
+	 * @param tweets the tweets
+	 */
 	public TweetItemAdapter(Activity a, int textViewResourceId, ArrayList<Tweet> tweets) {
 		super(a, textViewResourceId, tweets);
 		this.tweets = tweets;
@@ -30,12 +52,24 @@ public class TweetItemAdapter extends ArrayAdapter<Tweet> {
 			new ImageManager(activity.getApplicationContext());
 	}
 
+	/**
+	 * The Class ViewHolder.
+	 */
 	public static class ViewHolder{
+		
+		/** The username. */
 		public TextView username;
+		
+		/** The message. */
 		public TextView message;
+		
+		/** The image. */
 		public ImageView image;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
@@ -62,11 +96,24 @@ public class TweetItemAdapter extends ArrayAdapter<Tweet> {
 		}
 		return v;
 	}
+	
+	/**
+	 * The Class ImageManager.
+	 */
 	public class ImageManager {
-		  private HashMap<String, Bitmap> imageMap = new HashMap<String, Bitmap>();
-		  private File cacheDir;
+		  
+  		/** The image map. */
+  		private HashMap<String, Bitmap> imageMap = new HashMap<String, Bitmap>();
+		  
+  		/** The cache dir. */
+  		private File cacheDir;
 
-		  public ImageManager(Context context) {
+		  /**
+  		 * Instantiates a new image manager.
+  		 *
+  		 * @param context the context
+  		 */
+  		public ImageManager(Context context) {
 		    // Make background thread low priority, to avoid affecting UI performance
 			 Thread imageLoaderThread = new Thread();
 		    imageLoaderThread.setPriority(Thread.NORM_PRIORITY-1);

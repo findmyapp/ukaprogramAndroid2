@@ -1,5 +1,7 @@
-/**
- * 
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
  */
 package no.uka.findmyapp.ukaprogram.activities;
 
@@ -20,16 +22,20 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author torstein.barkve
- *
+ * The Class Feedback.
  */
 public class Feedback extends Activity
 {
+	
+	/** The Constant debug. */
 	private static final String debug = "Feedback";
 	
+	/** The m broadcast identifier. */
 	protected String mBroadcastIdentifier; 
 	
+	/** The m payload id. */
 	protected String mPayloadId;
 	
 	/* (non-Javadoc)
@@ -50,6 +56,9 @@ public class Feedback extends Activity
 		uf.getCustomParameterDataFromLocation(params, IntentMessages.BROADCAST_INTENT_TOKEN);
 	}
 	
+	/**
+	 * Setup receiver.
+	 */
 	private void setupReceiver() {
 		Log.v(debug, "setupReceiver: inside");
 		CustomParameterReciver intentReceiver = 
@@ -62,6 +71,11 @@ public class Feedback extends Activity
 		getApplicationContext().registerReceiver(intentReceiver, intentFilter); 
 	}
 	
+	/**
+	 * Handle result.
+	 *
+	 * @param i the i
+	 */
 	private void handleResult(Intent i) {
 		Toaster.shoutLong(getApplicationContext(), i.toString());
 		if(i.getAction().equals(IntentMessages.BROADCAST_RETURN_PAYLOAD_ID)) {
@@ -74,10 +88,14 @@ public class Feedback extends Activity
 	}
 	
 	/**
-	 * The Class ReciveIntent.
+	 * The Class CustomParameterReciver.
 	 */
 	private class CustomParameterReciver extends BroadcastReceiver 
 	{
+		
+		/* (non-Javadoc)
+		 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
+		 */
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(IntentMessages.BROADCAST_INTENT_TOKEN)) {

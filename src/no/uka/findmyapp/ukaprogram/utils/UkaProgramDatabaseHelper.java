@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.utils;
 
 import no.uka.findmyapp.ukaprogram.contstants.ApplicationConstants;
@@ -7,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * The Class FavouriteDatabaseHelper.
+ * The Class UkaProgramDatabaseHelper.
  */
 public class UkaProgramDatabaseHelper extends SQLiteOpenHelper {
 	
@@ -16,7 +21,7 @@ public class UkaProgramDatabaseHelper extends SQLiteOpenHelper {
 		"DROP TABLE IF EXISTS " + ApplicationConstants.FAVOURITE_TABLE_NAME + ";";
 	
 	/**
-	 * Instantiates a new favourite database helper.
+	 * Instantiates a new uka program database helper.
 	 *
 	 * @param context the context
 	 */

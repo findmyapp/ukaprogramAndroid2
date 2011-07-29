@@ -25,6 +25,7 @@ import android.widget.TextView;
  */
 public class EventListCursorAdapter extends CursorAdapter implements OnClickListener
 {
+	
 	/** The Constant debug. */
 	private static final String debug = "EventListCursorAdapter";
 

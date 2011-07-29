@@ -55,7 +55,7 @@ public class DateUtils
 	/** The Constant SATURDAY. */
 	public static final String SATURDAY = "lør";
 	
-	/** The Constant SUNDAG. */
+	/** The Constant SUNDAY. */
 	public static final String SUNDAY = "søn"; 
 	
 	/**
@@ -100,10 +100,7 @@ public class DateUtils
 	 */
 	public static int getDayIntFromTimestamp(long timestamp) {
 		if(timestamp == 0) return 0;
-		else {
-			Log.v(debug, "getCustomDay " + (standardDateFormat.format(new Date(timestamp))));
-			return new Integer(standardDayFormat.format(new Date(timestamp)));  
-		}
+		else return new Integer(standardDayFormat.format(new Date(timestamp)));  
 	}
 	
 	/**
@@ -117,10 +114,17 @@ public class DateUtils
 		else return getShortWeekDayName(getDayIntFromTimestamp(timestamp));
 	}
 	
+	/**
+	 * Gets the timestamp from day number.
+	 *
+	 * @param day the day
+	 * @return the timestamp from day number
+	 */
 	public static long getTimestampFromDayNumber(int day){
 		Timestamp timestamp = new Timestamp(ApplicationConstants.YEAR, ApplicationConstants.MONTH, day, 4, 0, 0, 0);
 		return timestamp.getTime();
 	}
+	
 	/**
 	 * Gets the short week day name.
 	 *

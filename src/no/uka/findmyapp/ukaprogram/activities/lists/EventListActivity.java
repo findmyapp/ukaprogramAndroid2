@@ -44,6 +44,7 @@ import android.widget.TextView;
  */
 public class EventListActivity extends ListActivity
 {	
+	
 	/** The Constant debug. */
 	private final static String debug = "EventListActivity";
 	
@@ -53,6 +54,7 @@ public class EventListActivity extends ListActivity
 	/** The m event cursor. */
 	private Cursor mEventCursor;
 
+	/** The gallery. */
 	private Gallery gallery; 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -68,6 +70,9 @@ public class EventListActivity extends ListActivity
 		moveGalleryToCurrentDate();
 	}
 	
+	/**
+	 * Adds the date scroll.
+	 */
 	private void addDateScroll(){
 		gallery = (Gallery) findViewById(R.id.gallery);
 	    gallery.setAdapter(new CalendarGalleryAdapter(this));
@@ -111,6 +116,12 @@ public class EventListActivity extends ListActivity
 	    });
 	}
 	
+	/**
+	 * Checks if is integer.
+	 *
+	 * @param string the string
+	 * @return true, if is integer
+	 */
 	public boolean isInteger(String string) {
 	    try {
 	        Integer.valueOf(string);
@@ -242,6 +253,9 @@ public class EventListActivity extends ListActivity
 		}
 	}
 	
+	/**
+	 * Move gallery to current date.
+	 */
 	private void moveGalleryToCurrentDate(){
 		Date toDay = new Date();
 		if (toDay.getMonth() == ApplicationConstants.MONTH){
@@ -251,6 +265,9 @@ public class EventListActivity extends ListActivity
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
 	    MenuInflater inflater = getMenuInflater();

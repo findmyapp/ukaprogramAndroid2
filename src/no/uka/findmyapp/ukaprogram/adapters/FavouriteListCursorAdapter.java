@@ -21,17 +21,17 @@ import android.widget.TextView;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ConsertListCursorAdapter.
+ * The Class FavouriteListCursorAdapter.
  */
 public class FavouriteListCursorAdapter extends CursorAdapter{
 		
 	/** The Constant debug. */
 	private static final String debug = "FavouriteListCursorAdapter";
 
-	/** The cursor. */
+	/** The m cursor. */
 	private Cursor mCursor;
 	
-	/** The inflater. */
+	/** The m inflater. */
 	private final LayoutInflater mInflater;
 	
 	/**

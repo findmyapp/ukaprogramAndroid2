@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.utils;
 
 import java.net.URI;
@@ -7,14 +12,27 @@ import no.uka.findmyapp.android.rest.contracts.Location.LocationContract;
 import android.content.Context;
 import android.util.Log;
 
+/**
+ * The Class LocationUpdater.
+ */
 public class LocationUpdater extends Updater 
 {
+	
+	/** The Constant debug. */
 	private static final String debug = "LocationUpdater";
 	
+	/**
+	 * Instantiates a new location updater.
+	 *
+	 * @param c the c
+	 */
 	public LocationUpdater(Context c) {
 		super(c); 
 	}
 	
+	/**
+	 * Update locations.
+	 */
 	public void updateLocations() {
 		Log.v(debug, "updateEvents called");
 		try { 

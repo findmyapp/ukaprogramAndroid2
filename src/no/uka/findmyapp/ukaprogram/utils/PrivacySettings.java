@@ -1,5 +1,7 @@
-/**
- * 
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
  */
 package no.uka.findmyapp.ukaprogram.utils;
 
@@ -16,22 +18,37 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author torstein.barkve
- *
+ * The Class PrivacySettings.
  */
 public class PrivacySettings
 {
+	
+	/** The Constant debug. */
 	private static final String debug = "PrivacySettings";
+	
+	/** The m context. */
 	private Context mContext; 
+	
 	/** The m content resolver. */
 	private ContentResolver mContentResolver; 
 	
+	/**
+	 * Instantiates a new privacy settings.
+	 *
+	 * @param context the context
+	 */
 	public PrivacySettings(Context context){
 		mContext = context;
 		mContentResolver = context.getContentResolver();
 	}
 	
+	/**
+	 * Change privacy settings.
+	 *
+	 * @param settings the settings
+	 */
 	public void changePrivacySettings(UserPrivacy settings) {
 		Log.v(debug, "inside changePrivacySettings");
 		ContentValues values = new ContentValues();
@@ -55,6 +72,12 @@ public class PrivacySettings
 		setPrivacySettings(values);
 	
 	}
+	
+	/**
+	 * Gets the privacy settings.
+	 *
+	 * @return the privacy settings
+	 */
 	public UserPrivacy getPrivacySettings(){
 		UkaProgramDatabaseHelper mDatabaseHelper = 
 				new UkaProgramDatabaseHelper(mContext);
@@ -81,6 +104,11 @@ public class PrivacySettings
 	}
 
 	
+	/**
+	 * Sets the privacy settings.
+	 *
+	 * @param values the new privacy settings
+	 */
 	private void setPrivacySettings(ContentValues values) {
 		UkaProgramDatabaseHelper mDatabaseHelper = 
 				new UkaProgramDatabaseHelper(mContext);
@@ -95,6 +123,11 @@ public class PrivacySettings
 		}
 	}	
 	
+	/**
+	 * Privacy settings database note empty.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean privacySettingsDatabaseNoteEmpty() {
 		Log.v(debug, "privacySettingsDatabaseNoteEmpty: checking");
 		UkaProgramDatabaseHelper mDatabaseHelper = new UkaProgramDatabaseHelper(mContext);

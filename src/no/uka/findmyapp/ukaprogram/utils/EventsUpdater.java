@@ -31,18 +31,20 @@ import android.test.IsolatedContext;
 import android.util.Log;
 import android.widget.Toast;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class EventsUpdater.
  */
 public class EventsUpdater extends Updater 
 {
+	
 	/** The Constant debug. */
 	private static final String debug = "EventsUpdater";
 	
 	/**
 	 * Instantiates a new events updater.
 	 *
-	 * @param context the c
+	 * @param context the context
 	 */
 	public EventsUpdater(Context context) {
 		super(context);
@@ -65,8 +67,6 @@ public class EventsUpdater extends Updater
 	
 	/**
 	 * Update events.
-	 * @throws URISyntaxException 
-	 * @throws UpdateException 
 	 */
 	public void updateEvents() {
 		Log.v(debug, "updateEvents called");
@@ -85,6 +85,9 @@ public class EventsUpdater extends Updater
 		}
 	}
 	
+	/**
+	 * Update favourites.
+	 */
 	private void updateFavourites() {
 		FavouriteUtils fu = new FavouriteUtils(mContext);
 		ArrayList<Integer> eventIds = fu.getAllFavourites(); 
@@ -112,13 +115,15 @@ public class EventsUpdater extends Updater
 		contentResolver.delete(UkaEventContract.EVENT_CONTENT_URI, null, null);
 	}
 	
+	/**
+	 * Setup broad cast reciver.
+	 */
 	private void setupBroadCastReciver() {
         ReciveIntent intentReceiver = new ReciveIntent();
 		IntentFilter intentFilter = new IntentFilter(IntentMessages.BROADCAST_INTENT_TOKEN);
-		IntentFilter intentFilter2 = new IntentFilter(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);
+		intentFilter.addAction(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);
 		
 		mContext.getApplicationContext().registerReceiver(intentReceiver, intentFilter);
-		mContext.getApplicationContext().registerReceiver(intentReceiver, intentFilter2);
 	}
 	
 
@@ -138,9 +143,12 @@ public class EventsUpdater extends Updater
 			}
 			else if(intent.getAction().equals(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION)) {
 				Log.v(debug, "Intent recieved, containin http exception");
-				Bundle bundle = intent.getBundleExtra(IntentMessages.BROADCAST_RETURN_PAYLOAD_ID);
+				Bundle bundle = 
+					intent.getBundleExtra(IntentMessages.BROADCAST_RETURN_PAYLOAD_ID);
+				
 				HTTPStatusException exception = 
 					(HTTPStatusException) bundle.getSerializable(IntentMessages.BROADCAST_HTTP_STATUS_EXCEPTION);	
+				
 				Toaster.shoutShort(mContext, exception.getMessage());
 			}
 		}

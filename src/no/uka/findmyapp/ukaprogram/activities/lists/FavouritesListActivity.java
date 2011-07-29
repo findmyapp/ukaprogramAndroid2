@@ -20,12 +20,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FavouritesListActivity.
  */
 public class FavouritesListActivity extends ListActivity 
 {
+	
 	/** The Constant ORDER_BY. */
 	private final static String ORDER_BY = UkaEventContract.TITLE + " desc";
 

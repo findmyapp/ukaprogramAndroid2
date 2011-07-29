@@ -25,11 +25,12 @@ import android.widget.ListView;
  */
 public class ConcertListActivity extends ListActivity 
 {	
+	
 	/** The Constant debug. */
 	@SuppressWarnings("unused")
 	private final static String debug = "ConcertListActivity";
 	
-	/** The event cursor. */
+	/** The m event cursor. */
 	private Cursor mEventCursor;
 
 	/** The Constant ORDER_BY. */

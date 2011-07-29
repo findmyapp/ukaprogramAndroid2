@@ -39,9 +39,10 @@ public class SettingsActivity extends Activity implements OnClickListener,OnItem
 	/** The selected event. */
 	private UkaEvent selectedEvent;
 	
-	/** The selected privacy settings. */
+	/** The usersettings. */
 	private UserPrivacy usersettings;
 	
+	/** The ps. */
 	private PrivacySettings ps;
 	
 	/* (non-Javadoc)
@@ -117,6 +118,9 @@ public class SettingsActivity extends Activity implements OnClickListener,OnItem
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)
+	 */
 	@Override
 	public void onItemSelected(AdapterView AV, View V, int position,
 			long id) {
@@ -146,6 +150,9 @@ public class SettingsActivity extends Activity implements OnClickListener,OnItem
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(android.widget.AdapterView)
+	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		

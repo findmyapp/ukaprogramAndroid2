@@ -25,6 +25,7 @@ import android.widget.TextView;
  */
 public class ConsertListCursorAdapter extends CursorAdapter
 {
+	
 	/** The Constant debug. */
 	private static final String debug = "ConsertListCursorAdapter";
 

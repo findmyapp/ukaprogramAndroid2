@@ -28,7 +28,7 @@ import android.widget.ListView;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class LocationActivity.
+ * The Class LocationListActivity.
  */
 public class LocationListActivity extends ListActivity implements OnClickListener 
 {
@@ -36,6 +36,7 @@ public class LocationListActivity extends ListActivity implements OnClickListene
 	/** The Constant debug. */
 	private final static String debug = "LocationListActivity";
 	
+	/** The Constant SELECTED_LOCATION. */
 	public final static String SELECTED_LOCATION = "selectedLocation";
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -75,6 +76,9 @@ public class LocationListActivity extends ListActivity implements OnClickListene
 
 	}
 	
+	/**
+	 * Sets the adapter.
+	 */
 	protected void setAdapter() {
 		Log.v(debug, "Before cursor..");
 		Cursor locationCursor = managedQuery(LocationContract.LOCATION_CONTENT_URI,
@@ -96,7 +100,14 @@ public class LocationListActivity extends ListActivity implements OnClickListene
 
 	}
 	
+	/**
+	 * The Class ReceiveIntent.
+	 */
 	private class ReceiveIntent extends BroadcastReceiver {
+		
+		/* (non-Javadoc)
+		 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
+		 */
 		@Override
 		public void onReceive(Context context, Intent intent ) {
 			// TODO Auto-generated method stub

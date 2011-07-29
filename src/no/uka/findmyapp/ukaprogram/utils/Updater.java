@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2011 Accenture
+ * Licensed under the MIT open source license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
 package no.uka.findmyapp.ukaprogram.utils;
 
 import java.net.URI;
@@ -13,15 +18,28 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Updater.
+ */
 public class Updater 
 {
+	
+	/** The Constant debug. */
 	private static final String debug = "Updater";
 	
+	/** The service helper. */
 	protected static RestServiceHelper serviceHelper = 
 		RestServiceHelper.getInstance();
 	
+	/** The m context. */
 	protected Context mContext; 
 
+	/**
+	 * Instantiates a new updater.
+	 *
+	 * @param c the c
+	 */
 	protected Updater(Context c) {;
 		mContext = c; 
 		try {
@@ -34,10 +52,22 @@ public class Updater
 		}
 	}
 	
+	/**
+	 * Ready state.
+	 *
+	 * @return true, if successful
+	 */
 	protected boolean readyState() {
 		return NetworkUtils.isOnline(mContext);
 	}
 	
+	/**
+	 * Update.
+	 *
+	 * @param ukappsService the ukapps service
+	 * @param contentProvider the content provider
+	 * @param parameters the parameters
+	 */
 	protected void update(UkappsServices ukappsService, URI contentProvider, String[] parameters) {
 		try {
 			Log.v(debug, "update readystate: " + readyState());
@@ -99,7 +129,7 @@ public class Updater
 		 * Instantiates a new update exception.
 		 *
 		 * @param errorMessage the error message
-		 * @param e the exception
+		 * @param e the e
 		 */
 		public UpdateException(String errorMessage, Exception e) {
 			super(errorMessage);
