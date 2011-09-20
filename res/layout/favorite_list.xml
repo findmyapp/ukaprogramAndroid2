@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<RelativeLayout 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent">
+		<LinearLayout 
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:orientation="vertical"
+			android:id="@+id/header">
+			<ImageView android:layout_height="wrap_content"
+				android:layout_marginTop="4dp" 
+				android:layout_alignParentTop="true"
+				android:layout_centerHorizontal="true"
+				android:id="@+id/event_list_header" 
+				android:src="@drawable/uka_logo_header"
+				android:layout_width="wrap_content" 
+				android:layout_gravity="center_horizontal">
+			</ImageView>
+			<LinearLayout
+				style="@style/HorizontalLine"
+				android:layout_marginTop="4dp"
+				android:layout_width="fill_parent"
+				android:layout_height="2px">
+			</LinearLayout>
+		</LinearLayout>
+		
+		<Button style="@style/EventCategoryButton"
+			android:layout_marginTop="10dp"
+			android:layout_below="@id/header"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:id="@+id/event_list_category_button"
+			android:layout_alignParentLeft="true" 
+			android:background="@drawable/katbuttonfavoritter" 
+			android:text="Favoritter"
+			android:layout_marginLeft="10dp"/>
+	</RelativeLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical" 
+		android:layout_width="fill_parent"
+		android:layout_height="3px" 
+		android:id="@+id/event_list_line"
+		android:background="@color/uka_yellow" />
+
+	
+	<ListView android:id="@android:id/list" 
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent" 
+		android:footerDividersEnabled="true" 
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		/>
+
+</LinearLayout>
+
+
+
+
+

@@ -6,11 +6,11 @@
 	<uses-sdk android:minSdkVersion="8" />
 
 	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.camera" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<!-- 	<uses-permission android:name="android.permission.camera" /> -->
 
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
-		android:theme="@style/CustomTheme">
+		android:theme="@style/CustomTheme" android:debuggable="true">
 
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.StartupLoader"
 			android:label="@string/app_name">
@@ -23,34 +23,18 @@
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FavoritesListActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EditContactActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FiveNextActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.SettingsActivity"></activity>
-		<activity android:name=".activities.LocationListActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.PlacesActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.ConcertListActivity"></activity>
 		
-		<provider android:name="no.uka.findmyapp.android.rest.providers.UkaEventProvider" 
-			android:authorities="no.uka.findmyapp.android.rest.providers" 
+		<provider android:name="no.uka.findmyapp.ukaprogram.providers.UkaEventProvider" 
+			android:authorities="no.uka.findmyapp.android.rest.providers.program" 
 			android:exported="false"
 			android:enabled="true">
 			
 			<grant-uri-permission android:pathPattern=".*" />
 		</provider> 
 		
-		
-		
-		<provider android:name="no.uka.findmyapp.android.rest.providers.LocationProvider" 
-			android:authorities="no.uka.findmyapp.android.rest.providers" 
-			android:exported="false"
-			android:enabled="true">
-			
-			<grant-uri-permission android:pathPattern=".*" />
-		</provider> 
-
-		<service android:name="no.uka.findmyapp.android.rest.client.RestIntentService" />
+		<service android:name=".restlibrary.RestIntentService" />
 
 	</application>
 

@@ -3,6 +3,10 @@ package no.uka.findmyapp.ukaprogram.models;
 import java.io.Serializable;
 
 public class Day implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String weekday;
 	private int dayNmbr;
 	

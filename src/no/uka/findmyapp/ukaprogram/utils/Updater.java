@@ -1,6 +1,6 @@
 package no.uka.findmyapp.ukaprogram.utils;
 
-import no.uka.findmyapp.android.rest.client.RestServiceHelper;
+import no.uka.findmyapp.ukaprogram.restlibrary.RestServiceHelper;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
