@@ -39,10 +39,6 @@ public class EventsUpdater extends Updater {
 		try {		
 			Log.v(debug, "inside");
 			URI contentUri = new URI(UkaEventContract.EVENT_CONTENT_URI.toString());
-<<<<<<< HEAD
-			Log.v(debug, "ContentUri: " + contentUri.toString());
-=======
->>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 			serviceHelper.callStartService(this.context, UkappsServices.GET_ALL_UKAEVENTS, contentUri, new String[] {"uka11"});
 		}  catch (RestServiceException e) {
 			Log.e(debug, e.getMessage());
