@@ -116,7 +116,10 @@ public class UkappServiceFactory {
 					return model; 
 					
 				case GET_UKA_PROGRAM_FOR_DATE: 
+<<<<<<< HEAD
 					Log.d("GET EVENTS FOR DATE1", "1");
+=======
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 					model = new ServiceModel(
 						new URI("http://findmyapp.net/findmyapp/program/??/events&date=??"),
 						HttpType.GET,
@@ -124,7 +127,10 @@ public class UkappServiceFactory {
 						null,
 						null,
 						"no.uka.findmyapp.android.demo.BROADCAST_INTENT_TOKEN"); 
+<<<<<<< HEAD
 					Log.d("GET EVENTS FOR DATE2", model.toString());
+=======
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 					return model; 
 					
 				case GET_ALL_UKAEVENTS: 

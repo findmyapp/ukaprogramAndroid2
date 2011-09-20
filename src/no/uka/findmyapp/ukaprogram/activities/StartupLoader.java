@@ -20,14 +20,22 @@ public class StartupLoader extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+<<<<<<< HEAD
 				WindowManager.LayoutParams.FLAG_FULLSCREEN); 
+=======
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 		Log.v(debug, "loading splash screen");
 		setContentView(R.layout.splash);
 		Log.v(debug, "Loading UkaProgram");
 
 		EventsUpdater eu = new EventsUpdater(getApplicationContext());
 		eu.updateEvents();
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 		waitAndStartMainActivity();
 	}
 

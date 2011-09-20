@@ -3,7 +3,10 @@ package no.uka.findmyapp.ukaprogram.activities;
 import no.uka.findmyapp.ukaprogram.R;
 import android.app.Activity;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.graphics.drawable.Drawable;
+=======
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +29,7 @@ public class Main extends Activity implements OnClickListener {
 	private void initView() {
 		Button favorites = (Button) findViewById(R.id.favoritter);
 		Button program = (Button) findViewById(R.id.program);
+<<<<<<< HEAD
 		Button settings = (Button) findViewById(R.id.innstillinger);
 		Button loginbutton = (Button) findViewById(R.id.login);
 		
@@ -38,6 +42,14 @@ public class Main extends Activity implements OnClickListener {
 		favorites.setBackgroundResource(R.drawable.mainmenu_favorites_low);
 		settings.setBackgroundResource(R.drawable.mainmenu_settings_low);
 		loginbutton.setBackgroundResource(R.drawable.mainmenu_login_low);
+=======
+		
+		favorites.setOnClickListener(this);
+		program.setOnClickListener(this);
+		
+		program.setBackgroundResource(R.drawable.mainbuttonprogram);
+		favorites.setBackgroundResource(R.drawable.mainbuttonfav);
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 	}
 	
 	public void onClick(View v) {
@@ -51,6 +63,7 @@ public class Main extends Activity implements OnClickListener {
 			intent = new Intent().setClass(this, FavoritesListActivity.class);
 			startActivity(intent);
 			break; 
+<<<<<<< HEAD
 		case (R.id.login):
 			Log.d("haba haba", "ASDFASDF");
 			Toast.makeText(this, "Login pressed.", Toast.LENGTH_SHORT).show();
@@ -58,6 +71,8 @@ public class Main extends Activity implements OnClickListener {
 		case (R.id.innstillinger):
 			Toast.makeText(this, "Innstillinger pressed", Toast.LENGTH_SHORT).show();
 			break;
+=======
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 		default:
 			break;
 		}

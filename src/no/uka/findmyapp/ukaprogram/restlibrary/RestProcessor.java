@@ -85,11 +85,17 @@ public class RestProcessor {
 		Log.v(debug, "Inside callRest");
 		try {
 			switch(serviceModel.getHttpType()) {
+<<<<<<< HEAD
 				case GET:
 					Serializable returnedObject;
 					Log.d(debug, "Inside callRest. serviceModel.toString()" + serviceModel.toString());
 					returnedObject = executeAndParse(serviceModel, userToken);
 					Log.d(debug, "Returned.");
+=======
+				case GET :
+				Serializable returnedObject;
+					returnedObject = executeAndParse(serviceModel, userToken);
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 					saveAndReturnData(serviceModel, returnedObject);
 				break;
 				case POST :
@@ -146,6 +152,7 @@ public class RestProcessor {
 
 		URI uri = createURI(serviceModel, userToken);
 		mRestMethod.setUri(uri);
+<<<<<<< HEAD
 
 		String response = "";
 		try {
@@ -161,6 +168,11 @@ public class RestProcessor {
 
 		
 		Log.d(debug, "Response from request received: " + response);
+=======
+		
+		String response = httpRequest(serviceModel);
+		
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 		Serializable s = null;
 		
 		if(serviceModel.getReturnType() != null) {
@@ -233,8 +245,11 @@ public class RestProcessor {
 	private Serializable parseFromJson(String response, Type t1)
 			throws JSONException {
 		Serializable s;
+<<<<<<< HEAD
 		Log.e("IN RESTPROCESSOR: RESPONSE = ", response); 
 		
+=======
+>>>>>>> 465cdc7f7e2860411d150fb5889ac13522d54980
 		if(response.substring(0,1).equals("[")) {
 			s = parseListFromJson(response, t1);
 		} else {
