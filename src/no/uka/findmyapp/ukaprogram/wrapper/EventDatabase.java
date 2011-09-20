@@ -4,10 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
-import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
-import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
+import no.uka.findmyapp.ukaprogram.models.UkaEvent;
+import no.uka.findmyapp.ukaprogram.providers.UkaEvents.UkaEventContract;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -47,7 +46,6 @@ public class EventDatabase {
 	}
 
 	public ArrayList<UkaEvent> getEventsInPeriod(ContentResolver contentResolver, Timestamp fromTime, Timestamp toTime){
-		ContentValues contentValues = new ContentValues();
 		UkaEvent ukaEvent;
 		ArrayList<UkaEvent> eventList = new ArrayList<UkaEvent>();
 		Log.v(debug, "Timestamp = " + fromTime + " to " + toTime);
@@ -71,7 +69,6 @@ public class EventDatabase {
 
 	public ArrayList<UkaEvent> getNextEventsFromCategory(ContentResolver contentResolver, int numberOfEvents, String eventType){
 		Log.v(debug, "Inside getNextEventsFromCategory");
-		ContentValues contentValues = new ContentValues();
 		UkaEvent ukaEvent;
 		Date now = new Date();
 		ArrayList<UkaEvent> eventList = new ArrayList<UkaEvent>();
@@ -114,13 +111,22 @@ public class EventDatabase {
 		Log.v(debug, "Inside getEventFromCursor");
 		UkaEvent ukaEvent = new UkaEvent();
 		ukaEvent.setAgeLimit(cursor.getInt(cursor.getColumnIndex(UkaEventContract.AGE_LIMIT)));			
-//		ukaEvent.setCanceled((boolean) cursor.getInt(cursor.getColumnIndex(UkaEventContract.CANCELED)));
 		ukaEvent.setEventType(cursor.getString(cursor.getColumnIndex(UkaEventContract.EVENT_TYPE)));
 		ukaEvent.setId(cursor.getInt(cursor.getColumnIndex(UkaEventContract.ID)));
 		ukaEvent.setText(cursor.getString(cursor.getColumnIndex(UkaEventContract.TEXT)));
+		ukaEvent.setLead(cursor.getString(cursor.getColumnIndex(UkaEventContract.LEAD)));
 		ukaEvent.setShowingTime((cursor.getLong(cursor.getColumnIndex(UkaEventContract.SHOWING_TIME))));
 		ukaEvent.setPlace(cursor.getString(cursor.getColumnIndex(UkaEventContract.PLACE)));
 		ukaEvent.setTitle(cursor.getString(cursor.getColumnIndex(UkaEventContract.TITLE)));
+		ukaEvent.setImage(cursor.getString(cursor.getColumnIndex(UkaEventContract.IMAGE)));
+		ukaEvent.setPlaceString(cursor.getString(cursor.getColumnIndex(UkaEventContract.PLACE_STRING)));
+		ukaEvent.setLowestPrice(cursor.getInt(cursor.getColumnIndex(UkaEventContract.LOWEST_PRICE)));
+		
+		boolean canceled = (cursor.getInt(cursor.getColumnIndex(UkaEventContract.CANCELED)) == 1) ? true : false;
+		ukaEvent.setCanceled(canceled);
+		
+		boolean favorite = (cursor.getInt(cursor.getColumnIndex(UkaEventContract.FAVOURITE)) == 1) ? true : false;
+		ukaEvent.setFavourite(favorite);
 		
 		return ukaEvent;
 	}

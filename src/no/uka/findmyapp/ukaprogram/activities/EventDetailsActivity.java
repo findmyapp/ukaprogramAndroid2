@@ -1,39 +1,39 @@
 package no.uka.findmyapp.ukaprogram.activities;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-import no.uka.findmyapp.android.rest.contracts.UkaEvents.UkaEventContract;
-import no.uka.findmyapp.android.rest.datamodels.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.R;
+import no.uka.findmyapp.ukaprogram.models.UkaEvent;
+import no.uka.findmyapp.ukaprogram.providers.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
-import android.app.AlertDialog;
-import android.app.Dialog;
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.graphics.Color;
-import android.net.Uri;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Contacts.People;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EventDetailsActivity extends PopupMenuActivity implements OnClickListener, OnCheckedChangeListener {
+public class EventDetailsActivity extends Activity implements OnClickListener {
 	private static final String debug = "EventsDetailsActivity";
 	
+	private static final String IMAGE_URL_PREFIX = "http://www.uka.no/";
+
 	private UkaEvent selectedEvent; 
-	private ArrayList<String> friendList;
-	private String TAG = "EventDetails";
-	private ArrayAdapter<String> friendAdapter;
-	private ListView friendListView;
+	private ImageView eventImageView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,108 +44,154 @@ public class EventDetailsActivity extends PopupMenuActivity implements OnClickLi
 		Log.v(debug, debug + " onCreate()");
 		
 		Bundle bundle = getIntent().getExtras(); 
-		Log.v(debug, "Bundle toString " + bundle.toString());
 		
 		if (bundle.getSerializable(EventListActivity.ITEM_CLICKED) != null) {
 			selectedEvent = (UkaEvent) bundle.getSerializable(EventListActivity.ITEM_CLICKED);
-			populateView(selectedEvent);
-		}
-		else{
-			String exception = "Exception: empty bundle!";
-			Toast t = Toast.makeText(getApplicationContext(), exception, Toast.LENGTH_LONG);
-			t.show();
+			populateView();
+		} else {
+			String exception = "Error";
+			Toast toast = Toast.makeText(getApplicationContext(), exception, Toast.LENGTH_LONG);
+			toast.show();
 		}
 	}
 	
-	public void populateView(UkaEvent selectedEvent){
-		DateUtils du = new DateUtils(); 
-
-		Button friendsButton = (Button) findViewById(R.id.detailedEventFriendsOnEventButton);
-		friendsButton.setOnClickListener(this); 
-		
-		friendList = new ArrayList<String>();
-		super.setSelectedEvent(selectedEvent);
+	public void populateView(){
 		Log.v(debug, "selectedEvent " + selectedEvent.toString());
-
+		
+		// Get Views
 		TextView ageLimit = (TextView) findViewById(R.id.detailedEventAgeLimit);
 		TextView price = (TextView) findViewById(R.id.detailedEventPrice);
 		TextView title = (TextView) findViewById(R.id.detailedEventTitle);
 		TextView timeAndPlace = (TextView) findViewById(R.id.detailedEventTimeAndPlace);
 		TextView description = (TextView) findViewById(R.id.detailedEventDescription);
 		TextView headerTitle = (TextView) findViewById(R.id.event_details_header_title);
+		
 		CheckBox favorites = (CheckBox) findViewById(R.id.event_details_favorites);
-		favorites.setOnCheckedChangeListener(this);
-		
+		favorites.setOnClickListener(this);
 		favorites.setButtonDrawable(R.drawable.favorites_button);
-
-		timeAndPlace.setText(	
-			du.getWeekdayNameFromTimestamp(selectedEvent.getShowingTime()) + " " 
-			+ du.getCustomDateFormatFromTimestamp("dd E MMM.", selectedEvent.getShowingTime()) + " " 
-			+ du.getTimeFromTimestamp(selectedEvent.getShowingTime()) + ", " 
-			+ selectedEvent.getPlace());
+		favorites.setChecked(selectedEvent.isFavourite());
 		
-		title.setText(selectedEvent.getTitle());
+		Button eventCalendarButton = (Button) findViewById(R.id.event_calendar_button);
+		String eventDay = new DateUtils().getCustomDateFormatFromTimestamp("dd", selectedEvent.getShowingTime());
+		eventCalendarButton.setText(eventDay);
+		eventCalendarButton.setOnClickListener(new CalendarButtonListener());
+		
 		headerTitle.setText(selectedEvent.getTitle());
-		description.setText(selectedEvent.getText());
+		timeAndPlace.setText(createTimeAndPlaceText(selectedEvent));
+		
+		eventImageView = (ImageView) findViewById(R.id.event_details_picture);
+		loadImage();
+
+		title.setText(createTitleText());
 		ageLimit.setText("Aldersgrense: " + selectedEvent.getAgeLimit() + " år");
-		if(selectedEvent.isFree()){
+
+		if (selectedEvent.isFree()){
 			price.setText("Gratis");
+		} else {
+			price.setText("Pris: " + selectedEvent.getLowestPrice() + " kr");
 		}
+		
+		description.setText(selectedEvent.getLead());
 		
 		if(selectedEvent.isFavourite()) {
 			favorites.setChecked(true);
 		}
 	}
-	public void populateFriendList() {
-		 friendList.clear();
-		 friendList.add("Audun");
-		 friendList.add("Kaare");
-		 friendList.add("Ole Christian");
-	 } 
 
-	public void showPopupWindow() {
-		friendListView = new ListView(this);
-		populateFriendList();
-		friendAdapter = new ArrayAdapter<String>(this, R.layout.friends_list, R.id.friendsListText, friendList);
-		friendListView.setAdapter(friendAdapter);
-		Dialog d = new Dialog(this);
-		friendListView.setBackgroundColor(Color.WHITE);
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Deltagende venner");
-		builder.setView(friendListView);
-		d = builder.create();
-		d.show();
+	private String createTitleText() {
+		String titleText = selectedEvent.getTitle();
+		titleText += selectedEvent.isCanceled() ? " (AVLYST!)" : "";
+		return titleText;
 	}
 
-	@Override
-	public void onClick(View v) {
-		showPopupWindow();
+	private void loadImage() {
+		ImageDownloader downloader = new ImageDownloader(eventImageView);
+		downloader.execute(IMAGE_URL_PREFIX + selectedEvent.getImage());
 	}
 
+	private String createTimeAndPlaceText(UkaEvent selectedEvent) {
+		String timeAndPlaceText = "";
+		DateUtils du = new DateUtils(); 
+		timeAndPlaceText += selectedEvent.getPlaceString() + ", ";
+		timeAndPlaceText += du.getWeekdayLongFromTimestamp(selectedEvent.getShowingTime()) + " ";
+		timeAndPlaceText += du.getCustomDateFormatFromTimestamp("dd.MM", selectedEvent.getShowingTime()) + " kl " +
+				du.getCustomDateFormatFromTimestamp("HH:mm", selectedEvent.getShowingTime());
+		
+		return timeAndPlaceText;
+	}
+	
+	private class CalendarButtonListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(Intent.ACTION_EDIT);
+			intent.setType("vnd.android.cursor.item/event");
+			intent.putExtra("title", selectedEvent.getTitle());
+			intent.putExtra("beginTime", selectedEvent.getShowingTime());
+			intent.putExtra("endTime", selectedEvent.getShowingTime()+60*60*1000);
+			intent.putExtra("eventLocation", selectedEvent.getPlaceString());
+			startActivity(intent);
+		}
+		
+	}
+	
+	public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
+
+	    private String url;
+	    private final WeakReference<ImageView> imageViewReference;
+
+	    public ImageDownloader(ImageView imageView) {
+	        imageViewReference = new WeakReference<ImageView>(imageView);
+	    }
+
+	    @Override
+	    protected Bitmap doInBackground(String... params) {
+	        url = params[0];
+	        try {
+	            return BitmapFactory.decodeStream(new URL(url).openConnection().getInputStream());
+	        } catch (MalformedURLException e) {
+	            e.printStackTrace();
+	            return null;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
+
+	    @Override
+	    protected void onPostExecute(Bitmap result) {
+	        if (isCancelled()) {
+	            result = null;
+	        }
+	        if (imageViewReference != null) {
+	            ImageView imageView = imageViewReference.get();
+	            if (imageView != null) {
+	                imageView.setImageBitmap(result);
+	            }
+	        }
+	    }
+
+	    @Override
+	    protected void onPreExecute() {
+	    	// Do nothing
+	    }
+	}
+
+
 	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		if(isChecked) {
-			Toast t = Toast.makeText(getApplicationContext(), selectedEvent.getTitle() + " is added as favourite", Toast.LENGTH_SHORT);
-			t.show(); 
-
-			ContentValues values = new ContentValues();
-			values.put(UkaEventContract.FAVOURITE, 1);
-			
-			String where = UkaEventContract.EVENT_ID + " = '" + selectedEvent.getEventId() + "'"; 
-			t = Toast.makeText(getApplicationContext(), where, Toast.LENGTH_SHORT);
-			t.show(); 
-			
-			
-			int rowsAffected = getContentResolver().update(UkaEventContract.EVENT_CONTENT_URI, values, where, null);
-			
-			t = Toast.makeText(getApplicationContext(), rowsAffected + "", Toast.LENGTH_SHORT);
-			t.show(); 
-			//this.setListAdapter(new EventListCursorAdapter(this, eventCursor));
-		}
-		else {
-			Toast t = Toast.makeText(getApplicationContext(), selectedEvent.getTitle() + " is removed as favourite", Toast.LENGTH_SHORT);
-			t.show(); 
-		}
-
+	public void onClick(View paramView) {
+		CheckBox boxClicked = (CheckBox) paramView;
+		
+		boolean isChecked = boxClicked.isChecked();
+		
+		selectedEvent.setFavourite(isChecked);
+		
+		ContentValues values = new ContentValues();
+		values.put(UkaEventContract.FAVOURITE, isChecked);
+		ContentResolver cr = this.getContentResolver();
+		int updated = cr.update(UkaEventContract.EVENT_CONTENT_URI, values,
+				UkaEventContract.ID + " = ?", new String[] { "" + selectedEvent.getId() });
+		
+		Log.v(debug, "Updated rows: " + updated);
 	}
 }

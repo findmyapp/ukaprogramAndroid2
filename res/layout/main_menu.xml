@@ -26,7 +26,7 @@
 		android:src="@drawable/uka_logo" 
 		android:layout_width="wrap_content" 
 		android:layout_gravity="center"
-		android:layout_marginBottom="20dp">
+		android:layout_marginBottom="40dp">
 	</ImageView>
 
 	<LinearLayout 
@@ -42,24 +42,7 @@
 			android:id="@+id/program"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-		</Button>
-
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Konserter" 
-			android:id="@+id/konserter"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
-		</Button>
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Steder" 
-			android:id="@+id/steder"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
+			android:layout_marginBottom="20dp">
 		</Button>
 		<Button 
 			style="@style/MainMenuButton"
@@ -67,12 +50,20 @@
 			android:id="@+id/favoritter"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp">
+			android:layout_marginBottom="20dp">
 		</Button>
 		<Button 
 			style="@style/MainMenuButton"
-			android:text="Oppdater" 
-			android:id="@+id/update"
+			android:text="Logg inn" 
+			android:id="@+id/login"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp">
+		</Button>
+		<Button 
+			style="@style/MainMenuButton"
+			android:text="Innstillinger" 
+			android:id="@+id/innstillinger"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="10dp">

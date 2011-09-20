@@ -16,6 +16,7 @@
 	<string name="revy">Revy \u0026 Teater</string>
 	<string name="kurs">Kurs \u0026 Events</string>
 	<string name="fest">Fest \u0026 Moro</string>
+	<string name="spesifikk_dato">. okt</string>
 
 	<string-array name="category_array">
 		<item>Alle</item>
