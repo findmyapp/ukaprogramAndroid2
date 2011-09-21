@@ -46,6 +46,8 @@ public class EventListCursorAdapter extends CursorAdapter implements
 			t = (TextView) eventView.findViewById(R.id.listItemWeekday);
 			String showingEvent = du
 					.getWeekdayNameFromTimestamp(getLongFromTableColumn(UkaEventContract.SHOWING_TIME));
+			
+			showingEvent = du.getWeekdayFromTimestamp(getLongFromTableColumn(UkaEventContract.SHOWING_TIME));
 			t.setText(showingEvent);
 
 			t = (TextView) eventView.findViewById(R.id.listItemDayNumber);

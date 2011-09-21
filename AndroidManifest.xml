@@ -19,12 +19,12 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.Main"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FavoritesListActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity"></activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.Main" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FavoritesListActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.CalendarActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="no.uka.findmyapp.ukaprogram.activities.DateActivity" android:screenOrientation="portrait"></activity>
 		
 		<provider android:name="no.uka.findmyapp.ukaprogram.providers.UkaEventProvider" 
 			android:authorities="no.uka.findmyapp.android.rest.providers.program" 

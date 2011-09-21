@@ -9,12 +9,15 @@ import no.uka.findmyapp.ukaprogram.R;
 import no.uka.findmyapp.ukaprogram.models.UkaEvent;
 import no.uka.findmyapp.ukaprogram.providers.UkaEvents.UkaEventContract;
 import no.uka.findmyapp.ukaprogram.utils.DateUtils;
+import no.uka.findmyapp.ukaprogram.utils.ImageCache;
+import no.uka.findmyapp.ukaprogram.utils.ImageCache.ImageCallback;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,6 +83,8 @@ public class EventDetailsActivity extends Activity implements OnClickListener {
 		timeAndPlace.setText(createTimeAndPlaceText(selectedEvent));
 		
 		eventImageView = (ImageView) findViewById(R.id.event_details_picture);
+		
+		eventImageView.setImageResource(R.drawable.placeholder);
 		loadImage();
 
 		title.setText(createTitleText());
@@ -106,7 +111,16 @@ public class EventDetailsActivity extends Activity implements OnClickListener {
 
 	private void loadImage() {
 		ImageDownloader downloader = new ImageDownloader(eventImageView);
-		downloader.execute(IMAGE_URL_PREFIX + selectedEvent.getImage());
+		String uri = "";
+		
+		if (selectedEvent.getImage().startsWith("/"))
+		{
+			uri = IMAGE_URL_PREFIX + selectedEvent.getImage();
+		} else {
+			uri = selectedEvent.getImage();
+		}
+		
+		downloader.execute(uri);
 	}
 
 	private String createTimeAndPlaceText(UkaEvent selectedEvent) {
@@ -116,6 +130,7 @@ public class EventDetailsActivity extends Activity implements OnClickListener {
 		timeAndPlaceText += du.getWeekdayLongFromTimestamp(selectedEvent.getShowingTime()) + " ";
 		timeAndPlaceText += du.getCustomDateFormatFromTimestamp("dd.MM", selectedEvent.getShowingTime()) + " kl " +
 				du.getCustomDateFormatFromTimestamp("HH:mm", selectedEvent.getShowingTime());
+		
 		
 		return timeAndPlaceText;
 	}
@@ -135,7 +150,7 @@ public class EventDetailsActivity extends Activity implements OnClickListener {
 		
 	}
 	
-	public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
+	public class ImageDownloader extends AsyncTask<String, Void, Drawable> {
 
 	    private String url;
 	    private final WeakReference<ImageView> imageViewReference;
@@ -145,28 +160,30 @@ public class EventDetailsActivity extends Activity implements OnClickListener {
 	    }
 
 	    @Override
-	    protected Bitmap doInBackground(String... params) {
-	        url = params[0];
-	        try {
-	            return BitmapFactory.decodeStream(new URL(url).openConnection().getInputStream());
-	        } catch (MalformedURLException e) {
-	            e.printStackTrace();
-	            return null;
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            return null;
-	        }
+	    protected Drawable doInBackground(String... params) {
+	    	
+	    	url = params[0];
+	    	ImageCache ic = ImageCache.getInstance();
+	    	return ic.loadSync(url, EventDetailsActivity.this);
 	    }
 
 	    @Override
-	    protected void onPostExecute(Bitmap result) {
+	    protected void onPostExecute(Drawable result) {
+	    	
+	    	Log.d(debug, "On post execute");
 	        if (isCancelled()) {
 	            result = null;
 	        }
+	        
 	        if (imageViewReference != null) {
 	            ImageView imageView = imageViewReference.get();
 	            if (imageView != null) {
-	                imageView.setImageBitmap(result);
+	            	if (result == null) {
+	            		Log.d(debug, "No image downloaded. Inserting placeholder.");
+	            		imageView.setImageResource(R.drawable.placeholder);
+	            	} else {
+	            		imageView.setImageDrawable(result);
+	            	}
 	            }
 	        }
 	    }
