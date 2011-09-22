@@ -31,7 +31,7 @@ public class EventsUpdater extends Updater {
 			Log.e(debug, "updateEvents exception caught " + e.getException().getMessage());
 			Toast t = Toast.makeText(this.context, e.getMessage(), Toast.LENGTH_LONG);
 			t.show(); 
-		} 
+		}
 	}
 	
 	private void update() throws UpdateException{
@@ -40,6 +40,7 @@ public class EventsUpdater extends Updater {
 			Log.v(debug, "inside");
 			URI contentUri = new URI(UkaEventContract.EVENT_CONTENT_URI.toString());
 			serviceHelper.callStartService(this.context, UkappsServices.GET_ALL_UKAEVENTS, contentUri, new String[] {"uka11"});
+			Log.d(debug, "outside");
 		}  catch (RestServiceException e) {
 			Log.e(debug, e.getMessage());
 		} catch (URISyntaxException e) {

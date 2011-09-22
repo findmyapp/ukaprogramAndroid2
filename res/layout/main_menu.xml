@@ -40,34 +40,59 @@
 			style="@style/MainMenuButton"
 			android:text="Program" 
 			android:id="@+id/program"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
+			android:layout_width="230px" 
+			android:layout_height="70px"
 			android:layout_marginBottom="20dp">
 		</Button>
 		<Button 
 			style="@style/MainMenuButton"
 			android:text="Favoritter" 
 			android:id="@+id/favoritter"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="20dp">
+			android:layout_width="230px" 
+			android:layout_height="70px"
+			android:layout_marginBottom="30dp">
 		</Button>
 		<Button 
 			style="@style/MainMenuButton"
 			android:text="Logg inn" 
 			android:id="@+id/login"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
+			android:layout_width="230px" 
+			android:layout_height="70px"
 			android:layout_marginBottom="20dp">
 		</Button>
 		<Button 
 			style="@style/MainMenuButton"
 			android:text="Innstillinger" 
 			android:id="@+id/innstillinger"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
+			android:layout_width="230px" 
+			android:layout_height="70px"
 			android:layout_marginBottom="10dp">
 		</Button>
+		<FrameLayout
+			android:id="@+id/refresh"
+			android:layout_width="230px"
+			android:layout_height="60px"
+			android:layout_marginTop="30dp"
+			>
+			<ImageView
+				android:layout_width="40px"
+				android:layout_height="40px"
+				android:src="@drawable/refreshicon"
+				android:paddingTop="10dp"
+				android:adjustViewBounds="true"
+				android:layout_gravity="center_horizontal|bottom"
+				>
+			</ImageView>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Oppdater program"
+				android:textColor="#AA000000"
+				android:padding="1px"
+				android:layout_gravity="center_horizontal|top">
+			</TextView>
+			
+		</FrameLayout>
 		</LinearLayout>
 	</LinearLayout>
 	<ImageView 

@@ -26,9 +26,6 @@ public class StartupLoader extends Activity {
 		setContentView(R.layout.splash);
 		Log.v(debug, "Loading UkaProgram");
 
-		EventsUpdater eu = new EventsUpdater(getApplicationContext());
-		eu.updateEvents();
-
 		waitAndStartMainActivity();
 	}
 

@@ -19,7 +19,11 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name="no.uka.findmyapp.ukaprogram.activities.Main" android:screenOrientation="portrait"></activity>
+		<activity
+			android:name="no.uka.findmyapp.ukaprogram.activities.Main"
+			android:screenOrientation="portrait">
+		</activity>
+		
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventDetailsActivity" android:screenOrientation="portrait"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.EventListActivity" android:screenOrientation="portrait"></activity>
 		<activity android:name="no.uka.findmyapp.ukaprogram.activities.FavoritesListActivity" android:screenOrientation="portrait"></activity>

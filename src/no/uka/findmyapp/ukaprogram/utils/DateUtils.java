@@ -122,8 +122,6 @@ public class DateUtils {
 		calendar.setTimeInMillis(timestamp);
 		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 		
-		Log.d("DAY OF WEEK:", String.valueOf(dayOfWeek));
-		
 		switch (dayOfWeek) {
 		
 		case Calendar.MONDAY:
@@ -149,9 +147,7 @@ public class DateUtils {
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTimeInMillis(timestamp);
 		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-		
-		Log.d("DAY OF WEEK:", String.valueOf(dayOfWeek));
-		
+
 		switch (dayOfWeek) {
 		
 		case Calendar.MONDAY:

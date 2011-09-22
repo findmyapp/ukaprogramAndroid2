@@ -229,13 +229,13 @@ public class RestServiceHelper {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			Log.v(debug, "ServiceModelReceiver: received broadcast");
+			
 			if (intentMessageIdentifiedByBoadcasatToken(intent)) {
 				unregisterBroadCastListenerForUserAuth(context);
 
 				Serializable obj = intent.getSerializableExtra(IntentMessages.BROADCAST_INTENT_TOKEN_USERAUTH);
 				setUserToken((String) obj);
 			}
-
 		}
 
 		/**
