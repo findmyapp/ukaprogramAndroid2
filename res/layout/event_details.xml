@@ -4,24 +4,11 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<ImageView 
-		android:layout_height="wrap_content"
-		android:paddingTop="10dp" 
-		android:id="@+id/imageView1"
-		android:src="@drawable/uka_logo_header" 
-		android:layout_width="wrap_content"
-		android:layout_gravity="center_horizontal"></ImageView>
 	<LinearLayout 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
-			<LinearLayout
-				style="@style/HorizontalLine"
-				android:layout_marginTop="10dp"
-				android:layout_width="fill_parent"
-				android:layout_marginBottom="4dp"
-				android:layout_height="2px">
-			</LinearLayout>
+			
 			<RelativeLayout 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content">
@@ -34,9 +21,10 @@
 					style="@style/BigFont"
 					android:layout_height="wrap_content" 
 					android:layout_width="wrap_content"
-					android:gravity="center_vertical|center_horizontal"
-					android:layout_centerHorizontal="true"
-					android:layout_centerInParent="true"
+					android:gravity="center_vertical"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="25dp"
 				/>
 				<CheckBox
 					android:id="@+id/event_details_favorites" 
@@ -47,6 +35,7 @@
 				/>
 			</RelativeLayout>
 			</RelativeLayout>
+			
 			<LinearLayout
 				style="@style/HorizontalLine"
 				android:layout_marginTop="4dp"
@@ -54,89 +43,191 @@
 				android:layout_height="2px">
 			</LinearLayout>
 		</LinearLayout>
+		
 		<ScrollView 
 			android:id="@+id/detailedEventScrollView1"
 			android:layout_height="wrap_content" 
-			android:layout_width="fill_parent" 
-			android:layout_marginLeft="20dp"
-			android:layout_marginTop="10dp">
+			android:layout_width="fill_parent"
+			>
 			<LinearLayout 
 				xmlns:android="http://schemas.android.com/apk/res/android"
 				android:orientation="vertical" 
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginRight="20dp"
 				>
-			<RelativeLayout 
-			android:layout_width="fill_parent"
-			android:layout_marginLeft="20dp"
-			android:layout_marginRight="20dp"
-			android:layout_marginTop="10dp"
-			android:layout_height="wrap_content"
-			android:background="@drawable/round_border">
+				
+				<RelativeLayout
+					android:layout_width="fill_parent"
+					android:layout_height="140px"
+					android:id="@+id/event_imageloading_layout"
+					android:visibility="visible"
+				>
+					<ProgressBar
+						android:layout_width="wrap_content"
+						android:id="@+id/event_imageloading_progressbar"
+						style="?android:attr/progressBarStyleLarge"
+						android:layout_height="wrap_content"
+						android:visibility="visible"
+						android:layout_centerInParent="true"
+						>
+					</ProgressBar>
+				</RelativeLayout>
+
+				<no.uka.findmyapp.ukeprogram.utils.AspectRatioImageView
+					android:layout_centerHorizontal="true"
+   					android:id="@+id/event_details_picture"
+				    android:layout_alignParentTop="true" android:layout_height="wrap_content"
+				    android:layout_width="match_parent" android:adjustViewBounds="true"
+				    android:visibility="gone"
+				/>
+    				
+
+				<RelativeLayout 
+					android:layout_width="fill_parent"
+					android:layout_height="73px"
+					android:background="#DADADA"
+				>
+
+				<ImageView 
+					android:layout_height="73px"
+					android:layout_width="80px"
+					android:id="@+id/event_details_typePicture"
+					android:src="@drawable/icon"
+				/>
 				<TextView 
 					android:id="@+id/detailedEventTimeAndPlace" 
 					android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
-					style="@style/SmallFont"
-					android:textColor="@color/white"
+					android:layout_width="fill_parent"
+					android:layout_marginLeft="4pt"
+					android:layout_marginTop="2pt"
+					android:textColor="#333333"
+					android:textSize="20px"
+					android:textStyle="bold"
+					android:text="Storsalen | Torsdag 06.10 | Kl. 22.00"
+					android:layout_toRightOf="@+id/event_details_typePicture"
+				/>
+				<TextView 
+					android:id="@+id/detailedEventAgeLimitAndPrice" 
+					android:layout_height="wrap_content"
+					android:layout_width="fill_parent"
+					android:layout_marginLeft="4pt"
+					android:layout_marginTop="1pt"
+					android:textColor="#333333"
+					android:textSize="20px"
+					android:text="Aldersgrense: 18 år | Pris: 90 kr"
+					android:layout_below="@+id/detailedEventTimeAndPlace"
+					android:layout_toRightOf="@+id/event_details_typePicture"					
 				/>
 				
 			</RelativeLayout>
-	
-	
-			<RelativeLayout 
-			android:layout_marginTop="5dp"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"			
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginTop="5dp"
+				android:orientation="vertical"
 			>
-				<ImageView 
-					android:layout_height="wrap_content"
-					android:id="@+id/event_details_picture"
-					android:src="@drawable/empty" 
-					android:layout_width="fill_parent"
-					android:layout_gravity="center_horizontal">
-				</ImageView>
-				
-				
-			</RelativeLayout>
 				<TextView 
 					android:id="@+id/detailedEventTitle" 
 					android:layout_height="wrap_content" 
 					android:layout_width="wrap_content"
 					style="@style/BigFont"
 					/>
-				<Button 
-					android:id="@+id/event_calendar_button" 
-					android:src="@drawable/calendar_date_button" 
-					android:layout_width="50dp"
-					android:layout_height="50dp"
-					android:background="@drawable/calendar_date_button"
-					android:paddingTop="10dp"
-					android:textStyle="bold"
-					>
-				</Button>
-				<TextView 
-					android:id="@+id/detailedEventAgeLimit" 
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
-					style="@style/SmallFont"
-				/>
-				<TextView 
-					android:id="@+id/detailedEventPrice" 
-					android:layout_height="wrap_content"
-					android:text="pris"
-					android:layout_width="wrap_content"
-					style="@style/SmallFont"
-				/>
+
 				<TextView 
 					style="@style/MediumFont"
 					android:id="@+id/detailedEventDescription" 
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="5dp"
-					android:layout_marginBottom="10dp"
+					android:layout_marginBottom="15dp"
 					/>
+					
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal" android:baselineAligned="false">
+						<Button 
+							android:id="@+id/event_calendar_button" 
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:background="@drawable/calendar_date_button"
+							android:paddingTop="10dp"
+							android:textStyle="bold"
+							>
+						</Button>
+						<TextView
+							android:layout_width="60dp"
+							android:layout_height="30dp"
+							android:textSize="18px"
+							android:layout_marginLeft="5px"
+							android:gravity="center_vertical"
+							android:layout_gravity="center"
+							android:text="Legg til i kalender"
+						>
+						</TextView>
+						<Button 
+							android:id="@+id/event_facebookfriends_button"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:layout_marginLeft="10px"
+							android:background="@drawable/facebook_big"
+							>
+						</Button>
+						<TextView
+							android:id="@+id/event_facebookfriends_text"
+							android:layout_width="60dp"
+							android:layout_height="30dp"
+							android:textSize="18px"
+							android:layout_marginLeft="5px"
+							android:gravity="center_vertical"
+							android:layout_gravity="center"
+							android:text="Ikke pålogget"
+							android:visibility="visible"
+						>
+						</TextView>
+						<ProgressBar
+							android:layout_height="30dp"
+							android:layout_width="30dp"
+							android:layout_marginRight="30dp"
+							android:layout_marginLeft="5px"
+							android:id="@+id/event_facebookloading"
+							android:visibility="visible"
+							style="?android:attr/progressBarStyleSmall">
+						</ProgressBar>
+
+						<Button 
+							android:id="@+id/event_attendence_button"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:layout_marginLeft="10px"
+							android:background="@drawable/uncheck"
+							>
+						</Button>
+						<TextView
+							android:id="@+id/event_attendence_text"
+							android:layout_width="60dp"
+							android:layout_height="30dp"
+							android:textSize="18px"
+							android:layout_marginLeft="5px"
+							android:gravity="center_vertical"
+							android:layout_gravity="center"
+							android:text="Jeg skal ikke"
+							android:visibility="gone"
+						>
+						</TextView>
+						<ProgressBar
+							android:layout_height="30dp"
+							android:layout_width="30dp"
+							android:layout_marginRight="30dp"
+							android:layout_marginLeft="5px"
+							android:id="@+id/event_attendingloading"
+							android:visibility="visible"
+							style="?android:attr/progressBarStyleSmall">
+						</ProgressBar>
+				</LinearLayout>
+				
+			</LinearLayout>
 			</LinearLayout>
 		</ScrollView>
 	</LinearLayout>

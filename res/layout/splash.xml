@@ -3,13 +3,8 @@
    android:orientation="vertical"
    android:layout_width="fill_parent"
    android:layout_height="fill_parent"
-   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+   android:background="@drawable/splash_new"
    >
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/splash"
-        />
+
  
 </LinearLayout>

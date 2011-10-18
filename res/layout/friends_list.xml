@@ -1,10 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView 
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/friendsListText" 
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content" 
-	android:textAppearance="?android:attr/textAppearanceLarge"
-	android:gravity="center_vertical" 
-	android:paddingLeft="6dip"
-	android:minHeight="?android:attr/listPreferredItemHeight" />
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+	<TextView 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:textSize="15dp"
+		android:gravity="center_vertical"
+		android:layout_marginTop="6dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:text="Venner på"
+	/>
+	
+	<TextView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/friends_header_text" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:textSize="22dp"
+		android:textStyle="bold"
+		android:gravity="center_vertical"
+		android:layout_marginTop="4dp"
+		android:layout_marginBottom="4dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:text=""		
+	/>
+	
+			<LinearLayout 
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="vertical" 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				>
+
+				<RelativeLayout 
+					android:layout_width="fill_parent"
+					android:layout_height="73px"
+					android:background="#DADADA"
+				>
+
+				<ImageView 
+					android:layout_height="73px"
+					android:layout_width="80px"
+					android:id="@+id/friend_event_typePicture"
+					android:src="@drawable/icon"
+				/>
+				<TextView 
+					android:id="@+id/friend_event_timeAndPlace" 
+					android:layout_height="wrap_content"
+					android:layout_width="fill_parent"
+					android:layout_marginLeft="4pt"
+					android:layout_marginTop="3pt"
+					android:textColor="#333333"
+					android:textSize="20px"
+					android:textStyle="bold"
+					android:text="Feil ved innlasting"
+					android:layout_toRightOf="@+id/friend_event_typePicture"
+				/>
+				<TextView 
+					android:id="@+id/friend_event_AgeLimitAndPrice" 
+					android:layout_height="wrap_content"
+					android:layout_width="fill_parent"
+					android:layout_marginLeft="4pt"
+					android:layout_marginTop="1pt"
+					android:textColor="#333333"
+					android:textSize="20px"
+					android:text="Aldersgrense:  | Pris: "
+					android:layout_below="@+id/friend_event_timeAndPlace"
+					android:layout_toRightOf="@+id/friend_event_typePicture"					
+				/>
+				
+			</RelativeLayout>
+		</LinearLayout>
+
+	<ListView
+		android:id="@+id/friend_listview" 
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent" 
+		android:footerDividersEnabled="true"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+	/>	
+</LinearLayout>

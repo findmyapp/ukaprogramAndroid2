@@ -3,105 +3,56 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent" 
+	android:layout_height="fill_parent"
+	android:background="@drawable/startmenu_backg2"
 >
-	<ImageView 
-		android:layout_height="wrap_content" 
-		android:id="@+id/main_menu_header"
-		android:src="@drawable/maintopleft" 
-		android:layout_width="wrap_content" 
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentTop="true">
-	</ImageView>
-	<LinearLayout 
-	android:layout_height="wrap_content"
-	android:layout_width="wrap_content"
-	android:layout_centerInParent="true"
-	android:orientation="vertical"
-	android:layout_marginTop="20dp"
-	>
-	<ImageView 
-		android:layout_height="wrap_content" 
-		android:id="@+id/imageView1"
-		android:src="@drawable/uka_logo" 
-		android:layout_width="wrap_content" 
-		android:layout_gravity="center"
-		android:layout_marginBottom="40dp">
-	</ImageView>
 
 	<LinearLayout 
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical" 
-		android:layout_width="wrap_content"
+		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" 
 		android:layout_gravity="center"
-		android:gravity="center">
+		android:gravity="center"
+		android:layout_centerInParent="true">
+		
 		<Button 
-			style="@style/MainMenuButton"
-			android:text="Program" 
 			android:id="@+id/program"
-			android:layout_width="230px" 
-			android:layout_height="70px"
-			android:layout_marginBottom="20dp">
+			android:layout_width="fill_parent" 
+			android:layout_height="67px"
+			android:layout_marginTop="90dp"
+			android:layout_marginBottom="10dp"
+			android:background="@drawable/menu_program">
 		</Button>
 		<Button 
-			style="@style/MainMenuButton"
-			android:text="Favoritter" 
 			android:id="@+id/favoritter"
-			android:layout_width="230px" 
-			android:layout_height="70px"
-			android:layout_marginBottom="30dp">
-		</Button>
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Logg inn" 
-			android:id="@+id/login"
-			android:layout_width="230px" 
-			android:layout_height="70px"
-			android:layout_marginBottom="20dp">
-		</Button>
-		<Button 
-			style="@style/MainMenuButton"
-			android:text="Innstillinger" 
-			android:id="@+id/innstillinger"
-			android:layout_width="230px" 
-			android:layout_height="70px"
-			android:layout_marginBottom="10dp">
-		</Button>
-		<FrameLayout
-			android:id="@+id/refresh"
-			android:layout_width="230px"
+			android:layout_width="fill_parent" 
 			android:layout_height="60px"
-			android:layout_marginTop="30dp"
-			>
-			<ImageView
-				android:layout_width="40px"
-				android:layout_height="40px"
-				android:src="@drawable/refreshicon"
-				android:paddingTop="10dp"
-				android:adjustViewBounds="true"
-				android:layout_gravity="center_horizontal|bottom"
-				>
-			</ImageView>
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Oppdater program"
-				android:textColor="#AA000000"
-				android:padding="1px"
-				android:layout_gravity="center_horizontal|top">
-			</TextView>
-			
-		</FrameLayout>
-		</LinearLayout>
-	</LinearLayout>
-	<ImageView 
-		android:layout_height="wrap_content" 
-		android:id="@+id/main_menu_footer"
-		android:src="@drawable/mainbottomright" 
-		android:layout_width="wrap_content" 
-		android:layout_alignParentRight="true"
-		android:layout_alignParentBottom="true">
-	</ImageView>
+			android:layout_marginBottom="8dp"
+			android:background="@drawable/menu_fav">
+		</Button>
+		<Button 
+			android:id="@+id/login"
+			android:layout_width="fill_parent" 
+			android:layout_height="56px"
+			android:layout_marginBottom="7dp"
+			android:background="@drawable/menu_login">
+		</Button>
+		<Button 
+			android:id="@+id/update"
+			android:layout_width="fill_parent" 
+			android:layout_height="63px"
+			android:layout_marginBottom="7dp"
+			android:background="@drawable/menu_update">
+		</Button>
+		<Button 
+			android:id="@+id/innstillinger"
+			android:layout_width="fill_parent" 
+			android:layout_height="46px"
+			android:layout_marginBottom="10dp"
+			android:background="@drawable/menu_settings"
+			android:visibility="gone">
+		</Button>
 
+		</LinearLayout>
 </RelativeLayout>

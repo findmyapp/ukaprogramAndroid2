@@ -4,89 +4,87 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-  
-  <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:padding="25px"
-    android:stretchColumns="1">
-	  <TableRow
-	  android:paddingBottom="20px">
-	  	<TextView 
-			android:id="@+id/positionSettingText" 
-			android:layout_height="wrap_content" 
-			android:layout_width="fill_parent"
-			style="@style/MediumFont"
-			android:paddingRight="15dp"
-		/>
-		<Spinner 
-	        android:id="@+id/positionSettingSpinner"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:drawSelectorOnTop="true"
-	        android:prompt="@string/setting_prompt"
-	    />
-	  </TableRow> 
-	  <TableRow
-	  android:paddingBottom="20px">	
-	  	<TextView 
-			android:id="@+id/eventSettingText" 
-			android:layout_height="wrap_content" 
-			android:layout_width="wrap_content"
-			style="@style/MediumFont"
-			android:paddingRight="15dp"
-		/>
-		<Spinner 
-	        android:id="@+id/eventSettingSpinner"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:drawSelectorOnTop="true"
-	        android:prompt="@string/setting_prompt"
-	    />
-	  </TableRow>  
-	  <TableRow
-	  android:paddingBottom="20px">	
-	  	<TextView 
-			android:id="@+id/moneySettingText" 
-			android:layout_height="wrap_content" 
-			android:layout_width="wrap_content"
-			style="@style/MediumFont"
-			android:paddingRight="15dp"
-		/>
-		<Spinner 
-	        android:id="@+id/moneySettingSpinner"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:drawSelectorOnTop="true"
-	        android:prompt="@string/setting_prompt"
-	    />
-	  </TableRow>
-	  <TableRow
-	  android:paddingBottom="20px">	
-	  	<TextView 
-			android:id="@+id/mediaSettingText" 
-			android:layout_height="wrap_content" 
-			android:layout_width="wrap_content"
-			style="@style/MediumFont"
-			android:paddingRight="15dp"
-		/>
-		<Spinner 
-	        android:id="@+id/mediaSettingSpinner"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:drawSelectorOnTop="true"
-	        android:prompt="@string/setting_prompt"
-	    />
-	  </TableRow>
-  </TableLayout>
-  <Button 
-	android:id="@+id/submitSettingsButton"
-	android:layout_width="wrap_content"
-  	android:layout_height="wrap_content"
-  	android:paddingRight="50dp"
-  	android:paddingLeft="50dp"
-  	android:layout_gravity="center"
-  	style="@style/Button"
-  	android:text="@string/submitSettingsbutton"
-  />
+    <TextView
+    	android:textAppearance="?android:attr/textAppearanceLarge"
+    	android:layout_height="wrap_content"
+    	android:layout_width="wrap_content"
+    	android:layout_marginLeft="10pt"
+  		android:layout_marginTop="10pt"
+  		android:id="@+id/settings_title"
+  		android:text="UKApps innstillinger">
+  	</TextView>
+  	
+  	<ScrollView
+	  	android:orientation="vertical"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content" 
+  		android:layout_marginTop="10pt"
+  	>
+  	<LinearLayout
+  		android:orientation="vertical"
+  		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+  	>
+	    <RadioGroup
+	    	android:id="@+id/position_group"
+	    	android:background="@drawable/settingbackground"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="10pt"
+	    	android:layout_marginLeft="5pt"
+    		android:layout_marginRight="5pt"
+	    >
+	        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/position_text" android:text="Deling av posisjonsdata" android:layout_margin="5pt"></TextView>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Alle" android:id="@+id/position_radio0" android:checked="true" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Venner" android:id="@+id/position_radio1" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Bare meg" android:id="@+id/position_radio2" android:layout_marginLeft="5pt" android:layout_marginBottom="5pt"></RadioButton>
+	    </RadioGroup>
+	
+	    <RadioGroup
+	    	android:id="@+id/event_group"
+	    	android:background="@drawable/settingbackground"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="10pt"
+	    	android:layout_marginLeft="5pt"
+    		android:layout_marginRight="5pt"
+	    >
+	        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/position_text" android:text="Deling av arrangementsdata" android:layout_margin="5pt"></TextView>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Alle" android:id="@+id/event_radio0" android:checked="true" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Venner" android:id="@+id/event_radio1" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Bare meg" android:id="@+id/event_radio2" android:layout_marginLeft="5pt" android:layout_marginBottom="5pt"></RadioButton>
+	    </RadioGroup>
+	
+		
+	    <RadioGroup
+	    	android:id="@+id/money_group"
+	    	android:background="@drawable/settingbackground"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="10pt"
+	    	android:layout_marginLeft="5pt"
+    		android:layout_marginRight="5pt"
+	    >
+	        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/money_text" android:text="Deling av pengebruk" android:layout_margin="5pt"></TextView>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Alle" android:id="@+id/money_radio0" android:checked="true" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Venner" android:id="@+id/money_radio1" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Bare meg" android:id="@+id/money_radio2" android:layout_marginLeft="5pt" android:layout_marginBottom="5pt"></RadioButton>
+	    </RadioGroup>
+	
+	    <RadioGroup
+	    	android:id="@+id/media_group"
+	    	android:background="@drawable/settingbackground"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="10pt"
+	    	android:layout_marginLeft="5pt"
+    		android:layout_marginRight="5pt"
+	    >
+	        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/media_text" android:text="Deling av mediadata" android:layout_margin="5pt"></TextView>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Alle" android:id="@+id/media_radio0" android:checked="true" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Venner" android:id="@+id/media_radio1" android:layout_marginLeft="5pt"></RadioButton>
+	        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Bare meg" android:id="@+id/media_radio2" android:layout_marginLeft="5pt" android:layout_marginBottom="5pt"></RadioButton>
+	    </RadioGroup>
+</LinearLayout>
+</ScrollView>
 </LinearLayout>
